@@ -1,20 +1,48 @@
-import { Github, LucideLinkedin, Mail, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+
+const links = [
+  {
+    label: Linkedin,
+    href: "",
+  },
+  {
+    label: Twitter,
+    href: "",
+  },
+  {
+    label: Github,
+    href: "",
+  },
+  {
+    label: Mail,
+    href: "",
+  },
+];
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
     <section className="p-4 bg-shaad-200 grid grid-cols-3 justify-evenly items-center">
       <div className="flex justify-center items-center gap-x-4">
-        <p className="text-white font-bold text-md">Get in Touch</p>
-        <LucideLinkedin className="text-white" />
-        <Twitter className="text-white" />
-        <Github className="text-white" />
-        <Mail className="text-white" />
+        <p className="text-white font-bold text-sm">Get in Touch</p>
+        {links.map((l, idx) => {
+          return (
+            <a
+              href={l.href}
+              key={idx}
+            >
+              <l.label
+                className="text-white"
+                size={18}
+              />
+            </a>
+          );
+        })}
       </div>
-      <p className="text-white text-md mx-auto flex">
+      <p className="text-white text-sm mx-auto flex">
         Copyright ©️ {currentYear - 1} - {currentYear} | All rights reserved
       </p>
-      <p className="text-white text-md mx-auto flex">
+      <p className="text-white text-sm mx-auto flex">
         Designed By{" "}
         <a
           href="https://hardikportfolio-hardik-malhotra.vercel.app"
