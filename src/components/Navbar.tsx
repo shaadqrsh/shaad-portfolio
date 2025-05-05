@@ -12,7 +12,7 @@ const Navbar = () => {
               Shaad Qureshi
             </h1>
           </div>
-          <ul className="flex space-x-6 text-gray-700 font-medium ml-auto">
+          <ul className="flex min-md:space-x-10 gap-x-6 text-gray-700 font-medium ">
             {headers.map((h) => {
               return (
                 <li key={h.label}>

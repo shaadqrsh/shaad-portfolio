@@ -1,23 +1,4 @@
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
-
-const links = [
-  {
-    label: Linkedin,
-    href: "",
-  },
-  {
-    label: Twitter,
-    href: "",
-  },
-  {
-    label: Github,
-    href: "",
-  },
-  {
-    label: Mail,
-    href: "",
-  },
-];
+import { links } from "@/lib/header";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
