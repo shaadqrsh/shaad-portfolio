@@ -1,4 +1,5 @@
 import { links } from "@/lib/header";
+import { Copyright } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -24,8 +25,13 @@ const Footer = () => {
           })}
         </div>
       </div>
-      <p className="text-white min-lg:text-sm text-xs mx-auto flex text-center">
-        Copyright ©️ {currentYear - 1} - {currentYear} | All rights reserved
+      <p className="text-white min-lg:text-sm text-xs mx-auto flex text-center items-center">
+        Copyright
+        <Copyright
+          className="mx-1"
+          size={16}
+        />
+        {currentYear - 1} - {currentYear} | All rights reserved
       </p>
       <p className="text-white min-lg:text-sm text-xs mx-auto flex">
         Designed By{" "}
