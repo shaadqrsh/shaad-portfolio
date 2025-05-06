@@ -6,12 +6,12 @@ import { motion } from "motion/react";
 
 const Home = () => {
   return (
-    <section className="text-white h-full min-md:mt-[6%] flex items-center justify-center px-6 max-md:pb-16">
+    <section className="text-white h-full flex items-center justify-center px-6 max-md:pb-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12"
+        className="max-w-[73rem] mx-auto flex flex-col-reverse md:flex-row items-center gap-12"
       >
         <motion.div className="flex-1 border-shaad-100 border-2 p-8 rounded-4xl shadow-2xl">
           <Reveal
@@ -61,11 +61,11 @@ const Home = () => {
           </Reveal>
         </motion.div>
 
-        <div className="relative flex-1 ml-4 max-sm:mx-auto">
+        <div className="flex-1 ml-4 max-sm:mx-auto">
           <motion.img
-            src="/shaad1.png"
+            src="/shaad3.png"
             alt="Shaad Qureshi"
-            className="relative z-10 w-full max-w-sm object-contain"
+            className="w-full min-md:h-full"
           />
         </div>
       </motion.div>
