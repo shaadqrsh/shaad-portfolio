@@ -25,7 +25,7 @@ const Footer = () => {
                   key={idx}
                 >
                   <l.label
-                    className="text-white min-lg:text-sm text-xs hover:text-shaad-400 transition"
+                    className="text-white min-lg:text-sm text-xs hover:text-shaad-600 transition"
                     size={18}
                   />
                 </a>

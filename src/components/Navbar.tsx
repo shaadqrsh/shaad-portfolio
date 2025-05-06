@@ -23,21 +23,21 @@ const Navbar = () => {
                   <Link
                     href={h.link}
                     className={cn(
-                      "text-white tracking-wider font-semibold text-lg hover:text-shaad-400 transition",
-                      pathname === h.link ? "text-white" : "text-white/30"
+                      "text-white tracking-wider font-semibold text-lg hover:text-shaad-600 transition",
+                      pathname === h.link ? "text-white" : "text-shaad-100"
                     )}
                   >
                     {h.label}
                   </Link>
                   {pathname === h.link && (
-                    <div className="p-1 bg-white w-1 h-1 rounded-full flex mx-auto" />
+                    <div className="p-1 bg-shaad-600 w-1 h-1 rounded-full flex mx-auto" />
                   )}
                 </li>
               );
             })}
           </ul>
           <Button
-            className="cursor-pointer bg-transparent text-lg ml-4 hover:bg-shaad-400 hover:text-white transition-all border-shaad-600 rounded-full border-2 p-6"
+            className="cursor-pointer bg-transparent text-lg ml-4 hover:bg-shaad-600 hover:text-white transition-all border-shaad-600 rounded-full border-2 p-6"
             variant="default"
           >
             Download CV

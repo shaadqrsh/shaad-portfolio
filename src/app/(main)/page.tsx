@@ -51,7 +51,7 @@ const Home = () => {
                     key={idx}
                   >
                     <l.label
-                      className="text-white min-lg:text-sm text-xs hover:text-shaad-100 transition"
+                      className="text-white min-lg:text-sm text-xs hover:text-shaad-600 transition"
                       size={25}
                     />
                   </a>
