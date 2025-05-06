@@ -1,8 +1,12 @@
+"use client";
 import { headers } from "@/lib/header";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 
 const Navbar = () => {
+  const pathname = usePathname();
   return (
     <>
       <nav className="sticky top-0 z-50 backdrop-blur-md bg-shaad-200 shadow-md">
@@ -18,10 +22,16 @@ const Navbar = () => {
                 <li key={h.label}>
                   <Link
                     href={h.link}
-                    className="text-white tracking-wider font-semibold text-lg hover:text-shaad-400 transition"
+                    className={cn(
+                      "text-white tracking-wider font-semibold text-lg hover:text-shaad-400 transition",
+                      pathname === h.link ? "text-white" : "text-white/30"
+                    )}
                   >
                     {h.label}
                   </Link>
+                  {pathname === h.link && (
+                    <div className="p-1 bg-white w-1 h-1 rounded-full flex mx-auto" />
+                  )}
                 </li>
               );
             })}
