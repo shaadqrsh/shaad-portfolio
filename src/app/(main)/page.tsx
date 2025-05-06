@@ -22,6 +22,7 @@ const Home = () => {
               Professional ChutPaglu
             </h2>
           </Reveal>
+
           <Reveal
             x={-100}
             de={0.2}
@@ -30,12 +31,14 @@ const Home = () => {
               Shaad Qureshi
             </h1>
           </Reveal>
+
           <Reveal
             x={-100}
             de={0.2}
           >
             <p className="text-gray-400 my-5 max-w-md">{homePara}</p>
           </Reveal>
+
           <Reveal
             y={100}
             de={0.2}
