@@ -1,6 +1,3 @@
-import Footer from "@/components/Footer";
-import MobileNav from "@/components/MobileNav";
-import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -25,12 +22,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
     >
-      <body className={`${inter.className} antialiased`}>
-        <Navbar />
-        <MobileNav />
-        {children}
-        <Footer />
-      </body>
+      <body className={`${inter.className} antialiased`}>{children}</body>
     </html>
   );
 }

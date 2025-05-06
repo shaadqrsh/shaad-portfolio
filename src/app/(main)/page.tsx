@@ -6,14 +6,14 @@ import { motion } from "motion/react";
 
 const Home = () => {
   return (
-    <section className="bg-shaad-400 text-white h-full flex items-center justify-center px-6">
-      <div className="max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex-1 border-shaad-100 border-2 p-8 rounded-4xl shadow-2xl"
-        >
+    <section className="text-white h-full min-md:mt-[6%] flex items-center justify-center px-6 max-md:pb-16">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12"
+      >
+        <motion.div className="flex-1 border-shaad-100 border-2 p-8 rounded-4xl shadow-2xl">
           <Reveal
             x={-100}
             de={0.2}
@@ -68,7 +68,7 @@ const Home = () => {
             className="relative z-10 w-full max-w-sm object-contain"
           />
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
