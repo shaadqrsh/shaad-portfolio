@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 export const headers = [
   {
     label: "Home",
-    link: "/",
+    link: "/home",
   },
   {
     label: "About",
