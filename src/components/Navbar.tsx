@@ -10,9 +10,9 @@ const Navbar = () => {
   return (
     <>
       <nav className="sticky top-0 z-50 backdrop-blur-md bg-shaad-200 shadow-md">
-        <div className="hidden mx-auto px-4 py-3 min-sm:flex items-center justify-between">
+        <div className="hidden mx-auto px-8 py-4 min-sm:flex items-center justify-between">
           <div className="flex justify-between items-center">
-            <h1 className="text-lg text-white font-bold tracking-wider">
+            <h1 className="text-2xl text-white font-bold tracking-wider">
               Shaad Qureshi
             </h1>
           </div>
@@ -23,7 +23,7 @@ const Navbar = () => {
                   <Link
                     href={h.link}
                     className={cn(
-                      "text-white tracking-wider font-semibold text-lg hover:text-shaad-600 transition",
+                      "text-white tracking-wider font-semibold text-xl hover:text-shaad-600 transition",
                       pathname === h.link ? "text-white" : "text-shaad-100"
                     )}
                   >

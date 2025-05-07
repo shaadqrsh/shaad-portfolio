@@ -7,7 +7,7 @@ import Reveal from "./Reveal";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <section className="p-4 bg-shaad-200 grid grid-cols-3 justify-evenly items-center max-sm:flex max-sm:flex-col max-sm:gap-y-4">
+    <section className="px-4 py-6 bg-shaad-200 grid grid-cols-3 justify-evenly items-center max-sm:flex max-sm:flex-col max-sm:gap-y-4">
       <Reveal
         du={0.5}
         y={-20}
