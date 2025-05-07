@@ -69,7 +69,7 @@ const Home = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="max-w-[73rem] mx-auto flex flex-col-reverse md:flex-row items-center gap-12"
+        className="max-w-[75rem] mx-auto flex flex-col-reverse md:flex-row items-center gap-40"
       >
         <motion.div
           className="flex-1 border-shaad-600 border-2 p-8 rounded-4xl shadow-2xl"
