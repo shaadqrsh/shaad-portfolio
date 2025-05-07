@@ -13,7 +13,13 @@ const Home = () => {
         transition={{ duration: 0.5 }}
         className="max-w-[73rem] mx-auto flex flex-col-reverse md:flex-row items-center gap-12"
       >
-        <motion.div className="flex-1 border-shaad-100 border-2 p-8 rounded-4xl shadow-2xl">
+        <motion.div
+          className="flex-1 border-shaad-600 border-2 p-8 rounded-4xl shadow-2xl"
+          style={{
+            boxShadow: '0 0 25px rgba(252, 195, 90, 0.4)',
+            transition: 'box-shadow 0.3s ease-in-out'
+          }}
+        >
           <Reveal
             x={-100}
             de={0.2}
