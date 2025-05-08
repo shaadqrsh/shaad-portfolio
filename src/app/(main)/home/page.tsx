@@ -7,12 +7,12 @@ import { motion } from "motion/react";
 
 const Home = () => {
   return (
-    <section className="text-white h-full flex items-center justify-center px-6 max-md:pb-16">
+    <section className="text-white h-full flex items-center justify-center px-6 max-md:px-4 max-md:pb-10">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="max-w-[75rem] mx-auto flex flex-col-reverse md:flex-row items-center justify-between mt-8 xl:gap-40 max-md:gap-12"
+        className="flex flex-col-reverse md:flex-row items-center justify-center md:mt-24 lg:mt-8 max-md:mt-6 xl:gap-40 lg:gap-28 gap-12"
       >
         <motion.div
           className="flex-1 border-shaad-600 border-2 p-8 rounded-4xl shadow-2xl"
@@ -25,7 +25,7 @@ const Home = () => {
             x={-100}
             de={0.2}
           >
-            <h2 className="text-xl mb-2 text-shaad-600">
+            <h2 className="text-xl max-lg:text-lg mb-2 text-shaad-600">
               Professional ChutPaglu
             </h2>
           </Reveal>
@@ -34,7 +34,7 @@ const Home = () => {
             x={-100}
             de={0.2}
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-2">
+            <h1 className="text-4xl lg:text-5xl md:text-4xl font-bold">
               Shaad Qureshi
             </h1>
           </Reveal>
@@ -43,7 +43,9 @@ const Home = () => {
             x={-100}
             de={0.2}
           >
-            <p className="text-gray-400 my-5 max-w-md">{homePara}</p>
+            <p className="text-gray-400 md:my-5 my-3 md:text-lg text-sm max-w-md">
+              {homePara}
+            </p>
           </Reveal>
 
           <Reveal
@@ -68,12 +70,10 @@ const Home = () => {
           </Reveal>
         </motion.div>
 
-        <div className="flex-1 ml-4 max-sm:mx-auto">
-          <ImageWithAbstractShape
-            src="/shaad2.png"
-            alt="Shaad Qureshi"
-          />
-        </div>
+        <ImageWithAbstractShape
+          src="/shaad2.png"
+          alt="Shaad Qureshi"
+        />
       </motion.div>
     </section>
   );
