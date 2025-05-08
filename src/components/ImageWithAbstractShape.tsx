@@ -10,16 +10,14 @@ const ImageWithAbstractShape = ({ src, alt }: ImageWithAbstractShapeProps) => {
 
   return (
     <motion.div
+      className="relative w-[500px] h-[500px]"
       style={{
-        position: "relative",
-        width: "500px",
-        height: "500px",
         filter: "drop-shadow(0 0 10px rgba(252, 195, 90, 0.4))",
         WebkitFilter: "drop-shadow(0 0 10px rgba(252, 195, 90, 0.4))",
       }}
     >
       <motion.div
-        className="absolute top-0 left-0 w-full h-full bg-shaad-600"
+        className="absolute inset-0 bg-shaad-600"
         style={{
           clipPath: `url(${clipPathUrl})`,
           WebkitClipPath: `url(${clipPathUrl})`,
@@ -29,7 +27,7 @@ const ImageWithAbstractShape = ({ src, alt }: ImageWithAbstractShapeProps) => {
       <motion.img
         src={src}
         alt={alt}
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover"
         style={{
           clipPath: `url(${clipPathUrl})`,
           WebkitClipPath: `url(${clipPathUrl})`,
