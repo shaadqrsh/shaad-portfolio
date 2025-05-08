@@ -25,7 +25,7 @@ const Home = () => {
             x={-100}
             de={0.2}
           >
-            <h2 className="text-xl max-lg:text-lg mb-2 text-shaad-600">
+            <h2 className="text-xl max-lg:text-base mb-2 text-shaad-600">
               Professional ChutPaglu
             </h2>
           </Reveal>
@@ -34,7 +34,7 @@ const Home = () => {
             x={-100}
             de={0.2}
           >
-            <h1 className="text-4xl lg:text-5xl md:text-4xl font-bold">
+            <h1 className="text-4xl lg:text-5xl md:text-3xl font-bold">
               Shaad Qureshi
             </h1>
           </Reveal>
@@ -43,7 +43,7 @@ const Home = () => {
             x={-100}
             de={0.2}
           >
-            <p className="text-gray-400 md:my-5 my-3 md:text-lg text-sm max-w-md">
+            <p className="text-gray-400 my-2 mb-3 md:text-lg text-sm max-w-md">
               {homePara}
             </p>
           </Reveal>
@@ -61,7 +61,7 @@ const Home = () => {
                   >
                     <l.label
                       className="text-white min-lg:text-sm text-xs hover:text-shaad-600 transition"
-                      size={25}
+                      size={22}
                     />
                   </a>
                 );
