@@ -12,7 +12,7 @@ const layout = ({ children }: MainLayout) => {
     <section className="min-h-screen flex flex-col bg-shaad-400">
       <Navbar />
       <MobileNav />
-      <div className="flex-1">{children}</div>
+      <div className="flex flex-1 items-center justify-center">{children}</div>
       <Footer />
     </section>
   );

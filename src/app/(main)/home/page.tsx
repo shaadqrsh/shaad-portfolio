@@ -12,7 +12,7 @@ const Home = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col-reverse md:flex-row items-center justify-center md:mt-24 lg:mt-8 max-md:mt-6 xl:gap-40 lg:gap-28 gap-12"
+        className="flex flex-col-reverse md:flex-row items-center justify-center max-md:mt-6 xl:gap-40 lg:gap-28 gap-12"
       >
         <motion.div
           className="flex-1 border-shaad-600 border-2 p-8 rounded-4xl shadow-2xl"
