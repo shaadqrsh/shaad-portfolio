@@ -18,18 +18,18 @@ export const headers = [
 export const links = [
   {
     label: Linkedin,
-    href: "",
+    href: "https://www.linkedin.com/in/shaadrqrsh/",
   },
   {
     label: Twitter,
-    href: "",
+    href: "https://x.com/shaadqrsh",
   },
   {
     label: Github,
-    href: "",
+    href: "https://github.com/shaadqrsh",
   },
   {
     label: Mail,
-    href: "",
+    href: "shaadqrsh.work@gmail.com",
   },
 ];
