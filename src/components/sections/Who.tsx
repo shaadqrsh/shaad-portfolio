@@ -1,18 +1,20 @@
 "use client";
 import { whoAmI } from "@/lib/Data";
-import AboutCard from "../AboutCard";
+import { motion } from "motion/react";
 import Reveal from "../Reveal";
+import Title from "../Title";
 
 const Who = () => {
   return (
-    <AboutCard title="Who Am I?">
+    <motion.div className="flex-1 border-shaad-100 border-2 p-8 rounded-4xl shadow-2xl max-sm:mt-8">
+      <Title>Who Am I?</Title>
       <Reveal
         x={-100}
         de={0.2}
       >
-        <p className="">{whoAmI}</p>
+        <p className="font-light tracking-wide">{whoAmI}</p>
       </Reveal>
-    </AboutCard>
+    </motion.div>
   );
 };
 
