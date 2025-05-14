@@ -7,7 +7,7 @@ import Experience from "@/components/sections/Experience";
 import Skills from "@/components/sections/Skills";
 import Who from "@/components/sections/Who";
 
-const UI = [Who, Skills, Experience, Certifications, Education];
+const UI = [Who, Skills, Experience, Education, Certifications];
 
 const About = () => {
   return (
@@ -17,7 +17,7 @@ const About = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="sticky top-26 h-[calc(100vh-8rem)] self-start mx-auto"
+        className="sticky top-26 h-[calc(100vh-8rem)] self-start mx-auto max-sm:hidden"
       >
         <motion.img
           src="/shaad-horny.jpg"
@@ -25,7 +25,7 @@ const About = () => {
         />
       </motion.div>
 
-      <div className="flex flex-col mx-auto gap-y-6">
+      <div className="flex flex-col mx-auto gap-y-10">
         {UI.map((UI, idx) => (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
