@@ -58,6 +58,7 @@ const Home = () => {
                   <a
                     href={l.href}
                     key={idx}
+                    target="_blank"
                   >
                     <l.label
                       className="text-white min-lg:text-sm text-xs hover:text-shaad-600 transition"
