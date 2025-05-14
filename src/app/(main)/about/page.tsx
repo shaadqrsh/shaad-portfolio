@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "motion/react";
 
-import ImageWithAbstractShape from "@/components/ImageWithAbstractShape";
 import Certifications from "@/components/sections/Certifications";
 import Education from "@/components/sections/Education";
 import Experience from "@/components/sections/Experience";
@@ -12,17 +11,17 @@ const UI = [Who, Skills, Experience, Certifications, Education];
 
 const About = () => {
   return (
-    <section className="text-white h-full w-full max-sm:flex max-sm:flex-col grid grid-cols-[40%_60%] justify-center p-6 max-md:pb-16">
+    <section className="text-white h-full w-full max-sm:flex max-sm:flex-col grid grid-cols-[40%_60%] justify-center gap-x-4 p-6 max-md:pb-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="flex mx-auto sticky"
+        className="sticky top-26 h-[calc(100vh-8rem)] self-start mx-auto"
       >
-        <ImageWithAbstractShape
-          src="/shaad1.png"
-          alt="Shaad Qureshi"
+        <motion.img
+          src="/shaad-horny.jpg"
+          className="object-cover h-full w-[500px] rounded-4xl"
         />
       </motion.div>
 
