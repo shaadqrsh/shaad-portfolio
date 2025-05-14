@@ -1,7 +1,7 @@
 "use client";
 import { links } from "@/lib/header";
 import { cn } from "@/lib/utils";
-import { Copyright } from "lucide-react";
+import { Copyright, MapPin } from "lucide-react";
 import { motion } from "motion/react";
 import { usePathname } from "next/navigation";
 import Reveal from "./Reveal";
@@ -23,7 +23,11 @@ const Footer = () => {
           cn="mx-auto"
         >
           <div className="flex max-md:flex-col justify-center items-center gap-x-4">
-            <motion.p className="text-white font-bold min-lg:text-sm text-xs">
+            <motion.p className="text-white font-bold min-lg:text-sm text-xs flex items-center justify-center">
+              <MapPin
+                className="mr-1 text-shaad-600"
+                size={20}
+              />
               Get in Touch:
             </motion.p>
             <div className="flex gap-x-4 max-md:mt-2">
