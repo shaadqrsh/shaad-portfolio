@@ -12,12 +12,16 @@ const Skills = () => {
       <div className="grid grid-cols-3 gap-x-4">
         {top3.map((t, idx) => (
           <div
-            className="flex flex-col justify-center items-center gap-y-4 mt-4 border-2 border-shaad-200 p-4 rounded-4xl"
+            className="flex flex-col justify-center items-center gap-y-4 mt-2 border-2 border-shaad-200 p-4 rounded-4xl"
             key={idx}
           >
-            <t.icon />
-            <h3>{t.title}</h3>
-            <p className="text-center">{t.subTitle}</p>
+            <motion.img
+              src={t.icon}
+              className="w-auto h-[50px] text-white"
+              color="#fff"
+            />
+            <h3 className="text-xl font-bold">{t.title}</h3>
+            <p className="text-center text-sm">{t.subTitle}</p>
           </div>
         ))}
       </div>

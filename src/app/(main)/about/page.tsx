@@ -21,7 +21,7 @@ const About = () => {
       >
         <motion.img
           src="/shaad-horny.jpg"
-          className="object-cover h-full w-[500px] rounded-4xl"
+          className="object-cover h-full w-[500px] xl:w-screen rounded-4xl"
         />
       </motion.div>
 
