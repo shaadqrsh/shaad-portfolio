@@ -1,4 +1,5 @@
 "use client";
+import ImageWithAbstractShape from "@/components/ImageWithAbstractShape";
 import Certifications from "@/components/sections/Certifications";
 import Education from "@/components/sections/Education";
 import Experience from "@/components/sections/Experience";
@@ -8,14 +9,19 @@ import { motion } from "motion/react";
 
 const About = () => {
   return (
-    <section className="text-white h-full w-full max-sm:flex max-sm:flex-col grid grid-cols-2 items-center justify-center p-6 max-md:pb-16">
-      <div className="flex mx-auto sticky left-0 top-0">
-        <motion.img
-          src="/shaad3.png"
+    <section className="text-white h-full w-full max-sm:flex max-sm:flex-col grid grid-cols-2 justify-center p-6 max-md:pb-16">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="flex mx-auto sticky"
+      >
+        <ImageWithAbstractShape
+          src="/shaad1.png"
           alt="Shaad Qureshi"
-          className="w-full h-52"
         />
-      </div>
+      </motion.div>
+
       <div className="flex flex-col mx-auto gap-y-6">
         <Who />
         <Skills />
