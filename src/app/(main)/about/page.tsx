@@ -12,11 +12,12 @@ const UI = [Who, Skills, Experience, Certifications, Education];
 
 const About = () => {
   return (
-    <section className="text-white h-full w-full max-sm:flex max-sm:flex-col grid grid-cols-2 justify-center p-6 max-md:pb-16">
+    <section className="text-white h-full w-full max-sm:flex max-sm:flex-col grid grid-cols-[40%_60%] justify-center p-6 max-md:pb-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
         className="flex mx-auto sticky"
       >
         <ImageWithAbstractShape
