@@ -1,6 +1,7 @@
-"use client";
-import { whoAmI } from "@/lib/Data";
 import { motion } from "motion/react";
+
+import { whoAmI } from "@/lib/Data";
+
 import Reveal from "../Reveal";
 import Title from "../Title";
 

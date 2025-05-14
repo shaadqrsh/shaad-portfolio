@@ -1,5 +1,7 @@
-import { MapPin } from "lucide-react";
 import { motion } from "motion/react";
+
+import { top3 } from "@/lib/Skills";
+
 import Title from "../Title";
 
 const Skills = () => {
@@ -8,37 +10,18 @@ const Skills = () => {
       <Title>Skills</Title>
 
       <div className="grid grid-cols-3 gap-x-4">
-        <div className="flex flex-col justify-center items-center gap-y-4 mt-4 border-2 border-shaad-200 p-4 rounded-4xl">
-          <MapPin />
-          <h3>HTML</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, sit at
-            vel nesciunt enim, cumque facere eligendi ut voluptate odit maiores
-            explicabo cupiditate modi, molestiae rerum fuga non. Recusandae,
-            quibusdam.
-          </p>
-        </div>
-        <div className="flex flex-col justify-center items-center gap-y-4 mt-4 border-2 border-shaad-200 p-4 rounded-4xl">
-          <MapPin />
-          <h3>HTML</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, sit at
-            vel nesciunt enim, cumque facere eligendi ut voluptate odit maiores
-            explicabo cupiditate modi, molestiae rerum fuga non. Recusandae,
-            quibusdam.
-          </p>
-        </div>
-        <div className="flex flex-col justify-center items-center gap-y-4 mt-4 border-2 border-shaad-200 p-4 rounded-4xl">
-          <MapPin />
-          <h3>HTML</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, sit at
-            vel nesciunt enim, cumque facere eligendi ut voluptate odit maiores
-            explicabo cupiditate modi, molestiae rerum fuga non. Recusandae,
-            quibusdam.
-          </p>
-        </div>
+        {top3.map((t, idx) => (
+          <div
+            className="flex flex-col justify-center items-center gap-y-4 mt-4 border-2 border-shaad-200 p-4 rounded-4xl"
+            key={idx}
+          >
+            <t.icon />
+            <h3>{t.title}</h3>
+            <p className="text-center">{t.subTitle}</p>
+          </div>
+        ))}
       </div>
+
       <div></div>
     </motion.div>
   );
