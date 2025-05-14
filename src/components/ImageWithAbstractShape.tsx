@@ -10,7 +10,7 @@ const ImageWithAbstractShape = ({ src, alt }: ImageWithAbstractShapeProps) => {
 
   return (
     <motion.div
-      className="relative xl:w-[500px] xl:h-[500px] lg:w-[400px] lg:h-[400px] md:w-[300px] md:h-[300px] w-[350px] h-[350px]"
+      className="relative xl:w-[500px] xl:h-[500px] lg:w-[400px] lg:h-[400px] md:w-[300px] md:h-[300px] w-[300px] h-[300px]"
       style={{
         filter: "drop-shadow(0 0 10px rgba(252, 195, 90, 0.4))",
         WebkitFilter: "drop-shadow(0 0 10px rgba(252, 195, 90, 0.4))",
