@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 interface ExperienceCardProps {
   date: string;
   title: string;
-  subTitle?: string;
+  subTitle?: string[];
 }
 
 const ExperienceCard = ({ date, subTitle, title }: ExperienceCardProps) => {
@@ -22,7 +22,14 @@ const ExperienceCard = ({ date, subTitle, title }: ExperienceCardProps) => {
       <div className="bg-shaad-100 p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-200 w-full">
         <p className="text-sm text-white">{date}</p>
         <h2 className="text-md font-semibold text-white">{title}</h2>
-        <p className="text-sm text-white">{subTitle}</p>
+        {subTitle?.map((sub) => (
+          <p
+            className="text-sm text-white"
+            key={sub}
+          >
+            {sub}
+          </p>
+        ))}
       </div>
     </motion.div>
   );
