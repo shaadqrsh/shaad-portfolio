@@ -24,12 +24,14 @@ const Navbar = () => {
                     href={h.link}
                     className={cn(
                       "text-white tracking-wider font-semibold text-xl hover:text-shaad-600 transition",
-                      pathname === h.link ? "text-white" : "text-shaad-100"
+                      pathname.startsWith(h.link)
+                        ? "text-white"
+                        : "text-shaad-100"
                     )}
                   >
                     {h.label}
                   </Link>
-                  {pathname === h.link && (
+                  {pathname.startsWith(h.link) && (
                     <div className="mt-2 p-1 bg-shaad-600 w-1 h-1 rounded-full flex mx-auto" />
                   )}
                 </li>
