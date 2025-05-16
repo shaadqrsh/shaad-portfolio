@@ -27,7 +27,7 @@ const ExperienceCard = ({ date, subTitle, title }: ExperienceCardProps) => {
             className="text-sm text-white"
             key={sub}
           >
-            {sub}
+            • {sub}
           </p>
         ))}
       </div>
