@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 const Projects = () => {
   return (
     <section className="text-white h-full w-full flex flex-col justify-center p-6 max-md:pb-16">
-      <motion.div className="grid grid-cols-2 justify-center items-center gap-6">
+      <motion.div className="grid grid-cols-2 justify-center items-center gap-6 max-lg:flex max-lg:flex-col">
         {projects.map((p, idx) => (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
