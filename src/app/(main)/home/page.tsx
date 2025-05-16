@@ -26,7 +26,7 @@ const Home = () => {
             de={0.2}
           >
             <h2 className="text-xl max-lg:text-base mb-2 text-shaad-600">
-              Professional ChutPaglu
+              Aspiring Game Developer
             </h2>
           </Reveal>
 
