@@ -8,12 +8,18 @@ const Projects = () => {
     <section className="text-white h-full w-full flex flex-col justify-center p-6 max-md:pb-16">
       <motion.div className="grid grid-cols-2 justify-center items-center gap-6">
         {projects.map((p, idx) => (
-          <ProjectsCard
-            title={p.title}
-            desp={p.desp}
-            img={p.img}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 * idx }}
             key={idx}
-          />
+          >
+            <ProjectsCard
+              title={p.title}
+              desp={p.desp}
+              img={p.img}
+            />
+          </motion.div>
         ))}
       </motion.div>
     </section>
