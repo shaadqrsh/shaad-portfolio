@@ -17,20 +17,24 @@ const ProjectsCard = ({ desp, img, title }: ProjectsCardProps) => {
   return (
     <motion.div
       className={cn(
-        `relative flex justify-center items-start gap-4 border-2 p-4 rounded-4xl shadow-2xl transition`,
+        `relative flex justify-center items-start gap-4 border-2 p-4 rounded-4xl shadow-2xl transition min-h-60 max-md:flex-col max-md:items-start`,
         hoveringArrow ? "border-shaad-600" : "border-shaad-100"
       )}
     >
       <motion.img
         src={img}
-        className="w-[300px] h-[200px] rounded-xl"
+        className="w-[300px] h-[250px] rounded-xl"
       />
 
       <div className="flex flex-col justify-start items-start gap-3">
         <h1 className="text-shaad-600 text-2xl font-semibold tracking-wide">
           {title}
         </h1>
-        <p className="text-lg">{desp}</p>
+
+        <p className="line-clamp-6 max-lg:line-clamp-4 max-sm:line-clamp-2 text-left mb-12">
+          {desp}
+        </p>
+
         <Link
           href={`/projects/${title.toLowerCase().replace(/\s+/g, "-")}`}
           className={cn(
