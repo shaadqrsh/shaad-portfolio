@@ -6,7 +6,7 @@ import ExperienceCard from "../ExperienceCard";
 const Experience = () => {
   return (
     <AboutCard title="Experience">
-      <div className="grid grid-cols-2 gap-4 mt-4 max-lg:flex max-lg:flex-col">
+      <div className="flex flex-col gap-4 mt-4 border-l-2 border-shaad-600">
         {experience.map((ex, idx) => (
           <motion.div
             initial={{ opacity: 0, y: 20 }}

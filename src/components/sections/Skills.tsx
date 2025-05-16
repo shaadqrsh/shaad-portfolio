@@ -21,7 +21,7 @@ const Skills = () => {
             <motion.img
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 * idx }}
+              transition={{ duration: 0.5, delay: 0.3 * idx }}
               viewport={{ once: true }}
               src={t.icon}
               className="w-auto h-[50px] text-white"
@@ -29,7 +29,7 @@ const Skills = () => {
             />
             <Reveal
               x={-100}
-              de={0.5 * idx}
+              de={0.3 * idx}
             >
               <motion.h3 className="text-xl font-bold text-center">
                 {t.title}
@@ -37,7 +37,7 @@ const Skills = () => {
             </Reveal>
             <Reveal
               x={-100}
-              de={0.5 * idx}
+              de={0.3 * idx}
             >
               <p className="text-center text-xs xl:text-sm">{t.subTitle}</p>
             </Reveal>
