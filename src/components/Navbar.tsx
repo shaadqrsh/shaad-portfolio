@@ -42,7 +42,13 @@ const Navbar = () => {
             className="cursor-pointer bg-transparent text-lg ml-4 hover:bg-shaad-600 hover:text-white transition-all border-shaad-600 rounded-full border-2 p-6"
             variant="default"
           >
-            Download CV
+            <a
+              href="/Shaad Qureshi.pdf"
+              download="Shaad Qureshi"
+              rel="noopener noreferrer"
+            >
+              Download CV
+            </a>
           </Button>
         </div>
       </nav>
