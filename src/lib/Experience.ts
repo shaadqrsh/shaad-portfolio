@@ -2,16 +2,16 @@ export const experience = [
   {
     title: "UI/UX Designer",
     year: "2013 - 2022",
-    subtitle: "lorem ispem",
+    subtitle: ["sex", "maut"],
   },
   {
-    title: "Full-Stack Developer",
+    title: "UI/UX Designer",
     year: "2013 - 2022",
-    subtitle: "lorem ispem",
+    subtitle: ["sex", "maut"],
   },
   {
-    title: "Frontend Developer",
+    title: "UI/UX Designer",
     year: "2013 - 2022",
-    subtitle: "lorem ispem",
+    subtitle: ["sex", "maut"],
   },
 ];
