@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 
-import { top3 } from "@/lib/Skills";
+import { nameless, skills, top3 } from "@/lib/Skills";
 
 import AboutCard from "../AboutCard";
 import Reveal from "../Reveal";
@@ -25,7 +25,7 @@ const Skills = () => {
               viewport={{ once: true }}
               src={t.icon}
               className="w-auto h-[50px] text-white"
-              color="#fff"
+              color="#ffffff"
             />
             <Reveal
               x={-100}
@@ -45,7 +45,53 @@ const Skills = () => {
         ))}
       </div>
 
-      <div></div>
+      <div className="flex flex-wrap justify-center items-center gap-6 mt-6">
+        {skills.map((s, idx) => (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            key={idx}
+            className="flex flex-col items-center gap-4 border-shaad-100 border-2 p-4 rounded-2xl w-[117px] h-[129px]"
+          >
+            <motion.img
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+              src={s.icon}
+              className="w-full h-[50px] text-white"
+              color="#ffffff"
+            />
+
+            <Reveal x={-100}>
+              <motion.h3 className="text-lg tracking-wider font-bold text-center">
+                {s.name}
+              </motion.h3>
+            </Reveal>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="flex flex-wrap justify-center items-center gap-6 mt-6">
+        {nameless.map((s, idx) => (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            key={idx}
+            className="flex flex-col items-center gap-4 border-shaad-100 border-2 p-4 rounded-2xl"
+          >
+            <Reveal x={-100}>
+              <motion.h2 className="text-lg tracking-wider font-bold text-center">
+                {s.title}
+              </motion.h2>
+            </Reveal>
+          </motion.div>
+        ))}
+      </div>
     </AboutCard>
   );
 };

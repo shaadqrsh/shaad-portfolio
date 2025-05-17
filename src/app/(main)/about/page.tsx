@@ -11,7 +11,7 @@ const UI = [Who, Skills, Experience, Education, Certifications];
 
 const About = () => {
   return (
-    <section className="text-white h-full w-full max-sm:flex max-sm:flex-col grid grid-cols-[40%_60%] justify-center gap-x-4 p-6 max-md:pb-16">
+    <section className="min-2xl:container text-white h-full w-full max-sm:flex max-sm:flex-col grid grid-cols-[40%_60%] justify-center gap-x-4 p-6 max-md:pb-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
