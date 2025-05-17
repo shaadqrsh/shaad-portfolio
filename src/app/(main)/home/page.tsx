@@ -2,24 +2,11 @@
 import ImageWithAbstractShape from "@/components/ImageWithAbstractShape";
 import Reveal from "@/components/Reveal";
 import { homePara } from "@/lib/Data";
+import { EMAIL, handleEmail } from "@/lib/Email";
 import { links } from "@/lib/header";
 import { motion } from "motion/react";
 
 const Home = () => {
-  const EMAIL = "shaadqrsh.work@gmail.com";
-
-  function handleEmail() {
-    const recipient = EMAIL;
-    const subject = "";
-    const body = "";
-
-    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-
-    window.location.href = mailtoUrl;
-  }
-
   return (
     <section className="text-white h-full flex items-center justify-center px-6 max-md:px-4 max-md:pb-10">
       <motion.div

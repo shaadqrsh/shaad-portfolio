@@ -1,4 +1,5 @@
 "use client";
+import { EMAIL, handleEmail } from "@/lib/Email";
 import { links } from "@/lib/header";
 import { cn } from "@/lib/utils";
 import { Copyright, MapPin } from "lucide-react";
@@ -37,6 +38,7 @@ const Footer = () => {
                     href={l.href}
                     key={idx}
                     target="_blank"
+                    onClick={l.href === EMAIL ? handleEmail : undefined}
                   >
                     <l.label
                       className="text-white min-lg:text-sm text-xs hover:text-shaad-600 transition"
