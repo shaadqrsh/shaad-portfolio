@@ -40,7 +40,7 @@ export const skills = [
   },
   {
     icon: "/skills/icon_cpp.svg",
-    name: "CPP",
+    name: "C++",
   },
   {
     icon: "/skills/icon_git.svg",
@@ -78,12 +78,24 @@ export const skills = [
 
 export const nameless = [
   {
-    title: "Shaad",
+    title: "Project Management",
   },
   {
-    title: "Shaad",
+    title: "Level Design",
   },
   {
-    title: "Shaad",
+    title: "UI Design",
   },
+  {
+    title: "Problem Solving",
+  },
+  {
+    title: "Testing & Debugging",
+  },
+  {
+    title: "Collaboration & Teamwork",
+  },
+  {
+    title: "Time Management",
+  }
 ];

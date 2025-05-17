@@ -18,7 +18,7 @@ const Home = () => {
         <motion.div
           className="flex-1 border-shaad-600 border-2 p-8 rounded-4xl shadow-2xl"
           style={{
-            boxShadow: "0 0 25px rgba(252, 195, 90, 0.4)",
+            boxShadow: "0 0 25px var(--color-shaad-550)",
             transition: "box-shadow 0.3s ease-in-out",
           }}
         >
@@ -44,7 +44,7 @@ const Home = () => {
             x={-100}
             de={0.2}
           >
-            <p className="mt-4 mb-6 text-gray-400 my-2 mb-3 md:text-lg text-sm max-w-md">
+            <p className="mt-4 mb-6 text-shaad-100 my-2 mb-3 md:text-lg text-sm max-w-md">
               {homePara}
             </p>
           </Reveal>

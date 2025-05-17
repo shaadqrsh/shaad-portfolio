@@ -4,12 +4,13 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-shaad-100: #636778; /*folkstone-grey*/
-  --color-shaad-200: #424657; /*meteorite-black*/
-  --color-shaad-300: #323647; /*mood-indigo*/
-  --color-shaad-400: #242734; /*Sky Captain*/
-  --color-shaad-500: #fdc35b; /*After Shock*/
-  --color-shaad-600: #ffae21; /*Honey Wax*/
+  --color-shaad-100: #787391;   /*Navbar 2*/
+  --color-shaad-200: #292342;   /*Navbar*/
+  --color-shaad-300: #201B35;   /*Background 2*/
+  --color-shaad-400: #181429;   /*Background*/
+  --color-shaad-500: #EC5F68;   /*Accent 2*/
+  --color-shaad-550: #EC5F6866; /*Accent 2 (Transparent)*/
+  --color-shaad-600: #D84B54;   /*Accent 1*/
 }
 
 @theme inline {

@@ -53,7 +53,7 @@ const Skills = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             key={idx}
-            className="flex flex-col items-center gap-4 border-shaad-100 border-2 p-4 rounded-2xl w-[117px] h-[129px]"
+            className="flex flex-col items-center gap-4 border-shaad-200 border-2 p-4 rounded-2xl w-[117px] h-[129px]"
           >
             <motion.img
               initial={{ opacity: 0 }}
@@ -82,7 +82,7 @@ const Skills = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             key={idx}
-            className="flex flex-col items-center gap-4 border-shaad-100 border-2 p-4 rounded-2xl"
+            className="flex flex-col items-center gap-4 border-shaad-200 border-2 p-4 rounded-2xl"
           >
             <Reveal x={-100}>
               <motion.h2 className="text-lg tracking-wider font-bold text-center">

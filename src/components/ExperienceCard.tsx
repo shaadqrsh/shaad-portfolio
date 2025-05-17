@@ -15,7 +15,7 @@ const ExperienceCard = ({ date, subTitle, title }: ExperienceCardProps) => {
       className="relative flex items-start space-x-4"
     >
       <div className="w-3 h-3 bg-shaad-600 rounded-full z-10 relative -left-[6.5px] self-center" />
-      <div className="bg-shaad-100 p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-200 w-full">
+      <div className="bg-shaad-300 p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-200 w-full">
         <h2 className="text-lg font-semibold text-white">{title}</h2>
         <p className="text-md text-shaad-500 mb-2">{date}</p>
 
