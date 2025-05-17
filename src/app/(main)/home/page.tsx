@@ -44,7 +44,7 @@ const Home = () => {
             x={-100}
             de={0.2}
           >
-            <p className="text-gray-400 my-2 mb-3 md:text-lg text-sm max-w-md">
+            <p className="mt-4 mb-6 text-gray-400 my-2 mb-3 md:text-lg text-sm max-w-md">
               {homePara}
             </p>
           </Reveal>
@@ -74,7 +74,7 @@ const Home = () => {
         </motion.div>
 
         <ImageWithAbstractShape
-          src="/shaad2.png"
+          src="/img_home.png"
           alt="Shaad Qureshi"
         />
       </motion.div>
