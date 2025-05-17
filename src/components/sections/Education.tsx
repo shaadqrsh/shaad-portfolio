@@ -18,6 +18,7 @@ const Education = () => {
             <ExperienceCard
               date={ex.year}
               title={ex.title}
+              subTitle={ex.subtitle}
             />
           </motion.div>
         ))}
