@@ -6,6 +6,20 @@ import { links } from "@/lib/header";
 import { motion } from "motion/react";
 
 const Home = () => {
+  const EMAIL = "shaadqrsh.work@gmail.com";
+
+  function handleEmail() {
+    const recipient = EMAIL;
+    const subject = "";
+    const body = "";
+
+    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoUrl;
+  }
+
   return (
     <section className="text-white h-full flex items-center justify-center px-6 max-md:px-4 max-md:pb-10">
       <motion.div
@@ -59,6 +73,7 @@ const Home = () => {
                     href={l.href}
                     key={idx}
                     target="_blank"
+                    onClick={l.href === EMAIL ? handleEmail : undefined}
                   >
                     <l.label
                       className="text-white min-lg:text-sm text-xs hover:text-shaad-600 transition"
