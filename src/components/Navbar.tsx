@@ -43,7 +43,7 @@ const Navbar = () => {
             variant="default"
           >
             <a
-              href="/Shaad Qureshi.pdf"
+              href="/resume.pdf"
               download="Shaad Qureshi"
               rel="noopener noreferrer"
             >
