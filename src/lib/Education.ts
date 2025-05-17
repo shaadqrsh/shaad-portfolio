@@ -1,5 +1,17 @@
 export const education = [
-  { title: "High School Degree", year: "2013 - 2022", subtitle: ["s"] },
-  { title: "Bachelor's Degree", year: "2013 - 2022" },
-  { title: "Master Degree", year: "2013 - 2022" },
+  { 
+    title: "Bacherlor of Science - Information Technology", 
+    year: "August 2022 - June 2025",
+    subtitle: "SVKM's Narsee Monjee College of Commerce and Economics, Vile Parle, Mumbai, Maharashtra"
+  },
+  { 
+    title: "Class 12th - HSC Board", 
+    year: "June 2019 - April 2021",
+    subtitle: "PACE Junior Science College, Dadar, Mumbai, Maharashtra"
+  },
+  { 
+    title: "Class 12th - ICSE Board", 
+    year: "June 2006 - April 2019",
+    subtitle: "Bombay Scottish School, Mahim, Mumbai, Maharashtra"
+  }
 ];
