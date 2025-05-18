@@ -8,7 +8,7 @@ import Reveal from "../Reveal";
 const Skills = () => {
   return (
     <AboutCard title="Skills">
-      <div className="grid grid-cols-3 gap-x-4 max-lg:flex flex-col">
+      <div className="grid grid-cols-3 gap-x-6 max-lg:flex flex-col">
         {top3.map((t, idx) => (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -16,7 +16,7 @@ const Skills = () => {
             transition={{ duration: 0.5, delay: 0.3 * idx }}
             viewport={{ once: true }}
             key={idx}
-            className="flex flex-col justify-center items-center gap-y-4 mt-2 border-2 border-shaad-200 p-4 rounded-4xl"
+            className="flex flex-col justify-center items-center gap-y-4 mt-2 bg-shaad-300 p-4 rounded-4xl"
           >
             <motion.img
               initial={{ opacity: 0 }}
@@ -53,7 +53,7 @@ const Skills = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             key={idx}
-            className="flex flex-col items-center gap-4 border-shaad-200 border-2 p-4 rounded-2xl w-[115px] h-[130px]"
+            className="flex flex-col items-center gap-4 bg-shaad-300 p-4 rounded-2xl w-[115px] h-[130px] justify-center"
           >
             <motion.img
               initial={{ opacity: 0 }}
@@ -82,7 +82,7 @@ const Skills = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             key={idx}
-            className="flex flex-col items-center gap-4 border-shaad-200 border-2 p-4 rounded-2xl"
+            className="flex flex-col items-center gap-4 bg-shaad-300 p-4 rounded-2xl"
           >
             <Reveal x={-100}>
               <motion.h2 className="text-lg tracking-wider font-bold text-center">

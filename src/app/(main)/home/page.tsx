@@ -64,7 +64,7 @@ const Home = () => {
                   >
                     <l.label
                       className="text-white min-lg:text-sm text-xs hover:text-shaad-600 transition"
-                      size={22}
+                      size={28}
                     />
                   </a>
                 );

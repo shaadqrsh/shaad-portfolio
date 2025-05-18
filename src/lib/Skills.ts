@@ -63,7 +63,7 @@ export const skills = [
   },
   {
     icon: "/skills/icon_microsoft.svg",
-    name: "Microsoft",
+    name: "Microsoft Office",
   },
 ];
 
