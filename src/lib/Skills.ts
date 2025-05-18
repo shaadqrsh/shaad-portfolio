@@ -2,37 +2,36 @@ export const top3 = [
   {
     icon: "/skills/icon_unity.svg",
     title: "Unity",
-    subTitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, sit at
-            vel nesciunt enim, cumque facere eligendi ut voluptate odit maiores
-            explicabo cupiditate modi, molestiae rerum fuga non. Recusandae,
-            quibusdam.`,
+    subTitle: "Proficient in C#, I've implemented core 2D/3D game mechanics (movement, collision, physics), designed interactive UIs, and applied animations/visual effects with efficient project structures and game state management.",
   },
   {
     icon: "/skills/icon_unreal.svg",
     title: "Unreal Engine",
-    subTitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, sit at
-            vel nesciunt enim, cumque facere eligendi ut voluptate odit maiores
-            explicabo cupiditate modi, molestiae rerum fuga non. Recusandae,
-            quibusdam.`,
+    subTitle: `Expereinced in C++ and Blueprints for development of gameplay mechanics, AI (Behavior Trees/Blackboards), animations, and user input across FPS and 3D platformer genres.`,
   },
   {
     icon: "/skills/icon_blender.svg",
     title: "Blender",
-    subTitle: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, sit at
-            vel nesciunt enim, cumque facere eligendi ut voluptate odit maiores
-            explicabo cupiditate modi, molestiae rerum fuga non. Recusandae,
-            quibusdam.`,
+    subTitle: `Skilled in Blender for 3D modeling, basic animation/rigging, texturing, and high-quality rendering for various media.`,
   },
 ];
 
 export const skills = [
   {
-    icon: "/skills/icon_android.svg",
-    name: "Android",
+    icon: "/skills/icon_godot.svg",
+    name: "Godot",
+  },
+  {
+    icon: "/skills/icon_photoshop.svg",
+    name: "Photoshop",
+  },
+  {
+    icon: "/skills/icon_premiere.svg",
+    name: "Premiere Pro",
   },
   {
     icon: "/skills/icon_aseprite.svg",
-    name: "Aseprite",
+    name: "Pixel Art",
   },
   {
     icon: "/skills/icon_cs.svg",
@@ -43,36 +42,28 @@ export const skills = [
     name: "C++",
   },
   {
-    icon: "/skills/icon_git.svg",
-    name: "Git",
+    icon: "/skills/icon_ruby.svg",
+    name: "Ruby",
   },
   {
-    icon: "/skills/icon_godot.svg",
-    name: "Godot",
+    icon: "/skills/icon_python.svg",
+    name: "Python",
   },
   {
     icon: "/skills/icon_java.svg",
     name: "Java",
   },
   {
+    icon: "/skills/icon_git.svg",
+    name: "Git",
+  },
+  {
+    icon: "/skills/icon_android.svg",
+    name: "Android",
+  },
+  {
     icon: "/skills/icon_microsoft.svg",
     name: "Microsoft",
-  },
-  {
-    icon: "/skills/icon_photoshop.svg",
-    name: "Photoshop",
-  },
-  {
-    icon: "/skills/icon_premiere.svg",
-    name: "Premiere",
-  },
-  {
-    icon: "/skills/icon_r.svg",
-    name: "R",
-  },
-  {
-    icon: "/skills/icon_ruby.svg",
-    name: "Ruby",
   },
 ];
 

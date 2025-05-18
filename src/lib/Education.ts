@@ -10,7 +10,7 @@ export const education = [
     subtitle: "PACE Junior Science College, Dadar, Mumbai, Maharashtra"
   },
   { 
-    title: "Class 12th - ICSE Board", 
+    title: "Class 10th - ICSE Board", 
     year: "June 2006 - April 2019",
     subtitle: "Bombay Scottish School, Mahim, Mumbai, Maharashtra"
   }
