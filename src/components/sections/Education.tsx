@@ -19,6 +19,7 @@ const Education = () => {
               date={ex.year}
               title={ex.title}
               subTitle={ex.subtitle}
+              img={ex.image}
             />
           </motion.div>
         ))}

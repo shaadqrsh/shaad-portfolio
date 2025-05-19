@@ -19,6 +19,7 @@ const Experience = () => {
               date={ex.year}
               subTitle={ex.subtitle}
               title={ex.title}
+              img={ex.image}
             />
           </motion.div>
         ))}

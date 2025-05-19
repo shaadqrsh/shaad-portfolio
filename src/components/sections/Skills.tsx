@@ -16,7 +16,7 @@ const Skills = () => {
             transition={{ duration: 0.5, delay: 0.3 * idx }}
             viewport={{ once: true }}
             key={idx}
-            className="flex flex-col justify-center items-center gap-y-4 mt-2 bg-shaad-300 p-4 rounded-4xl"
+            className="flex flex-col justify-start items-center gap-y-4 mt-2 bg-shaad-300 p-4 rounded-4xl"
           >
             <motion.img
               initial={{ opacity: 0 }}
