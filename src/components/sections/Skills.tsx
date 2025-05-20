@@ -53,7 +53,7 @@ const Skills = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             key={idx}
-            className="flex flex-col items-center gap-4 bg-shaad-300 p-4 rounded-2xl w-[115px] h-[130px] justify-center"
+            className="flex flex-col items-center gap-4 bg-shaad-300 p-4 rounded-2xl w-[115px] max-sm:w-[100px] h-[125px] max-sm:h-[120px] justify-center"
           >
             <motion.img
               initial={{ opacity: 0 }}
@@ -66,7 +66,7 @@ const Skills = () => {
             />
 
             <Reveal x={-100}>
-              <motion.h3 className="text-lg tracking-wider font-bold text-center">
+              <motion.h3 className="text-lg max-sm:text-md tracking-wider font-bold text-center">
                 {s.name}
               </motion.h3>
             </Reveal>

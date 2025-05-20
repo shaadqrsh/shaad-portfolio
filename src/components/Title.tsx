@@ -12,7 +12,7 @@ const Title = ({ children }: TitleProps) => {
       x={-100}
       de={0.2}
     >
-      <h2 className="text-3xl mb-2 font-bold text-shaad-600">{children}</h2>
+      <h2 className="text-4xl mb-4 font-bold text-shaad-600">{children}</h2>
     </Reveal>
   );
 };
