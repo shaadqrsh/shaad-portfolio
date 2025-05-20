@@ -6,5 +6,6 @@ export const experience = [
       "Responsibility of developing game mechanics in Unity (C#) and Unreal Engine (C++ and Blueprints).",
       "Worked on 62 different projects for 36 different clients from different private Discord servers.",
     ],
+    image: "about/img_freelance.png"
   },
 ];

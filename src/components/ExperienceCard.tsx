@@ -25,7 +25,7 @@ const ExperienceCard = ({
       {ex && (
         <div className="w-3 h-3 bg-shaad-600 rounded-full z-10 relative -left-[6.5px] self-center" />
       )}
-      <div className="bg-shaad-300 p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-200 w-full flex lg:flex-row flex-col">
+      <div className="bg-shaad-300 p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-200 w-full flex lg:flex-row flex-col items-center">
         {img && ex && (
           <motion.img
             src={img}
@@ -43,14 +43,16 @@ const ExperienceCard = ({
             (Array.isArray(subTitle) ? (
               subTitle.map((sub) => (
                 <p
-                  className="text-sm text-white mt-1"
+                  className={`text-sm mt-1 ${ex ? "text-white" : "text-shaad-500"}`}
                   key={sub}
                 >
                   • {sub}
                 </p>
               ))
             ) : (
-              <p className="text-sm text-white">{subTitle}</p>
+              <p className={`text-sm ${ex ? "text-white" : "text-shaad-500"}`}>
+                {subTitle}
+              </p>
             ))}
         </div>
       </div>

@@ -20,7 +20,7 @@ const About = () => {
         className="sticky top-26 h-[calc(100vh-8rem)] self-start mx-auto max-sm:hidden"
       >
         <motion.img
-          src="/img_about.jpg"
+          src="about/img_about.jpg"
           className="object-cover h-full w-[500px] xl:w-screen rounded-4xl"
         />
       </motion.div>

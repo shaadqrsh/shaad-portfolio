@@ -1,15 +1,34 @@
 export const Certificates = [
   {
-    title: "Bacherlor of Science - Information Technology",
-    subtitle:
-      "SVKM's Narsee Monjee College of Commerce and Economics, Vile Parle, Mumbai, Maharashtra",
+    title: "Complete C# Unity Game Developer 3D (Updated To Unity 6)",
+    subtitle: "Udemy ● 2025",
   },
   {
-    title: "Class 12th - HSC Board",
-    subtitle: "PACE Junior Science College, Dadar, Mumbai, Maharashtra",
+    title: "Complete C# Unity Game Developer 2D",
+    subtitle: "Udemy ● 2025",
   },
   {
-    title: "Class 10th - ICSE Board",
-    subtitle: "Bombay Scottish School, Mahim, Mumbai, Maharashtra",
+    title: "Unreal Engine 5 C++ Developer: Learn C++ & Make Video Games",
+    subtitle: "Udemy ● 2025",
+  },
+  {
+    title: "Adobe Premiere Pro Masterclass: Video Editing in Premiere",
+    subtitle: "Udemy ● 2025",
+  },
+  {
+    title: "Ultimate Photoshop Training: From Beginner to Pro 2025 + AI",
+    subtitle: "Udemy ● 2025",
+  },
+  {
+    title: "Pixel Art Master Course - Beginner to Professional/Freelances",
+    subtitle: "Udemy ● 2025",
+  },
+  {
+    title: "The Complete Python Bootcamp From Zero to Hero in Python",
+    subtitle: "Udemy ● 2025",
+  },
+  {
+    title: "Git Complete: The definitive, step-by-step guide to Git",
+    subtitle: "Udemy ● 2025",
   },
 ];
