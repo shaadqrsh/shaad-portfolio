@@ -23,12 +23,16 @@ const Navbar = () => {
                   <Link
                     href={h.link}
                     className={cn(
-                      "text-white tracking-wider font-semibold text-xl hover:text-shaad-600 transition",
+                      "text-white flex tracking-wider items-center font-semibold text-xl hover:text-shaad-600 transition",
                       pathname.startsWith(h.link)
                         ? "text-white"
                         : "text-shaad-100"
                     )}
                   >
+                    <h.icon
+                      className="mr-2"
+                      size={20}
+                    />
                     {h.label}
                   </Link>
                   {pathname.startsWith(h.link) && (
