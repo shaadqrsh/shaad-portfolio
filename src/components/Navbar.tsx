@@ -44,10 +44,10 @@ const Navbar = () => {
           >
             <a
               href="/resume.pdf"
-              download="Shaad Qureshi"
+              target="_blank"
               rel="noopener noreferrer"
             >
-              Download CV
+              View CV
             </a>
           </Button>
         </div>
