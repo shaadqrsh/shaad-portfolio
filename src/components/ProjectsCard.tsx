@@ -7,11 +7,11 @@ import { useRouter } from "next/navigation";
 
 interface ProjectsCardProps {
   title: string;
-  desp: string;
+  desc: string;
   img: string;
 }
 
-const ProjectsCard = ({ desp, img, title }: ProjectsCardProps) => {
+const ProjectsCard = ({ desc, img, title }: ProjectsCardProps) => {
   const router = useRouter();
 
   function handleRoute() {
@@ -36,7 +36,7 @@ const ProjectsCard = ({ desp, img, title }: ProjectsCardProps) => {
         </h1>
 
         <p className="line-clamp-6 max-lg:line-clamp-4 max-sm:line-clamp-2 text-left mb-12">
-          {desp}
+          {desc}
         </p>
 
         <Link

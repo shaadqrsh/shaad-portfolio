@@ -16,7 +16,7 @@ const Projects = () => {
           >
             <ProjectsCard
               title={p.title}
-              desp={p.desp}
+              desc={p.desc}
               img={p.img}
             />
           </motion.div>

@@ -1,39 +1,24 @@
 const projects = [
   {
-    title: "Pokemon Bushido",
-    img: "/projects/pokemon/poke.jpg",
-    desp: "AI Chatbot with attendance and assignment tracking and customized tests based on user chats. AI Chatbot with attendance and assignment tracking and customized tests based on user chats. AI Chatbot with attendance and assignment tracking and customized tests based on user chats",
+    title: "Pokémon Bushido",
+    url: "bushido",
+    desc: "Pokémon Bushido is a fan-made game set in a feudal Japan-inspired region, where players train Pokémon to become a Kenshi, battling rival clans and dark forces in a unique samurai-themed adventure.",
   },
   {
-    title: "Pokemon Bushido",
-    img: "/projects/pokemon/poke.jpg",
-    desp: "AI Chatbot with attendance and assignment tracking and customized tests based on user chats",
+    title: "Pokémon Splice",
+    url: "splice",
+    desc: "Pokémon Splice is a fan-made game where you're a research assistant helping Professor Cypress discover new Pokémon forms, featuring a unique, type-changing starter and a branching story.",
   },
   {
-    title: "Pokemon Bushido",
-    img: "/projects/pokemon/poke.jpg",
-    desp: "AI Chatbot with attendance and assignment tracking and customized tests based on user chats",
+    title: "HOMI - Helpful Online Mentor Interface",
+    url: "homi",
+    desc: "An AI-powered learning assistant for IT students, using LLMs to offer personalized study material, real-time query resolution, automated test generation, and attendance and assignment tracking.",
   },
   {
-    title: "Pokemon Bushido",
-    img: "/projects/pokemon/poke.jpg",
-    desp: "AI Chatbot with attendance and assignment tracking and customized tests based on user chats",
-  },
-  {
-    title: "Pokemon Bushido",
-    img: "/projects/pokemon/poke.jpg",
-    desp: "AI Chatbot with attendance and assignment tracking and customized tests based on user chats",
-  },
-  {
-    title: "Pokemon Bushido",
-    img: "/projects/pokemon/poke.jpg",
-    desp: "AI Chatbot with attendance and assignment tracking and customized tests based on user chats",
-  },
-  {
-    title: "Pokemon Bushido",
-    img: "/projects/pokemon/poke.jpg",
-    desp: "AI Chatbot with attendance and assignment tracking and customized tests based on user chats",
-  },
+    title: "Findly - Lost and Found Application",
+    url: "findly",
+    desc: "",
+  }
 ];
 
 export default projects;
