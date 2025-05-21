@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface ProjectsCardProps {
   title: string;
@@ -12,13 +12,17 @@ interface ProjectsCardProps {
 }
 
 const ProjectsCard = ({ desp, img, title }: ProjectsCardProps) => {
-  const [hoveringArrow, setHoveringArrow] = useState(false);
+  const router = useRouter();
+
+  function handleRoute() {
+    router.push(`/projects/${title.toLowerCase().replace(/\s+/g, "-")}`);
+  }
 
   return (
-    <motion.div
+    <motion.button
+      onClick={handleRoute}
       className={cn(
-        `relative flex justify-center items-start gap-4 border-2 p-4 rounded-4xl shadow-2xl transition min-h-60 max-md:flex-col max-md:items-start`,
-        hoveringArrow ? "border-shaad-600" : "border-shaad-100"
+        `relative flex justify-center items-start gap-4 border-2 p-4 rounded-4xl shadow-2xl transition min-h-60 max-md:flex-col max-md:items-start group hover:border-shaad-600 border-shaad-100 cursor-pointer`
       )}
     >
       <motion.img
@@ -38,16 +42,13 @@ const ProjectsCard = ({ desp, img, title }: ProjectsCardProps) => {
         <Link
           href={`/projects/${title.toLowerCase().replace(/\s+/g, "-")}`}
           className={cn(
-            `absolute bottom-6 right-6 transition`,
-            hoveringArrow ? "text-shaad-600" : "text-shaad-100"
+            `absolute bottom-6 right-6 transition group-hover:text-shaad-600 text-shaad-100`
           )}
-          onMouseEnter={() => setHoveringArrow(true)}
-          onMouseLeave={() => setHoveringArrow(false)}
         >
           <ArrowRight size={30} />
         </Link>
       </div>
-    </motion.div>
+    </motion.button>
   );
 };
 
