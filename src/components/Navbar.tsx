@@ -31,7 +31,7 @@ const Navbar = () => {
                   >
                     <h.icon
                       className="mr-2"
-                      size={20}
+                      size={23}
                     />
                     {h.label}
                   </Link>
