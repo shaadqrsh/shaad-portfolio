@@ -17,7 +17,7 @@ const projects = [
   {
     title: "Findly - Lost and Found Application",
     url: "findly",
-    desc: "",
+    desc: "An Android application with a Firebase-powered backend, which acts as a platform to list lost or found items and chat with users to recover lost items or return found ones.",
   }
 ];
 
