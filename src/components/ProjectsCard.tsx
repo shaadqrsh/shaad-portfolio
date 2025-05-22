@@ -8,10 +8,10 @@ import { useRouter } from "next/navigation";
 interface ProjectsCardProps {
   title: string;
   desc: string;
-  img: string;
+  url: string;
 }
 
-const ProjectsCard = ({ desc, img, title }: ProjectsCardProps) => {
+const ProjectsCard = ({ desc, url, title }: ProjectsCardProps) => {
   const router = useRouter();
 
   function handleRoute() {
@@ -26,7 +26,7 @@ const ProjectsCard = ({ desc, img, title }: ProjectsCardProps) => {
       )}
     >
       <motion.img
-        src={img}
+        src={`/project_${url}/icon.jpg`}
         className="w-[300px] h-[250px] rounded-xl"
       />
 
