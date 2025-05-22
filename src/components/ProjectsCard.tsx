@@ -31,7 +31,7 @@ const ProjectsCard = ({ desc, url, title }: ProjectsCardProps) => {
       />
 
       <div className="flex flex-col justify-start items-start gap-3">
-        <h1 className="text-shaad-600 text-2xl font-semibold tracking-wide">
+        <h1 className="text-shaad-600 text-2xl text-left font-semibold tracking-wide">
           {title}
         </h1>
 
