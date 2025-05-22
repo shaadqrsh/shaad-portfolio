@@ -15,7 +15,7 @@ const ProjectsCard = ({ desc, url, title }: ProjectsCardProps) => {
   const router = useRouter();
 
   function handleRoute() {
-    router.push(`/projects/${title.toLowerCase().replace(/\s+/g, "-")}`);
+    router.push(`/projects/${url}`);
   }
 
   return (
@@ -40,7 +40,7 @@ const ProjectsCard = ({ desc, url, title }: ProjectsCardProps) => {
         </p>
 
         <Link
-          href={`/projects/${title.toLowerCase().replace(/\s+/g, "-")}`}
+          href={`/projects/${url}`}
           className={cn(
             `absolute bottom-6 right-6 transition group-hover:text-shaad-600 text-shaad-100`
           )}
