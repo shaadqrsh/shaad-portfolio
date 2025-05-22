@@ -36,6 +36,16 @@ const ProjectIdPage = () => {
         <div className="p-2 border border-shaad-100 rounded-lg flex flex-col items-start">
           <h1 className="text-shaad-600">Description</h1>
           <p>{project?.desc}</p>
+          <h1 className="text-shaad-600 mt-4">Features</h1>
+          {project?.features.map((f, idx) => (
+            <div
+              className="flex flex-col items-start"
+              key={idx.toString()}
+            >
+              <h2>-{f.heading}</h2>
+              <h3>{f.content}</h3>
+            </div>
+          ))}
         </div>
 
         <div className="p-2 border border-shaad-100 rounded-lg flex flex-col items-start">
