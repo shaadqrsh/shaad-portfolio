@@ -2,7 +2,7 @@ export type projectData = {
   title: string;
   year: string;
   game: boolean;
-  download: string;
+  urls: { label: string; icon: string; url: string }[];
   desc: string;
   features: { heading: string; content: string }[];
   technologies: string[];
