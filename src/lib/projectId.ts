@@ -198,5 +198,66 @@ export const data: { [key: string]: projectData } = {
       "The development of this project was headed by Thundaga, a YouTuber, and the development of this game has been recorded as VODs on their YouTube and Twitch.",
       "This game was discontinued in 2023 and the entire team moved on to other projects."
     ],
+  },
+  findly: {
+    title: "Pokémon Splice",
+    year: "2020",
+    game: true,
+    imgCount: 0,
+    urls: [
+      {
+        label: "Direct Download",
+        icon: "",
+        url: "https://drive.google.com/file/d/1IZ3AlFv5rm8xrUn9YbwLe4i-Bu9YwHpO/view"
+      },
+      {
+        label: "Eevee Expo",
+        icon: "",
+        url: "https://eeveeexpo.com/splice/"
+      },
+    ],
+    desc: "Assume the role of a research assistant aiding Professor Cypress in the study of newly discovered Pokémon forms in this new fangame. Embark on a journey through the Stacona region with a new starter Pokémon, Arenay, which possesses the ability to change its type. Align with either Team Biogress, emphasizing natural development, or Team Quantech, focused on technological enhancement. Experience a branching storyline, where you are presented with significant choices which will completely alter your experience. The fate of Pokémon research hangs in the balance - whose side will you choose?",
+    features: [
+      {
+        heading: "New Region",
+        content: "Pokémon Splice is set in the entirely new Stacona Region, a brand new world with its own unique environments and never before seen Pokémon species.",
+      },
+      {
+        heading: "New Pokémon Species",
+        content: "The game features several new species of Pokémon, such as Arenay, the starter with a unique form changing gimmick, as well as evolutions and pre-evolutions for existing Pokémon like Pinsir, Skarmory and Combee and more!",
+      },
+      {
+        heading: "Branching Storylines",
+        content: "Players make a pivotal choice to join one of two opposing research organizations: Team Biogress or Team Quantech. This decision significantly influences the story's direction and the player's objectives throughout the game.",
+      },
+      {
+        heading: "New Regional Forms",
+        content: "The region houses brand new regional forms. Some of them are naturally occuring, like Dunsparce, and some are the result of experimentation by the 2 research factions, such as the new forms of the Solosis, Lotad, Raichu and Electivire.",
+      },
+      {
+        heading: "Distinct Gen-3 Artsyle",
+        content: "The game pays hommage to the GameBoy Advance generation of Pokémon games with its environment and UI design, but still has all the QOL improvements of the modern games.",
+      }
+    ],
+    technologies: ["RGSS", "Ruby", "C++", "Photoshop", "Aseprite"],
+    responsibilities: [
+      "Developed the core engine in which the game was made.",
+      "Created new mechanics (Form changing, mid-battle dialogue, Following Pokémon, battle animations, etc) to differenciate it from mainline Pokémom games.",
+      "Aggregated publically available assets for developing the game within 30 days.",
+      "Evented multiple in-game cutscenes, while also writing custom scripts for functionality.",
+      "Designed various UI/UX elements to enhance the immersion of the battle system, with detailed battle backgrounds and themes to fit the Generation 3 aesthetic.",
+      "Assisted in the design of the game's narrative and core gameplay loop."
+    ],
+    videos: [
+      "https://www.youtube.com/watch?v=B9DS0Nyegag",
+      "https://www.youtube.com/watch?v=X34OZt5Tvdk",
+      "https://www.youtube.com/watch?v=-XgNEFjSQmc&list=PLsWAsarmQkCdE1hRoOdWehJlpGgInKzNL"
+    ],
+    additional: [
+      "This game was developed for the Relic Castle (Eevee Expo) Game Jam 6. It was developed in 30 days, and the team ended up winning the competition.",
+      "Future chapters were planned, and assets were developed for them (new legendaries and forms, they are still in the game files). The team, however, disbanded and further expansions were scrapped.",
+      "The development of this project was headed by Thundaga, a YouTuber, and the development of this game has been recorded as VODs on their YouTube and Twitch.",
+      "This game was discontinued in 2023 and the entire team moved on to other projects."
+    ],
   }
 };
