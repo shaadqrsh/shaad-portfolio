@@ -1,5 +1,12 @@
 "use client";
 import Title from "@/components/Title";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { data } from "@/lib/projectId";
 import { projectData } from "@/types";
 import { Loader2 } from "lucide-react";
@@ -41,8 +48,8 @@ const ProjectIdPage = () => {
 
       <section className="text-white h-full w-full flex flex-col justify-center p-6 items-center">
         <motion.div className="grid grid-cols-2 justify-between items-start gap-4">
-          <div className="p-4 border border-shaad-100 rounded-lg flex flex-col items-start">
-            <Title classN="mb-0">Des</Title>
+          <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start">
+            <Title classN="mb-0">Description</Title>
             <p className=" lg:text-base text-sm">{project?.desc}</p>
 
             <Title classN="mb-0 mt-4">Features</Title>
@@ -57,7 +64,7 @@ const ProjectIdPage = () => {
             ))}
           </div>
 
-          <div className="p-4 border border-shaad-100 rounded-lg flex flex-col items-start">
+          <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full">
             <Title classN="mb-0">Technology Used</Title>
             <div className="flex flex-wrap items-center gap-4">
               {project?.technologies.map((t, idx) => (
@@ -78,6 +85,35 @@ const ProjectIdPage = () => {
             ))}
           </div>
         </motion.div>
+
+        <div className="flex flex-col gap-x-2 mt-8 border-shaad-100 border-2 p-4 rounded-lg w-full">
+          <Title>Screenshots</Title>
+          <div className="flex justify-center">
+            <div className="max-w-6xl w-full">
+              <Carousel className="my-2">
+                <CarouselContent>
+                  {Array.from({ length: project?.imgCount || 0 }, (_, i) => {
+                    console.log(`Rendering img_${i + 1}.png`);
+                    return (
+                      <CarouselItem
+                        key={i}
+                        className="flex justify-center md:basis-1/2 lg:basis-1/3"
+                      >
+                        <motion.img
+                          src={`/project_${url}/img_${i + 1}.png`}
+                          alt={`Project image ${i + 1}`}
+                          className="w-full max-h-[350px] rounded-lg"
+                        />
+                      </CarouselItem>
+                    );
+                  })}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+            </div>
+          </div>
+        </div>
       </section>
     </section>
   );
