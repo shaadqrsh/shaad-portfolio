@@ -142,4 +142,61 @@ export const data: { [key: string]: projectData } = {
       "This game was discontinued in 2023 and the entire team moved on to other projects.",
     ],
   },
+  homi: {
+    title: "HOMI - Helpful Online Mentor Interface",
+    year: "2025",
+    game: false,
+    imgCount: 9,
+    urls: [
+      {
+        label: "Live Project",
+        icon: "",
+        url: "https://homi-bot.in/"
+      },
+      {
+        label: "GitHub",
+        icon: "",
+        url: "https://github.com/Hmalhotra004/AIML-Chatbot"
+      },
+    ],
+    desc: "This project is a full-stack application that leverages a fine-tuned Large Language Model (LLM) to provide AI-powered assistance for objective-based learning, specifically for BSc. IT students. The application aims to enhance the learning experience by offering personalized study materials, dynamically generating MCQs based on proficiency levels, resolving user doubts in real-time through a chatbot, and providing tools for assignment tracking, and attendance logging. This system seeks to address the limitations of traditional teaching methods by offering adaptive and interactive educational tools, making learning more accessible, engaging, and effective for IT students.",
+    features: [
+      {
+        heading: "LLM Integration",
+        content: "This system utilizes a customized LLM (based on DeepSeek) for core AI functionalities such as query processing and question generation.",
+      },
+      {
+        heading: "New Pokémon Species",
+        content: "The game features several new species of Pokémon, such as Arenay, the starter with a unique form changing gimmick, as well as evolutions and pre-evolutions for existing Pokémon like Pinsir, Skarmory and Combee and more!",
+      },
+      {
+        heading: "Branching Storylines",
+        content: "Players make a pivotal choice to join one of two opposing research organizations: Team Biogress or Team Quantech. This decision significantly influences the story's direction and the player's objectives throughout the game.",
+      },
+      {
+        heading: "New Regional Forms",
+        content: "The region houses brand new regional forms. Some of them are naturally occuring, like Dunsparce, and some are the result of experimentation by the 2 research factions, such as the new forms of the Solosis, Lotad, Raichu and Electivire.",
+      },
+      {
+        heading: "Distinct Gen-3 Artsyle",
+        content: "The game pays hommage to the GameBoy Advance generation of Pokémon games with its environment and UI design, but still has all the QOL improvements of the modern games.",
+      }
+    ],
+    technologies: ["RGSS", "Ruby", "C++", "Photoshop", "Aseprite"],
+    responsibilities: [
+      "Developed the core engine in which the game was made.",
+      "Created new mechanics (Form changing, mid-battle dialogue, Following Pokémon, battle animations, etc) to differenciate it from mainline Pokémom games.",
+      "Aggregated publically available assets for developing the game within 30 days.",
+      "Evented multiple in-game cutscenes, while also writing custom scripts for functionality.",
+      "Designed various UI/UX elements to enhance the immersion of the battle system, with detailed battle backgrounds and themes to fit the Generation 3 aesthetic.",
+      "Assisted in the design of the game's narrative and core gameplay loop."
+    ],
+    videos: [],
+    additional: [
+      "This game was developed for the Relic Castle (Eevee Expo) Game Jam 6. It was developed in 30 days, and the team ended up winning the competition.",
+      "Future chapters were planned, and assets were developed for them (new legendaries and forms, they are still in the game files). The team, however, disbanded and further expansions were scrapped.",
+      "The development of this project was headed by Thundaga, a YouTuber, and the development of this game has been recorded as VODs on their YouTube and Twitch.",
+      "This game was discontinued in 2023 and the entire team moved on to other projects."
+    ],
+  }
 };
