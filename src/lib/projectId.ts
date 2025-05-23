@@ -146,7 +146,7 @@ export const data: { [key: string]: projectData } = {
     title: "HOMI - Helpful Online Mentor Interface",
     year: "2025",
     game: false,
-    imgCount: 9,
+    imgCount: 10,
     urls: [
       {
         label: "Live Project",
@@ -166,43 +166,45 @@ export const data: { [key: string]: projectData } = {
         content: "This system utilizes a customized LLM (based on DeepSeek) for core AI functionalities such as query processing and question generation.",
       },
       {
-        heading: "New Pokémon Species",
-        content: "The game features several new species of Pokémon, such as Arenay, the starter with a unique form changing gimmick, as well as evolutions and pre-evolutions for existing Pokémon like Pinsir, Skarmory and Combee and more!",
+        heading: "Chatbot Query Resolution",
+        content: "The user can chat with the model to ask questions, generate personalized study material and store and organize them with a robust folder structure system.",
       },
       {
-        heading: "Branching Storylines",
-        content: "Players make a pivotal choice to join one of two opposing research organizations: Team Biogress or Team Quantech. This decision significantly influences the story's direction and the player's objectives throughout the game.",
+        heading: "Attendance and Assignment Tracking",
+        content: "Users can track and log their attendance and calcuate the number . The user can also log their assignments and use the website as a checklist for these assignments.",
       },
       {
-        heading: "New Regional Forms",
-        content: "The region houses brand new regional forms. Some of them are naturally occuring, like Dunsparce, and some are the result of experimentation by the 2 research factions, such as the new forms of the Solosis, Lotad, Raichu and Electivire.",
+        heading: "Test Generation",
+        content: "The user can assess their knowledge about a certain topic they have studied in the form of graded multiple-choice based tests and as flashcards.",
       },
       {
-        heading: "Distinct Gen-3 Artsyle",
-        content: "The game pays hommage to the GameBoy Advance generation of Pokémon games with its environment and UI design, but still has all the QOL improvements of the modern games.",
+        heading: "Secure Authentication",
+        content: "The application uses secure authentication methods to log into the system, and a robust database to store user details, questions, tests and more.",
       }
     ],
-    technologies: ["RGSS", "Ruby", "C++", "Photoshop", "Aseprite"],
+    technologies: ["NextJS", "TailwindCSS", "Typescript", "ReactQuery", "Python", "Django", "HuggingFace", "SQL", "DeepSeek R1", "Gemini"],
     responsibilities: [
-      "Developed the core engine in which the game was made.",
-      "Created new mechanics (Form changing, mid-battle dialogue, Following Pokémon, battle animations, etc) to differenciate it from mainline Pokémom games.",
-      "Aggregated publically available assets for developing the game within 30 days.",
-      "Evented multiple in-game cutscenes, while also writing custom scripts for functionality.",
-      "Designed various UI/UX elements to enhance the immersion of the battle system, with detailed battle backgrounds and themes to fit the Generation 3 aesthetic.",
-      "Assisted in the design of the game's narrative and core gameplay loop."
+      "Assumed the responsibility of \"Project Manager\" and managed a team of 6 people working on the project",
+      "Trained the LLM (based on DeepSeek R1) on cloud and local machines.",
+      "Collected the data for training the model from textbooks, using manual scanning and several scraping techniques.",
+      "Developed several backend features, especially those related to interfacing with the actual model.",
+      "Assisted in deploying the backend onto HuggingFace Spaces, and uploaded the model onto HuggingFaces.",
+      "Assisted in designing several UI components and pages in the application.",
+      "Funded the development of the application until a grant was offered to us by our college."
     ],
     videos: [],
     additional: [
-      "This game was developed for the Relic Castle (Eevee Expo) Game Jam 6. It was developed in 30 days, and the team ended up winning the competition.",
-      "Future chapters were planned, and assets were developed for them (new legendaries and forms, they are still in the game files). The team, however, disbanded and further expansions were scrapped.",
-      "The development of this project was headed by Thundaga, a YouTuber, and the development of this game has been recorded as VODs on their YouTube and Twitch.",
-      "This game was discontinued in 2023 and the entire team moved on to other projects."
+      "This capstone project spanned seven months from ideation to presentation and was presented before my graduation.",
+      "Features like a mental health guide, study roadmap generator, and PDF chat export were planned, but they were scrapped due to time constraints.",
+      "The project successfully attracted an external investor grant, and these investors plan to further expand its capabilities.",
+      "The research done on this project yielded 3 research papers. One was presented at an IEEE conference and two are currently under review.",
+      "The project's technical sophistication and innovation were highly praised by an examiner from IITB (Indian Institute of Technology - Bombay) during its final assessment."
     ],
   },
   findly: {
-    title: "Pokémon Splice",
-    year: "2020",
-    game: true,
+    title: "Findly - Lost and Found Application",
+    year: "2025",
+    game: false,
     imgCount: 0,
     urls: [
       {
