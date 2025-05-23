@@ -1,4 +1,10 @@
 "use client";
+import { useEffect, useState } from "react";
+
+import { Loader2 } from "lucide-react";
+import { motion } from "motion/react";
+import { useParams, useRouter } from "next/navigation";
+
 import Title from "@/components/Title";
 import {
   Carousel,
@@ -9,10 +15,6 @@ import {
 } from "@/components/ui/carousel";
 import { data } from "@/lib/projectId";
 import { projectData } from "@/types";
-import { Loader2 } from "lucide-react";
-import { motion } from "motion/react";
-import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
 const ProjectIdPage = () => {
   const [project, setProject] = useState<projectData | null>(null);
@@ -41,10 +43,10 @@ const ProjectIdPage = () => {
 
   return (
     <section className="text-white h-full w-full flex flex-col justify-center items-center max-md:pb-16">
-      {/* <motion.img
+      <motion.img
         src={`/project_${url}/cover.jpg`}
         className="pb-4"
-      /> */}
+      />
 
       <section className="text-white h-full w-full flex flex-col justify-center p-6 items-center">
         <motion.div className="grid grid-cols-2 justify-between items-start gap-4">
@@ -58,7 +60,7 @@ const ProjectIdPage = () => {
                 className="flex flex-col items-start"
                 key={idx.toString()}
               >
-                <h2 className="font-semibold mt-2">-{f.heading}</h2>
+                <h2 className="font-semibold mt-2">• {f.heading}</h2>
                 <h3>{f.content}</h3>
               </div>
             ))}
@@ -80,7 +82,7 @@ const ProjectIdPage = () => {
             <Title classN="mt-6 mb-2">Key Responsibilities</Title>
             {project?.responsibilities.map((r, idx) => (
               <div key={idx.toString()}>
-                <p className="lg:text-base text-sm font-semibold">-{r} </p>
+                <p className="lg:text-base text-sm font-semibold">• {r} </p>
               </div>
             ))}
           </div>
@@ -114,6 +116,50 @@ const ProjectIdPage = () => {
             </div>
           </div>
         </div>
+
+        <motion.div className="grid grid-cols-2 justify-between items-start gap-4 mt-6">
+          <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col h-full items-start">
+            <Title classN="mb-2">Gameplay and Reviews</Title>
+            <div className="flex justify-center items-center h-full w-full">
+              <div className="max-w-xl w-full">
+                <Carousel className="my-4">
+                  <CarouselContent>
+                    {project?.videos.map((v, idx) => (
+                      <CarouselItem key={idx}>
+                        <div className="w-full aspect-video">
+                          <iframe
+                            width="100%"
+                            height="100%"
+                            src={v.replace("watch?v=", "embed/")}
+                            title={`YouTube video ${idx + 1}`}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="rounded-lg w-full h-full"
+                          />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full">
+            <Title classN="mb-0">Additional Information</Title>
+            {project?.additional.map((t, idx) => (
+              <p
+                key={idx}
+                className="mt-[3px]"
+              >
+                • {t}
+              </p>
+            ))}
+          </div>
+        </motion.div>
       </section>
     </section>
   );
