@@ -43,10 +43,10 @@ const ProjectIdPage = () => {
 
   return (
     <section className="text-white h-full w-full flex flex-col justify-center items-center max-md:pb-16">
-      {/* <motion.img
+      <motion.img
         src={`/project_${url}/cover.jpg`}
         className="pb-4"
-      /> */}
+      />
 
       <section className="text-white h-full w-full flex flex-col justify-center p-6 items-center">
         <motion.div className="grid grid-cols-2 justify-between items-start gap-4">
