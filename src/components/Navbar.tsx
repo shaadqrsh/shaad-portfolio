@@ -8,6 +8,12 @@ import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const pathname = usePathname();
+
+  const segments = pathname.split("/").filter(Boolean);
+
+  if (segments[0] === "projects" && segments.length === 2) {
+    return null;
+  }
   return (
     <>
       <nav className="sticky top-0 z-50 backdrop-blur-md bg-shaad-200 shadow-md">
