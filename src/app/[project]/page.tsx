@@ -45,16 +45,16 @@ const ProjectIdPage = () => {
 
   return (
     <Parallax
-      pages={2}
+      pages={1.95}
       className="bg-shaad-400"
     >
       <ParallaxLayer
         speed={0.5}
-        factor={1.4}
+        factor={1}
       >
         <motion.img
           src={`/project_${url}/cover.jpg`}
-          // className="h-full w-full bg-shaad-400"
+          className="h-full w-full object-cover object-center"
         />
       </ParallaxLayer>
 
