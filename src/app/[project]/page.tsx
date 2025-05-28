@@ -50,7 +50,7 @@ const ProjectIdPage = () => {
     >
       <ParallaxLayer
         speed={0.5}
-        factor={1}
+        factor={1.4}
       >
         <motion.img
           src={`/project_${url}/cover.jpg`}
