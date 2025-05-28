@@ -49,12 +49,12 @@ const ProjectIdPage = () => {
       className="bg-shaad-400"
     >
       <ParallaxLayer
-        speed={0.4}
-        factor={0.7}
+        speed={0.5}
+        factor={1}
       >
         <motion.img
           src={`/project_${url}/cover.jpg`}
-          className=" h-full w-full bg-shaad-400"
+          // className="h-full w-full bg-shaad-400"
         />
       </ParallaxLayer>
 
