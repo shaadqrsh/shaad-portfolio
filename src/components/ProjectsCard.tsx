@@ -15,7 +15,7 @@ const ProjectsCard = ({ desc, url, title }: ProjectsCardProps) => {
   const router = useRouter();
 
   function handleRoute() {
-    router.push(`/projects/${url}`);
+    router.push(`/${url}`);
   }
 
   return (

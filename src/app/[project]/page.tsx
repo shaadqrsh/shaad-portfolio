@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/carousel";
 import { data } from "@/lib/projectId";
 import { projectData } from "@/types";
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
 const ProjectIdPage = () => {
   const [project, setProject] = useState<projectData | null>(null);
@@ -32,7 +33,7 @@ const ProjectIdPage = () => {
     if (url && typeof url === "string" && url in data) {
       setProject(data[url]);
     } else {
-      router.back();
+      router.replace("/projects");
     }
     setLoading(false);
   }, [url, router]);
@@ -42,14 +43,25 @@ const ProjectIdPage = () => {
   }
 
   return (
-    <>
-      <section className="text-white h-full w-full flex flex-col justify-center items-center max-md:pb-16">
+    <Parallax
+      pages={2}
+      className="bg-shaad-400"
+    >
+      <ParallaxLayer
+        speed={0.4}
+        factor={0.7}
+      >
         <motion.img
           src={`/project_${url}/cover.jpg`}
-          className="pb-4"
+          className=" h-full w-full bg-shaad-400"
         />
+      </ParallaxLayer>
 
-        <section className="text-white h-full w-full flex flex-col justify-center p-6 items-center z-[10]">
+      <ParallaxLayer
+        speed={1.1}
+        offset={0.7}
+      >
+        <motion.section className="text-white flex flex-col justify-center p-6 items-center bg-shaad-400">
           <motion.div className="grid grid-cols-2 justify-between items-start gap-4">
             <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start">
               <Title classN="mb-0">Description</Title>
@@ -161,9 +173,9 @@ const ProjectIdPage = () => {
               ))}
             </div>
           </motion.div>
-        </section>
-      </section>
-    </>
+        </motion.section>
+      </ParallaxLayer>
+    </Parallax>
   );
 };
 

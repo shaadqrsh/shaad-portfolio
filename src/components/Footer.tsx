@@ -10,6 +10,13 @@ import Reveal from "./Reveal";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const pathname = usePathname();
+
+  const segments = pathname.split("/").filter(Boolean);
+
+  if (segments[0] === "projects" && segments.length === 2) {
+    return null;
+  }
+
   return (
     <section
       className={cn(
