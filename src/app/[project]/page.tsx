@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { useParams, useRouter } from "next/navigation";
 
 import Title from "@/components/Title";
+import Footer from "@/components/Footer";
 import {
   Carousel,
   CarouselContent,
@@ -39,34 +40,45 @@ const ProjectIdPage = () => {
     setLoading(false);
   }, [url, router]);
 
-  if (loading) {
-    return <Loader2 className="animate-spin text-white" />;
+  const contentPages = 1.8;
+  const footerHeightInPages = 0.14;
+  const totalPagesForParallax = contentPages + footerHeightInPages;
+
+  if (loading || !project) {
+    return (
+      <div className="flex flex-1 justify-center items-center h-full">
+        <Loader2 className="animate-spin text-white w-12 h-12" />
+      </div>
+    );
   }
 
   return (
     <Parallax
-      pages={1.95}
+      pages={totalPagesForParallax}
       className="bg-shaad-400"
     >
       <ParallaxLayer
         speed={0.5}
         factor={1}
+        offset={0}
       >
         <motion.img
           src={`/project_${url}/cover.jpg`}
-          className="h-full w-full object-cover object-center"
+          alt={`${project?.title || url} cover`}
+          className="w-full h-[62vh] object-cover object-center"
         />
       </ParallaxLayer>
 
       <ParallaxLayer
         speed={1}
         offset={0.7}
+        factor={contentPages - 0.7}
       >
         <motion.section className="text-white flex flex-col justify-center p-6 items-center bg-shaad-400">
-          <motion.div className="grid grid-cols-2 justify-between items-start gap-4">
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-4 w-full">
             <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start">
               <Title classN="mb-0">Description</Title>
-              <p className=" lg:text-base text-sm">{project?.desc}</p>
+              <p className="lg:text-base text-sm">{project?.desc}</p>
 
               <Title classN="mb-0 mt-4">Features</Title>
               {project?.features.map((f, idx) => (
@@ -105,24 +117,21 @@ const ProjectIdPage = () => {
           <div className="flex flex-col gap-x-2 mt-8 border-shaad-100 border-2 p-4 rounded-lg w-full">
             <Title>Screenshots</Title>
             <div className="flex justify-center">
-              <div className="max-w-6xl w-full">
+              <div className="max-w-7xl w-full">
                 <Carousel className="my-2">
                   <CarouselContent>
-                    {Array.from({ length: project?.imgCount || 0 }, (_, i) => {
-                      console.log(`Rendering img_${i + 1}.png`);
-                      return (
-                        <CarouselItem
-                          key={i}
-                          className="flex justify-center md:basis-1/2 lg:basis-1/3"
-                        >
-                          <motion.img
-                            src={`/project_${url}/img_${i + 1}.png`}
-                            alt={`Project image ${i + 1}`}
-                            className="w-full max-h-[350px] rounded-lg"
-                          />
-                        </CarouselItem>
-                      );
-                    })}
+                    {Array.from({ length: project?.imgCount || 0 }, (_, i) => (
+                      <CarouselItem
+                        key={i}
+                        className="flex justify-center md:basis-1/2 lg:basis-1/3"
+                      >
+                        <motion.img
+                          src={`/project_${url}/img_${i + 1}.png`}
+                          alt={`Project image ${i + 1}`}
+                          className="w-full max-h-[350px] rounded-lg object-contain"
+                        />
+                      </CarouselItem>
+                    ))}
                   </CarouselContent>
                   <CarouselPrevious />
                   <CarouselNext />
@@ -130,15 +139,13 @@ const ProjectIdPage = () => {
               </div>
             </div>
           </div>
-
           <motion.div
             className={cn(
-              "grid grid-cols-2 justify-between items-start gap-4 mt-6",
-              project?.videos.length === 0 &&
-                "grid-cols-1 justify-center items-center w-full"
+              "grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-4 mt-6 w-full",
+              !project?.videos || (project?.videos.length === 0 && "md:grid-cols-1") // Simplified condition
             )}
           >
-            {!(project?.videos.length === 0) && (
+            {project?.videos && project.videos.length > 0 && (
               <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col h-full items-start">
                 <Title classN="mb-2">Gameplay and Reviews</Title>
                 <div className="flex justify-center items-center h-full w-full">
@@ -170,7 +177,10 @@ const ProjectIdPage = () => {
               </div>
             )}
 
-            <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full">
+            <div className={cn(
+                "p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full",
+                (!project?.videos || project.videos.length === 0) && "md:col-span-2"
+            )}>
               <Title classN="mb-0">Additional Information</Title>
               {project?.additional.map((t, idx) => (
                 <p
@@ -183,6 +193,16 @@ const ProjectIdPage = () => {
             </div>
           </motion.div>
         </motion.section>
+      </ParallaxLayer>
+
+      <ParallaxLayer
+        offset={contentPages}
+        speed={1}
+        factor={footerHeightInPages}
+      >
+        <div className="h-full flex flex-col">
+            <Footer />
+        </div>
       </ParallaxLayer>
     </Parallax>
   );

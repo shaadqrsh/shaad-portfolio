@@ -9,11 +9,10 @@ interface MainLayout {
 
 const layout = ({ children }: MainLayout) => {
   return (
-    <section className="flex flex-col min-h-screen bg-shaad-400">
+    <section className="flex flex-col h-screen bg-shaad-400">
       <Navbar />
       <MobileNav />
       <main className="flex flex-1 relative">{children}</main>
-      <Footer />
     </section>
   );
 };
