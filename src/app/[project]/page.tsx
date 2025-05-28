@@ -14,6 +14,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { data } from "@/lib/projectId";
+import { cn } from "@/lib/utils";
 import { projectData } from "@/types";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
@@ -58,7 +59,7 @@ const ProjectIdPage = () => {
       </ParallaxLayer>
 
       <ParallaxLayer
-        speed={1.1}
+        speed={1}
         offset={0.7}
       >
         <motion.section className="text-white flex flex-col justify-center p-6 items-center bg-shaad-400">
@@ -130,36 +131,44 @@ const ProjectIdPage = () => {
             </div>
           </div>
 
-          <motion.div className="grid grid-cols-2 justify-between items-start gap-4 mt-6">
-            <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col h-full items-start">
-              <Title classN="mb-2">Gameplay and Reviews</Title>
-              <div className="flex justify-center items-center h-full w-full">
-                <div className="max-w-xl w-full">
-                  <Carousel className="my-4">
-                    <CarouselContent>
-                      {project?.videos.map((v, idx) => (
-                        <CarouselItem key={idx}>
-                          <div className="w-full aspect-video">
-                            <iframe
-                              width="100%"
-                              height="100%"
-                              src={v.replace("watch?v=", "embed/")}
-                              title={`YouTube video ${idx + 1}`}
-                              frameBorder="0"
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen
-                              className="rounded-lg w-full h-full"
-                            />
-                          </div>
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
-                  </Carousel>
+          <motion.div
+            className={cn(
+              "grid grid-cols-2 justify-between items-start gap-4 mt-6",
+              project?.videos.length === 0 &&
+                "grid-cols-1 justify-center items-center w-full"
+            )}
+          >
+            {!(project?.videos.length === 0) && (
+              <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col h-full items-start">
+                <Title classN="mb-2">Gameplay and Reviews</Title>
+                <div className="flex justify-center items-center h-full w-full">
+                  <div className="max-w-xl w-full">
+                    <Carousel className="my-4">
+                      <CarouselContent>
+                        {project?.videos.map((v, idx) => (
+                          <CarouselItem key={idx}>
+                            <div className="w-full aspect-video">
+                              <iframe
+                                width="100%"
+                                height="100%"
+                                src={v.replace("watch?v=", "embed/")}
+                                title={`YouTube video ${idx + 1}`}
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                                className="rounded-lg w-full h-full"
+                              />
+                            </div>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      <CarouselPrevious />
+                      <CarouselNext />
+                    </Carousel>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full">
               <Title classN="mb-0">Additional Information</Title>
