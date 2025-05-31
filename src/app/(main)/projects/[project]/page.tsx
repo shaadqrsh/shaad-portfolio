@@ -7,7 +7,6 @@ import { useParams, useRouter } from "next/navigation";
 
 import { Parallax } from "react-scroll-parallax";
 
-import Footer from "@/components/Footer";
 import Title from "@/components/Title";
 import {
   Carousel,
@@ -192,9 +191,9 @@ const ProjectIdPage = () => {
           </div>
         </motion.div>
       </motion.section>
-      <div className="flex flex-col">
+      {/* <div className="flex flex-col">
         <Footer />
-      </div>
+      </div> */}
     </section>
   );
 };
