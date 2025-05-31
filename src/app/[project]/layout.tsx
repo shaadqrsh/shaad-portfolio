@@ -1,5 +1,6 @@
 "use client";
 
+import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import { ReactNode } from "react";
 
@@ -12,11 +13,11 @@ interface MainLayout {
 const layout = ({ children }: MainLayout) => {
   return (
     <ParallaxProvider>
-      <section className="flex flex-col h-screen ">
-        {/* <Navbar /> */}
+      <div className="flex flex-col min-h-screen bg-shaad-400">
+        <Navbar />
         <MobileNav />
         <main className="flex flex-1 relative">{children}</main>
-      </section>
+      </div>
     </ParallaxProvider>
   );
 };

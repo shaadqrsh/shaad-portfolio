@@ -27,8 +27,6 @@ const ProjectIdPage = () => {
   const params = useParams();
   const router = useRouter();
 
-  const vertical = 20;
-
   const url = Array.isArray(params.project)
     ? params.project[0]
     : params.project;
@@ -55,7 +53,7 @@ const ProjectIdPage = () => {
     <section>
       <Parallax
         speed={-50}
-        className={`h-[75vh] w-full mt-[-${vertical}vh]`}
+        className={`h-[75vh] w-full mt-[-10vh]`}
       >
         <motion.img
           src={`/project_${url}/cover.jpg`}
@@ -64,7 +62,7 @@ const ProjectIdPage = () => {
         />
       </Parallax>
       <motion.section
-        className={`text-white flex flex-col justify-center p-6 items-center rounded-t-2xl bg-shaad-400 relative z-10 mt-[${vertical}vh]`}
+        className={`text-white flex flex-col justify-center p-6 items-center rounded-t-2xl bg-shaad-400 relative z-10 mt-[5vh]`}
       >
         <motion.div className="grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-4 w-full">
           <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full">
