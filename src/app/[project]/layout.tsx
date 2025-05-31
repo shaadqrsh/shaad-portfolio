@@ -12,7 +12,7 @@ interface MainLayout {
 const layout = ({ children }: MainLayout) => {
   return (
     <ParallaxProvider>
-      <section className="flex flex-col h-screen bg-shaad-400">
+      <section className="flex flex-col h-screen ">
         {/* <Navbar /> */}
         <MobileNav />
         <main className="flex flex-1 relative">{children}</main>

@@ -50,7 +50,7 @@ const ProjectIdPage = () => {
   }
 
   return (
-    <div className="bg-shaad-400">
+    <section>
       <Parallax
         speed={-50}
         className="h-[75vh] w-full mt-[-40vh]"
@@ -61,7 +61,7 @@ const ProjectIdPage = () => {
           className="w-full h-full object-cover object-center"
         />
       </Parallax>
-      <motion.section className="text-white flex flex-col justify-center p-6 items-center bg-shaad-400 mt-[40vh] relative z-10">
+      <motion.section className="text-white flex flex-col justify-center p-6 items-center rounded-t-2xl bg-shaad-400 mt-[35vh] pt-8 relative z-10">
         <motion.div className="grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-4 w-full">
           <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start">
             <Title classN="mb-0">Description</Title>
@@ -73,8 +73,10 @@ const ProjectIdPage = () => {
                 className="flex flex-col items-start"
                 key={idx.toString()}
               >
-                <h2 className="font-semibold mt-2">• {f.heading}</h2>
-                <h3>{f.content}</h3>
+                <h2 className="font-semibold mt-2 text-shaad-500">
+                  • {f.heading}
+                </h2>
+                <h3 className="ml-3">{f.content}</h3>
               </div>
             ))}
           </div>
@@ -94,9 +96,11 @@ const ProjectIdPage = () => {
 
             <Title classN="mt-6 mb-2">Key Responsibilities</Title>
             {project?.responsibilities.map((r, idx) => (
-              <div key={idx.toString()}>
-                <p className="lg:text-base text-sm font-semibold">• {r} </p>
-              </div>
+              <ul key={idx.toString()}>
+                <li className="lg:text-base text-sm font-semibold list-disc ml-3">
+                  {r}
+                </li>
+              </ul>
             ))}
           </div>
         </motion.div>
@@ -173,21 +177,23 @@ const ProjectIdPage = () => {
             )}
           >
             <Title classN="mb-0">Additional Information</Title>
-            {project?.additional.map((t, idx) => (
-              <p
-                key={idx}
-                className="mt-[3px]"
-              >
-                • {t}
-              </p>
-            ))}
+            <ul>
+              {project?.additional.map((t, idx) => (
+                <li
+                  key={idx}
+                  className="mt-[3px] list-disc ml-4"
+                >
+                  {t}
+                </li>
+              ))}
+            </ul>
           </div>
         </motion.div>
       </motion.section>
       <div className="flex flex-col">
         <Footer />
       </div>
-    </div>
+    </section>
   );
 };
 
