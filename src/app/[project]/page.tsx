@@ -5,10 +5,10 @@ import { Loader2 } from "lucide-react";
 import { motion } from "motion/react";
 import { useParams, useRouter } from "next/navigation";
 
-import { Parallax } from 'react-scroll-parallax';
+import { Parallax } from "react-scroll-parallax";
 
-import Title from "@/components/Title";
 import Footer from "@/components/Footer";
+import Title from "@/components/Title";
 import {
   Carousel,
   CarouselContent,
@@ -51,18 +51,17 @@ const ProjectIdPage = () => {
 
   return (
     <div className="bg-shaad-400">
-      <Parallax speed={-50} className="h-[75vh] w-full"
-      style={{ marginTop: "-15vh" }}>
+      <Parallax
+        speed={-50}
+        className="h-[75vh] w-full mt-[-40vh]"
+      >
         <motion.img
           src={`/project_${url}/cover.jpg`}
           alt={`${project?.title || url} cover`}
           className="w-full h-full object-cover object-center"
         />
       </Parallax>
-      <motion.section
-        className="text-white flex flex-col justify-center p-6 items-center bg-shaad-400"
-        style={{ marginTop: "10vh", position: "relative", zIndex: 10 }}
-      >
+      <motion.section className="text-white flex flex-col justify-center p-6 items-center bg-shaad-400 mt-[40vh] relative z-10">
         <motion.div className="grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-4 w-full">
           <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start">
             <Title classN="mb-0">Description</Title>
@@ -130,7 +129,8 @@ const ProjectIdPage = () => {
         <motion.div
           className={cn(
             "grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-4 mt-6 w-full",
-            !project?.videos || (project?.videos.length === 0 && "md:grid-cols-1")
+            !project?.videos ||
+              (project?.videos.length === 0 && "md:grid-cols-1")
           )}
         >
           {project?.videos && project.videos.length > 0 && (
@@ -165,10 +165,13 @@ const ProjectIdPage = () => {
             </div>
           )}
 
-          <div className={cn(
+          <div
+            className={cn(
               "p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full",
-              (!project?.videos || project.videos.length === 0) && "md:col-span-2"
-          )}>
+              (!project?.videos || project.videos.length === 0) &&
+                "md:col-span-2"
+            )}
+          >
             <Title classN="mb-0">Additional Information</Title>
             {project?.additional.map((t, idx) => (
               <p
@@ -182,7 +185,7 @@ const ProjectIdPage = () => {
         </motion.div>
       </motion.section>
       <div className="flex flex-col">
-          <Footer />
+        <Footer />
       </div>
     </div>
   );
