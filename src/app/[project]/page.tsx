@@ -63,21 +63,17 @@ const ProjectIdPage = () => {
       </Parallax>
       <motion.section className="text-white flex flex-col justify-center p-6 items-center rounded-t-2xl bg-shaad-400 mt-[35vh] pt-8 relative z-10">
         <motion.div className="grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-4 w-full">
-          <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start">
+          <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full">
             <Title classN="mb-0">Description</Title>
-            <p className="lg:text-base text-sm">{project?.desc}</p>
+            <p className="lg:text-base text-sm mt-2">{project?.desc}</p>
 
-            <Title classN="mb-0 mt-4">Features</Title>
-            {project?.features.map((f, idx) => (
-              <div
-                className="flex flex-col items-start"
-                key={idx.toString()}
-              >
-                <h2 className="font-semibold mt-2 text-shaad-500">
-                  • {f.heading}
-                </h2>
-                <h3 className="ml-3">{f.content}</h3>
-              </div>
+            <Title classN="mt-6 mb-2">Key Responsibilities</Title>
+            {project?.responsibilities.map((r, idx) => (
+              <ul key={idx.toString()}>
+                <li className="lg:text-base text-sm font-semibold list-disc ml-3">
+                  {r}
+                </li>
+              </ul>
             ))}
           </div>
 
@@ -94,13 +90,17 @@ const ProjectIdPage = () => {
               ))}
             </div>
 
-            <Title classN="mt-6 mb-2">Key Responsibilities</Title>
-            {project?.responsibilities.map((r, idx) => (
-              <ul key={idx.toString()}>
-                <li className="lg:text-base text-sm font-semibold list-disc ml-3">
-                  {r}
-                </li>
-              </ul>
+            <Title classN="mb-0 mt-8">Features</Title>
+            {project?.features.map((f, idx) => (
+              <div
+                className="flex flex-col items-start"
+                key={idx.toString()}
+              >
+                <h2 className="font-semibold mt-2 text-shaad-500">
+                  • {f.heading}
+                </h2>
+                <h3 className="ml-3">{f.content}</h3>
+              </div>
             ))}
           </div>
         </motion.div>
