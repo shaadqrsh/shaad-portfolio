@@ -69,15 +69,15 @@ const ProjectIdPage = () => {
 
           <div className="absolute inset-0 bg-black/40" />
 
-          <div className="relative z-10 p-8 border-[3px] border-shaad-600 rounded-xl bg-black/60 flex flex-col justify-center items-center">
+          <div className="relative z-10 p-14 border-2 border-shaad-600 rounded-xl bg-shaad-350 flex flex-col justify-center items-center">
             <h2 className="text-4xl text-white font-bold">{project.title}</h2>
 
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex gap-x-2 justify-center items-center p-2 rounded-lg bg-shaad-600 text-white mt-8">
+              <DropdownMenuTrigger className="flex gap-x-2 justify-center items-center p-3 rounded-lg border-2 border-shaad-600 text-white mt-8 font-bold hover:bg-shaad-600 transition cursor-pointer">
                 Download
                 <ChevronDown size={20} />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-shaad-600 border-shaad-500 text-white">
+              <DropdownMenuContent className="bg-shaad-600 border-shaad-600 text-white">
                 {project.urls.map((u, idx) => (
                   <a
                     key={idx}
@@ -85,7 +85,7 @@ const ProjectIdPage = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <DropdownMenuItem className="bg-shaad-600 cursor-pointer hover:bg-shaad-500 transition">
+                    <DropdownMenuItem className="cursor-pointer">
                       {u.label}
                     </DropdownMenuItem>
                   </a>
@@ -96,30 +96,30 @@ const ProjectIdPage = () => {
         </div>
       </Parallax>
       <motion.section
-        className={`text-white flex flex-col justify-center p-6 items-center rounded-t-2xl bg-shaad-400 relative z-10 mt-[5vh]`}
+        className={`text-white flex flex-col justify-center p-8 items-center rounded-t-2xl bg-shaad-400 relative z-10 mt-[5vh]`}
       >
-        <motion.div className="grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-4 w-full">
-          <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full">
+        <motion.div className="mt-2 grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-8 w-full">
+          <div className="p-8 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full">
             <Title classN="mb-0">Description</Title>
             <p className="lg:text-base text-sm mt-2">{project?.desc}</p>
 
-            <Title classN="mt-6 mb-2">Key Responsibilities</Title>
+            <Title classN="mt-8 mb-2">Key Responsibilities</Title>
             {project?.responsibilities.map((r, idx) => (
               <ul key={idx.toString()}>
-                <li className="lg:text-base text-sm font-semibold list-disc ml-3">
+                <li className="lg:text-base text-sm list-disc ml-3 mt-1">
                   {r}
                 </li>
               </ul>
             ))}
           </div>
 
-          <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full">
-            <Title classN="mb-0">Technology Used</Title>
+          <div className="p-8 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full">
+            <Title classN="mb-2">Technology Used</Title>
             <div className="flex flex-wrap items-center gap-4">
               {project?.technologies.map((t, idx) => (
                 <div
                   key={idx.toString()}
-                  className="p-2 bg-shaad-600 mt-2 rounded-lg"
+                  className="p-2 bg-shaad-600 mt-2 rounded-lg min-w-[80px] flex items-center justify-center"
                 >
                   <p>{t}</p>
                 </div>
@@ -141,7 +141,7 @@ const ProjectIdPage = () => {
           </div>
         </motion.div>
 
-        <div className="flex flex-col gap-x-2 mt-8 border-shaad-100 border-2 p-4 rounded-lg w-full">
+        <div className="flex flex-col gap-x-2 mt-10 border-shaad-100 border-2 p-6 rounded-lg w-full">
           <Title>Screenshots</Title>
           <div className="flex justify-center">
             <div className="max-w-7xl w-full">
@@ -160,21 +160,21 @@ const ProjectIdPage = () => {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                <CarouselPrevious className="cursor-pointer"/>
+                <CarouselNext className="cursor-pointer"/>
               </Carousel>
             </div>
           </div>
         </div>
         <motion.div
           className={cn(
-            "grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-4 mt-6 w-full",
+            "grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-8 mt-10 w-full",
             !project?.videos ||
               (project?.videos.length === 0 && "md:grid-cols-1")
           )}
         >
           {project?.videos && project.videos.length > 0 && (
-            <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col h-full items-start">
+            <div className="p-6 border-2 border-shaad-100 rounded-lg flex flex-col h-full items-start">
               <Title classN="mb-2">Gameplay and Reviews</Title>
               <div className="flex justify-center items-center h-full w-full">
                 <div className="max-w-xl w-full">
@@ -197,8 +197,8 @@ const ProjectIdPage = () => {
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+                    <CarouselPrevious className="cursor-pointer"/>
+                    <CarouselNext className="cursor-pointer"/>
                   </Carousel>
                 </div>
               </div>
@@ -207,17 +207,17 @@ const ProjectIdPage = () => {
 
           <div
             className={cn(
-              "p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full",
+              "p-8 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full",
               (!project?.videos || project.videos.length === 0) &&
                 "md:col-span-2"
             )}
           >
-            <Title classN="mb-0">Additional Information</Title>
+            <Title classN="mb-2">Additional Information</Title>
             <ul>
               {project?.additional.map((t, idx) => (
                 <li
                   key={idx}
-                  className="mt-[3px] list-disc ml-4"
+                  className="mt-1 list-disc ml-4"
                 >
                   {t}
                 </li>

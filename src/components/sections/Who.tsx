@@ -23,19 +23,19 @@ const Who = () => {
         {idk.map((i, idx) => (
           <div
             key={idx}
-            className="p-4 rounded-xl border-2 border-shaad-600 flex flex-col justify-around items-center"
+            className="mt-4 p-4 rounded-xl bg-shaad-200 flex flex-col justify-around items-center min-w-[180px]"
           >
             <Reveal
               x={-100}
               de={0.2}
             >
-              <h1 className="md:text-2xl">{i.count}</h1>
+              <h1 className="text-3xl text-shaad-600 font-bold">{i.count}</h1>
             </Reveal>
             <Reveal
               x={-100}
               de={0.2}
             >
-              <h1 className="md:text-2xl">{i.label}</h1>
+            <p className="text-xl">{i.label}</p>
             </Reveal>
           </div>
         ))}
