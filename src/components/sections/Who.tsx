@@ -23,7 +23,7 @@ const Who = () => {
         {idk.map((i, idx) => (
           <div
             key={idx}
-            className="mt-4 p-4 rounded-xl bg-shaad-200 flex flex-col justify-around items-center min-w-[180px]"
+            className="mt-4 p-4 rounded-xl bg-shaad-300 flex flex-col justify-around items-center min-w-[180px]"
           >
             <Reveal
               x={-100}
