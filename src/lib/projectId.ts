@@ -3,7 +3,7 @@ import { projectData } from "@/types";
 export const data: { [key: string]: projectData } = {
   bushido: {
     title: "Pokémon Bushido",
-    year: "2021",
+    year: "Released: 2021 (eeveexpo.com)",
     game: true,
     imgCount: 9,
     urls: [
