@@ -73,7 +73,7 @@ const ProjectIdPage = () => {
             <h2 className="text-4xl text-white font-bold">{project.title}</h2>
 
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex gap-x-2 justify-center items-center p-3 rounded-lg border-2 border-shaad-600 text-white mt-8 font-bold hover:bg-shaad-600 transition cursor-pointer">
+              <DropdownMenuTrigger className="flex gap-x-2 justify-center items-center p-3 rounded-lg bg-shaad-400 border-2 border-shaad-600 text-white mt-8 font-bold hover:bg-shaad-600 transition cursor-pointer">
                 Download
                 <ChevronDown size={20} />
               </DropdownMenuTrigger>
