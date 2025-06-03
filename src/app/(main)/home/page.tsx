@@ -8,77 +8,82 @@ import { motion } from "motion/react";
 
 const Home = () => {
   return (
-    <section className="text-white h-full flex items-center justify-center px-6 max-md:px-4 max-md:pb-10">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="flex flex-col-reverse md:flex-row items-center justify-center max-md:mt-6 xl:gap-40 lg:gap-28 gap-12"
-      >
+    <>
+      <head>
+        <title>Home | Shaad Qureshi</title>
+      </head>
+      <section className="text-white h-full flex items-center justify-center px-6 max-md:px-4 max-md:pb-10">
         <motion.div
-          className="flex-1 border-shaad-600 border-2 p-8 rounded-4xl shadow-2xl"
-          style={{
-            boxShadow: "0 0 25px var(--color-shaad-550)",
-            transition: "box-shadow 0.3s ease-in-out",
-          }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col-reverse md:flex-row items-center justify-center max-md:mt-6 xl:gap-40 lg:gap-28 gap-12"
         >
-          <Reveal
-            x={-100}
-            de={0.2}
+          <motion.div
+            className="flex-1 border-shaad-600 border-2 p-8 rounded-4xl shadow-2xl"
+            style={{
+              boxShadow: "0 0 25px var(--color-shaad-550)",
+              transition: "box-shadow 0.3s ease-in-out",
+            }}
           >
-            <h2 className="text-xl max-lg:text-base mb-2 text-shaad-600">
-              Aspiring Game Developer
-            </h2>
-          </Reveal>
+            <Reveal
+              x={-100}
+              de={0.2}
+            >
+              <h2 className="text-xl max-lg:text-base mb-2 text-shaad-600">
+                Aspiring Game Developer
+              </h2>
+            </Reveal>
 
-          <Reveal
-            x={-100}
-            de={0.2}
-          >
-            <h1 className="text-4xl lg:text-5xl md:text-3xl font-bold">
-              Shaad Qureshi
-            </h1>
-          </Reveal>
+            <Reveal
+              x={-100}
+              de={0.2}
+            >
+              <h1 className="text-4xl lg:text-5xl md:text-3xl font-bold">
+                Shaad Qureshi
+              </h1>
+            </Reveal>
 
-          <Reveal
-            x={-100}
-            de={0.2}
-          >
-            <p className="mt-4 mb-6 text-shaad-100 my-2 mb-3 md:text-lg text-sm max-w-md">
-              {homePara}
-            </p>
-          </Reveal>
+            <Reveal
+              x={-100}
+              de={0.2}
+            >
+              <p className="mt-4 mb-6 text-shaad-100 my-2 md:text-lg text-sm max-w-md">
+                {homePara}
+              </p>
+            </Reveal>
 
-          <Reveal
-            y={100}
-            de={0.2}
-          >
-            <div className="flex gap-5">
-              {links.map((l, idx) => {
-                return (
-                  <a
-                    href={l.href}
-                    key={idx}
-                    target="_blank"
-                    onClick={l.href === EMAIL ? handleEmail : undefined}
-                  >
-                    <l.label
-                      className="text-white min-lg:text-sm text-xs hover:text-shaad-600 transition"
-                      size={28}
-                    />
-                  </a>
-                );
-              })}
-            </div>
-          </Reveal>
+            <Reveal
+              y={100}
+              de={0.2}
+            >
+              <div className="flex gap-5">
+                {links.map((l, idx) => {
+                  return (
+                    <a
+                      href={l.href}
+                      key={idx}
+                      target="_blank"
+                      onClick={l.href === EMAIL ? handleEmail : undefined}
+                    >
+                      <l.label
+                        className="text-white min-lg:text-sm text-xs hover:text-shaad-600 transition"
+                        size={28}
+                      />
+                    </a>
+                  );
+                })}
+              </div>
+            </Reveal>
+          </motion.div>
+
+          <ImageWithAbstractShape
+            src="/img_home.png"
+            alt="Shaad Qureshi"
+          />
         </motion.div>
-
-        <ImageWithAbstractShape
-          src="/img_home.png"
-          alt="Shaad Qureshi"
-        />
-      </motion.div>
-    </section>
+      </section>
+    </>
   );
 };
 
