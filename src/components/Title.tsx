@@ -14,7 +14,12 @@ const Title = ({ children, classN }: TitleProps) => {
       x={-100}
       de={0.2}
     >
-      <h2 className={cn("text-4xl mb-4 font-bold text-shaad-600", classN)}>
+      <h2
+        className={cn(
+          "text-4xl lg:text-5xl md:text-3xl font-bold mb-4 text-shaad-600",
+          classN
+        )}
+      >
         {children}
       </h2>
     </Reveal>
