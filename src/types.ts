@@ -11,3 +11,8 @@ export type projectData = {
   videos: string[];
   additional: string[];
 };
+
+export interface ProjectIdPageProps {
+  project: projectData;
+  url?: string;
+}

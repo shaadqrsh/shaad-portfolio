@@ -1,0 +1,76 @@
+import Title from "@/components/Title";
+import { cn } from "@/lib/utils";
+import { ProjectIdPageProps } from "@/types";
+import { motion } from "motion/react";
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+const VidsNInfo = ({ project }: ProjectIdPageProps) => {
+  return (
+    <motion.div
+      className={cn(
+        "grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-4 mt-6 w-full",
+        !project?.videos || (project?.videos.length === 0 && "md:grid-cols-1")
+      )}
+    >
+      {project?.videos && project.videos.length > 0 && (
+        <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col h-full items-start">
+          <Title classN="mb-2">Gameplay and Reviews</Title>
+          <div className="flex justify-center items-center h-full w-full">
+            <div className="max-w-xl w-full">
+              <Carousel className="my-4">
+                <CarouselContent>
+                  {project?.videos.map((v, idx) => (
+                    <CarouselItem key={idx}>
+                      <div className="w-full aspect-video">
+                        <iframe
+                          width="100%"
+                          height="100%"
+                          src={v.replace("watch?v=", "embed/")}
+                          title={`YouTube video ${idx + 1}`}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="rounded-lg w-full h-full"
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div
+        className={cn(
+          "p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full",
+          (!project?.videos || project.videos.length === 0) && "md:col-span-2"
+        )}
+      >
+        <Title classN="mb-0">Additional Information</Title>
+        <ul>
+          {project?.additional.map((t, idx) => (
+            <li
+              key={idx}
+              className="mt-[3px] list-disc ml-4"
+            >
+              {t}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </motion.div>
+  );
+};
+
+export default VidsNInfo;

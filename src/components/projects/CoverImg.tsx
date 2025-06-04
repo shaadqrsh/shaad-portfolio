@@ -4,17 +4,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { projectData } from "@/types";
+import { ProjectIdPageProps } from "@/types";
 import { ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
 import Reveal from "../Reveal";
 
-interface CoverImgProps {
-  project: projectData;
-  url: string;
-}
-
-const CoverImg = ({ project, url }: CoverImgProps) => {
+const CoverImg = ({ project, url }: ProjectIdPageProps) => {
   return (
     <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
       <motion.img
