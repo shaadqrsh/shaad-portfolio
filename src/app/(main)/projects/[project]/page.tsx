@@ -2,11 +2,8 @@ import { data } from "@/lib/projectId";
 import { Metadata } from "next";
 import ProjectIdPage from "./ProjectIdPage";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { project: string | string[] };
-}): Promise<Metadata> {
+// @ts-expect-error type any
+export async function generateMetadata({ params }): Promise<Metadata> {
   const slug = Array.isArray(params.project)
     ? params.project[0]
     : params.project;
@@ -22,11 +19,8 @@ export async function generateMetadata({
   };
 }
 
-export default function Page({
-  params,
-}: {
-  params: { project: string | string[] };
-}) {
+// @ts-expect-error type any
+export default function Page({ params }) {
   const slug = Array.isArray(params.project)
     ? params.project[0]
     : params.project;
