@@ -22,7 +22,7 @@ const ProjectsCard = ({ desc, url, title }: ProjectsCardProps) => {
     <motion.button
       onClick={handleRoute}
       className={cn(
-        `relative flex justify-center items-start gap-4 border-2 p-4 rounded-4xl shadow-2xl transition min-h-60 max-md:flex-col max-md:items-start group hover:border-shaad-600 border-shaad-100 cursor-pointer`
+        `relative flex justify-center items-start gap-4 border-2 p-4 rounded-4xl shadow-2xl transition min-h-60 max-md:flex-col group hover:border-shaad-600 border-shaad-100 cursor-pointer max-md:items-center max-md:justify-center`
       )}
     >
       <motion.img
