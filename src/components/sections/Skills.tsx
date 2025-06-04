@@ -66,7 +66,7 @@ const Skills = () => {
             />
 
             <Reveal x={-100}>
-              <motion.h3 className="text-lg max-sm:text-md tracking-wider font-bold text-center">
+              <motion.h3 className="text-lg max-sm:text-sm tracking-wider font-bold text-center">
                 {s.name}
               </motion.h3>
             </Reveal>

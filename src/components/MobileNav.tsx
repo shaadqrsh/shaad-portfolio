@@ -1,74 +1,50 @@
 "use client";
 import { headers } from "@/lib/header";
 import { cn } from "@/lib/utils";
-import Hamburger from "hamburger-react";
 import { motion } from "motion/react";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 const MobileNav = () => {
-  const [toggle, setToggle] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (toggle) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
+    document.body.style.overflow = "hidden";
 
     return () => {
-      document.body.classList.remove("overflow-hidden");
+      document.body.style.overflow = "unset";
     };
-  }, [toggle]);
+  }, []);
 
   return (
     <>
-      <nav
-        className={cn(
-          "sticky top-0 z-50 backdrop-blur-md bg-shaad-200 shadow-md",
-          toggle && "shadow-none"
-        )}
+      <motion.nav
+        initial={{ opacity: 0, y: "-100vh" }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        exit={{ opacity: 0, y: "-100vh" }}
+        className="flex items-center justify-center fixed bg-shaad-400 top-0 left-0 w-full h-full z-10"
       >
-        <div className="relative hidden p-4 max-sm:flex items-center justify-center">
-          <div className="absolute left-2 mr-auto">
-            <Hamburger
-              color="white"
-              size={30}
-              toggle={setToggle}
-              toggled={toggle}
-            />
-          </div>
-          <h1 className="text-base text-white font-bold tracking-wider">
-            Shaad Qureshi
-          </h1>
-        </div>
-      </nav>
-      {toggle && (
-        <motion.div
-          layout
-          initial={{ y: "-100%" }}
-          animate={{ y: 0 }}
-          exit={{ y: "-100%" }}
-          transition={{ duration: 0.5 }}
-          className="h-screen z-90 bg-shaad-200 flex flex-col justify-start items-center gap-y-4"
-        >
-          {headers.map((h) => {
-            return (
-              <li
-                key={h.label}
-                className="list-none"
+        <ul className="list-none p-0 flex flex-col gap-6 mt-6">
+          {headers.map((h, idx) => (
+            <li key={idx}>
+              <a
+                href={h.link}
+                className={cn(
+                  "text-white flex tracking-wider items-center font-semibold text-xl hover:text-shaad-600 transition",
+                  pathname.startsWith(h.link) ? "text-white" : "text-shaad-100"
+                )}
               >
-                <Link
-                  href={h.link}
-                  className="text-white tracking-wider font-semibold text-lg hover:text-shaad-400 transition"
-                >
-                  {h.label}
-                </Link>
-              </li>
-            );
-          })}
-        </motion.div>
-      )}
+                <h.icon
+                  className="mr-2"
+                  size={23}
+                />
+                {h.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </motion.nav>
     </>
   );
 };

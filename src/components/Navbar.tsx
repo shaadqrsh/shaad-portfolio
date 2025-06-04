@@ -1,36 +1,41 @@
 "use client";
 import { headers } from "@/lib/header";
 import { cn } from "@/lib/utils";
+import Hamburger from "hamburger-react";
 import { FileUser } from "lucide-react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import MobileNav from "./MobileNav";
 
 const Navbar = () => {
+  const [toggle, setToggle] = useState(false);
   const pathname = usePathname();
-
-  // const segments = pathname.split("/").filter(Boolean);
-
-  // if (segments[0] === "projects" && segments.length === 2) {
-  //   return null;
-  // }
 
   return (
     <>
       <nav className="sticky top-0 z-50 backdrop-blur-md bg-shaad-200 shadow-md">
-        <div className="hidden mx-auto px-8 py-4 min-sm:flex items-center justify-between">
+        <div className="absolute left-2 mr-auto top-[10px] min-sm:hidden">
+          <Hamburger
+            color="white"
+            size={25}
+            toggle={setToggle}
+            toggled={toggle}
+          />
+        </div>
+
+        <div className="mx-auto px-8 py-4 flex items-center min-sm:justify-between justify-center">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl text-white font-bold tracking-wider flex items-center">
+            <h1 className="min-sm:text-2xl text-lg text-white font-bold tracking-wider flex items-center">
               <motion.img
                 src="/icon.png"
-                width={55}
-                height={55}
-                className="mr-2"
+                className="mr-2 min-sm:w-[55px] min-sm:h-[55px] w-[35px] h-[35px]"
               />
               Shaad Qureshi
             </h1>
           </div>
-          <ul className="flex min-md:space-x-10 gap-x-6 text-gray-700 font-medium ">
+          <ul className=" hidden min-sm:flex min-md:space-x-10 gap-x-6 text-gray-700 font-medium ">
             {headers.map((h) => {
               return (
                 <li key={h.label}>
@@ -58,7 +63,7 @@ const Navbar = () => {
           </ul>
 
           <a
-            className="cursor-pointer bg-transparent text-lg ml-4 hover:bg-shaad-600 hover:text-white transition-all border-shaad-600 rounded-full border-2 px-6 py-3 flex items-center text-white"
+            className=" hidden cursor-pointer bg-transparent text-lg ml-4 hover:bg-shaad-600 hover:text-white transition-all border-shaad-600 rounded-full border-2 px-6 py-3 min-sm:flex items-center text-white"
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
@@ -71,6 +76,13 @@ const Navbar = () => {
           </a>
         </div>
       </nav>
+
+      <AnimatePresence
+        initial={false}
+        onExitComplete={() => null}
+      >
+        {toggle && <MobileNav />}
+      </AnimatePresence>
     </>
   );
 };

@@ -22,7 +22,9 @@ const CoverImg = ({ project, url }: ProjectIdPageProps) => {
 
       <div className="relative z-10 p-8 border-[3px] border-shaad-600 rounded-xl bg-black/60 flex flex-col justify-center items-center">
         <Reveal x={-150}>
-          <h2 className="text-4xl text-white font-bold">{project.title}</h2>
+          <h2 className="text-4xl text-white font-bold text-center">
+            {project.title}
+          </h2>
         </Reveal>
 
         <DropdownMenu>
@@ -47,7 +49,7 @@ const CoverImg = ({ project, url }: ProjectIdPageProps) => {
         </DropdownMenu>
 
         <Reveal x={-150}>
-          <h2 className="text-xl mt-6 text-white font-bold">
+          <h2 className="text-xl mt-6 text-white font-bold text-center">
             Released: {project.year}
           </h2>
         </Reveal>
