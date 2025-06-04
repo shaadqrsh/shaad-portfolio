@@ -34,7 +34,7 @@ const TechAndFeatures = ({ project }: ProjectIdPageProps) => {
 
       <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full">
         <Title classN="mb-0">Technology Used</Title>
-        <div className="flex flex-wrap items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4 mt-2">
           {project?.technologies.map((t, idx) => (
             <Reveal
               key={idx.toString()}
@@ -53,7 +53,7 @@ const TechAndFeatures = ({ project }: ProjectIdPageProps) => {
           ))}
         </div>
 
-        <Title classN="mb-0 mt-8">Features</Title>
+        <Title classN="mb-0 mt-6">Features</Title>
         {project?.features.map((f, idx) => (
           <div
             className="flex flex-col items-start"

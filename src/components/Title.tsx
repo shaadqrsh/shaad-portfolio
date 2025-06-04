@@ -16,7 +16,7 @@ const Title = ({ children, classN }: TitleProps) => {
     >
       <h2
         className={cn(
-          "text-4xl lg:text-5xl md:text-3xl font-bold mb-4 text-shaad-600",
+          "text-4xl lg:text-5xl md:text-3xl font-bold pb-1 text-shaad-600",
           classN
         )}
       >

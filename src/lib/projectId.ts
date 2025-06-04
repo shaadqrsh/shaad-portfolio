@@ -3,7 +3,7 @@ import { projectData } from "@/types";
 export const data: { [key: string]: projectData } = {
   bushido: {
     title: "Pokémon Bushido",
-    year: "Released: 2021 (eeveexpo.com)",
+    year: "2021 (eeveexpo.com)",
     game: true,
     imgCount: 9,
     urls: [
@@ -151,46 +151,62 @@ export const data: { [key: string]: projectData } = {
       {
         label: "Live Project",
         icon: "",
-        url: "https://homi-bot.in/"
+        url: "https://homi-bot.in/",
       },
       {
         label: "GitHub",
         icon: "",
-        url: "https://github.com/Hmalhotra004/AIML-Chatbot"
+        url: "https://github.com/Hmalhotra004/AIML-Chatbot",
       },
     ],
     desc: "This project is a full-stack application that leverages a fine-tuned Large Language Model (LLM) to provide AI-powered assistance for objective-based learning, specifically for BSc. IT students. The application aims to enhance the learning experience by offering personalized study materials, dynamically generating MCQs based on proficiency levels, resolving user doubts in real-time through a chatbot, and providing tools for assignment tracking, and attendance logging. This system seeks to address the limitations of traditional teaching methods by offering adaptive and interactive educational tools, making learning more accessible, engaging, and effective for IT students.",
     features: [
       {
         heading: "LLM Integration",
-        content: "This system utilizes a customized LLM (based on DeepSeek) for core AI functionalities such as query processing and question generation.",
+        content:
+          "This system utilizes a customized LLM (based on DeepSeek) for core AI functionalities such as query processing and question generation.",
       },
       {
         heading: "Chatbot Query Resolution",
-        content: "The user can chat with the model to ask questions, generate personalized study material and store and organize them with a robust folder structure system.",
+        content:
+          "The user can chat with the model to ask questions, generate personalized study material and store and organize them with a robust folder structure system.",
       },
       {
         heading: "Attendance and Assignment Tracking",
-        content: "Users can track and log their attendance and calcuate the number . The user can also log their assignments and use the website as a checklist for these assignments.",
+        content:
+          "Users can track and log their attendance and calcuate the number . The user can also log their assignments and use the website as a checklist for these assignments.",
       },
       {
         heading: "Test Generation",
-        content: "The user can assess their knowledge about a certain topic they have studied in the form of graded multiple-choice based tests and as flashcards.",
+        content:
+          "The user can assess their knowledge about a certain topic they have studied in the form of graded multiple-choice based tests and as flashcards.",
       },
       {
         heading: "Secure Authentication",
-        content: "The application uses secure authentication methods to log into the system, and a robust database to store user details, questions, tests and more.",
-      }
+        content:
+          "The application uses secure authentication methods to log into the system, and a robust database to store user details, questions, tests and more.",
+      },
     ],
-    technologies: ["NextJS", "TailwindCSS", "Typescript", "ReactQuery", "Python", "Django", "HuggingFace", "SQL", "DeepSeek R1", "Gemini"],
+    technologies: [
+      "NextJS",
+      "TailwindCSS",
+      "Typescript",
+      "ReactQuery",
+      "Python",
+      "Django",
+      "HuggingFace",
+      "SQL",
+      "DeepSeek R1",
+      "Gemini",
+    ],
     responsibilities: [
-      "Assumed the responsibility of \"Project Manager\" and managed a team of 6 people working on the project",
+      'Assumed the responsibility of "Project Manager" and managed a team of 6 people working on the project',
       "Trained the LLM (based on DeepSeek R1) on cloud and local machines.",
       "Collected the data for training the model from textbooks, using manual scanning and several scraping techniques.",
       "Developed several backend features, especially those related to interfacing with the actual model.",
       "Assisted in deploying the backend onto HuggingFace Spaces, and uploaded the model onto HuggingFaces.",
       "Assisted in designing several UI components and pages in the application.",
-      "Funded the development of the application until a grant was offered to us by our college."
+      "Funded the development of the application until a grant was offered to us by our college.",
     ],
     videos: [],
     additional: [
@@ -198,7 +214,7 @@ export const data: { [key: string]: projectData } = {
       "Features like a mental health guide, study roadmap generator, and PDF chat export were planned, but they were scrapped due to time constraints.",
       "The project successfully attracted an external investor grant, and these investors plan to further expand its capabilities.",
       "The research done on this project yielded 3 research papers. One was presented at an IEEE conference and two are currently under review.",
-      "The project's technical sophistication and innovation were highly praised by an examiner from IITB (Indian Institute of Technology - Bombay) during its final assessment."
+      "The project's technical sophistication and innovation were highly praised by an examiner from IITB (Indian Institute of Technology - Bombay) during its final assessment.",
     ],
   },
   findly: {
@@ -210,36 +226,41 @@ export const data: { [key: string]: projectData } = {
       {
         label: "Direct Download",
         icon: "",
-        url: "https://drive.google.com/file/d/1IZ3AlFv5rm8xrUn9YbwLe4i-Bu9YwHpO/view"
+        url: "https://drive.google.com/file/d/1IZ3AlFv5rm8xrUn9YbwLe4i-Bu9YwHpO/view",
       },
       {
         label: "Eevee Expo",
         icon: "",
-        url: "https://eeveeexpo.com/splice/"
+        url: "https://eeveeexpo.com/splice/",
       },
     ],
     desc: "Assume the role of a research assistant aiding Professor Cypress in the study of newly discovered Pokémon forms in this new fangame. Embark on a journey through the Stacona region with a new starter Pokémon, Arenay, which possesses the ability to change its type. Align with either Team Biogress, emphasizing natural development, or Team Quantech, focused on technological enhancement. Experience a branching storyline, where you are presented with significant choices which will completely alter your experience. The fate of Pokémon research hangs in the balance - whose side will you choose?",
     features: [
       {
         heading: "New Region",
-        content: "Pokémon Splice is set in the entirely new Stacona Region, a brand new world with its own unique environments and never before seen Pokémon species.",
+        content:
+          "Pokémon Splice is set in the entirely new Stacona Region, a brand new world with its own unique environments and never before seen Pokémon species.",
       },
       {
         heading: "New Pokémon Species",
-        content: "The game features several new species of Pokémon, such as Arenay, the starter with a unique form changing gimmick, as well as evolutions and pre-evolutions for existing Pokémon like Pinsir, Skarmory and Combee and more!",
+        content:
+          "The game features several new species of Pokémon, such as Arenay, the starter with a unique form changing gimmick, as well as evolutions and pre-evolutions for existing Pokémon like Pinsir, Skarmory and Combee and more!",
       },
       {
         heading: "Branching Storylines",
-        content: "Players make a pivotal choice to join one of two opposing research organizations: Team Biogress or Team Quantech. This decision significantly influences the story's direction and the player's objectives throughout the game.",
+        content:
+          "Players make a pivotal choice to join one of two opposing research organizations: Team Biogress or Team Quantech. This decision significantly influences the story's direction and the player's objectives throughout the game.",
       },
       {
         heading: "New Regional Forms",
-        content: "The region houses brand new regional forms. Some of them are naturally occuring, like Dunsparce, and some are the result of experimentation by the 2 research factions, such as the new forms of the Solosis, Lotad, Raichu and Electivire.",
+        content:
+          "The region houses brand new regional forms. Some of them are naturally occuring, like Dunsparce, and some are the result of experimentation by the 2 research factions, such as the new forms of the Solosis, Lotad, Raichu and Electivire.",
       },
       {
         heading: "Distinct Gen-3 Artsyle",
-        content: "The game pays hommage to the GameBoy Advance generation of Pokémon games with its environment and UI design, but still has all the QOL improvements of the modern games.",
-      }
+        content:
+          "The game pays hommage to the GameBoy Advance generation of Pokémon games with its environment and UI design, but still has all the QOL improvements of the modern games.",
+      },
     ],
     technologies: ["RGSS", "Ruby", "C++", "Photoshop", "Aseprite"],
     responsibilities: [
@@ -248,18 +269,18 @@ export const data: { [key: string]: projectData } = {
       "Aggregated publically available assets for developing the game within 30 days.",
       "Evented multiple in-game cutscenes, while also writing custom scripts for functionality.",
       "Designed various UI/UX elements to enhance the immersion of the battle system, with detailed battle backgrounds and themes to fit the Generation 3 aesthetic.",
-      "Assisted in the design of the game's narrative and core gameplay loop."
+      "Assisted in the design of the game's narrative and core gameplay loop.",
     ],
     videos: [
       "https://www.youtube.com/watch?v=B9DS0Nyegag",
       "https://www.youtube.com/watch?v=X34OZt5Tvdk",
-      "https://www.youtube.com/watch?v=-XgNEFjSQmc&list=PLsWAsarmQkCdE1hRoOdWehJlpGgInKzNL"
+      "https://www.youtube.com/watch?v=-XgNEFjSQmc&list=PLsWAsarmQkCdE1hRoOdWehJlpGgInKzNL",
     ],
     additional: [
       "This game was developed for the Relic Castle (Eevee Expo) Game Jam 6. It was developed in 30 days, and the team ended up winning the competition.",
       "Future chapters were planned, and assets were developed for them (new legendaries and forms, they are still in the game files). The team, however, disbanded and further expansions were scrapped.",
       "The development of this project was headed by Thundaga, a YouTuber, and the development of this game has been recorded as VODs on their YouTube and Twitch.",
-      "This game was discontinued in 2023 and the entire team moved on to other projects."
+      "This game was discontinued in 2023 and the entire team moved on to other projects.",
     ],
-  }
+  },
 };
