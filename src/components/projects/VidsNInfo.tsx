@@ -15,12 +15,13 @@ const VidsNInfo = ({ project }: ProjectIdPageProps) => {
   return (
     <motion.div
       className={cn(
-        "grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-4 mt-6 w-full",
-        !project?.videos || (project?.videos.length === 0 && "md:grid-cols-1")
+        "grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-8 mt-10 w-full",
+        !project?.videos ||
+          (project?.videos.length === 0 && "md:grid-cols-1")
       )}
     >
       {project?.videos && project.videos.length > 0 && (
-        <div className="p-4 border-2 border-shaad-100 rounded-lg flex flex-col h-full items-start">
+        <div className="p-6 border-2 border-shaad-100 rounded-lg flex flex-col h-full items-start">
           <Title classN="mb-2">Gameplay and Reviews</Title>
           <div className="flex justify-center items-center h-full w-full">
             <div className="max-w-xl w-full">
@@ -66,18 +67,15 @@ const VidsNInfo = ({ project }: ProjectIdPageProps) => {
 
       <div
         className={cn(
-          "p-4 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full",
+          "p-8 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full",
           (!project?.videos || project.videos.length === 0) && "md:col-span-2"
         )}
       >
-        <Title classN="mb-0">Additional Information</Title>
+        <Title classN="mb-2">Additional Information</Title>
         <ul>
           {project?.additional.map((t, idx) => (
-            <Reveal
-              x={-100}
-              key={idx}
-            >
-              <li className="mt-[3px] list-disc ml-4">{t}</li>
+            <Reveal x={-100} key={idx}>
+              <li className="mt-1 list-disc ml-4">{t}</li>
             </Reveal>
           ))}
         </ul>

@@ -20,7 +20,7 @@ const CoverImg = ({ project, url }: ProjectIdPageProps) => {
 
       <div className="absolute inset-0 bg-black/40" />
 
-      <div className="relative z-10 p-8 border-[3px] border-shaad-600 rounded-xl bg-black/60 flex flex-col justify-center items-center">
+      <div className="relative z-10 p-14 border-2 border-shaad-600 rounded-xl bg-shaad-350 flex flex-col justify-center items-center">
         <Reveal x={-150}>
           <h2 className="text-4xl text-white font-bold text-center">
             {project.title}
@@ -28,11 +28,11 @@ const CoverImg = ({ project, url }: ProjectIdPageProps) => {
         </Reveal>
 
         <DropdownMenu>
-          <DropdownMenuTrigger className="flex gap-x-2 justify-center items-center p-2 rounded-lg bg-shaad-600 text-white mt-8">
+          <DropdownMenuTrigger className="flex gap-x-2 justify-center items-center p-3 rounded-lg border-2 border-shaad-600 bg-shaad-300 text-white mt-8 font-bold hover:bg-shaad-600 transition cursor-pointer">
             Download
             <ChevronDown size={20} />
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-shaad-600 border-shaad-500 text-white">
+          <DropdownMenuContent className="bg-shaad-600 border-shaad-600 text-white">
             {project.urls.map((u, idx) => (
               <a
                 key={idx}
@@ -40,7 +40,7 @@ const CoverImg = ({ project, url }: ProjectIdPageProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <DropdownMenuItem className="bg-shaad-600 cursor-pointer hover:bg-shaad-500 transition">
+                <DropdownMenuItem className="cursor-pointer">
                   {u.label}
                 </DropdownMenuItem>
               </a>
