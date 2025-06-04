@@ -10,6 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Reveal from "../Reveal";
 
 const VidsNInfo = ({ project }: ProjectIdPageProps) => {
   return (
@@ -28,7 +29,13 @@ const VidsNInfo = ({ project }: ProjectIdPageProps) => {
                 <CarouselContent>
                   {project?.videos.map((v, idx) => (
                     <CarouselItem key={idx}>
-                      <div className="w-full aspect-video">
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ duration: 0.7 }}
+                        viewport={{ once: true }}
+                        className="w-full aspect-video"
+                      >
                         <iframe
                           width="100%"
                           height="100%"
@@ -39,7 +46,7 @@ const VidsNInfo = ({ project }: ProjectIdPageProps) => {
                           allowFullScreen
                           className="rounded-lg w-full h-full"
                         />
-                      </div>
+                      </motion.div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
@@ -60,12 +67,12 @@ const VidsNInfo = ({ project }: ProjectIdPageProps) => {
         <Title classN="mb-0">Additional Information</Title>
         <ul>
           {project?.additional.map((t, idx) => (
-            <li
+            <Reveal
+              x={-100}
               key={idx}
-              className="mt-[3px] list-disc ml-4"
             >
-              {t}
-            </li>
+              <li className="mt-[3px] list-disc ml-4">{t}</li>
+            </Reveal>
           ))}
         </ul>
       </div>

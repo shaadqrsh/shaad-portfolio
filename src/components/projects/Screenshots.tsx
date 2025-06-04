@@ -1,6 +1,6 @@
+import Title from "@/components/Title";
 import { ProjectIdPageProps } from "@/types";
 import { motion } from "motion/react";
-import Title from "@/components/Title";
 
 import {
   Carousel,
@@ -9,6 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import ImageDialog from "./ImageDialog";
 
 const Screenshots = ({ project, url }: ProjectIdPageProps) => {
   return (
@@ -23,11 +24,13 @@ const Screenshots = ({ project, url }: ProjectIdPageProps) => {
                   key={i}
                   className="flex justify-center md:basis-1/2 lg:basis-1/3"
                 >
-                  <motion.img
-                    src={`/project_${url}/img_${i + 1}.png`}
-                    alt={`Project image ${i + 1}`}
-                    className="w-full max-h-[350px] rounded-lg object-contain"
-                  />
+                  <ImageDialog src={`/project_${url}/img_${i + 1}.png`}>
+                    <motion.img
+                      src={`/project_${url}/img_${i + 1}.png`}
+                      alt={`Project image ${i + 1}`}
+                      className="w-full max-h-[350px] rounded-lg object-contain"
+                    />
+                  </ImageDialog>
                 </CarouselItem>
               ))}
             </CarouselContent>
