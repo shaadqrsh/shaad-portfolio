@@ -12,7 +12,7 @@ const Home = () => {
       <head>
         <title>Home | Shaad Qureshi</title>
       </head>
-      <section className="text-white h-full flex items-center justify-center px-6 max-md:px-4 max-md:pb-10">
+      <section className=" min-2xl:container text-white h-full flex items-center justify-center px-6 max-md:px-4 max-md:pb-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -9,7 +9,7 @@ const Projects = () => {
       <head>
         <title>Projects | Shaad Qureshi</title>
       </head>
-      <section className="text-white h-full w-full flex flex-col justify-center p-6 max-md:pb-16">
+      <section className="min-2xl:container text-white h-full w-full flex flex-col justify-center p-6 max-md:pb-16">
         <motion.div className="grid grid-cols-2 justify-center items-center gap-6 max-lg:flex max-lg:flex-col">
           {projects.map((p, idx) => (
             <motion.div
