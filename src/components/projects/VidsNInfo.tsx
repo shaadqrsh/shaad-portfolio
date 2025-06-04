@@ -16,12 +16,11 @@ const VidsNInfo = ({ project }: ProjectIdPageProps) => {
     <motion.div
       className={cn(
         "grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-8 mt-10 w-full",
-        !project?.videos ||
-          (project?.videos.length === 0 && "md:grid-cols-1")
+        !project?.videos || (project?.videos.length === 0 && "md:grid-cols-1")
       )}
     >
       {project?.videos && project.videos.length > 0 && (
-        <div className="p-6 border-2 border-shaad-100 rounded-lg flex flex-col h-full items-start">
+        <div className="p-8 border-2 border-shaad-100 rounded-lg flex flex-col h-full items-start">
           <Title classN="mb-2">Gameplay and Reviews</Title>
           <div className="flex justify-center items-center h-full w-full">
             <div className="max-w-xl w-full">

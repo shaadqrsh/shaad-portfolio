@@ -13,7 +13,6 @@ const TechAndFeatures = ({ project }: ProjectIdPageProps) => {
         </Reveal>
 
         <Title classN="mt-8 mb-2">Key Responsibilities</Title>
-
         {project?.responsibilities.map((r, idx) => (
           <Reveal
             key={idx.toString()}

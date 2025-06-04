@@ -12,12 +12,12 @@ import ImageDialog from "./ImageDialog";
 
 const Screenshots = ({ project, url }: ProjectIdPageProps) => {
   return (
-    <div className="flex flex-col gap-x-2 mt-10 border-shaad-100 border-2 p-6 rounded-lg w-full">
+    <div className="flex flex-col gap-x-2 mt-10 border-shaad-100 border-2 p-8 rounded-lg w-full">
       <Title>Screenshots</Title>
       <div className="flex justify-center">
         <div className="max-w-7xl w-full">
           <Carousel
-            className="mt-4  mb-2"
+            className="mt-6  mb-4"
             plugins={[
               Autoplay({
                 delay: 2000,
