@@ -32,10 +32,10 @@ const Navbar = () => {
                 src="/icon.png"
                 className="mr-2 min-sm:w-[55px] min-sm:h-[55px] w-[35px] h-[35px]"
               />
-              Shaad Qureshi
+              <a href="/home">Shaad Qureshi</a>
             </h1>
           </div>
-          <ul className=" hidden min-sm:flex min-md:space-x-10 gap-x-6 text-gray-700 font-medium ">
+          <ul className="hidden min-sm:flex min-md:space-x-10 gap-x-6 text-gray-700 font-medium">
             {headers.map((h) => {
               return (
                 <li key={h.label}>

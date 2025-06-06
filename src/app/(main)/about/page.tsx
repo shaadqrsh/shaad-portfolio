@@ -15,13 +15,13 @@ const About = () => {
       <head>
         <title>About | Shaad Qureshi</title>
       </head>
-      <section className="text-white h-full w-full mx-4 max-sm:flex max-sm:flex-col grid grid-cols-[40%_60%] justify-center gap-x-8 p-8 max-md:pb-16">
+      <section className="3xl:container text-white h-full w-full mx-4 max-sm:flex max-sm:flex-col grid grid-cols-[40%_60%] justify-center gap-x-8 p-8 max-md:pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-           className="sticky top-30 h-[calc(100vh-14rem)] self-start mx-auto max-sm:hidden"
+          className="sticky min-sm:top-30 h-[calc(100vh-14rem)] self-start mx-auto max-sm:block max-sm:mb-4"
         >
           <motion.img
             src="about/img_about.jpg"

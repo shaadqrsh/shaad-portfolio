@@ -73,7 +73,10 @@ const VidsNInfo = ({ project }: ProjectIdPageProps) => {
         <Title classN="mb-2">Additional Information</Title>
         <ul>
           {project?.additional.map((t, idx) => (
-            <Reveal x={-100} key={idx}>
+            <Reveal
+              x={-100}
+              key={idx}
+            >
               <li className="mt-1 list-disc ml-4">{t}</li>
             </Reveal>
           ))}
