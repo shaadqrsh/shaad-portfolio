@@ -17,7 +17,7 @@ const Screenshots = ({ project, url }: ProjectIdPageProps) => {
       <div className="flex justify-center">
         <div className="max-w-7xl w-full">
           <Carousel
-            className="mt-6  mb-4"
+            className="mt-6 mb-4"
             plugins={[
               Autoplay({
                 delay: 2000,

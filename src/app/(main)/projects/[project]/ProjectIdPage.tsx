@@ -34,7 +34,7 @@ const ProjectIdPage = ({ url }: { url: string }) => {
   }
 
   return (
-    <section className="min-2xl:container">
+    <section className="min-3xl:container">
       <Parallax
         speed={-50}
         className={`h-[75vh] w-full mt-[-10vh]`}

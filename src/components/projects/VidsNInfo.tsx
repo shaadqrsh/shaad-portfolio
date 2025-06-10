@@ -21,11 +21,11 @@ const VidsNInfo = ({ project }: ProjectIdPageProps) => {
     >
       {project?.videos && project.videos.length > 0 && (
         <div className="p-8 border-2 border-shaad-100 rounded-lg flex flex-col h-full items-start">
-          <Title classN="mb-2">Gameplay and Reviews</Title>
+          <Title classN="mb-4">Gameplay and Reviews</Title>
           <div className="flex justify-center items-center h-full w-full">
             <div className="max-w-xl w-full">
               <Carousel
-                className="my-4"
+                className="mt-2 mb-4"
                 plugins={[
                   Autoplay({
                     delay: 2000,

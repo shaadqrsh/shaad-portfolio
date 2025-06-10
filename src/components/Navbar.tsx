@@ -28,10 +28,12 @@ const Navbar = () => {
         <div className="mx-auto px-8 py-4 flex items-center min-sm:justify-between justify-center">
           <div className="flex justify-between items-center">
             <h1 className="min-sm:text-2xl text-lg text-white font-bold tracking-wider flex items-center">
+              <a href="/home">
               <motion.img
                 src="/icon.png"
                 className="mr-2 min-sm:w-[55px] min-sm:h-[55px] w-[35px] h-[35px]"
               />
+              </a>
               <a href="/home">Shaad Qureshi</a>
             </h1>
           </div>

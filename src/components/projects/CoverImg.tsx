@@ -20,7 +20,7 @@ const CoverImg = ({ project, url }: ProjectIdPageProps) => {
 
       <div className="absolute inset-0 bg-black/40" />
 
-      <div className="relative z-10 p-14 border-2 border-shaad-600 rounded-xl bg-shaad-350 flex flex-col justify-center items-center">
+      <div className="relative z-10 p-14 mx-6 border-2 border-shaad-600 rounded-xl bg-shaad-350 flex flex-col justify-center items-center">
         <Reveal x={-150}>
           <h2 className="text-4xl text-white font-bold text-center">
             {project.title}
