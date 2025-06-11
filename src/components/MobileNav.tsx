@@ -26,7 +26,7 @@ const MobileNav = () => {
         exit={{ opacity: 0, y: "-100vh" }}
         className="flex flex-col items-center justify-center fixed bg-shaad-400 top-0 left-0 w-full h-full z-40"
       >
-        <ul className="list-none p-0 flex flex-col gap-6 mt-6">
+        <ul className="list-none p-0 flex flex-col gap-8 mt-6 -ml-6">
           {headers.map((h, idx) => (
             <li key={idx}>
               <a
@@ -36,6 +36,11 @@ const MobileNav = () => {
                   pathname.startsWith(h.link) ? "text-white" : "text-shaad-100"
                 )}
               >
+                <div className="w-4 mr-2 flex justify-center items-center">
+                  {pathname.startsWith(h.link) && (
+                    <div className="bg-shaad-600 w-2 h-2 rounded-full" />
+                  )}
+                </div>
                 <h.icon
                   className="mr-2"
                   size={23}
@@ -47,7 +52,7 @@ const MobileNav = () => {
         </ul>
 
         <a
-          className="cursor-pointer bg-transparent text-lg hover:bg-shaad-600 hover:text-white transition-all border-shaad-600 rounded-full border-2 px-6 py-3 flex items-center text-white mt-4"
+          className="cursor-pointer bg-transparent text-lg hover:bg-shaad-600 hover:text-white transition-all border-shaad-600 rounded-full border-2 px-6 py-3 flex items-center text-white mt-10"
           href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"

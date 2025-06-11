@@ -57,7 +57,7 @@ const Navbar = () => {
                     {h.label}
                   </Link>
                   {pathname.startsWith(h.link) && (
-                    <div className="mt-2 p-1 bg-shaad-600 w-1 h-1 rounded-full flex mx-auto" />
+                    <div className="mt-2 p-1 bg-shaad-600 w-2 h-2 rounded-full flex mx-auto" />
                   )}
                 </li>
               );

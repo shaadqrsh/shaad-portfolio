@@ -27,7 +27,7 @@ const ProjectsCard = ({ desc, url, title }: ProjectsCardProps) => {
     >
       <motion.img
         src={`/project_${url}/icon.jpg`}
-        className="w-[300px] h-[250px] rounded-xl max-md:mt-4"
+        className="w-[300px] h-[250px] rounded-xl"
       />
 
       <div className="flex flex-col justify-start items-start gap-3">
