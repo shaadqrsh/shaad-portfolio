@@ -24,7 +24,7 @@ const MobileNav = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         exit={{ opacity: 0, y: "-100vh" }}
-        className="flex flex-col items-center justify-center fixed bg-shaad-400 top-0 left-0 w-full h-full z-10"
+        className="flex flex-col items-center justify-center fixed bg-shaad-400 top-0 left-0 w-full h-full z-40"
       >
         <ul className="list-none p-0 flex flex-col gap-6 mt-6">
           {headers.map((h, idx) => (
