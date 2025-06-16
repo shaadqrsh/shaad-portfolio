@@ -7,8 +7,9 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import Reveal from "../Reveal";
 
 const VidsNInfo = ({ project }: ProjectIdPageProps) => {
@@ -24,14 +25,7 @@ const VidsNInfo = ({ project }: ProjectIdPageProps) => {
           <Title classN="mb-4">Gameplay and Reviews</Title>
           <div className="flex justify-center items-center h-full w-full">
             <div className="max-w-xl w-full">
-              <Carousel
-                className="mt-2 mb-4"
-                plugins={[
-                  Autoplay({
-                    delay: 2000,
-                  }),
-                ]}
-              >
+              <Carousel className="mt-2 mb-4">
                 <CarouselContent>
                   {project?.videos.map((v, idx) => (
                     <CarouselItem key={idx}>
@@ -56,8 +50,8 @@ const VidsNInfo = ({ project }: ProjectIdPageProps) => {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                {/* <CarouselPrevious /> */}
-                {/* <CarouselNext /> */}
+                <CarouselPrevious className="absolute top-1/2 max-[1440px]:-left-7 transform -translate-y-1/2 max-[1440px]:w-5 max-[1440px]:h-5" />
+                <CarouselNext className="absolute top-1/2 max-[1440px]:-right-7 transform -translate-y-1/2 max-[1440px]:w-5 max-[1440px]:h-5" />
               </Carousel>
             </div>
           </div>

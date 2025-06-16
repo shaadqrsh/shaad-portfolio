@@ -21,6 +21,7 @@ const Screenshots = ({ project, url }: ProjectIdPageProps) => {
             plugins={[
               Autoplay({
                 delay: 2000,
+                stopOnInteraction: false,
               }),
             ]}
           >
