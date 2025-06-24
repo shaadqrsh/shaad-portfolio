@@ -3,7 +3,7 @@ import { projectData } from '@/types';
 export const data: { [key: string]: projectData } = {
   bushido: {
     title: 'Pokémon Bushido',
-    year: '2021 (eeveexpo.com)',
+    year: '2021',
     game: true,
     imgCount: 9,
     urls: [
@@ -156,7 +156,7 @@ export const data: { [key: string]: projectData } = {
       {
         label: 'GitHub',
         icon: '',
-        url: 'https://github.com/Hmalhotra004/AIML-Chatbot',
+        url: 'https://github.com/shaadqrsh/HOMI-distro',
       },
     ],
     desc: 'This project is a full-stack application that leverages a fine-tuned Large Language Model (LLM) to provide AI-powered assistance for objective-based learning, specifically for BSc. IT students. The application aims to enhance the learning experience by offering personalized study materials, dynamically generating MCQs based on proficiency levels, resolving user doubts in real-time through a chatbot, and providing tools for assignment tracking, and attendance logging. This system seeks to address the limitations of traditional teaching methods by offering adaptive and interactive educational tools, making learning more accessible, engaging, and effective for IT students.',
