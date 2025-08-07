@@ -5,7 +5,7 @@ export const whoAmI = `For me, game development is the ultimate fusion of art an
 export const idk = [
   {
     label: "Years",
-    count: "2+",
+    count: "3+",
   },
   {
     label: "Projects",
@@ -13,6 +13,6 @@ export const idk = [
   },
   {
     label: "Clients",
-    count: "36+",
+    count: "40+",
   },
 ];

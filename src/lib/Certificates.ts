@@ -4,7 +4,7 @@ export const Certificates = [
     subtitle: "Udemy ● 2025",
   },
   {
-    title: "Complete C# Unity Game Developer 2D",
+    title: "Complete C# Unity Game Developer 2D (Updated To Unity 6)",
     subtitle: "Udemy ● 2025",
   },
   {
@@ -20,11 +20,11 @@ export const Certificates = [
     subtitle: "Udemy ● 2025",
   },
   {
-    title: "Pixel Art Master Course - Beginner to Professional/Freelances",
+    title: "Create Beautiful 3D Models for Games, 3D Printing & More",
     subtitle: "Udemy ● 2025",
   },
   {
-    title: "The Complete Python Bootcamp From Zero to Hero in Python",
+    title: "Pixel Art Master Course - Beginner to Professional/Freelances",
     subtitle: "Udemy ● 2025",
   },
   {
