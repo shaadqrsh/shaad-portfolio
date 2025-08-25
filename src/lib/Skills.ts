@@ -72,10 +72,10 @@ export const nameless = [
     title: "Project Management",
   },
   {
-    title: "Level Design",
+    title: "UI Design",
   },
   {
-    title: "UI Design",
+    title: "Level Design",
   },
   {
     title: "Problem Solving",
