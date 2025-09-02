@@ -2,17 +2,17 @@ export const top3 = [
   {
     icon: "/skills/icon_unity.svg",
     title: "Unity",
-    subTitle: "Proficient in C#, I've implemented core 2D/3D game mechanics (movement, collision, physics), designed interactive UIs, and applied animations/visual effects with efficient project structures and game state management.",
+    subTitle: "I build core gameplay mechanics and systems using C#. My focus is on writing clean, reusable code for everything from player controls to UI elements.",
   },
   {
     icon: "/skills/icon_unreal.svg",
     title: "Unreal Engine",
-    subTitle: `Expereinced in C++ and Blueprints for development of gameplay mechanics, AI (Behavior Trees/Blackboards), animations, and user input across FPS and 3D platformer genres.`,
+    subTitle: `I specialize in constructing interactive environments and gameplay events. I build most systems and logic directly within Blueprints, but I am adept with C++ for performance-critical functions.`,
   },
   {
     icon: "/skills/icon_blender.svg",
     title: "Blender",
-    subTitle: `Skilled in Blender for 3D modeling, basic animation/rigging, texturing, and high-quality rendering for various media.`,
+    subTitle: `My work in centers on producing optimized 3D assets ready for my games. I manage the entire creation pipeline, from hard-surface modeling and UV mapping to PBR texturing.`,
   },
 ];
 
