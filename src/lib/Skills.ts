@@ -2,17 +2,17 @@ export const top3 = [
   {
     icon: "/skills/icon_unity.svg",
     title: "Unity",
-    subTitle: "I build core gameplay mechanics and systems using C#. My focus is on writing clean, reusable code for everything from player controls to UI elements.",
+    subTitle: "I can build core gameplay mechanics and systems using C#. My focus is on writing clean, reusable code for everything from player controls to UI elements.",
   },
   {
     icon: "/skills/icon_unreal.svg",
     title: "Unreal Engine",
-    subTitle: `I specialize in constructing interactive environments and gameplay events. I build most systems and logic directly within Blueprints, but I am adept with C++ for performance-critical functions.`,
+    subTitle: `I can construct interactive environments and gameplay events. I build most systems and logic directly within Blueprints, but I am adept with C++ for performance-critical functions.`,
   },
   {
     icon: "/skills/icon_blender.svg",
     title: "Blender",
-    subTitle: `My work in centers on producing optimized 3D assets ready for my games. I manage the entire creation pipeline, from hard-surface modeling and UV mapping to PBR texturing.`,
+    subTitle: `I can create optimized 3D assets ready to be implemented in my games. I manage the entire creation pipeline, from hard-surface modeling and UV mapping to PBR texturing.`,
   },
 ];
 
