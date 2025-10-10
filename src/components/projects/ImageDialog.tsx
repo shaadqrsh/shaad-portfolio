@@ -21,16 +21,19 @@ const ImageDialog = ({ children, src }: ImageDialogProps) => {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
         showCloseButton={isMobile}
-        className="bg-transparent border-0"
-        closeButtonClassName="text-white"
+        style={{ maxWidth: "none" }}
+        className="bg-transparent border-0 shadow-none p-0 w-auto 
+                   flex justify-center items-center"
+        closeButtonClassName="text-white bg-black/50 rounded-full z-50"
       >
         <DialogTitle className="hidden">Image Modal</DialogTitle>
-        <div className="w-[500px] h-[500px]">
+        <div className="h-[60vh] max-h-[75vh]">
           <Image
             src={src}
             alt="image"
-            fill
-            className="object-contain"
+            width={1920}
+            height={1080}
+            className="w-auto h-full object-contain max-w-[90vw]"
           />
         </div>
       </DialogContent>
