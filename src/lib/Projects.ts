@@ -9,6 +9,11 @@ const projects = [
     url: "splice",
     desc: "Pokémon Splice is a fan-made game where you're a research assistant helping Professor Cypress discover new Pokémon forms, featuring a unique, type-changing starter and a branching story.",
   },
+{
+    title: "CareerPath AI",
+    url: "careerpath",
+    desc: "A 'vibe coding' experiment built in 3 days with Gemini 3 Pro. This AI counselor generates hyper-personalized career roadmaps and realistic 'day-in-the-life' visualizations to help users find their ideal career.",
+  },
   {
     title: "HOMI - Helpful Online Mentor Interface",
     url: "homi",
