@@ -142,6 +142,79 @@ export const data: { [key: string]: projectData } = {
       'This game was discontinued in 2023 and the entire team moved on to other projects.',
     ],
   },
+  careerpath: {
+    title: 'CareerPath AI',
+    year: '2025',
+    game: false,
+    imgCount: 9,
+    urls: [
+      {
+        label: 'Live Demo',
+        icon: '',
+        url: 'https://pathfinder-ai-nine.vercel.app/',
+      },
+      {
+        label: 'GitHub',
+        icon: '',
+        url: 'https://github.com/shaadqrsh/pathfinder-ai',
+      },
+    ],
+    desc: "CareerPath AI serves as a proof-of-concept for the potential of 'vibe coding' with next-gen models. Built entirely over a single three-day weekend using Gemini 3 Pro, this platform acts as an intelligent career counselor that moves beyond generic advice. It ingests user demographics and quiz results to generate hyper-personalized career roadmaps. The system helps users visualize their future by generating realistic 'day-in-the-life' image slideshows using AI, bridging the gap between abstract job titles and daily reality. This project demonstrates how modern AI tools can accelerate the development of complex, full-stack applications with robust architectures.",
+    features: [
+      {
+        heading: 'Deep Profile Analysis',
+        content:
+          'The core engine utilizes Google Gemini 2.5 Flash to reason through user data, creating matches based on aptitude and personality rather than simple keyword associations.',
+      },
+      {
+        heading: 'Actionable Roadmaps',
+        content:
+          'Users receive step-by-step educational and professional plans detailing exactly how to transition from their current state to their target career, including location-specific advice.',
+      },
+      {
+        heading: 'Generative Day-in-the-Life',
+        content:
+          'A unique visualization feature (powered by Google\'s Nano Banana) that generates realistic, non-glamorized photo slideshows of what a specific job looks like daily, helping users emotionally connect with potential career paths.',
+      },
+      {
+        heading: 'Decoupled Architecture',
+        content:
+          'The application uses a secure "headless" structure with a React frontend and a Python FastAPI backend acting as a proxy to manage API keys and business logic securely.',
+      },
+      {
+        heading: 'Smart Rate Limiting',
+        content:
+          'To maintain sustainability, a custom database-level quota system manages daily limits for expensive operations like image generation and detailed career analysis.',
+      },
+    ],
+    technologies: [
+      'React',
+      'TypeScript',
+      'TailwindCSS',
+      'Python',
+      'FastAPI',
+      'Supabase',
+      'PostgreSQL',
+      'Google Gemini',
+      'Zustand',
+      'Docker',
+    ],
+    responsibilities: [
+      'Prompt-engineered the entire full-stack codebase using Gemini 3 Pro, acting as the architect while the AI handled the implementation details.',
+      'Designed the comprehensive database schema and Row Level Security policies to ensure strict user data privacy within Supabase.',
+      'Orchestrated the asynchronous image generation pipeline, coordinating multiple parallel API calls to reduce wait times for the end user.',
+      'Implemented a robust state management system using Zustand to handle the complex user journey from onboarding to result visualization.',
+      'Deployed the backend to Hugging Face Spaces using Docker and the frontend to Vercel, ensuring a seamless global delivery pipeline.',
+    ],
+    videos: [],
+    additional: [
+      'This project was an experiment in "vibe coding" to test the reasoning capabilities of Gemini 3 Pro. The entire application was built in just 3 days with the AI generating nearly all the code.',
+      'The "intelligence" of the app relies on rigid JSON-enforced prompt engineering, which forces the LLM to output structured data that the frontend can reliably render.',
+      'Unlike simple API wrappers, this project implements a full backend proxy to secure the Gemini API keys, preventing them from being exposed in the client-side code.',
+      'I implemented a "lazy-loading" strategy for the career details to save on token costs; detailed roadmaps are only generated when a user explicitly clicks to explore a specific career.',
+      'The UI features a "Nano Banana" badge in the loading screens, a playful nod to the internal codename and the rapid, fluid nature of the development session.',
+    ],
+  },
   homi: {
     title: 'HOMI - Helpful Online Mentor Interface',
     year: '2025',
