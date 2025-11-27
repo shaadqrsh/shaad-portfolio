@@ -149,15 +149,17 @@ export const data: { [key: string]: projectData } = {
     imgCount: 9,
     urls: [
       {
-        label: 'Live Demo',
+        label: 'Live Project',
         icon: '',
         url: 'https://pathfinder-ai-nine.vercel.app/',
       },
-      {
+/*      
+  {
         label: 'GitHub',
         icon: '',
         url: 'https://github.com/shaadqrsh/pathfinder-ai',
       },
+*/
     ],
     desc: "CareerPath AI serves as a proof-of-concept for the potential of 'vibe coding' with next-gen models. Built entirely over a single three-day weekend using Gemini 3 Pro, this platform acts as an intelligent career counselor that moves beyond generic advice. It ingests user demographics and quiz results to generate hyper-personalized career roadmaps. The system helps users visualize their future by generating realistic 'day-in-the-life' image slideshows using AI, bridging the gap between abstract job titles and daily reality. This project demonstrates how modern AI tools can accelerate the development of complex, full-stack applications with robust architectures.",
     features: [
@@ -201,10 +203,10 @@ export const data: { [key: string]: projectData } = {
     ],
     responsibilities: [
       'Prompt-engineered the entire full-stack codebase using Gemini 3 Pro, acting as the architect while the AI handled the implementation details.',
+      'Deployed the backend to Hugging Face Spaces using Docker and the frontend to Vercel, ensuring a seamless global delivery pipeline.',
       'Designed the comprehensive database schema and Row Level Security policies to ensure strict user data privacy within Supabase.',
       'Orchestrated the asynchronous image generation pipeline, coordinating multiple parallel API calls to reduce wait times for the end user.',
-      'Implemented a robust state management system using Zustand to handle the complex user journey from onboarding to result visualization.',
-      'Deployed the backend to Hugging Face Spaces using Docker and the frontend to Vercel, ensuring a seamless global delivery pipeline.',
+      'Implemented a robust state management system using Zustand to handle the complex user journey from onboarding to result visualization.'
     ],
     videos: [],
     additional: [
