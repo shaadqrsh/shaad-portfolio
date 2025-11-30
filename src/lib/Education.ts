@@ -2,7 +2,7 @@ export const education = [
   {
     title: "Masters of Science - Computer Science",
     year: "January 2026 - May 2028 (Expected)",
-    image: "about/img_neu.jpeg",
+    image: "about/img_neu.jpg",
     subtitle:
       "Khoury College of Computer Sciences, Northeastern University, Boston, Massachusetts, USA",
   },
