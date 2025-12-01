@@ -11,7 +11,9 @@ const layout = ({ children }: MainLayout) => {
     <section className="min-h-screen flex flex-col bg-shaad-400">
       <Navbar />
       <div className="flex flex-1 items-center justify-center">{children}</div>
-      <Footer />
+      <div className="relative z-10">
+        <Footer />
+      </div>
     </section>
   );
 };

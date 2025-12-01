@@ -30,17 +30,21 @@ export const links = [
   {
     label: Linkedin,
     href: "https://www.linkedin.com/in/shaadrqrsh/",
+    text: "LinkedIn",
   },
   {
     label: Twitter,
     href: "https://x.com/shaadqrsh",
+    text: "Twitter",
   },
   {
     label: Github,
     href: "https://github.com/shaadqrsh",
+    text: "GitHub",
   },
   {
     label: Mail,
     href: "shaadqrsh.work@gmail.com",
+    text: "Email",
   },
 ];

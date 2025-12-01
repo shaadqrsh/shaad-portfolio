@@ -1,18 +1,27 @@
+import FadeInUp from "@/components/FadeInUp";
 import Title from "@/components/Title";
-import { motion } from "motion/react";
+import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 
 interface AboutCardProps {
   children: ReactNode;
   title: string;
+  classN?: string;
 }
 
-const AboutCard = ({ children, title }: AboutCardProps) => {
+const AboutCard = ({ children, title, classN }: AboutCardProps) => {
   return (
-    <motion.div className="flex-1 border-shaad-100 border-2 p-8 rounded-4xl shadow-2xl">
-      <Title>{title}</Title>
-      {children}
-    </motion.div>
+    <div
+      className={cn(
+        "flex flex-col bg-shaad-200 p-8 rounded-4xl shadow-2xl",
+        classN
+      )}
+    >
+      <FadeInUp>
+        <Title>{title}</Title>
+      </FadeInUp>
+      <FadeInUp delay={0.2}>{children}</FadeInUp>
+    </div>
   );
 };
 

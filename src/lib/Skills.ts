@@ -1,16 +1,16 @@
 export const top3 = [
   {
-    icon: "/skills/icon_unity.svg",
+    icon: "icon_unity.svg",
     title: "Unity",
     subTitle: "I can build core gameplay mechanics and systems using C#. My focus is on writing clean, reusable code for everything from player controls to UI elements.",
   },
   {
-    icon: "/skills/icon_unreal.svg",
+    icon: "icon_unreal.svg",
     title: "Unreal Engine",
     subTitle: `I can construct interactive environments and gameplay events. I build most systems and logic directly within Blueprints, but I am adept with C++ for performance-critical functions.`,
   },
   {
-    icon: "/skills/icon_blender.svg",
+    icon: "icon_blender.svg",
     title: "Blender",
     subTitle: `I can create optimized 3D assets ready to be implemented in my games. I manage the entire creation pipeline, from hard-surface modeling and UV mapping to PBR texturing.`,
   },
@@ -18,51 +18,51 @@ export const top3 = [
 
 export const skills = [
   {
-    icon: "/skills/icon_godot.svg",
+    icon: "icon_godot.svg",
     name: "Godot",
   },
   {
-    icon: "/skills/icon_photoshop.svg",
+    icon: "icon_photoshop.svg",
     name: "Photoshop",
   },
   {
-    icon: "/skills/icon_premiere.svg",
+    icon: "icon_premiere.svg",
     name: "Premiere Pro",
   },
   {
-    icon: "/skills/icon_aseprite.svg",
+    icon: "icon_aseprite.svg",
     name: "Pixel Art",
   },
   {
-    icon: "/skills/icon_cs.svg",
+    icon: "icon_cs.svg",
     name: "C#",
   },
   {
-    icon: "/skills/icon_cpp.svg",
+    icon: "icon_cpp.svg",
     name: "C++",
   },
   {
-    icon: "/skills/icon_ruby.svg",
+    icon: "icon_ruby.svg",
     name: "Ruby",
   },
   {
-    icon: "/skills/icon_python.svg",
+    icon: "icon_python.svg",
     name: "Python",
   },
   {
-    icon: "/skills/icon_java.svg",
+    icon: "icon_java.svg",
     name: "Java",
   },
   {
-    icon: "/skills/icon_git.svg",
+    icon: "icon_git.svg",
     name: "Git",
   },
   {
-    icon: "/skills/icon_android.svg",
+    icon: "icon_android.svg",
     name: "Android",
   },
   {
-    icon: "/skills/icon_microsoft.svg",
+    icon: "icon_microsoft.svg",
     name: "Microsoft Office",
   },
 ];

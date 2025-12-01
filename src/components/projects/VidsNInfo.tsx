@@ -10,9 +10,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Reveal from "../Reveal";
+import FadeInUp from "@/components/FadeInUp";
+import Card from "@/components/ui/Card";
 
-const VidsNInfo = ({ project }: ProjectIdPageProps) => {
+interface VidsNInfoProps extends ProjectIdPageProps {
+  enableAnimation?: boolean;
+}
+
+const VidsNInfo = ({ project, enableAnimation = true }: VidsNInfoProps) => {
   return (
     <motion.div
       className={cn(
@@ -21,7 +26,7 @@ const VidsNInfo = ({ project }: ProjectIdPageProps) => {
       )}
     >
       {project?.videos && project.videos.length > 0 && (
-        <div className="p-8 border-2 border-shaad-100 rounded-lg flex flex-col h-full items-start">
+        <div className="p-8 bg-shaad-200 shadow-2xl rounded-4xl flex flex-col h-full items-start">
           <Title classN="mb-4">Gameplay and Reviews</Title>
           <div className="flex justify-center items-center h-full w-full">
             <div className="max-w-xl w-full">
@@ -60,21 +65,27 @@ const VidsNInfo = ({ project }: ProjectIdPageProps) => {
 
       <div
         className={cn(
-          "p-8 border-2 border-shaad-100 rounded-lg flex flex-col items-start h-full",
+          "p-8 bg-shaad-200 shadow-2xl rounded-4xl flex flex-col items-start h-full",
           (!project?.videos || project.videos.length === 0) && "md:col-span-2"
         )}
       >
         <Title classN="mb-2">Additional Information</Title>
-        <ul>
-          {project?.additional.map((t, idx) => (
-            <Reveal
-              x={-100}
-              key={idx}
-            >
-              <li className="mt-1 list-disc ml-4">{t}</li>
-            </Reveal>
-          ))}
-        </ul>
+
+        <FadeInUp delay={0.05} className="w-full" enableAnimation={enableAnimation}>
+          <Card className="mt-2 w-full">
+            {project?.additional.map((t, idx) => (
+              <div key={idx}>
+                {idx === 0 && <div className="h-2" />}
+                <p>{t}</p>
+                {idx !== project.additional.length - 1 ? (
+                  <hr className="border-shaad-200 border-2 my-4" />
+                ) : (
+                  <div className="h-2" />
+                )}
+              </div>
+            ))}
+          </Card>
+        </FadeInUp>
       </div>
     </motion.div>
   );

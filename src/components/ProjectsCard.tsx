@@ -3,15 +3,17 @@ import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 interface ProjectsCardProps {
   title: string;
   desc: string;
   url: string;
+  onLoad?: () => void;
 }
 
-const ProjectsCard = ({ desc, url, title }: ProjectsCardProps) => {
+const ProjectsCard = ({ desc, url, title, onLoad }: ProjectsCardProps) => {
   const router = useRouter();
 
   function handleRoute() {
@@ -22,13 +24,17 @@ const ProjectsCard = ({ desc, url, title }: ProjectsCardProps) => {
     <motion.button
       onClick={handleRoute}
       className={cn(
-        `relative flex justify-center items-start gap-4 border-2 p-4 rounded-4xl shadow-2xl transition min-h-60 max-md:flex-col group hover:border-shaad-600 border-shaad-100 cursor-pointer max-md:items-center max-md:justify-center`
+        `relative flex justify-center items-start gap-4 p-4 rounded-4xl transition min-h-60 max-md:flex-col group hover:shadow-[0_0_20px_var(--color-shaad-600)] cursor-pointer max-md:items-center max-md:justify-center bg-shaad-200 shadow-2xl`
       )}
     >
-      <div className="w-[300px] max-md:w-full flex-shrink-0">
-        <motion.img
+      <div className="w-[300px] max-md:w-full flex-shrink-0 relative aspect-[6/5]">
+        <Image
           src={`/project_${url}/icon.jpg`}
-          className="w-full aspect-[6/5] object-cover rounded-xl"
+          alt={title}
+          fill
+          className="object-cover rounded-xl"
+          onLoad={onLoad}
+          sizes="(max-width: 768px) 100vw, 300px"
         />
       </div>
 

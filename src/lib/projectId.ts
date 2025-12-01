@@ -51,7 +51,12 @@ export const data: { [key: string]: projectData } = {
           'Experience a fresh take on HMs with the introduction of Katanas. These powerful blades not only grant passage through obstacles but can also be wielded in battle to strategically alter weather conditions or inflict status effects.',
       },
     ],
-    technologies: ['RGSS', 'Ruby', 'C++', 'Photoshop', 'Aseprite'],
+    technologies: [
+      { name: 'Ruby', icon: 'icon_ruby.svg' },
+      { name: 'C++', icon: 'icon_cpp.svg' },
+      { name: 'Photoshop', icon: 'icon_photoshop.svg' },
+      { name: 'Aseprite', icon: 'icon_aseprite.svg' },
+    ],
     responsibilities: [
       'Developed the core engine in which the game was made.',
       'Created new mechanics (Katana techniques, mid-battle dialogue, Following Pokémon, battle animations, etc) to differenciate it from mainline Pokémom games.',
@@ -121,7 +126,12 @@ export const data: { [key: string]: projectData } = {
           'The game pays hommage to the GameBoy Advance generation of Pokémon games with its environment and UI design, but still has all the QOL improvements of the modern games.',
       },
     ],
-    technologies: ['RGSS', 'Ruby', 'C++', 'Photoshop', 'Aseprite'],
+    technologies: [
+      { name: 'Ruby', icon: 'icon_ruby.svg' },
+      { name: 'C++', icon: 'icon_cpp.svg' },
+      { name: 'Photoshop', icon: 'icon_photoshop.svg' },
+      { name: 'Aseprite', icon: 'icon_aseprite.svg' },
+    ],
     responsibilities: [
       'Developed the core engine in which the game was made.',
       'Created new mechanics (Form changing, mid-battle dialogue, Following Pokémon, battle animations, etc) to differenciate it from mainline Pokémom games.',
@@ -153,13 +163,13 @@ export const data: { [key: string]: projectData } = {
         icon: '',
         url: 'https://pathfinder-ai-nine.vercel.app/',
       },
-/*      
-  {
-        label: 'GitHub',
-        icon: '',
-        url: 'https://github.com/shaadqrsh/pathfinder-ai',
-      },
-*/
+      /*      
+        {
+              label: 'GitHub',
+              icon: '',
+              url: 'https://github.com/shaadqrsh/pathfinder-ai',
+            },
+      */
     ],
     desc: "CareerPath AI serves as a proof-of-concept for the potential of 'vibe coding' with next-gen models. Built entirely over a single three-day weekend using Gemini 3 Pro, this platform acts as an intelligent career counselor that moves beyond generic advice. It ingests user demographics and quiz results to generate hyper-personalized career roadmaps. The system helps users visualize their future by generating realistic 'day-in-the-life' image slideshows using AI, bridging the gap between abstract job titles and daily reality. This project demonstrates how modern AI tools can accelerate the development of complex, full-stack applications with robust architectures.",
     features: [
@@ -190,16 +200,14 @@ export const data: { [key: string]: projectData } = {
       },
     ],
     technologies: [
-      'React',
-      'TypeScript',
-      'TailwindCSS',
-      'Python',
-      'FastAPI',
-      'Supabase',
-      'PostgreSQL',
-      'Google Gemini',
-      'Zustand',
-      'Docker',
+      { name: 'React', icon: 'icon_react.svg' },
+      { name: 'TypeScript', icon: 'icon_typescript.svg' },
+      { name: 'TailwindCSS', icon: 'icon_tailwind.svg' },
+      { name: 'Python', icon: 'icon_python.svg' },
+      { name: 'Supabase', icon: 'icon_supabase.svg' },
+      { name: 'PostgreSQL', icon: 'icon_postgresql.svg' },
+      { name: 'Google Gemini', icon: 'icon_gemini.svg' },
+      { name: 'Docker', icon: 'icon_docker.svg' },
     ],
     responsibilities: [
       'Prompt-engineered the entire full-stack codebase using Gemini 3 Pro, acting as the architect while the AI handled the implementation details.',
@@ -263,16 +271,15 @@ export const data: { [key: string]: projectData } = {
       },
     ],
     technologies: [
-      'NextJS',
-      'TailwindCSS',
-      'Typescript',
-      'ReactQuery',
-      'Python',
-      'Django',
-      'HuggingFace',
-      'SQL',
-      'DeepSeek R1',
-      'Gemini',
+      { name: 'NextJS', icon: 'icon_nextjs.svg' },
+      { name: 'TailwindCSS', icon: 'icon_tailwind.svg' },
+      { name: 'Typescript', icon: 'icon_typescript.svg' },
+      { name: 'ReactQuery', icon: 'icon_supabase.svg' },
+      { name: 'Django', icon: 'icon_django.svg' },
+      { name: 'PostgreSQL', icon: 'icon_postgresql.svg' },
+      { name: 'DeepSeek R1', icon: 'icon_deepseek.svg' },
+      { name: 'Gemini', icon: 'icon_gemini.svg' },
+      { name: 'Docker', icon: 'icon_docker.svg' },
     ],
     responsibilities: [
       'Assumed the responsibility of "Project Manager" and managed a team of 6 people working on the project',
@@ -288,7 +295,7 @@ export const data: { [key: string]: projectData } = {
       'This capstone project spanned seven months from ideation to presentation and was presented before my graduation.',
       'Features like a mental health guide, study roadmap generator, and PDF chat export were planned, but they were scrapped due to time constraints.',
       'The project successfully attracted an external investor grant, and these investors plan to further expand its capabilities.',
-      'The research done on this project yielded 3 research papers. One was presented at an IEEE conference and two are currently under review.',
+      'The research done on this project yielded 3 research papers. One was presented at an IEEE conference, one was published in the IJERT journal and one is currently under review.',
       "The project's technical sophistication and innovation were highly praised by an examiner from IITB (Indian Institute of Technology - Bombay) during its final assessment.",
     ],
   },
@@ -332,7 +339,12 @@ export const data: { [key: string]: projectData } = {
           'The app offers distinct browsing categories, each with dynamic search capability: "Lost" and "Found" for general listings, and a "Mine" section for the current user\'s items.',
       },
     ],
-    technologies: ['Java', 'XML', 'Android Studio', 'Firebase', 'Glide'],
+    technologies: [
+      { name: 'Java', icon: 'icon_java.svg' },
+      { name: 'XML', icon: 'icon_xml.svg' },
+      { name: 'Android Studio', icon: 'icon_android.svg' },
+      { name: 'Firebase', icon: 'firebase.svg' }
+    ],
     responsibilities: [
       'Designed, implemented, and maintained the client-side Android application',
       'Structured the Firebase Realtime Database for storage and retrieval of user profiles, item listings, and real-time messages.',

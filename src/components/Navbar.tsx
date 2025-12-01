@@ -3,11 +3,13 @@ import { headers } from "@/lib/header";
 import { cn } from "@/lib/utils";
 import Hamburger from "hamburger-react";
 import { FileUser } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence } from "motion/react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import MobileNav from "./MobileNav";
+import Button from "./ui/button";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
@@ -29,10 +31,13 @@ const Navbar = () => {
           <div className="flex justify-between items-center">
             <h1 className="min-sm:text-2xl text-lg text-white font-bold tracking-wider flex items-center">
               <a href="/home">
-              <motion.img
-                src="/icon.png"
-                className="mr-2 min-sm:w-[55px] min-sm:h-[55px] w-[35px] h-[35px]"
-              />
+                <Image
+                  src="/icon.png"
+                  alt="Logo"
+                  width={55}
+                  height={55}
+                  className="mr-2 min-sm:w-[55px] min-sm:h-[55px] w-[35px] h-[35px]"
+                />
               </a>
               <a href="/home">Shaad Qureshi</a>
             </h1>
@@ -63,19 +68,17 @@ const Navbar = () => {
               );
             })}
           </ul>
-
-          <a
-            className=" hidden cursor-pointer bg-transparent text-lg ml-4 hover:bg-shaad-600 hover:text-white transition-all border-shaad-600 rounded-full border-2 px-6 py-3 min-sm:flex items-center text-white"
+          <Button
+            className="hidden ml-4 px-6 py-3 min-sm:flex text-lg"
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FileUser
               size={20}
-              className="mr-2"
             />
-            View CV
-          </a>
+            <span className="font-semibold">View CV</span>
+          </Button>
         </div>
       </nav>
 

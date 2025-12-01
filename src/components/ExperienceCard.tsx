@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
-import { motion } from "motion/react";
+import Image from "next/image";
+import Card from "@/components/ui/Card";
 
 interface ExperienceCardProps {
   date?: string;
@@ -7,6 +8,7 @@ interface ExperienceCardProps {
   subTitle?: string | string[];
   img?: string;
   ex?: boolean;
+  inProgress?: boolean;
 }
 
 const ExperienceCard = ({
@@ -15,28 +17,33 @@ const ExperienceCard = ({
   title,
   img,
   ex = true,
+  inProgress = false,
 }: ExperienceCardProps) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -30 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.4 }}
-      className="relative flex items-start space-x-4"
-    >
+    <div className="relative flex items-start space-x-4">
       {ex && (
-        <div className="w-3 h-3 bg-shaad-600 rounded-full z-10 relative -left-[6.5px] self-center" />
+        <div
+          className={cn(
+            "w-3 h-3 rounded-full z-10 relative -left-[6.5px] self-center border-2 border-shaad-600",
+            inProgress
+              ? "bg-shaad-200"
+              : "bg-shaad-600"
+          )}
+        ></div>
       )}
-      <div
+
+      <Card
         className={cn(
-          "bg-shaad-300 p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-200 w-full flex lg:flex-row flex-col items-center",
+          "w-full flex lg:flex-row flex-col items-center",
           !ex && "min-h-[108px] items-start"
         )}
       >
         {img && ex && (
-          <motion.img
+          <Image
             src={img}
             width={100}
             height={100}
+            alt={title}
             className="lg:mr-4 max-lg:mb-2 rounded-xl"
           />
         )}
@@ -66,8 +73,8 @@ const ExperienceCard = ({
               </p>
             ))}
         </div>
-      </div>
-    </motion.div>
+      </Card>
+    </div>
   );
 };
 

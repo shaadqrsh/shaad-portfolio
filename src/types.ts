@@ -6,7 +6,7 @@ export type projectData = {
   urls: { label: string; icon: string; url: string }[];
   desc: string;
   features: { heading: string; content: string }[];
-  technologies: string[];
+  technologies: { name: string; icon: string }[];
   responsibilities: string[];
   videos: string[];
   additional: string[];

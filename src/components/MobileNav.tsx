@@ -5,6 +5,7 @@ import { FileUser } from "lucide-react";
 import { motion } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import Button from "./ui/button";
 
 const MobileNav = () => {
   const pathname = usePathname();
@@ -50,19 +51,17 @@ const MobileNav = () => {
             </li>
           ))}
         </ul>
-
-        <a
-          className="cursor-pointer bg-transparent text-lg hover:bg-shaad-600 hover:text-white transition-all border-shaad-600 rounded-full border-2 px-6 py-3 flex items-center text-white mt-10"
+        <Button
+          className="px-6 py-3 mt-10 text-lg"
           href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FileUser
             size={20}
-            className="mr-2"
           />
-          View CV
-        </a>
+          <span className="font-semibold">View CV</span>
+        </Button>
       </motion.nav>
     </>
   );

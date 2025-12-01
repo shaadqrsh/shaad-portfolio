@@ -3,19 +3,11 @@ import { EMAIL, handleEmail } from "@/lib/Email";
 import { links } from "@/lib/header";
 import { cn } from "@/lib/utils";
 import { Copyright, MapPin } from "lucide-react";
-import { motion } from "motion/react";
 import { usePathname } from "next/navigation";
-import Reveal from "./Reveal";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const pathname = usePathname();
-
-  // const segments = pathname.split("/").filter(Boolean);
-
-  // if (segments[0] === "projects" && segments.length === 2) {
-  //   return null;
-  // }
 
   return (
     <section
@@ -25,19 +17,12 @@ const Footer = () => {
       )}
     >
       {pathname !== "/home" && (
-        <Reveal
-          du={0.5}
-          y={-20}
-          cn="mx-auto"
-        >
+        <div className="mx-auto">
           <div className="flex max-md:flex-col justify-center items-center gap-x-4">
-            <motion.p className="text-white font-bold min-lg:text-sm text-xs flex items-center justify-center">
-              <MapPin
-                className="mr-1 text-shaad-600"
-                size={20}
-              />
+            <p className="text-white font-bold min-lg:text-sm text-xs flex items-center justify-center">
+              <MapPin className="mr-1 text-shaad-600" size={20} />
               Get in Touch:
-            </motion.p>
+            </p>
             <div className="flex gap-x-4 max-md:mt-2">
               {links.map((l, idx) => {
                 return (
@@ -56,29 +41,18 @@ const Footer = () => {
               })}
             </div>
           </div>
-        </Reveal>
+        </div>
       )}
 
-      <Reveal
-        du={0.5}
-        y={-20}
-        cn="mx-auto"
-      >
+      <div className="mx-auto">
         <p className="text-white min-lg:text-sm text-xs mx-auto flex text-center items-center">
           Copyright
-          <Copyright
-            className="mx-1"
-            size={16}
-          />
+          <Copyright className="mx-1" size={16} />
           {currentYear - 1} - {currentYear} | All rights reserved
         </p>
-      </Reveal>
+      </div>
 
-      <Reveal
-        du={0.5}
-        y={-20}
-        cn="mx-auto"
-      >
+      <div className="mx-auto">
         <p className="text-white min-lg:text-sm text-xs mx-auto flex">
           Designed By{" "}
           <a
@@ -89,7 +63,7 @@ const Footer = () => {
             Hardik Malhotra
           </a>
         </p>
-      </Reveal>
+      </div>
     </section>
   );
 };

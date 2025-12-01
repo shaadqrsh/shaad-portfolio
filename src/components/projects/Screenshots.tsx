@@ -1,7 +1,7 @@
 import Title from "@/components/Title";
 import { ProjectIdPageProps } from "@/types";
 import Autoplay from "embla-carousel-autoplay";
-import { motion } from "motion/react";
+import Image from "next/image";
 
 import {
   Carousel,
@@ -12,7 +12,7 @@ import ImageDialog from "./ImageDialog";
 
 const Screenshots = ({ project, url }: ProjectIdPageProps) => {
   return (
-    <div className="flex flex-col gap-x-2 mt-10 border-shaad-100 border-2 p-8 rounded-lg w-full">
+    <div className="flex flex-col gap-x-2 mt-10 bg-shaad-200 shadow-2xl rounded-4xl p-8 w-full">
       <Title>Screenshots</Title>
       <div className="flex justify-center">
         <div className="max-w-7xl w-full">
@@ -32,11 +32,15 @@ const Screenshots = ({ project, url }: ProjectIdPageProps) => {
                   className="flex justify-center lg:basis-1/3 "
                 >
                   <ImageDialog src={`/project_${url}/img_${i + 1}.png`}>
-                    <motion.img
-                      src={`/project_${url}/img_${i + 1}.png`}
-                      alt={`Project image ${i + 1}`}
-                      className="w-full max-h-[350px] rounded-lg object-contain"
-                    />
+                    <div className="relative w-full h-[350px]">
+                      <Image
+                        src={`/project_${url}/img_${i + 1}.png`}
+                        alt={`Project image ${i + 1}`}
+                        fill
+                        className="rounded-lg object-contain"
+                        sizes="(max-width: 1024px) 100vw, 33vw"
+                      />
+                    </div>
                   </ImageDialog>
                 </CarouselItem>
               ))}

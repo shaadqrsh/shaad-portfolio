@@ -1,3 +1,7 @@
+"use client";
+import FadeInUp from "@/components/FadeInUp";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -6,31 +10,50 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ProjectIdPageProps } from "@/types";
 import { ChevronDown } from "lucide-react";
-import { motion } from "motion/react";
-import Reveal from "../Reveal";
+import Image from "next/image";
+import Button from "@/components/ui/button";
 
-const CoverImg = ({ project, url }: ProjectIdPageProps) => {
+interface CoverImgProps extends ProjectIdPageProps {
+  onLoad?: () => void;
+  enableAnimation?: boolean;
+}
+
+const CoverImg = ({ project, url, onLoad, enableAnimation = true }: CoverImgProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-      <motion.img
+      <Image
         src={`/project_${url}/cover.jpg`}
         alt={`${project?.title || url} cover`}
-        className="absolute inset-0 w-full h-full object-cover object-center blur-xs"
+        fill
+        className="object-cover object-center blur-xs"
+        onLoad={onLoad}
+        sizes="100vw"
       />
 
       <div className="absolute inset-0 bg-black/40" />
 
-      <div className="relative z-10 p-14 mx-6 border-2 border-shaad-600 rounded-xl bg-shaad-350 flex flex-col justify-center items-center">
-        <Reveal x={-150}>
+      <FadeInUp
+        enableAnimation={enableAnimation}
+        duration={0.5}
+        className="relative z-10 p-14 mx-6 rounded-xl bg-shaad-350 flex flex-col justify-center items-center shadow-2xl hover:shadow-[0_0_40px_var(--color-shaad-600)] transition-shadow duration-300"
+      >
+        <FadeInUp>
           <h2 className="text-4xl text-white font-bold text-center">
             {project.title}
           </h2>
-        </Reveal>
+        </FadeInUp>
 
-        <DropdownMenu>
-          <DropdownMenuTrigger className="flex gap-x-2 justify-center items-center p-3 rounded-lg border-2 border-shaad-600 bg-shaad-300 text-white mt-8 font-bold hover:bg-shaad-600 transition cursor-pointer">
-            Download
-            <ChevronDown size={20} />
+        <DropdownMenu onOpenChange={setIsOpen}>
+          <DropdownMenuTrigger asChild>
+            <Button className="px-6 py-3 mt-8 font-semibold">
+              <ChevronDown
+                size={20}
+                className={cn("transition-transform duration-300", isOpen && "rotate-180")}
+              />
+              Download
+            </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="bg-shaad-600 border-shaad-600 text-white">
             {project.urls.map((u, idx) => (
@@ -48,12 +71,12 @@ const CoverImg = ({ project, url }: ProjectIdPageProps) => {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <Reveal x={-150}>
+        <FadeInUp delay={0.2}>
           <h2 className="text-xl mt-6 text-white font-bold text-center">
             Released: {project.year}
           </h2>
-        </Reveal>
-      </div>
+        </FadeInUp>
+      </FadeInUp>
     </div>
   );
 };

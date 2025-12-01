@@ -1,45 +1,55 @@
 "use client";
-import { motion } from "motion/react";
-
+import Loader, { useSmartLoader } from "@/components/Loader";
+import FadeInUp from "@/components/FadeInUp";
 import Certifications from "@/components/sections/Certifications";
 import Education from "@/components/sections/Education";
 import Experience from "@/components/sections/Experience";
 import Skills from "@/components/sections/Skills";
 import Who from "@/components/sections/Who";
+import Image from "next/image";
+import { useState } from "react";
 
 const UI = [Who, Skills, Experience, Education, Certifications];
 
 const About = () => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const isLoading = useSmartLoader({
+    loadingDependencies: [!imageLoaded],
+  });
+
   return (
     <>
       <head>
         <title>About | Shaad Qureshi</title>
       </head>
-      <section className="3xl:container text-white h-full w-full mx-4 max-sm:flex max-sm:flex-col grid grid-cols-[40%_60%] justify-center gap-x-8 p-8 max-md:px-6 max-md:pb-14">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="sticky min-sm:top-30 h-[calc(100vh-14rem)] self-start mx-auto max-sm:block max-sm:mb-8"
+      <Loader isLoading={isLoading} />
+      <section className="3xl:container text-white h-full w-full max-sm:flex max-sm:flex-col grid grid-cols-[40%_60%] justify-center gap-x-8 p-8 max-md:px-6 max-md:pb-14">
+        <div
+          className="sticky min-sm:top-30 h-[calc(100vh-14rem)] self-start mx-auto max-sm:block max-sm:mb-8 w-full"
         >
-          <motion.img
-            src="about/img_about.jpg"
-            className="object-cover h-full w-[500px] xl:w-screen rounded-4xl"
-          />
-        </motion.div>
+          <FadeInUp
+            enableAnimation={!isLoading}
+            duration={0.5}
+            className="h-full w-full"
+          >
+            <div className="relative h-full w-full rounded-4xl overflow-hidden">
+              <Image
+                src="/about/img_about.jpg"
+                alt="Shaad Qureshi"
+                fill
+                className="object-cover"
+                onLoad={() => setImageLoaded(true)}
+                sizes="(max-width: 768px) 100vw, 40vw"
+              />
+            </div>
+          </FadeInUp>
+        </div>
 
         <div className="flex flex-col mx-auto gap-y-8">
           {UI.map((UI, idx) => (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              key={idx}
-            >
-              <UI />
-            </motion.div>
+            <div key={idx}>
+              <UI enableAnimation={!isLoading} />
+            </div>
           ))}
         </div>
       </section>
