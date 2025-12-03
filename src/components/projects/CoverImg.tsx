@@ -12,6 +12,7 @@ import { ProjectIdPageProps } from "@/types";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Button from "@/components/ui/button";
+import DateDisplay from "../DateDisplay";
 
 interface CoverImgProps extends ProjectIdPageProps {
   onLoad?: () => void;
@@ -71,9 +72,10 @@ const CoverImg = ({ project, url, onLoad, enableAnimation = true }: CoverImgProp
           </DropdownMenuContent>
         </DropdownMenu>
 
+
         <FadeInUp delay={0.2}>
           <h2 className="text-xl mt-6 text-white font-bold text-center">
-            Released: {project.year}
+            Released: <DateDisplay date={project.date} />
           </h2>
         </FadeInUp>
       </FadeInUp>

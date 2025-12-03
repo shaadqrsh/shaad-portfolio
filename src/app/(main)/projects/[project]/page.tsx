@@ -1,4 +1,5 @@
 import { data } from "@/lib/projectId";
+import { name } from "@/lib/Data";
 import { Metadata } from "next";
 import ProjectIdPage from "./ProjectIdPage";
 
@@ -10,11 +11,11 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   const project = data[slug];
 
   if (!project) {
-    return { title: "Project Not Found | Shaad Qureshi" };
+    return { title: `Project Not Found | ${name}` };
   }
 
   return {
-    title: `${project.title} | Shaad Qureshi`,
+    title: `${project.title} | ${name}`,
     description: project.desc,
   };
 }

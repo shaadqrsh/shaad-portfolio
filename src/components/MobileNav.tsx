@@ -53,9 +53,7 @@ const MobileNav = () => {
         </ul>
         <Button
           className="px-6 py-3 mt-10 text-lg"
-          href="/resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/resume"
         >
           <FileUser
             size={20}

@@ -70,9 +70,7 @@ const Navbar = () => {
           </ul>
           <Button
             className="hidden ml-4 px-6 py-3 min-sm:flex text-lg"
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/resume"
           >
             <FileUser
               size={20}

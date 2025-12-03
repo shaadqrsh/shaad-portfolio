@@ -32,15 +32,14 @@ const Screenshots = ({ project, url }: ProjectIdPageProps) => {
                   className="flex justify-center lg:basis-1/3 "
                 >
                   <ImageDialog src={`/project_${url}/img_${i + 1}.png`}>
-                    <div className="relative w-full h-[350px]">
-                      <Image
-                        src={`/project_${url}/img_${i + 1}.png`}
-                        alt={`Project image ${i + 1}`}
-                        fill
-                        className="rounded-lg object-contain"
-                        sizes="(max-width: 1024px) 100vw, 33vw"
-                      />
-                    </div>
+                    <Image
+                      src={`/project_${url}/img_${i + 1}.png`}
+                      alt={`Project image ${i + 1}`}
+                      width={1920}
+                      height={1080}
+                      className="rounded-lg w-full h-auto object-contain"
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                    />
                   </ImageDialog>
                 </CarouselItem>
               ))}
