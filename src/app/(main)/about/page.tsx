@@ -1,6 +1,6 @@
 "use client";
 import Loader, { useSmartLoader } from "@/components/Loader";
-import { name } from "@/lib/Data";
+
 import FadeInUp from "@/components/FadeInUp";
 import Certifications from "@/components/sections/Certifications";
 import Education from "@/components/sections/Education";
@@ -21,9 +21,6 @@ const About = () => {
 
   return (
     <>
-      <head>
-        <title>About | {name}</title>
-      </head>
       <Loader isLoading={isLoading} />
       <section className="3xl:container text-white h-full w-full max-sm:flex max-sm:flex-col grid grid-cols-[40%_60%] justify-center gap-x-8 p-8 max-md:px-6 max-md:pb-14">
         <div

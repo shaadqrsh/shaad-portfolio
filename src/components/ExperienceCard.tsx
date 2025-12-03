@@ -60,7 +60,7 @@ const ExperienceCard = ({
               date={date}
               endDate={endDate}
               inProgress={inProgress}
-              className="text-md text-shaad-500 mb-1 block"
+              className="text-md text-shaad-500 mb-2 mt-2 block"
             />
           )}
 

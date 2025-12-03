@@ -20,9 +20,6 @@ const Home = () => {
 
   return (
     <>
-      <head>
-        <title>Home | {name}</title>
-      </head>
       <Loader isLoading={isLoading} />
       <div className="hidden">
         <Image

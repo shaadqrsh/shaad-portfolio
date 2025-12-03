@@ -16,8 +16,8 @@ const Skills = ({ enableAnimation = true }: SkillsProps) => {
   const skillsRef = useRef<HTMLDivElement>(null);
   const namelessRef = useRef<HTMLDivElement>(null);
 
-  const skillsCols = useManualCols(6, 2);
-  const namelessCols = useManualCols(4, 1);
+  const skillsCols = useManualCols(5, 2);
+  const namelessCols = useManualCols(3, 1);
 
   return (
     <AboutCard title="Skills">
