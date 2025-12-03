@@ -4,7 +4,7 @@ export const title = "Aspiring Game Developer";
 
 export const maxWorkExperienceCount = 3;
 export const maxProjectsCount = 3;
-export const maxCertificatesCount = 8;
+export const maxCertificatesCount = 6;
 export const maxSkillsCount = 15;
 export const maxPublicationsCount = 2;
 
