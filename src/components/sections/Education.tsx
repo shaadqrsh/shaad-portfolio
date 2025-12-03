@@ -13,7 +13,8 @@ const Education = ({ enableAnimation = true }: EducationProps) => {
         {education.map((ex, idx) => (
           <FadeInUp delay={0.1} key={idx} enableAnimation={enableAnimation}>
             <ExperienceCard
-              date={ex.year}
+              date={ex.startDate}
+              endDate={ex.endDate}
               title={ex.title}
               subTitle={ex.subtitle}
               img={ex.image}

@@ -13,7 +13,8 @@ const Experience = ({ enableAnimation = true }: ExperienceProps) => {
         {experience.map((ex, idx) => (
           <FadeInUp delay={0.1} key={idx} enableAnimation={enableAnimation}>
             <ExperienceCard
-              date={ex.year}
+              date={ex.startDate}
+              endDate={ex.endDate}
               subTitle={ex.subtitle}
               title={ex.title}
               img={ex.image}

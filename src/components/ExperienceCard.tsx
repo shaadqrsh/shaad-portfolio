@@ -1,11 +1,15 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Card from "@/components/ui/Card";
+import DateDisplay from "./DateDisplay";
+
+import { ReactNode } from "react";
 
 interface ExperienceCardProps {
   date?: string;
+  endDate?: string;
   title: string;
-  subTitle?: string | string[];
+  subTitle?: string | string[] | ReactNode;
   img?: string;
   ex?: boolean;
   inProgress?: boolean;
@@ -13,6 +17,7 @@ interface ExperienceCardProps {
 
 const ExperienceCard = ({
   date,
+  endDate,
   subTitle,
   title,
   img,
@@ -50,27 +55,34 @@ const ExperienceCard = ({
 
         <div>
           <h2 className="text-lg font-semibold text-white">{title}</h2>
-          {ex && <p className="text-md text-shaad-500 mb-1">{date}</p>}
+          {ex && date && (
+            <DateDisplay
+              date={date}
+              endDate={endDate}
+              inProgress={inProgress}
+              className="text-md text-shaad-500 mb-1 block"
+            />
+          )}
 
           {subTitle &&
             (Array.isArray(subTitle) ? (
-              subTitle.map((sub) => (
+              subTitle.map((sub, idx) => (
                 <p
                   className={cn(
                     `text-sm mt-1`,
                     ex ? "text-white" : "text-shaad-500"
                   )}
-                  key={sub}
+                  key={idx}
                 >
                   • {sub}
                 </p>
               ))
             ) : (
-              <p
+              <div
                 className={cn(`text-sm`, ex ? "text-white" : "text-shaad-500")}
               >
                 {subTitle}
-              </p>
+              </div>
             ))}
         </div>
       </Card>

@@ -1,6 +1,6 @@
 export type projectData = {
   title: string;
-  year: string;
+  date: string;
   game: boolean;
   imgCount: number;
   urls: { label: string; icon: string; url: string }[];

@@ -8,6 +8,7 @@ import projects from "@/lib/Projects";
 import { nameless, skills, top3 } from "@/lib/Skills";
 import { Publications } from "@/lib/Publications";
 import React from "react";
+import DateDisplay from "./DateDisplay";
 
 
 
@@ -161,6 +162,7 @@ const Resume = React.forwardRef<HTMLDivElement>((props, ref) => {
                     <p style={{ marginTop: "2px" }}>{homePara}</p>
                 </div>
 
+
                 {maxWorkExperienceCount > 0 && (
                     <div className="section">
                         <div className="section-title">
@@ -169,7 +171,7 @@ const Resume = React.forwardRef<HTMLDivElement>((props, ref) => {
                         {experience.slice(0, maxWorkExperienceCount).map((exp, idx) => (
                             <div key={idx} className="entry">
                                 <p className="job-title">
-                                    {exp.title} <span>{exp.year}</span>
+                                    {exp.title} <span><DateDisplay date={exp.startDate} endDate={exp.endDate} inProgress={exp.inProgress} /></span>
                                 </p>
                                 <p className="location">Various Clients</p>
                                 <ul>
@@ -192,7 +194,7 @@ const Resume = React.forwardRef<HTMLDivElement>((props, ref) => {
                         {projects.slice(0, maxProjectsCount).map((proj, idx) => (
                             <div key={idx} className="entry">
                                 <p className="job-title">
-                                    {proj.title} <span>{data[proj.url]?.year}</span>
+                                    {proj.title} <span><DateDisplay date={data[proj.url]?.date} /></span>
                                 </p>
                                 <ul>
                                     <li>{proj.desc}</li>
@@ -209,7 +211,7 @@ const Resume = React.forwardRef<HTMLDivElement>((props, ref) => {
                     {education.map((edu, idx) => (
                         <div key={idx} className="entry">
                             <p className="degree-info">
-                                {edu.title} <span>{edu.year}</span>
+                                {edu.title} <span><DateDisplay date={edu.startDate} endDate={edu.endDate} inProgress={edu.inProgress} /></span>
                             </p>
                             <p className="institution">
                                 {Array.isArray(edu.subtitle)
@@ -235,7 +237,7 @@ const Resume = React.forwardRef<HTMLDivElement>((props, ref) => {
                                 <div key={idx} className="certification-item">
                                     <span className="certification-name">{pub.name}</span>
                                     <br />
-                                    <span>{pub.publishing} ● {pub.year}</span>
+                                    <span>{pub.publishing} ● <DateDisplay date={pub.date} /></span>
                                 </div>
                             ))}
                         </div>
@@ -252,7 +254,7 @@ const Resume = React.forwardRef<HTMLDivElement>((props, ref) => {
                                 <div key={idx} className="certification-item">
                                     <span className="certification-name">{cert.title}</span>
                                     <br />
-                                    <span>{cert.subtitle}</span>
+                                    <span>{cert.subtitle} ● <DateDisplay date={cert.date} /></span>
                                 </div>
                             ))}
                         </div>

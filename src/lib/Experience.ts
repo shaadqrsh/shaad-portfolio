@@ -1,7 +1,8 @@
 export const experience = [
   {
     title: "Freelance Game Developer",
-    year: "June 2023 - Present",
+    startDate: "00/06/2023",
+    endDate: "present",
     subtitle: [
       "Responsibility of developing game mechanics in Unity (C#) and Unreal Engine (C++ and Blueprints).",
       "Worked on 90+ different projects for 45+ different clients from different private Discord servers.",

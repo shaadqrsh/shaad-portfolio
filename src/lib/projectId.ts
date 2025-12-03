@@ -3,7 +3,7 @@ import { projectData } from '@/types';
 export const data: { [key: string]: projectData } = {
   bushido: {
     title: 'Pokémon Bushido',
-    year: 'August 2021',
+    date: '00/08/2021',
     game: true,
     imgCount: 9,
     urls: [
@@ -83,7 +83,7 @@ export const data: { [key: string]: projectData } = {
   },
   splice: {
     title: 'Pokémon Splice',
-    year: 'August 2020',
+    date: '00/08/2020',
     game: true,
     imgCount: 9,
     urls: [
@@ -154,7 +154,7 @@ export const data: { [key: string]: projectData } = {
   },
   careerpath: {
     title: 'CareerPath AI',
-    year: 'November 2025',
+    date: '00/11/2025',
     game: false,
     imgCount: 9,
     urls: [
@@ -227,7 +227,7 @@ export const data: { [key: string]: projectData } = {
   },
   homi: {
     title: 'HOMI - Helpful Online Mentor Interface',
-    year: 'February 2025',
+    date: '00/02/2025',
     game: false,
     imgCount: 10,
     urls: [
@@ -301,7 +301,7 @@ export const data: { [key: string]: projectData } = {
   },
   findly: {
     title: 'Findly - Lost and Found Application',
-    year: 'January 2025',
+    date: '00/01/2025',
     game: false,
     imgCount: 9,
     urls: [
