@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaad Qureshi - Resume</title>
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            margin: 0;
+            padding: 0;
+            width: 21cm;
+            height: 29.7cm;
+            padding: 1.5cm;
+            box-sizing: border-box;
+            font-size: 12px;
+            margin-top: -1.0cm;
+        }
+        h1, h2, h3 {
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 25px;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        h3 {
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+        h2 {
+            font-size: 15px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .name-section {
+            text-align: left;
+        }
+        .contact-info {
+            text-align: right;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .section-title {
+            display: table;
+            width: 100%;
+            border-top: 1px solid #ddd;
+            border-bottom: 2px solid #333;
+            background-color: #fff;
+            padding: 8px 0 0 0;
+            margin-bottom: -5px;
+        }
+        .entry {
+            margin-bottom: -3px;
+        }
+        .job-title, .degree-info {
+            font-weight: bold;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+        .location, .institution {
+            font-size: 11px;
+            margin-top: 2px;
+            margin-bottom: 5px;
+        }
+        ul {
+            margin: 5px 0;
+            padding-left: 20px;
+            list-style-type: disc;
+        }
+        .skills-list {
+            margin: 12px 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px 20px;
+            padding-left: 20px;
+            list-style-type: disc;
+        }
+        .skills-list li {
+            margin-bottom: 0;
+        }
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px 20px;
+            margin-top: 13px;
+            margin-bottom: 10px;
+        }
+        .certification-item {
+            font-size: 11px;
+            margin-bottom: 3px;
+        }
+        .certification-name {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="name-section">
+            <h1>Shaad Abid Qureshi</h1>
+            <h3>Game Developer</h3>
+        </div>
+        <div class="contact-info">
+            <!-- <span>+91 9769819245</span><br> -->
+            <span>shaadqrsh.work@gmail.com</span><br>
+            <span>https://www.shaadqrsh.in</span><br>
+            <span>www.linkedin.com/in/shaadrqrsh/</span><br>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <h2>PROFESSIONAL SUMMARY</h2>
+        </div>
+        <p>A dedicated game developer with hands-on freelance experience implementing core gameplay mechanics using Unity (C#) and Unreal Engine (Blueprints). Passionate about translating creative visions into functional, engaging player experiences. I am eager to apply a strong foundation in computer science and a lifelong love for gaming to contribute to a professional studio environment.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <h2>WORK EXPERIENCE</h2>
+        </div>
+        <div class="entry">
+            <p class="job-title">Freelance Game Developer <span>June 2023 - Present</span></p>
+            <p class="location">Various Clients</p>
+            <ul>
+                <li>Designed and developed game mechanics in Unity (C#) and Unreal Engine (C++ and Blueprints).</li>
+                <li>Built 90+ different projects for 45+ different clients from different private Discord servers.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <h2>PROJECTS</h2>
+        </div>
+        <div class="entry">
+            <p class="job-title">HOMI - Helpful Online Mentor Interface<span>Capstone Project - Feb 2025</span></p>
+            <ul>
+                <li>Online learning platform for Information Technology students, powered by AI and LLMs.</li>
+                <li>Created with Next.js frontend and Django backend. LLM trained locally and based on DeepSeek R1.</li>
+                <li>Key responsibility was developing the LLM used in the backend and was the project head for the team.</li>
+            </ul>
+        </div>
+        <div class="entry">
+            <p class="job-title">Findly - Lost and Found Application <span>Android Studio Project - Feb 2025</span></p>
+            <ul>
+                <li>Online platform for sharing lost and found items, developed as an Android application.</li>
+                <li>Developed using Android Studio, with backend based on Google Firebase.</li>
+                <li>Key responsibility was solo development of all aspects of the application.</li>
+            </ul>
+        </div>
+        <div class="entry">
+            <p class="job-title">Pokémon Bushido <span>Relic Castle Game Jam - 2021</span></p>
+            <ul>
+                <li>Pokémon fangame for the PC using Ruby based on a feudal Japan setting.</li>
+                <li>Won the game jam that year and showcased by several popular YouTubers.</li>
+                <li>Key responsibility as the programming lead in the project, developing Ruby code for game mechanics unique to the project.</li>
+            </ul>
+        </div>
+        <div class="entry">
+            <p class="job-title">Pokémon Splice<span>Relic Castle Game Jam - 2020</span></p>
+            <ul>
+                <li>Pokémon fangame for the PC using Ruby with unique Pokémon species and branching storylines.</li>
+                <li>Won the game jam that year and showcased by several popular YouTubers.</li>
+                <li>Key responsibility as the programming lead in the project, developing Ruby code for game mechanics unique to the project.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section education-section">
+        <div class="section-title">
+            <h2>EDUCATION</h2>
+        </div>
+        <div class="entry">
+            <p class="degree-info">Bacherlor of Science - Information Technology <span>August 2022 - June 2025</span></p>
+            <p class="institution">SVKM's Narsee Monjee College of Commerce and Economics, Vile Parle, Mumbai, Maharashtra<b>&ensp;●&ensp;CGPA: 7.98</b></p>
+        </div>
+        <div class="entry">
+            <p class="degree-info">Class 12th - HSC Board<span>June 2019 - April 2021</span></p>
+            <p class="institution">PACE Junior Science College, Dadar, Mumbai, Maharashtra<b>&ensp;●&ensp;Score: 84%</b></p>
+        </div>
+        <div class="entry">
+            <p class="degree-info">Class 10th - ICSE Board <span>June 2006 - March 2019</span></p>
+            <p class="institution">Bombay Scottish School, Mahim, Mumbai, Maharashtra<b>&ensp;●&ensp;Score: 95.66%</b></p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <h2>CERTIFICATIONS</h2>
+        </div>
+        <div class="certifications-grid">
+            <div class="certification-item">
+                <span class="certification-name">Complete C# Unity 3D Game Development (Updated To Unity 6)</span><br>
+                <span>Udemy - 2025</span>
+            </div>
+            <div class="certification-item">
+                <span class="certification-name">Complete C# Unity 2D Game Development (Updated To Unity 6)</span><br>
+                <span>Udemy - 2025</span>
+            </div>
+            <div class="certification-item">
+                <span class="certification-name">Unreal Engine 5 C++ Game Development (Updated 5.6)</span><br>
+                <span>Udemy - 2025</span>
+            </div>
+            <div class="certification-item">
+                <span class="certification-name">Unreal Engine 5 Blueprint Game Development (Updated 5.6)</span><br>
+                <span>Udemy - 2025</span>
+            </div>
+            <div class="certification-item">
+                <span class="certification-name">Complete Blender Creator: 3D Modelling (Compatible with 4.3)</span><br>
+                <span>Udemy - 2025</span>
+            </div>
+            <div class="certification-item">
+                <span class="certification-name">Learn Professional 2D Game Graphic Design in Photoshop</span><br>
+                <span>Udemy - 2025</span>
+            </div>
+            <div class="certification-item">
+                <span class="certification-name">Adobe Premiere Pro Masterclass: Video Editing in Premiere</span><br>
+                <span>Udemy - 2025</span>
+            </div>
+            <div class="certification-item">
+                <span class="certification-name">Ultimate Photoshop Training: From Beginner to Pro 2025 + AI</span><br>
+                <span>Udemy - 2025</span>
+            </div>
+            <div class="certification-item">
+                <span class="certification-name">Pixel Art Master Course - Beginner to Professional/Freelance</span><br>
+                <span>Udemy - 2025</span>
+            </div>
+            <div class="certification-item">
+                <span class="certification-name">Git Complete: The definitive, step-by-step guide to Git</span><br>
+                <span>Udemy - 2025</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <h2>SKILLS</h2>
+        </div>
+        <ul class="skills-list">
+            <li>Unity (C#)</li>
+            <li>Unreal Engine (C++/Blueprints)</li>
+            <li>3D Modelling (Blender)</li>
+            <li>Godot</li>
+            <li>Adobe Photoshop</li>
+            <li>Adobe Premiere Pro</li>
+            <li>Pixel Art</li>
+            <li>Ruby Programming</li>
+            <li>Python Programming</li>
+            <li>Java Programming</li>
+            <li>Git/GitHub</li>
+            <li>Android Studio</li>
+            <li>Microsoft Office Suite</li>
+            <li>Project Management</li>
+            <li>UI/UX Design</li>
+            <li>Level Design</li>
+            <li>Game Testing</li>
+            <li>Problem Solving</li>
+            <li>Debugging</li>
+            <li>Collaboration and Teamwork</li>
+            <li>Time Management and Communication</li>
+        </ul>
+    </div>
+</body>
+</html>

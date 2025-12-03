@@ -1,15 +1,17 @@
 "use client";
 import Loader, { useSmartLoader } from "@/components/Loader";
+import { name } from "@/lib/Data";
 import FadeInUp from "@/components/FadeInUp";
 import Certifications from "@/components/sections/Certifications";
 import Education from "@/components/sections/Education";
 import Experience from "@/components/sections/Experience";
+import Publications from "@/components/sections/Publications";
 import Skills from "@/components/sections/Skills";
 import Who from "@/components/sections/Who";
 import Image from "next/image";
 import { useState } from "react";
 
-const UI = [Who, Skills, Experience, Education, Certifications];
+const UI = [Who, Skills, Experience, Education, Publications, Certifications];
 
 const About = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -20,7 +22,7 @@ const About = () => {
   return (
     <>
       <head>
-        <title>About | Shaad Qureshi</title>
+        <title>About | {name}</title>
       </head>
       <Loader isLoading={isLoading} />
       <section className="3xl:container text-white h-full w-full max-sm:flex max-sm:flex-col grid grid-cols-[40%_60%] justify-center gap-x-8 p-8 max-md:px-6 max-md:pb-14">

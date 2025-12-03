@@ -78,6 +78,9 @@ export const nameless = [
     title: "Level Design",
   },
   {
+    title: "Prompt Engineering",
+  },
+  {
     title: "Problem Solving",
   },
   {

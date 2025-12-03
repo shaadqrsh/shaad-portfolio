@@ -2,7 +2,7 @@
 import Loader, { useSmartLoader } from "@/components/Loader";
 import FadeInUp from "@/components/FadeInUp";
 import ImageWithAbstractShape from "@/components/ImageWithAbstractShape";
-import { homePara } from "@/lib/Data";
+import { homePara, name, title } from "@/lib/Data";
 import { EMAIL, handleEmail } from "@/lib/Email";
 import { links } from "@/lib/header";
 import { motion } from "motion/react";
@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <>
       <head>
-        <title>Home | Shaad Qureshi</title>
+        <title>Home | {name}</title>
       </head>
       <Loader isLoading={isLoading} />
       <div className="hidden">
@@ -76,7 +76,7 @@ const Home = () => {
               className="text-xl max-lg:text-base mb-2 text-shaad-600"
               enableAnimation={!isLoading}
             >
-              Aspiring Game Developer
+              {title}
             </FadeInUp>
 
             <FadeInUp
@@ -84,7 +84,7 @@ const Home = () => {
               className="text-4xl lg:text-5xl md:text-3xl font-bold mb-4"
               enableAnimation={!isLoading}
             >
-              Shaad Qureshi
+              {name}
             </FadeInUp>
             <FadeInUp
               delay={1.0}

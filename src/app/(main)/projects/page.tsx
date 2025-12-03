@@ -4,6 +4,7 @@ import ProjectsCard from "@/components/ProjectsCard";
 import projects from "@/lib/Projects";
 import FadeInUp from "@/components/FadeInUp";
 import { motion } from "motion/react";
+import { name } from "@/lib/Data";
 import { useState, useEffect } from "react";
 
 const Projects = () => {
@@ -37,7 +38,7 @@ const Projects = () => {
   return (
     <>
       <head>
-        <title>Projects | Shaad Qureshi</title>
+        <title>Projects | {name}</title>
       </head>
       <Loader isLoading={isLoading} />
       <section className="min-3xl:container text-white h-full w-full flex flex-col justify-center p-6 max-md:pb-14">
