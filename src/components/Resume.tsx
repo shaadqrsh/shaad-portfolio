@@ -20,6 +20,8 @@ const resumeStyles = `
         width: 21cm;
         min-height: 29.7cm;
         padding: 1.5cm;
+        padding-top: 0.3cm;
+        padding-bottom: 0.3cm;
         box-sizing: border-box;
         font-size: 12px;
         margin-top: 0;
@@ -33,12 +35,12 @@ const resumeStyles = `
     .resume-container h1 {
         font-size: 25px;
         text-transform: uppercase;
-        margin-bottom: 2px;
+        margin-bottom: -2px;
         font-weight: bold;
     }
     .resume-container h3 {
         font-size: 15px;
-        margin-bottom: 5px;
+        margin-bottom: -1px;
         font-weight: normal;
     }
     .resume-container h2 {
@@ -47,19 +49,23 @@ const resumeStyles = `
         margin: 0;
         font-weight: bold;
     }
-    .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+    .header-table {
+        width: 100%;
+        border-collapse: collapse;
         margin-bottom: 10px;
     }
-    .name-section {
+    .header-table td {
+        padding: 0;
+        vertical-align: top;
+    }
+    .header-left {
         text-align: left;
     }
-    .contact-info {
+    .header-table .header-right {
         text-align: right;
         font-size: 10px;
         line-height: 1.5;
+        padding-top: 6px;
     }
     .section {
         margin-bottom: 15px;
@@ -103,25 +109,25 @@ const resumeStyles = `
         list-style-type: disc;
     }
     .skills-list li {
-        margin-bottom: 0;
+        margin-bottom: -3px;
     }
     .certifications-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 5px 20px;
+        column-count: 2;
+        column-gap: 20px;
         margin-top: 0;
         margin-bottom: -3px;
     }
     .certification-item {
+        break-inside: avoid;
         font-size: 11px;
-        margin-bottom: 3px;
+        margin-bottom: 5px;
     }
     .certification-name {
         font-weight: bold;
     }
     @media print {
         .resume-container {
-            margin-top: -1.5cm;
+            margin-top: -0.6cm;
         }
     }
 `;
@@ -140,20 +146,21 @@ const Resume = React.forwardRef<HTMLDivElement>((props, ref) => {
         <>
             <style>{resumeStyles}</style>
             <div ref={ref} className="resume-container">
-                <div className="header">
-                    <div className="name-section">
-                        <h1>{fullName}</h1>
-                        <h3>{title}</h3>
-                    </div>
-                    <div className="contact-info">
-                        <span>{email}</span>
-                        <br />
-                        <span>https://www.shaadqrsh.in</span>
-                        <br />
-                        <span>{linkedin?.replace("https://", "")}</span>
-                        <br />
-                    </div>
-                </div>
+                <table className="header-table">
+                    <tbody>
+                        <tr>
+                            <td className="header-left">
+                                <h1>{fullName}</h1>
+                                <h3>{title}</h3>
+                            </td>
+                            <td className="header-right">
+                                <div>{email}</div>
+                                <div>https://www.shaadqrsh.in</div>
+                                <div>{linkedin?.replace("https://", "")}</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <div className="section">
                     <div className="section-title">

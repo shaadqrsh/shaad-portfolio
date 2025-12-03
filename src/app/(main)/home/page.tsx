@@ -12,10 +12,11 @@ import Button from "@/components/ui/button";
 import Card from "@/components/ui/Card";
 
 const Home = () => {
-  const [bgLoaded, setBgLoaded] = useState(false);
+
   const [imgLoaded, setImgLoaded] = useState(false);
   const isLoading = useSmartLoader({
-    loadingDependencies: [!bgLoaded, !imgLoaded],
+    loadingDependencies: [!imgLoaded],
+    minDuration: 200,
   });
 
   return (
@@ -27,7 +28,7 @@ const Home = () => {
           alt="bg"
           width={1440}
           height={1080}
-          onLoad={() => setBgLoaded(true)}
+          priority
         />
       </div>
       <section className=" min-2xl:container text-white h-full flex items-center justify-center px-6 max-md:px-4 max-md:pb-10 relative">
