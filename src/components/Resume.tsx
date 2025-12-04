@@ -126,8 +126,15 @@ const resumeStyles = `
         font-weight: bold;
     }
     @media print {
+        @page {
+            margin: 1.5cm;
+            size: A4;
+        }
         .resume-container {
-            margin-top: -0.6cm;
+            width: 100%;
+            min-height: auto;
+            height: auto;
+            overflow: visible;
         }
     }
 `;

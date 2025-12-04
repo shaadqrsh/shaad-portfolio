@@ -8,9 +8,18 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const ResumePage = () => {
-    const handlePrint = () => {
-        document.title = `${name} - Resume`;
-        window.print();
+    const handleDownload = () => {
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+        if (isMobile) {
+            const link = document.createElement('a');
+            link.href = '/resume.pdf';
+            link.download = `${name} - Resume.pdf`;
+            link.click();
+        } else {
+            document.title = `${name} - Resume`;
+            window.print();
+        }
     };
 
     return (
@@ -21,7 +30,7 @@ const ResumePage = () => {
 
             <div className="flex flex-1 flex-col items-center justify-center py-8 print:py-0">
                 <div className="mb-6 flex gap-4 print:hidden">
-                    <Button onClick={handlePrint}>
+                    <Button onClick={handleDownload}>
                         <Download className="mr-2 h-4 w-4" />
                         <span className="font-semibold">Download PDF</span>
                     </Button>
