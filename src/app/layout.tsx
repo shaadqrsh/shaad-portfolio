@@ -16,6 +16,18 @@ export const metadata: Metadata = {
     default: name,
   },
   description: `${name}'s Portfolio`,
+  icons: {
+    icon: [
+      {
+        url: '/icon_light.png?v=2',
+        media: '(prefers-color-scheme: light)',
+      },
+      {
+        url: '/icon.png?v=2',
+        media: '(prefers-color-scheme: dark)',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

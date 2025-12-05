@@ -13,8 +13,7 @@ const ResumePage = () => {
 
         if (isMobile) {
             const link = document.createElement('a');
-            link.href = '/resume.pdf';
-            link.download = `${name} - Resume.pdf`;
+            link.href = `/${name} - Resume.pdf`;
             link.click();
         } else {
             document.title = `${name} - Resume`;
