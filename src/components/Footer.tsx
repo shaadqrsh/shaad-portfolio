@@ -56,7 +56,7 @@ const Footer = () => {
         <p className="text-white min-lg:text-sm text-xs mx-auto flex">
           Designed By{" "}
           <a
-            href="https://hardikportfolio-hardik-malhotra.vercel.app"
+            href="https://hardik-malhotra.vercel.app"
             target="_blank"
             className="underline hover:text-blue-400 ml-1"
           >
