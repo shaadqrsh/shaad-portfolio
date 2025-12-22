@@ -33,7 +33,7 @@ const About = () => {
           >
             <div className="relative h-full w-full rounded-4xl overflow-hidden">
               <Image
-                src="/about/img_about.jpg"
+                src="/about/img_about.png"
                 alt="Shaad Qureshi"
                 fill
                 className="object-cover"
