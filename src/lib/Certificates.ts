@@ -63,4 +63,19 @@ export const Certificates = [
     subtitle: "Udemy",
     date: "00/00/2025",
   },
+  {
+    title: "Robotic Process Automation (RPA)",
+    subtitle: "Narsee Monjee College of Commerce and Economics",
+    date: "00/08/2024",
+  },
+  {
+    title: "Excel Essentials: From Basics to Advanced",
+    subtitle: "Narsee Monjee College of Commerce and Economics",
+    date: "00/08/2024",
+  },
+  {
+    title: "Mastering Cyber Threats and Defense with Kali Linux",
+    subtitle: "Astra Cybertech",
+    date: "00/01/2025",
+  },
 ];
