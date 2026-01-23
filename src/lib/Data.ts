@@ -2,11 +2,14 @@ export const name = "Shaad Qureshi";
 export const fullName = "Shaad Abid Qureshi";
 export const title = "Aspiring Game Developer";
 
+
 export const maxWorkExperienceCount = 3;
 export const maxProjectsCount = 3;
+export const maxEducationCount = 2;
 export const maxCertificatesCount = 8;
 export const maxSkillsCount = 20;
 export const maxPublicationsCount = 2;
+
 
 export const homePara = `I'm a game developer with a strong computer science background, specializing in implementing core gameplay mechanics with Unity and Unreal Engine. My passion is creating engaging worlds that captivate players and inspire new creators.`;
 

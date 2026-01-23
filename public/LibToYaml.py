@@ -122,21 +122,24 @@ def main():
     resume_data['summary'] = parse_js_object(data_content, 'homePara')
     resume_data['about'] = parse_js_object(data_content, 'whoAmI')
     
-    resume_data['experience'] = parse_js_object(read_file('Experience.ts'), 'experience')
     resume_data['education'] = parse_js_object(read_file('Education.ts'), 'education')
-    resume_data['projects'] = parse_js_object(read_file('Projects.ts'), 'projects')
+    resume_data['experience'] = parse_js_object(read_file('Experience.ts'), 'experience')
+    resume_data['publications'] = parse_js_object(read_file('Publications.ts'), 'Publications')
+    resume_data['certificates'] = parse_js_object(read_file('Certificates.ts'), 'Certificates')
+    
     sc = read_file('Skills.ts')
     resume_data['skills'] = {
         'top': parse_js_object(sc, 'top3'),
         'main': parse_js_object(sc, 'skills'),
         'other': parse_js_object(sc, 'nameless')
     }
-    resume_data['certificates'] = parse_js_object(read_file('Certificates.ts'), 'Certificates')
-    resume_data['publications'] = parse_js_object(read_file('Publications.ts'), 'Publications')
+    
+    resume_data['projects'] = parse_js_object(read_file('Projects.ts'), 'projects')
 
     resume_data['counts'] = {
         'workExperience': parse_js_object(data_content, 'maxWorkExperienceCount'),
         'projects': parse_js_object(data_content, 'maxProjectsCount'),
+        'education': parse_js_object(data_content, 'maxEducationCount'),
         'certificates': parse_js_object(data_content, 'maxCertificatesCount'),
         'skills': parse_js_object(data_content, 'maxSkillsCount'),
         'publications': parse_js_object(data_content, 'maxPublicationsCount')

@@ -86,8 +86,8 @@ CSS = """
     .resume-container {
         width: 21cm;
         min-height: 29.7cm;
-        padding: 1.5cm;
         margin: 1cm auto;
+        padding: 1cm;
         background-color: white;
         box-shadow: 0 0 10px rgba(0,0,0,0.5);
         box-sizing: border-box;
@@ -257,6 +257,25 @@ def generate_html(data):
             <p style="margin-top:2px;">{data.get('summary')}</p>
         </div>
         """
+
+    edus = data.get('education', [])
+    limit = counts.get('education', 100)
+    if edus and limit > 0:
+        html += '<div class="section"><h2>EDUCATION</h2>'
+        for edu in edus[:limit]:
+            date_str = format_date_display(edu.get('startDate'), edu.get('endDate'), edu.get('inProgress'))
+            subtitle = edu.get('subtitle', [])
+            if isinstance(subtitle, list): subtitle = ", ".join(subtitle)
+            grade = edu.get('grade', '')
+            grade_html = f"<b>&ensp;&#9679;&ensp;{grade}</b>" if grade else ""
+            
+            html += f"""
+            <div class="entry">
+                <div class="degree-info">{edu.get('title')} <span>{date_str}</span></div>
+                <p class="institution">{subtitle}{grade_html}</p>
+            </div>
+            """
+        html += "</div>"
         
     exps = data.get('experience', [])
     limit = counts.get('workExperience', 100)
@@ -276,40 +295,15 @@ def generate_html(data):
                 html += f"<li>{sub}</li>"
             html += "</ul></div>"
         html += "</div>"
-        
-    projs = data.get('projects', [])
-    limit = counts.get('projects', 100)
-    if projs and limit > 0:
-        html += '<div class="section"><h2>PROJECTS</h2>'
-        for proj in projs[:limit]:
-            p_date = format_date_display(proj.get('date'))
-            date_html = f"<span>{p_date}</span>" if p_date else ""
-            
-            html += f"""
-            <div class="entry">
-                <div class="job-title">{proj.get('title')} {date_html}</div>
-                <ul><li>{proj.get('desc')}</li></ul>
-            </div>
-            """
-        html += "</div>"
 
-    edus = data.get('education', [])
-    if edus:
-        html += '<div class="section"><h2>EDUCATION</h2>'
-        for edu in edus:
-            date_str = format_date_display(edu.get('startDate'), edu.get('endDate'), edu.get('inProgress'))
-            subtitle = edu.get('subtitle', [])
-            if isinstance(subtitle, list): subtitle = ", ".join(subtitle)
-            grade = edu.get('grade', '')
-            grade_html = f"<b>&ensp;&#9679;&ensp;{grade}</b>" if grade else ""
-            
-            html += f"""
-            <div class="entry">
-                <div class="degree-info">{edu.get('title')} <span>{date_str}</span></div>
-                <p class="institution">{subtitle}{grade_html}</p>
-            </div>
-            """
-        html += "</div>"
+    pubs = data.get('publications', [])
+    limit = counts.get('publications', 100)
+    if pubs and limit > 0:
+        html += '<div class="section"><h2>PUBLICATIONS</h2><div class="grid-container">'
+        for p in pubs[:limit]:
+            d = format_date_display(p.get('date'))
+            html += f'<div class="grid-item"><span>{p.get("name")}</span><br/><span>{p.get("publishing")} &#9679; {d}</span></div>'
+        html += "</div></div>"
     
     certs = data.get('certificates', [])
     limit = counts.get('certificates', 100)

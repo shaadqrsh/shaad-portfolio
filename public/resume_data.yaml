@@ -1,0 +1,160 @@
+name: Shaad Qureshi
+title: Aspiring Game Developer
+fullName: Shaad Abid Qureshi
+summary: I'm a game developer with a strong computer science background, specializing in implementing core gameplay mechanics with Unity and Unreal Engine. My passion is creating engaging worlds that captivate players and inspire new creators.
+about: I am a Computer Science student with a proficiency in AI, but I'm a passionate game developer at heart. My love for unique worlds and storytelling began with a Nintendo Wii in my childhood. I specialize in implementing core gameplay mechanics, using my C# skills in Unity and Blueprint expertise in Unreal Engine to bring creative visions to life. Through freelance projects, I've enjoyed collaborating with designers, offering technical solutions to realize their complex concepts. My ultimate ambition is to contribute to the development of beloved games at major studios and one day create my own, inspiring the next generation of gamers.
+education:
+  - title: Masters of Science - Computer Science
+    startDate: 00/01/2026
+    endDate: 00/05/2028
+    subtitle:
+      - Khoury College of Computer Sciences, Northeastern University
+      - Boston, Massachusetts, USA
+    inProgress: true
+  - title: Bachelor of Science - Information Technology
+    startDate: 00/08/2022
+    endDate: 00/06/2025
+    grade: "CGPA: 7.98"
+    subtitle:
+      - SVKM's Narsee Monjee College of Commerce and Economics
+      - Vile Parle, Mumbai, Maharashtra, India
+  - title: Class 12th - HSC Board
+    startDate: 00/06/2019
+    endDate: 00/04/2021
+    grade: "Score: 84%"
+    subtitle:
+      - PACE Junior Science College
+      - Dadar, Mumbai, Maharashtra, India
+  - title: Class 10th - ICSE Board
+    startDate: 00/06/2006
+    endDate: 00/04/2019
+    grade: "Score: 95.66%"
+    subtitle:
+      - Bombay Scottish School
+      - Mahim, Mumbai, Maharashtra, India
+experience:
+  - title: Freelance Game Developer
+    startDate: 00/06/2023
+    endDate: 00/11/2025
+    subtitle:
+      - Responsibility of developing game mechanics in Unity (C#) and Unreal Engine (C++ and Blueprints).
+      - Worked on 90+ different projects for 45+ different clients from different private Discord servers.
+    inProgress: false
+publications:
+  - name: "GPT vs. Open-Source LLMs: A Comprehensive Performance and Capability Assessment"
+    publishing: IJERT
+    date: 27/11/2025
+  - name: Building Trust in Transformers with a Shap- Based Approach for Explaining AI Decisions
+    publishing: IEEE Xplore
+    date: 21/08/2025
+certificates:
+  - title: Complete C# Unity 3D Game Development (Updated To Unity 6)
+    subtitle: Udemy
+    date: 00/00/2025
+  - title: Complete C# Unity 2D Game Development (Updated To Unity 6)
+    subtitle: Udemy
+    date: 00/00/2025
+  - title: Unreal Engine 5 C++ Game Development (Updated 5.6)
+    subtitle: Udemy
+    date: 00/00/2025
+  - title: Unreal Engine 5 Blueprint Game Development (Updated 5.6)
+    subtitle: Udemy
+    date: 00/00/2025
+  - title: "Complete Blender Creator: 3D Modelling (Compatible with 4.3)"
+    subtitle: Udemy
+    date: 00/00/2025
+  - title: Learn Professional 2D Game Graphic Design in Photoshop
+    subtitle: Udemy
+    date: 00/00/2025
+  - title: "Adobe Premiere Pro Masterclass: Video Editing in Premiere"
+    subtitle: Udemy
+    date: 00/00/2025
+  - title: "Ultimate Photoshop Training: From Beginner to Pro 2025 + AI"
+    subtitle: Udemy
+    date: 00/00/2025
+  - title: Pixel Art Master Course - Beginner to Professional/Freelance
+    subtitle: Udemy
+    date: 00/00/2025
+  - title: "Git Complete: The definitive, step-by-step guide to Git"
+    subtitle: Udemy
+    date: 00/00/2025
+  - title: "Agile Fundamentals: Including Scrum & Kanban"
+    subtitle: Udemy
+    date: 00/00/2025
+  - title: "The Complete SQL Bootcamp: Go from Zero to Hero"
+    subtitle: Udemy
+    date: 00/00/2025
+  - title: Robotic Process Automation (RPA)
+    subtitle: Narsee Monjee College of Commerce and Economics
+    date: 00/08/2024
+  - title: "Excel Essentials: From Basics to Advanced"
+    subtitle: Narsee Monjee College of Commerce and Economics
+    date: 00/08/2024
+  - title: Mastering Cyber Threats and Defense with Kali Linux
+    subtitle: Astra Cybertech
+    date: 00/01/2025
+skills:
+  top:
+    - title: Unity
+      subTitle: I can build core gameplay mechanics and systems using C#. My focus is on writing clean, reusable code for everything from player controls to UI elements.
+    - title: Unreal Engine
+      subTitle: I can construct interactive environments and gameplay events. I build most systems and logic directly within Blueprints, but I am adept with C++ for performance-critical functions.
+    - title: Blender
+      subTitle: I can create optimized 3D assets ready to be implemented in my games. I manage the entire creation pipeline, from hard-surface modeling and UV mapping to PBR texturing.
+  main:
+    - name: Godot
+    - name: Photoshop
+    - name: Premiere Pro
+    - name: Pixel Art
+    - name: C#
+    - name: C++
+    - name: Ruby
+    - name: Python
+    - name: Java
+    - name: Git
+    - name: Android
+    - name: Microsoft Office
+  other:
+    - title: Project Management
+    - title: UI Design
+    - title: Level Design
+    - title: Prompt Engineering
+    - title: Problem Solving
+    - title: Testing & Debugging
+    - title: Collaboration & Teamwork
+    - title: Time Management
+projects:
+  - title: Pokémon Bushido
+    url: bushido
+    desc: Pokémon Bushido is a fan-made game set in a feudal Japan-inspired region, where players train Pokémon to become a Kenshi, battling rival clans and dark forces in a unique samurai-themed adventure.
+    date: 00/08/2021
+  - title: Pokémon Splice
+    url: splice
+    desc: Pokémon Splice is a fan-made game where you're a research assistant helping Professor Cypress discover new Pokémon forms, featuring a unique, type-changing starter and a branching story.
+    date: 00/08/2020
+  - title: CareerPath AI
+    url: careerpath
+    desc: A 'vibe coding' experiment built in 3 days with Gemini 3 Pro. This AI counselor generates hyper-personalized career roadmaps and realistic 'day-in-the-life' visualizations to help users find their ideal career.
+    date: 00/11/2025
+  - title: HOMI - Helpful Online Mentor Interface
+    url: homi
+    desc: An AI-powered learning assistant for IT students, using LLMs to offer personalized study material, real-time query resolution, automated test generation, and attendance and assignment tracking.
+    date: 00/02/2025
+  - title: Findly - Lost and Found Application
+    url: findly
+    desc: An Android application with a Firebase-powered backend, which acts as a platform to list lost or found items and chat with users to recover lost items or return found ones.
+    date: 00/01/2025
+counts:
+  workExperience: 3
+  projects: 3
+  education: 3
+  certificates: 8
+  skills: 20
+  publications: 2
+links:
+  - url: https://www.linkedin.com/in/shaadrqrsh/
+    text: LinkedIn
+  - text: Website
+    url: https://www.shaadqrsh.in
+  - url: shaadqrsh.work@gmail.com
+    text: Email

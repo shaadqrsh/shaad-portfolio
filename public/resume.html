@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Shaad Qureshi - Resume</title>
+        <style>
+    @page {
+        size: A4 portrait;
+        margin: 0; 
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #525659;
+        display: flex;
+        justify-content: center;
+        font-family: "Times New Roman", serif;
+        -webkit-print-color-adjust: exact;
+    }
+    .resume-container {
+        width: 21cm;
+        min-height: 29.7cm;
+        margin: 1cm auto;
+        padding: 1cm;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        box-sizing: border-box;
+        font-size: 12px;
+        line-height: 1.3;
+        color: black;
+    }
+    
+    @media print {
+        body {
+            background-color: white;
+            display: block;
+        }
+        .resume-container {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 1.5cm;
+            box-shadow: none;
+            zoom: 100%; 
+        }
+    }
+
+    h1, h2, h3 { margin: 0; padding: 0; }
+    h1 {
+        font-size: 25px;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: 2px;
+    }
+    h2 {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        white-space: nowrap;
+        font-size: 15px;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin: 0;
+        margin-bottom: 8px;
+        margin-top: 12px;
+        padding-top: 4px;
+        border-top: 1px solid #ddd;
+    }
+    h2::after {
+        content: '';
+        flex: 1;
+        border-bottom: 2px solid #333;
+        margin-left: 6px;
+        margin-top: 8px;
+    }
+    h3 {
+        font-size: 15px;
+        font-weight: normal;
+        margin-bottom: 2px;
+        margin-top: -1px; 
+    }
+    
+    .header-table { width: 100%; margin-bottom: 10px; border-collapse: collapse; }
+    .header-left { text-align: left; vertical-align: top; }
+    .header-right { 
+        text-align: right; 
+        font-size: 10px; 
+        line-height: 1.5; 
+        vertical-align: top; 
+        padding-top: 6px;
+    }
+    
+    .section { margin-bottom: 15px; }
+    
+    .entry { margin-bottom: 4px; }
+    
+    .job-title, .degree-info {
+        font-weight: bold;
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end; 
+        margin-bottom: 2px;
+    }
+    .job-title span, .degree-info span {
+        font-weight: bold; 
+        font-size: 12px; 
+    }
+
+    .location, .institution {
+        font-size: 11px;
+        margin-top: 2px;
+        margin-bottom: 5px;
+    }
+    
+    ul {
+        margin: 5px 0;
+        padding-left: 20px;
+        list-style-type: disc;
+    }
+    li { margin-bottom: 2px; }
+    
+    .grid-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 0;
+    }
+    .grid-item {
+        width: 50%;
+        box-sizing: border-box;
+        padding-right: 10px;
+        margin-bottom: 5px;
+        font-size: 11px;
+    }
+    .grid-item span:first-child {
+        font-weight: bold;
+    }
+    
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 4px 20px;
+        padding-left: 20px;
+        list-style-type: disc;
+        margin: 12px 0;
+        margin-top: 8px;
+        font-size: 12px;
+    }
+    .skills-grid li {
+        margin-bottom: -3px;
+    }
+</style>
+    </head>
+    <body>
+    <div class="resume-container">
+        <table class="header-table">
+            <tr>
+                <td class="header-left">
+                    <h1>Shaad Abid Qureshi</h1>
+                    <h3>Aspiring Game Developer</h3>
+                </td>
+                <td class="header-right">
+                    <div>www.linkedin.com/in/shaadrqrsh</div><div>www.shaadqrsh.in</div><div>shaadqrsh.work@gmail.com</div>
+                </td>
+            </tr>
+        </table>
+    
+        <div class="section">
+            <h2>PROFESSIONAL SUMMARY</h2>
+            <p style="margin-top:2px;">I'm a game developer with a strong computer science background, specializing in implementing core gameplay mechanics with Unity and Unreal Engine. My passion is creating engaging worlds that captivate players and inspire new creators.</p>
+        </div>
+        <div class="section"><h2>EDUCATION</h2>
+            <div class="entry">
+                <div class="degree-info">Masters of Science - Computer Science <span>Jan 2026 - May 2028 (Expected)</span></div>
+                <p class="institution">Khoury College of Computer Sciences, Northeastern University, Boston, Massachusetts, USA</p>
+            </div>
+            
+            <div class="entry">
+                <div class="degree-info">Bachelor of Science - Information Technology <span>Aug 2022 - Jun 2025</span></div>
+                <p class="institution">SVKM's Narsee Monjee College of Commerce and Economics, Vile Parle, Mumbai, Maharashtra, India<b>&ensp;&#9679;&ensp;CGPA: 7.98</b></p>
+            </div>
+            
+            <div class="entry">
+                <div class="degree-info">Class 12th - HSC Board <span>Jun 2019 - Apr 2021</span></div>
+                <p class="institution">PACE Junior Science College, Dadar, Mumbai, Maharashtra, India<b>&ensp;&#9679;&ensp;Score: 84%</b></p>
+            </div>
+            </div><div class="section"><h2>WORK EXPERIENCE</h2>
+            <div class="entry">
+                <div class="job-title">Freelance Game Developer <span>Jun 2023 - Nov 2025</span></div>
+                <p class="location">Various Clients</p>
+                <ul>
+            <li>Responsibility of developing game mechanics in Unity (C#) and Unreal Engine (C++ and Blueprints).</li><li>Worked on 90+ different projects for 45+ different clients from different private Discord servers.</li></ul></div></div><div class="section"><h2>PUBLICATIONS</h2><div class="grid-container"><div class="grid-item"><span>GPT vs. Open-Source LLMs: A Comprehensive Performance and Capability Assessment</span><br/><span>IJERT &#9679; Nov 27, 2025</span></div><div class="grid-item"><span>Building Trust in Transformers with a Shap- Based Approach for Explaining AI Decisions</span><br/><span>IEEE Xplore &#9679; Aug 21, 2025</span></div></div></div><div class="section"><h2>CERTIFICATIONS</h2><div class="grid-container"><div class="grid-item"><span>Complete C# Unity 3D Game Development (Updated To Unity 6)</span><br/><span>Udemy &#9679; 2025</span></div><div class="grid-item"><span>Complete C# Unity 2D Game Development (Updated To Unity 6)</span><br/><span>Udemy &#9679; 2025</span></div><div class="grid-item"><span>Unreal Engine 5 C++ Game Development (Updated 5.6)</span><br/><span>Udemy &#9679; 2025</span></div><div class="grid-item"><span>Unreal Engine 5 Blueprint Game Development (Updated 5.6)</span><br/><span>Udemy &#9679; 2025</span></div><div class="grid-item"><span>Complete Blender Creator: 3D Modelling (Compatible with 4.3)</span><br/><span>Udemy &#9679; 2025</span></div><div class="grid-item"><span>Learn Professional 2D Game Graphic Design in Photoshop</span><br/><span>Udemy &#9679; 2025</span></div><div class="grid-item"><span>Adobe Premiere Pro Masterclass: Video Editing in Premiere</span><br/><span>Udemy &#9679; 2025</span></div><div class="grid-item"><span>Ultimate Photoshop Training: From Beginner to Pro 2025 + AI</span><br/><span>Udemy &#9679; 2025</span></div></div></div><div class="section"><h2>SKILLS</h2><ul class="skills-grid"><li>Unity</li><li>Unreal Engine</li><li>Blender</li><li>Godot</li><li>Photoshop</li><li>Premiere Pro</li><li>Pixel Art</li><li>C#</li><li>C++</li><li>Ruby</li><li>Python</li><li>Java</li><li>Git</li><li>Android</li><li>Microsoft Office</li><li>Project Management</li><li>UI Design</li><li>Level Design</li><li>Prompt Engineering</li><li>Problem Solving</li></ul></div></div></body></html>
