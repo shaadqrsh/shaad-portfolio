@@ -66,7 +66,8 @@ export const Certificates = [
   {
     title: "Foundations of Responsible AI Learning",
     subtitle: "Northeastern University",
-    date: "01/08/2026",
+    date: "00/01/2026",
+    url: "https://northeastern.badges.parchment.com/public/credentials/CklJNl42S_qI4yZWt20Smw"
   },
   {
     title: "Robotic Process Automation (RPA)",

@@ -30,7 +30,9 @@ const Publications = ({ enableAnimation }: PublicationsProps) => {
                                     {pub.publishing} ● <DateDisplay date={pub.date} />
                                 </>
                             }
+
                             ex={false}
+                            url={pub.url}
                         />
                     </FadeInUp>
                 ))}

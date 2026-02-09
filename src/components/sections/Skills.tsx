@@ -22,7 +22,7 @@ const Skills = ({ enableAnimation = true }: SkillsProps) => {
   return (
     <AboutCard title="Skills">
 
-      <div className="grid grid-cols-3 gap-6 max-lg:flex flex-col">
+      <div className="grid grid-cols-3 gap-6 max-lg:flex flex-col mt-1">
         {top3.map((t, idx) => (
           <FadeInUp
             delay={0.1 * (idx % 3)}

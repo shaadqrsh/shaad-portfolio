@@ -87,7 +87,7 @@ CSS = """
         width: 21cm;
         min-height: 29.7cm;
         margin: 1cm auto;
-        padding: 1cm;
+        padding: 0.75cm 1cm 1cm 1cm;
         background-color: white;
         box-shadow: 0 0 10px rgba(0,0,0,0.5);
         box-sizing: border-box;
@@ -105,7 +105,7 @@ CSS = """
             width: 100%;
             height: 100%;
             margin: 0;
-            padding: 1.5cm;
+            padding: 0.75cm 1cm 1cm 1cm;
             box-shadow: none;
             zoom: 100%; 
         }
@@ -128,7 +128,7 @@ CSS = """
         font-weight: bold;
         margin: 0;
         margin-bottom: 8px;
-        margin-top: 12px;
+        margin-top: 8px;
         padding-top: 4px;
         border-top: 1px solid #ddd;
     }
@@ -146,7 +146,7 @@ CSS = """
         margin-top: -1px; 
     }
     
-    .header-table { width: 100%; margin-bottom: 10px; border-collapse: collapse; }
+    .header-table { width: 100%; margin-bottom: 5px; border-collapse: collapse; }
     .header-left { text-align: left; vertical-align: top; }
     .header-right { 
         text-align: right; 
@@ -156,7 +156,7 @@ CSS = """
         padding-top: 6px;
     }
     
-    .section { margin-bottom: 15px; }
+    .section { margin-bottom: 10px; }
     
     .entry { margin-bottom: 4px; }
     
@@ -195,7 +195,9 @@ CSS = """
         width: 50%;
         box-sizing: border-box;
         padding-right: 10px;
-        margin-bottom: 5px;
+        padding-right: 10px;
+        margin-bottom: 4px;
+        font-size: 11px;
         font-size: 11px;
     }
     .grid-item span:first-child {
@@ -208,8 +210,8 @@ CSS = """
         gap: 4px 20px;
         padding-left: 20px;
         list-style-type: disc;
-        margin: 12px 0;
-        margin-top: 8px;
+        margin: 5px 0;
+        margin-top: 5px;
         font-size: 12px;
     }
     .skills-grid li {
@@ -284,11 +286,15 @@ def generate_html(data):
         for exp in exps[:limit]:
             date_str = format_date_display(exp.get('startDate'), exp.get('endDate'), exp.get('inProgress'))
             location = exp.get('location', '')
-            date_display = f"{location} &#9679; {date_str}" if location else date_str
             
             html += f"""
             <div class="entry">
-                <div class="job-title">{exp.get('title')} <span>{date_display}</span></div>
+                <div class="job-title">{exp.get('title')} <span>{date_str}</span></div>
+                """
+            if location:
+                html += f'<p class="location">{location}</p>'
+            
+            html += """
                 <ul>
             """
             subtitles = exp.get('subtitle', [])
