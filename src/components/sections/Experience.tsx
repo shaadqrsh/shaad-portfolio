@@ -19,6 +19,7 @@ const Experience = ({ enableAnimation = true }: ExperienceProps) => {
               title={ex.title}
               img={ex.image}
               inProgress={ex.inProgress}
+              location={ex.location}
             />
           </FadeInUp>
         ))}

@@ -29,7 +29,7 @@ const ProjectsCard = ({ desc, url, title, onLoad }: ProjectsCardProps) => {
     >
       <div className="w-[300px] max-md:w-full flex-shrink-0 relative aspect-[6/5]">
         <Image
-          src={`/project_${url}/icon.jpg`}
+          src={`/project_${url}/icon.png`}
           alt={title}
           fill
           className="object-cover rounded-xl"

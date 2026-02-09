@@ -283,17 +283,36 @@ def generate_html(data):
         html += '<div class="section"><h2>WORK EXPERIENCE</h2>'
         for exp in exps[:limit]:
             date_str = format_date_display(exp.get('startDate'), exp.get('endDate'), exp.get('inProgress'))
+            location = exp.get('location', '')
+            date_display = f"{location} &#9679; {date_str}" if location else date_str
+            
             html += f"""
             <div class="entry">
-                <div class="job-title">{exp.get('title')} <span>{date_str}</span></div>
-                <p class="location">Various Clients</p>
+                <div class="job-title">{exp.get('title')} <span>{date_display}</span></div>
                 <ul>
             """
             subtitles = exp.get('subtitle', [])
             if isinstance(subtitles, str): subtitles = [subtitles]
             for sub in subtitles:
-                html += f"<li>{sub}</li>"
+                if sub:
+                    html += f"<li>{sub}</li>"
             html += "</ul></div>"
+        html += "</div>"
+        
+    projs = data.get('projects', [])
+    limit = counts.get('projects', 100)
+    if projs and limit > 0:
+        html += '<div class="section"><h2>PROJECTS</h2>'
+        for proj in projs[:limit]:
+            p_date = format_date_display(proj.get('date'))
+            date_html = f"<span>{p_date}</span>" if p_date else ""
+            
+            html += f"""
+            <div class="entry">
+                <div class="job-title">{proj.get('title')} {date_html}</div>
+                <ul><li>{proj.get('desc')}</li></ul>
+            </div>
+            """
         html += "</div>"
 
     pubs = data.get('publications', [])

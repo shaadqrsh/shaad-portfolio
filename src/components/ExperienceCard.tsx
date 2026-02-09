@@ -13,6 +13,7 @@ interface ExperienceCardProps {
   img?: string;
   ex?: boolean;
   inProgress?: boolean;
+  location?: string;
 }
 
 const ExperienceCard = ({
@@ -23,6 +24,7 @@ const ExperienceCard = ({
   img,
   ex = true,
   inProgress = false,
+  location,
 }: ExperienceCardProps) => {
   return (
     <div className="relative flex items-start space-x-4">
@@ -55,13 +57,18 @@ const ExperienceCard = ({
 
         <div>
           <h2 className="text-lg font-semibold text-white">{title}</h2>
-          {ex && date && (
-            <DateDisplay
-              date={date}
-              endDate={endDate}
-              inProgress={inProgress}
-              className="text-md text-shaad-500 mb-2 mt-2 block"
-            />
+          {ex && (
+            <div className="text-md text-shaad-500 mb-2 mt-2 block">
+              {location && <span>{location} &#8226; </span>}
+              {date && (
+                <DateDisplay
+                  date={date}
+                  endDate={endDate}
+                  inProgress={inProgress}
+                  className=""
+                />
+              )}
+            </div>
           )}
 
           {subTitle &&

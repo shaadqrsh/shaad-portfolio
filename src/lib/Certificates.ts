@@ -64,6 +64,11 @@ export const Certificates = [
     date: "00/00/2025",
   },
   {
+    title: "Foundations of Responsible AI Learning",
+    subtitle: "Northeastern University",
+    date: "01/08/2026",
+  },
+  {
     title: "Robotic Process Automation (RPA)",
     subtitle: "Narsee Monjee College of Commerce and Economics",
     date: "00/08/2024",

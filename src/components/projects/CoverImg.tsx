@@ -25,7 +25,7 @@ const CoverImg = ({ project, url, onLoad, enableAnimation = true }: CoverImgProp
   return (
     <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
       <Image
-        src={`/project_${url}/cover.jpg`}
+        src={`/project_${url}/cover.png`}
         alt={`${project?.title || url} cover`}
         fill
         className="object-cover object-center blur-xs"
