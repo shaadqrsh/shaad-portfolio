@@ -61,9 +61,11 @@ publications:
   - name: "GPT vs. Open-Source LLMs: A Comprehensive Performance and Capability Assessment"
     publishing: IJERT
     date: 27/11/2025
+    url: https://www.ijert.org/gpt-vs--open-source-llms--a-comprehensive-performance-and-capability-assessment
   - name: Building Trust in Transformers with a Shap- Based Approach for Explaining AI Decisions
     publishing: IEEE Xplore
     date: 21/08/2025
+    url: https://ieeexplore.ieee.org/document/11115248
 certificates:
   - title: Complete C# Unity 3D Game Development (Updated To Unity 6)
     subtitle: Udemy
@@ -103,7 +105,8 @@ certificates:
     date: 00/00/2025
   - title: Foundations of Responsible AI Learning
     subtitle: Northeastern University
-    date: 01/08/2026
+    date: 00/01/2026
+    url: https://northeastern.badges.parchment.com/public/credentials/CklJNl42S_qI4yZWt20Smw
   - title: Robotic Process Automation (RPA)
     subtitle: Narsee Monjee College of Commerce and Economics
     date: 00/08/2024

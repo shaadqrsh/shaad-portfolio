@@ -44,31 +44,46 @@ def clean_data(data):
     return data
 
 def clean_and_parse(raw_value):
-    raw_value = re.sub(r'/\*.*?\*/', '', raw_value, flags=re.DOTALL)
-    raw_value = re.sub(r'//.*', '', raw_value)
+    # Remove comments safely (respecting strings, including backticks)
+    pattern = r'(".*?"|\'.*?\'|`.*?`)|(/\*.*?\*/|//[^\r\n]*$)'
+    def replace_comments(match):
+        if match.group(2): return ""
+        return match.group(1)
     
-    def quote_vals(match):
-        val = match.group(2)
-        if val in ['true', 'false', 'null', 'Infinity', 'NaN']: return match.group(0)
-        if val.isdigit(): return match.group(0)
-        return f'{match.group(1)}"{val}"{match.group(3)}'
+    raw_value = re.sub(pattern, replace_comments, raw_value, flags=re.DOTALL | re.MULTILINE)
     
-    raw_value = re.sub(r'(\w+\s*:\s*)([a-zA-Z_]\w*)(\s*[,}])', quote_vals, raw_value)
-    raw_value = raw_value.replace('`', '"')
+    # Handle undefined -> null
+    raw_value = raw_value.replace('undefined', 'null')
+    
+    # Convert backticks to double quotes (escaping inner double quotes)
+    def replace_backticks(match):
+        # Escape double quotes inside the string
+        content = match.group(1).replace('"', '\\"')
+        # Replace newlines with \n for JSON compatibility
+        content = content.replace('\n', '\\n')
+        return f'"{content}"'
+        
+    raw_value = re.sub(r'`(.*?)`', replace_backticks, raw_value, flags=re.DOTALL)
+    
+    # Quote keys: key: -> "key":
     raw_value = re.sub(r'([{,]\s*)([a-zA-Z0-9_]+)\s*:', r'\1"\2":', raw_value)
+    
+    # Remove trailing commas
     raw_value = re.sub(r',\s*([}\]])', r'\1', raw_value)
     
     try:
         return json.loads(raw_value)
     except:
+        # Try adjusting for Python syntax (in case JSON fails but it's close to Python)
+        # Note: trailing commas are allowed in Python, but we removed them for JSON.
+        # Python literal_eval handles some things JSON doesn't (like None vs null if we swapped them)
         py_val = raw_value.replace('true', 'True').replace('false', 'False').replace('null', 'None')
         try:
            return ast.literal_eval(py_val)
         except:
-           s = raw_value.strip()
-           if (s.startswith('"') and s.endswith('"')) or (s.startswith("'") and s.endswith("'")):
-               return s[1:-1]
-           return raw_value 
+           pass
+           
+    return raw_value 
 
 def to_yaml(data, indent=0):
     yaml_str = ""

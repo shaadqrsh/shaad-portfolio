@@ -26,7 +26,9 @@ const Certifications = ({ enableAnimation = true }: CertificationsProps) => {
                   {ex.subtitle} ● <DateDisplay date={ex.date} />
                 </>
               }
+
               ex={false}
+              url={ex.url}
             />
           </FadeInUp>
         ))}

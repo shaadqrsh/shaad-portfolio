@@ -12,7 +12,7 @@ const Who = ({ enableAnimation = true }: WhoProps) => {
 
     <AboutCard title="Who Am I?">
       <FadeInUp className="font-light tracking-wide w-full" enableAnimation={enableAnimation}>
-        <Card>
+        <Card className="mt-3">
           {whoAmI}
         </Card>
       </FadeInUp>
