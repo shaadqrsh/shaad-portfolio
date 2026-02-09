@@ -51,14 +51,14 @@ const ExperienceCard = ({
             width={100}
             height={100}
             alt={title}
-            className="lg:mr-4 max-lg:mb-2 rounded-xl"
+            className="lg:mr-4 max-lg:mb-2 rounded-lg"
           />
         )}
 
         <div>
           <h2 className="text-lg font-semibold text-white">{title}</h2>
           {ex && (
-            <div className="text-md text-shaad-500 mb-2 mt-2 block">
+            <div className="text-md text-shaad-500 mb-1 mt-0 block">
               {location && <span>{location} &#8226; </span>}
               {date && (
                 <DateDisplay
@@ -74,15 +74,16 @@ const ExperienceCard = ({
           {subTitle &&
             (Array.isArray(subTitle) ? (
               subTitle.map((sub, idx) => (
-                <p
+                <div
                   className={cn(
-                    `text-sm mt-1`,
+                    `text-sm mt-1 flex items-start`,
                     ex ? "text-white" : "text-shaad-500"
                   )}
                   key={idx}
                 >
-                  • {sub}
-                </p>
+                  <span className="mr-2">•</span>
+                  <span>{sub}</span>
+                </div>
               ))
             ) : (
               <div
