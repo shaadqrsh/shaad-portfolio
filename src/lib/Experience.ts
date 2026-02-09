@@ -1,6 +1,6 @@
 export const experience = [
   {
-    title: "Media Services Technician - Northeastern University",
+    title: "Media Services Technician",
     startDate: "00/01/2026",
     subtitle: [
       "Operate lighting, audio, and video systems for live events, managing sound boards, microphones, and projection setups.",
@@ -8,11 +8,11 @@ export const experience = [
       "Program and run light boards to create dynamic lighting designs for performances and university events."
     ],
     image: "about/img_neu.png",
-    location: "Boston, MA",
+    location: "Northeastern University, Boston, MA",
     inProgress: true,
   },
   {
-    title: "Game Programmer - Freelance",
+    title: "Game Programmer",
     startDate: "00/06/2023",
     endDate: "00/11/2025",
     subtitle: [
@@ -21,10 +21,10 @@ export const experience = [
       "Managed full project lifecycles independently, handling client scoping, iterative development, and final delivery."
     ],
     image: "about/img_discord.png",
-    location: "Remote",
+    location: "Freelance, Remote",
   },
   {
-    title: "Member (Technical Dept.) - NM Arthashastra",
+    title: "Member (Technical Dept.)",
     startDate: "00/09/2022",
     endDate: "00/03/2023",
     subtitle: [
@@ -33,6 +33,6 @@ export const experience = [
       "Supported technical operations including event logistics and digital infrastructure for competitions, speaker sessions, and workshops."
     ],
     image: "about/img_arthashastra.png",
-    location: "Mumbai, India",
+    location: "NM Arthashastra, Mumbai, India",
   },
 ];
