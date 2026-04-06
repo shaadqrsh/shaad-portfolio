@@ -13,7 +13,7 @@ const Footer = () => {
     <section
       className={cn(
         "px-4 py-6 bg-shaad-200 grid justify-evenly items-center max-sm:flex max-sm:flex-col max-sm:gap-y-4",
-        pathname === "/home" ? "grid-cols-2" : "grid-cols-3"
+        pathname === "/home" ? "grid-cols-1" : "grid-cols-2"
       )}
     >
       {pathname !== "/home" && (
@@ -49,19 +49,6 @@ const Footer = () => {
           Copyright
           <Copyright className="mx-1" size={16} />
           {currentYear - 1} - {currentYear} | All rights reserved
-        </p>
-      </div>
-
-      <div className="mx-auto">
-        <p className="text-white min-lg:text-sm text-xs mx-auto flex">
-          Designed By{" "}
-          <a
-            href="https://hardik-malhotra.vercel.app"
-            target="_blank"
-            className="underline hover:text-blue-400 ml-1"
-          >
-            Hardik Malhotra
-          </a>
         </p>
       </div>
     </section>

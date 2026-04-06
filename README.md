@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shaad Qureshi - Portfolio
 
-## Getting Started
+A modern, responsive, and animated personal portfolio built for showcasing my work as an aspiring Game Developer. The application is built with **Next.js 15 (App Router)** and utilizes a centralized data approach to power both the website content and an auto-generated printable HTML resume.
 
-First, run the development server:
+## 🚀 Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (React 19)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animations & Parallax**: [Framer Motion](https://motion.dev/), [React Spring](https://react-spring.dev/) (`@react-spring/parallax`), and `tw-animate-css`
+- **UI Components**: [Radix UI](https://www.radix-ui.com/) (primitives), Embla Carousel, Lucide React (icons)
+- **Deployment & Analytics**: Vercel & `@vercel/analytics`
+- **Data & Typing**: TypeScript
+- **Scripting (Resume Gen)**: Python 3
+
+## 📁 Project Structure
+
+```text
+shaad-portfolio/
+├── public/                 # Static assets and Resume Generator Scripts
+│   ├── LibToYaml.py        # Python script to parse TypeScript data -> YAML
+│   ├── YamlToHtml.py       # Python script to parse YAML -> Printable HTML Resume
+│   ├── ...                 # Images and icons
+├── src/
+│   ├── app/                # Next.js App Router root
+│   │   └── (main)/         # Main layout group (Home, About, Projects, etc.)
+│   ├── components/         # Reusable React components
+│   │   ├── sections/       # Distinct sections of the site (Experience, Education, etc.)
+│   │   └── ui/             # Reusable core UI blocks (Cards, Nav, Loader, etc.)
+│   ├── hooks/              # Custom React hooks
+│   └── lib/                # CENTRALIZED DATA STORE (*.ts files)
+```
+
+## 🛠️ Centralized Data & Resume Generation
+
+One unique aspect of this project is the **single source of truth** pattern used for all portfolio copy and details. 
+
+All distinct personal information (Experience, Education, Projects, Skills) is housed as clean exported objects in the `src/lib/` directory (e.g., `Data.ts`, `Experience.ts`, `Projects.ts`).
+
+### The Resume Pipeline
+To ensure synchronization between the live website and my downloadable résumé, the project includes two Python scripts located in the `public/` folder:
+
+1. **`LibToYaml.py`**: Parses the TypeScript files in `src/lib/` directly into a structured `resume_data.yaml` file.
+2. **`YamlToHtml.py`**: Reads the `resume_data.yaml` file and generates a tightly constrained, print-ready `resume.html` document perfectly styled for an A4 format.
+
+To update information, I only need to modify the files in `src/lib/` and run the scripts to get a fresh HTML resume.
+
+---
+
+## 💻 Getting Started
+
+### Prerequisites
+
+- Node.js & npm (or yarn / pnpm)
+- Python 3+ (if you wish to build the resume)
+
+### Running Locally
+
+First, install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server with turbopack:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. You can start editing the page by modifying components. The page auto-updates as you edit the file.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 👏 Credits
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Design**: UI and Website Design by [Hardik Malhotra](https://hardik-malhotra.vercel.app).
