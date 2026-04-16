@@ -247,7 +247,7 @@ export const data: { [key: string]: projectData } = {
       {
         heading: 'Live Session Tracking',
         content:
-          'During an active workout, users log every set in real time — weight, reps, RPE, rest time, and set type (warm-up, working, drop) — with auto-fill from the previous set to speed up logging.',
+          'During an active workout, users log every set in real time, with details like weight, reps, RPE, rest time, and set type (warm-up, working, drop) and with auto-fill from the previous set to speed up logging.',
       },
       {
         heading: 'Exercise Library',
@@ -276,10 +276,9 @@ export const data: { [key: string]: projectData } = {
       { name: 'Flask', icon: 'icon_flask.svg' },
       { name: 'PostgreSQL', icon: 'icon_postgresql.svg' },
       { name: 'Supabase', icon: 'icon_supabase.svg' },
-      { name: 'Vite', icon: 'icon_vite.svg' },
     ],
     responsibilities: [
-      'Designed the relational database schema, including the multi-level session → record → set hierarchy, friendship graph, achievements, and goals tables.',
+      'Designed the relational database schema, including the multi-level session of record set hierarchy, friendship graph, achievements, and goals tables.',
       'Built and maintained backend Flask API modules for workout CRUD, live session tracking, analytics, leaderboard calculations, and achievements.',
       'Wrote the Python web scraper to populate the exercise library with 1000+ entries, muscle group mappings, and equipment data from the Wger API.',
       'Implemented session-based authentication with bcrypt password hashing and contributed to profile and friend management endpoints.',
@@ -292,6 +291,7 @@ export const data: { [key: string]: projectData } = {
       'The database schema spans 15+ tables with multi-level relational hierarchies, covering users, workouts, sessions, set logs, exercises, muscle groups, equipment, measurements, friendships, goals, and achievements.',
       'Supabase transaction pooler (port 6543) is used for efficient connection management, allowing the stateless Vercel serverless backend to interact with PostgreSQL without exhausting connections.',
       'The exercise library was populated using a custom Python scraper that fetched and normalized data from the Wger open-source fitness API across multiple pages.',
+      'Additional features were planned, such as multiple user roles (for trainers) as well as more achievements and a way to upload profile pictures, but were scrapped due to time constraints.',
       'The project was built collaboratively by a three-person team (Shaad Qureshi, Ben O\'Neil, Sudaiv Shetty) with Git-based workflows and feature branches.',
     ],
   },
