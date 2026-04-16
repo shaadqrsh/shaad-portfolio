@@ -225,6 +225,76 @@ export const data: { [key: string]: projectData } = {
       'The UI features a "Nano Banana" badge in the loading screens, a playful nod to the internal codename and the rapid, fluid nature of the development session.',
     ],
   },
+  sqllift: {
+    title: 'SQLift',
+    date: '00/04/2026',
+    game: false,
+    imgCount: 9,
+    urls: [
+      {
+        label: 'Live Project',
+        icon: '',
+        url: 'https://cs-5200-project.vercel.app',
+      },
+      {
+        label: 'GitHub',
+        icon: '',
+        url: 'https://github.com/btoneil2021/cs-5200-project',
+      },
+    ],
+    desc: 'SQLift is a full-stack workout tracking web application built as a CS-5200 Database Management course project. It lets users plan custom workouts from a library of 1000+ exercises, track live sessions set-by-set with weights and reps, and review progress through analytics graphs and personal records. A social layer allows users to befriend each other and compete on global and friend leaderboards ranked by total workout volume, while an achievements system rewards fitness milestones.',
+    features: [
+      {
+        heading: 'Live Session Tracking',
+        content:
+          'During an active workout, users log every set in real time — weight, reps, RPE, rest time, and set type (warm-up, working, drop) — with auto-fill from the previous set to speed up logging.',
+      },
+      {
+        heading: 'Exercise Library',
+        content:
+          'A pre-populated library of 1000+ exercises sourced from the Wger API, each tagged with targeted muscle groups and required equipment, supports filtering and browsing by category.',
+      },
+      {
+        heading: 'Progress Analytics',
+        content:
+          'The stats page visualizes exercise progression over configurable time ranges, tracks body measurements, displays muscle group volume breakdowns, and surfaces hero stats like total volume, heaviest set, and session streaks.',
+      },
+      {
+        heading: 'Social & Leaderboards',
+        content:
+          'Users can send and manage friend requests, set friendship visibility levels, and compete on both a global and friends-only leaderboard ranked by cumulative workout volume.',
+      },
+      {
+        heading: 'Achievements & Goals',
+        content:
+          'An achievements system awards badges for fitness milestones, and a goals feature lets users set personal objectives with target completion dates and track them over time.',
+      },
+    ],
+    technologies: [
+      { name: 'React', icon: 'icon_react.svg' },
+      { name: 'Python', icon: 'icon_python.svg' },
+      { name: 'Flask', icon: 'icon_flask.svg' },
+      { name: 'PostgreSQL', icon: 'icon_postgresql.svg' },
+      { name: 'Supabase', icon: 'icon_supabase.svg' },
+      { name: 'Vite', icon: 'icon_vite.svg' },
+    ],
+    responsibilities: [
+      'Designed the relational database schema, including the multi-level session → record → set hierarchy, friendship graph, achievements, and goals tables.',
+      'Built and maintained backend Flask API modules for workout CRUD, live session tracking, analytics, leaderboard calculations, and achievements.',
+      'Wrote the Python web scraper to populate the exercise library with 1000+ entries, muscle group mappings, and equipment data from the Wger API.',
+      'Implemented session-based authentication with bcrypt password hashing and contributed to profile and friend management endpoints.',
+      'Contributed to the React frontend, including the live session page, stats visualizations, and leaderboard views.',
+      'Configured the GitHub Actions CI/CD pipeline for automated deployment to Vercel with smoke tests against the live backend.',
+    ],
+    videos: [],
+    additional: [
+      'This project was built as the final project for CS-5200 Database Management Systems at Northeastern University, with a focus on relational database design and complex SQL querying.',
+      'The database schema spans 15+ tables with multi-level relational hierarchies, covering users, workouts, sessions, set logs, exercises, muscle groups, equipment, measurements, friendships, goals, and achievements.',
+      'Supabase transaction pooler (port 6543) is used for efficient connection management, allowing the stateless Vercel serverless backend to interact with PostgreSQL without exhausting connections.',
+      'The exercise library was populated using a custom Python scraper that fetched and normalized data from the Wger open-source fitness API across multiple pages.',
+      'The project was built collaboratively by a three-person team (Shaad Qureshi, Ben O\'Neil, Sudaiv Shetty) with Git-based workflows and feature branches.',
+    ],
+  },
   homi: {
     title: 'HOMI - Helpful Online Mentor Interface',
     date: '00/02/2025',

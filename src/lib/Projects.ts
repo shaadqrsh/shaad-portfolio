@@ -15,6 +15,11 @@ const projects = [
     desc: "A 'vibe coding' experiment built in 3 days with Gemini 3 Pro. This AI counselor generates hyper-personalized career roadmaps and realistic 'day-in-the-life' visualizations to help users find their ideal career.",
   },
   {
+    title: "SQLift",
+    url: "sqllift",
+    desc: "SQLift is a full-stack workout tracking web application with a rich relational database at its core. Users can plan custom workouts, track live sessions set-by-set, monitor body measurements and analytics over time, and compete on global and friend leaderboards.",
+  },
+  {
     title: "HOMI - Helpful Online Mentor Interface",
     url: "homi",
     desc: "An AI-powered learning assistant for IT students, using LLMs to offer personalized study material, real-time query resolution, automated test generation, and attendance and assignment tracking.",
