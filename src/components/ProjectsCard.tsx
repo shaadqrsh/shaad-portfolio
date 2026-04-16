@@ -24,7 +24,7 @@ const ProjectsCard = ({ desc, url, title, onLoad }: ProjectsCardProps) => {
     <motion.button
       onClick={handleRoute}
       className={cn(
-        `relative flex justify-center items-start gap-4 p-4 rounded-4xl transition min-h-60 max-md:flex-col group hover:shadow-[0_0_20px_var(--color-shaad-600)] cursor-pointer max-md:items-center max-md:justify-center bg-shaad-200 shadow-2xl`
+        `relative flex justify-center items-start gap-4 p-4 rounded-4xl transition min-h-60 max-md:flex-col group hover:shadow-[0_0_20px_var(--color-shaad-600)] cursor-pointer max-md:items-center max-md:justify-center bg-shaad-300 shadow-2xl w-full`
       )}
     >
       <div className="w-[300px] max-md:w-full flex-shrink-0 relative aspect-[6/5]">
@@ -43,7 +43,7 @@ const ProjectsCard = ({ desc, url, title, onLoad }: ProjectsCardProps) => {
           {title}
         </h1>
 
-        <p className="line-clamp-6 max-lg:line-clamp-4 max-sm:line-clamp-2 text-left mb-12">
+        <p className="line-clamp-6 max-lg:line-clamp-4 max-sm:line-clamp-3 text-left mb-12">
           {desc}
         </p>
 
