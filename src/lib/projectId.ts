@@ -304,7 +304,7 @@ export const data: { [key: string]: projectData } = {
       {
         label: 'Live Project',
         icon: '',
-        url: 'https://homi-bot.in/',
+        url: 'https://homi-bot.vercel.app',
       },
       {
         label: 'GitHub',
