@@ -1,6 +1,12 @@
 import os
 import sys
-import yaml
+try:
+    import yaml
+except ImportError:
+    print("Error: 'pyyaml' module not found.")
+    print("Please install it using: pip install pyyaml")
+    sys.exit(1)
+
 from datetime import datetime
 import traceback
 
@@ -9,7 +15,15 @@ YAML_FILE = os.path.join(SCRIPT_DIR, 'resume_data.yaml')
 OUTPUT_HTML = os.path.join(SCRIPT_DIR, 'resume.html')
 
 def parse_date(date_str):
-    if not date_str or date_str.lower() == "present":
+    if not date_str:
+        return None
+    
+    if not isinstance(date_str, str):
+        if hasattr(date_str, 'strftime'): # datetime.date or datetime.datetime
+            return date_str, date_str.day, date_str.month
+        date_str = str(date_str)
+
+    if date_str.lower() == "present":
         return None
     try:
         parts = date_str.split('/')
@@ -64,6 +78,8 @@ def format_date_display(date_str, end_date_str=None, in_progress=False):
 
 def url_display_clean(url):
     if not url: return ""
+    if not isinstance(url, str):
+        url = str(url)
     clean = url.replace('https://', '').replace('http://', '').replace('mailto:', '')
     if clean.endswith('/'):
         clean = clean[:-1]
@@ -263,7 +279,7 @@ def generate_html(data):
     edus = data.get('education', [])
     limit = counts.get('education', 100)
     if edus and limit > 0:
-        html += '<div class="section"><h2>EDUCATION</h2>'
+        html += '\n        <div class="section"><h2>EDUCATION</h2>'
         for edu in edus[:limit]:
             date_str = format_date_display(edu.get('startDate'), edu.get('endDate'), edu.get('inProgress'))
             subtitle = edu.get('subtitle', [])
@@ -275,40 +291,36 @@ def generate_html(data):
             <div class="entry">
                 <div class="degree-info">{edu.get('title')} <span>{date_str}</span></div>
                 <p class="institution">{subtitle}{grade_html}</p>
-            </div>
-            """
-        html += "</div>"
+            </div>"""
+        html += "\n        </div>"
         
     exps = data.get('experience', [])
     limit = counts.get('workExperience', 100)
     if exps and limit > 0:
-        html += '<div class="section"><h2>WORK EXPERIENCE</h2>'
+        html += '\n        <div class="section"><h2>WORK EXPERIENCE</h2>'
         for exp in exps[:limit]:
             date_str = format_date_display(exp.get('startDate'), exp.get('endDate'), exp.get('inProgress'))
             location = exp.get('location', '')
             
             html += f"""
             <div class="entry">
-                <div class="job-title">{exp.get('title')} <span>{date_str}</span></div>
-                """
+                <div class="job-title">{exp.get('title')} <span>{date_str}</span></div>"""
             if location:
-                html += f'<p class="location">{location}</p>'
+                html += f'\n                <p class="location">{location}</p>'
             
-            html += """
-                <ul>
-            """
+            html += "\n                <ul>"
             subtitles = exp.get('subtitle', [])
             if isinstance(subtitles, str): subtitles = [subtitles]
             for sub in subtitles:
                 if sub:
-                    html += f"<li>{sub}</li>"
-            html += "</ul></div>"
-        html += "</div>"
+                    html += f"\n                    <li>{sub}</li>"
+            html += "\n                </ul>\n            </div>"
+        html += "\n        </div>"
         
     projs = data.get('projects', [])
     limit = counts.get('projects', 100)
     if projs and limit > 0:
-        html += '<div class="section"><h2>PROJECTS</h2>'
+        html += '\n        <div class="section"><h2>PROJECTS</h2>'
         for proj in projs[:limit]:
             p_date = format_date_display(proj.get('date'))
             date_html = f"<span>{p_date}</span>" if p_date else ""
@@ -316,28 +328,29 @@ def generate_html(data):
             html += f"""
             <div class="entry">
                 <div class="job-title">{proj.get('title')} {date_html}</div>
-                <ul><li>{proj.get('desc')}</li></ul>
-            </div>
-            """
-        html += "</div>"
+                <ul>
+                    <li>{proj.get('desc')}</li>
+                </ul>
+            </div>"""
+        html += "\n        </div>"
 
     pubs = data.get('publications', [])
     limit = counts.get('publications', 100)
     if pubs and limit > 0:
-        html += '<div class="section"><h2>PUBLICATIONS</h2><div class="grid-container">'
+        html += '\n        <div class="section"><h2>PUBLICATIONS</h2><div class="grid-container">'
         for p in pubs[:limit]:
             d = format_date_display(p.get('date'))
-            html += f'<div class="grid-item"><span>{p.get("name")}</span><br/><span>{p.get("publishing")} &#9679; {d}</span></div>'
-        html += "</div></div>"
+            html += f'\n            <div class="grid-item"><span>{p.get("name")}</span><br/><span>{p.get("publishing")} &#9679; {d}</span></div>'
+        html += "\n        </div>\n        </div>"
     
     certs = data.get('certificates', [])
     limit = counts.get('certificates', 100)
     if certs and limit > 0:
-        html += '<div class="section"><h2>CERTIFICATIONS</h2><div class="grid-container">'
+        html += '\n        <div class="section"><h2>CERTIFICATIONS</h2><div class="grid-container">'
         for c in certs[:limit]:
              d = format_date_display(c.get('date'))
-             html += f'<div class="grid-item"><span>{c.get("title")}</span><br/><span>{c.get("subtitle")} &#9679; {d}</span></div>'
-        html += '</div></div>'
+             html += f'\n            <div class="grid-item"><span>{c.get("title")}</span><br/><span>{c.get("subtitle")} &#9679; {d}</span></div>'
+        html += '\n        </div>\n        </div>'
         
     skills = data.get('skills', {})
     limit = counts.get('skills', 100)
@@ -349,12 +362,12 @@ def generate_html(data):
         
         flat_skills = flat_skills[:limit]
         
-        html += '<div class="section"><h2>SKILLS</h2><ul class="skills-grid">'
+        html += '\n        <div class="section"><h2>SKILLS</h2><ul class="skills-grid">'
         for skill in flat_skills:
-            html += f'<li>{skill}</li>'
-        html += '</ul></div>'
+            html += f'\n            <li>{skill}</li>'
+        html += '\n        </ul>\n        </div>'
 
-    html += "</div></body></html>"
+    html += "\n    </div>\n</body>\n</html>"
     return html
 
 def main():

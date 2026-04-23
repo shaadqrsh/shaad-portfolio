@@ -42,7 +42,20 @@ To ensure synchronization between the live website and my downloadable résumé,
 1. **`LibToYaml.py`**: Parses the TypeScript files in `src/lib/` directly into a structured `resume_data.yaml` file.
 2. **`YamlToHtml.py`**: Reads the `resume_data.yaml` file and generates a tightly constrained, print-ready `resume.html` document perfectly styled for an A4 format.
 
-To update information, I only need to modify the files in `src/lib/` and run the scripts to get a fresh HTML resume.
+To update the resume, simply modify the files in `src/lib/` and run:
+
+```bash
+npm run resume
+```
+
+### 📄 Converting to PDF
+Once you have generated the `resume.html` file, converting it to a PDF is a manual step:
+1. Open `public/resume.html` in your browser (Chrome or Edge recommended).
+2. Use the **Print** command (Ctrl+P) and select **Microsoft Print to PDF** as the destination.
+3. Ensure "Background Graphics" is enabled for the best look.
+
+> [!NOTE]
+> This part of the pipeline is currently a **WIP (Work In Progress)**. Automated HTML-to-PDF conversion was producing inconsistent results, so a manual print-to-PDF step is recommended to ensure the resume maintains its high-fidelity styling.
 
 ---
 

@@ -44,8 +44,8 @@ def clean_data(data):
     return data
 
 def clean_and_parse(raw_value):
-    # Remove comments safely (respecting strings, including backticks)
-    pattern = r'(".*?"|\'.*?\'|`.*?`)|(/\*.*?\*/|//[^\r\n]*$)'
+    # Remove comments safely (respecting strings, including backticks and escaped quotes)
+    pattern = r'("(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|`(?:\\.|[^`\\])*`)|(/\*.*?\*/|//[^\r\n]*$)'
     def replace_comments(match):
         if match.group(2): return ""
         return match.group(1)
@@ -63,7 +63,7 @@ def clean_and_parse(raw_value):
         content = content.replace('\n', '\\n')
         return f'"{content}"'
         
-    raw_value = re.sub(r'`(.*?)`', replace_backticks, raw_value, flags=re.DOTALL)
+    raw_value = re.sub(r'`((?:\\.|[^`\\])*)`', replace_backticks, raw_value, flags=re.DOTALL)
     
     # Quote keys: key: -> "key":
     raw_value = re.sub(r'([{,]\s*)([a-zA-Z0-9_]+)\s*:', r'\1"\2":', raw_value)
