@@ -16,47 +16,57 @@ A modern, responsive, and animated personal portfolio built for showcasing my wo
 
 ```text
 shaad-portfolio/
-├── public/                 # Static assets and Resume Generator Scripts
-│   ├── scripts/
-│   │   ├── lib_to_yaml.py  # Python script to parse TypeScript data -> YAML
-│   │   ├── yaml_to_html.py # Python script to parse YAML -> Printable HTML Resume
-│   ├── ...                 # Images and icons
+├── public/
+│   ├── resume.pdf              # <-- PUT YOUR PDF HERE (served as the resume on the site)
+│   ├── resume_gen/             # Everything resume-related lives here (gitignored except scripts & template)
+│   │   ├── jobs.yaml           # Job listings for tailored resume/cover letter generation (gitignored)
+│   │   ├── resume_data.yaml    # Generated from src/lib/ by lib_to_yaml.py (gitignored)
+│   │   ├── resume.html         # Generated print-ready resume (gitignored)
+│   │   ├── scripts/
+│   │   │   ├── lib_to_yaml.py      # Parses TypeScript data files -> resume_data.yaml
+│   │   │   └── yaml_to_html.py     # Parses resume_data.yaml -> printable HTML resume
+│   │   └── templates/
+│   │       └── resume_template.html    # HTML template for the resume layout
+│   └── ...                     # Static images, icons, and project assets
 ├── src/
-│   ├── app/                # Next.js App Router root
-│   │   └── (main)/         # Main layout group (Home, About, Projects, etc.)
-│   ├── components/         # Reusable React components
-│   │   ├── sections/       # Distinct sections of the site (Experience, Education, etc.)
-│   │   └── ui/             # Reusable core UI blocks (Cards, Nav, Loader, etc.)
-│   ├── hooks/              # Custom React hooks
-│   └── lib/                # CENTRALIZED DATA STORE (*.ts files)
+│   ├── app/                    # Next.js App Router root
+│   │   └── (main)/             # Main layout group (Home, About, Projects, etc.)
+│   ├── components/             # Reusable React components
+│   │   ├── sections/           # Distinct page sections (Experience, Education, etc.)
+│   │   └── ui/                 # Core UI blocks (Cards, Nav, Loader, etc.)
+│   ├── hooks/                  # Custom React hooks
+│   └── lib/                    # CENTRALIZED DATA STORE (*.ts files)
 ```
+
+> [!IMPORTANT]
+> The resume PDF served on the site must be placed at **`public/resume.pdf`**. The download button names the file `{name} - Resume.pdf` automatically, so you can keep the filename in `public/` generic.
 
 ## 🛠️ Centralized Data & Resume Generation
 
-One unique aspect of this project is the **single source of truth** pattern used for all portfolio copy and details. 
-
-All distinct personal information (Experience, Education, Projects, Skills) is housed as clean exported objects in the `src/lib/` directory (e.g., `Data.ts`, `Experience.ts`, `Projects.ts`).
+All portfolio content (Experience, Education, Projects, Skills) lives as exported TypeScript objects in `src/lib/`. This is the single source of truth for both the website and the resume.
 
 ### The Resume Pipeline
-To ensure synchronization between the live website and my downloadable résumé, the project includes Python scripts located in the `public/scripts/` folder:
 
-1. **`lib_to_yaml.py`**: Parses the TypeScript files in `src/lib/` directly into a structured `resume_data.yaml` file.
-2. **`yaml_to_html.py`**: Reads the `resume_data.yaml` file and generates a tightly constrained, print-ready `resume.html` document perfectly styled for an A4 format.
+1. **`lib_to_yaml.py`** — Reads the TypeScript files in `src/lib/` and writes a structured `resume_gen/resume_data.yaml`.
+2. **`yaml_to_html.py`** — Reads `resume_data.yaml` and produces a print-ready `resume_gen/resume.html` styled for A4.
 
-To update the resume, simply modify the files in `src/lib/` and run:
+To regenerate after editing `src/lib/`:
 
 ```bash
 npm run resume
 ```
 
 ### 📄 Converting to PDF
-Once you have generated the `resume.html` file, converting it to a PDF is a manual step:
-1. Open `public/resume.html` in your browser (Chrome or Edge recommended).
-2. Use the **Print** command (Ctrl+P) and select **Microsoft Print to PDF** as the destination.
-3. Ensure "Background Graphics" is enabled for the best look.
+
+Once `resume.html` is generated, convert it manually:
+
+1. Open `public/resume_gen/resume.html` in Chrome or Edge.
+2. Print (Ctrl+P) and select **Save as PDF** (or Microsoft Print to PDF).
+3. Enable **Background Graphics** for correct styling.
+4. Save the output as `public/resume.pdf`.
 
 > [!NOTE]
-> This part of the pipeline is currently a **WIP (Work In Progress)**. Automated HTML-to-PDF conversion was producing inconsistent results, so a manual print-to-PDF step is recommended to ensure the resume maintains its high-fidelity styling.
+> Automated HTML-to-PDF conversion was producing inconsistent results, so manual print-to-PDF is the recommended approach to preserve fidelity.
 
 ---
 
@@ -65,23 +75,23 @@ Once you have generated the `resume.html` file, converting it to a PDF is a manu
 ### Prerequisites
 
 - Node.js & npm (or yarn / pnpm)
-- Python 3+ (if you wish to build the resume)
+- Python 3+ (for resume generation)
 
 ### Running Locally
 
-First, install dependencies:
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-Start the development server with turbopack:
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. You can start editing the page by modifying components. The page auto-updates as you edit the file.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 

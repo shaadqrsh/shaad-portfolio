@@ -14,7 +14,7 @@ const ResumePage = () => {
 
             <div className="flex flex-1 flex-col items-center justify-center py-8">
                 <div className="mb-6 flex gap-4">
-                    <Button href={`/${name} - Resume.pdf`} download>
+                    <Button href="/resume.pdf" download={`${name} - Resume.pdf`}>
                         <Download className="mr-2 h-4 w-4" />
                         <span className="font-semibold">Download PDF</span>
                     </Button>
@@ -22,7 +22,7 @@ const ResumePage = () => {
 
                 <div className="w-full h-full flex justify-center px-4 md:px-0">
                     <iframe
-                        src={`/${name} - Resume.pdf`}
+                        src="/resume.pdf"
                         className="w-full md:w-[80%] h-screen min-h-[800px] rounded-lg shadow-2xl"
                         title={`${name} - Resume`}
                     />

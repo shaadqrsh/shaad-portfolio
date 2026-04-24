@@ -44,8 +44,9 @@ next-env.d.ts
 *.code-workspace
 
 # Docs generation
-/public/docs/
-/public/jobs.json
-/public/scripts/*
-!/public/scripts/yaml_to_html.py
-!/public/scripts/lib_to_yaml.py
+/public/resume_gen/jobs.yaml
+/public/resume_gen/scripts/__pycache__/
+/public/resume_gen/scripts/generate_docs.py
+/public/resume_gen/templates/cover_letter_template.html
+/public/resume_gen/templates/signature.png
+/public/resume_gen/*(*)/

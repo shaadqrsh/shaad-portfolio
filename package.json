@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "resume": "python public/scripts/lib_to_yaml.py && python public/scripts/yaml_to_html.py"
+    "resume": "python public/resume_gen/scripts/lib_to_yaml.py && python public/resume_gen/scripts/yaml_to_html.py"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
