@@ -42,3 +42,10 @@ next-env.d.ts
 
 # VS-code specific files
 *.code-workspace
+
+# Docs generation
+/public/docs/
+/public/jobs.json
+/public/scripts/*
+!/public/scripts/yaml_to_html.py
+!/public/scripts/lib_to_yaml.py

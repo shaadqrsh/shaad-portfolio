@@ -4,9 +4,10 @@ import json
 import ast
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(SCRIPT_DIR) 
+PUBLIC_DIR = os.path.dirname(SCRIPT_DIR)
+PROJECT_ROOT = os.path.dirname(PUBLIC_DIR) 
 LIB_DIR = os.path.join(PROJECT_ROOT, 'src', 'lib')
-OUTPUT_FILE = os.path.join(SCRIPT_DIR, 'resume_data.yaml')
+OUTPUT_FILE = os.path.join(PUBLIC_DIR, 'resume_data.yaml')
 
 def read_file(filename):
     path = os.path.join(LIB_DIR, filename)

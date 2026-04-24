@@ -17,8 +17,9 @@ A modern, responsive, and animated personal portfolio built for showcasing my wo
 ```text
 shaad-portfolio/
 ├── public/                 # Static assets and Resume Generator Scripts
-│   ├── LibToYaml.py        # Python script to parse TypeScript data -> YAML
-│   ├── YamlToHtml.py       # Python script to parse YAML -> Printable HTML Resume
+│   ├── scripts/
+│   │   ├── lib_to_yaml.py  # Python script to parse TypeScript data -> YAML
+│   │   ├── yaml_to_html.py # Python script to parse YAML -> Printable HTML Resume
 │   ├── ...                 # Images and icons
 ├── src/
 │   ├── app/                # Next.js App Router root
@@ -37,10 +38,10 @@ One unique aspect of this project is the **single source of truth** pattern used
 All distinct personal information (Experience, Education, Projects, Skills) is housed as clean exported objects in the `src/lib/` directory (e.g., `Data.ts`, `Experience.ts`, `Projects.ts`).
 
 ### The Resume Pipeline
-To ensure synchronization between the live website and my downloadable résumé, the project includes two Python scripts located in the `public/` folder:
+To ensure synchronization between the live website and my downloadable résumé, the project includes Python scripts located in the `public/scripts/` folder:
 
-1. **`LibToYaml.py`**: Parses the TypeScript files in `src/lib/` directly into a structured `resume_data.yaml` file.
-2. **`YamlToHtml.py`**: Reads the `resume_data.yaml` file and generates a tightly constrained, print-ready `resume.html` document perfectly styled for an A4 format.
+1. **`lib_to_yaml.py`**: Parses the TypeScript files in `src/lib/` directly into a structured `resume_data.yaml` file.
+2. **`yaml_to_html.py`**: Reads the `resume_data.yaml` file and generates a tightly constrained, print-ready `resume.html` document perfectly styled for an A4 format.
 
 To update the resume, simply modify the files in `src/lib/` and run:
 

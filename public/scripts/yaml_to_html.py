@@ -11,8 +11,9 @@ from datetime import datetime
 import traceback
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-YAML_FILE = os.path.join(SCRIPT_DIR, 'resume_data.yaml')
-OUTPUT_HTML = os.path.join(SCRIPT_DIR, 'resume.html')
+PUBLIC_DIR = os.path.dirname(SCRIPT_DIR)
+YAML_FILE = os.path.join(PUBLIC_DIR, 'resume_data.yaml')
+OUTPUT_HTML = os.path.join(PUBLIC_DIR, 'resume.html')
 
 def parse_date(date_str):
     if not date_str:
@@ -236,7 +237,7 @@ CSS = """
 """
 
 def generate_html(data):
-    counts = data.get('counts', {})
+    counts = data.get('counts') or {}
     
     links = data.get('links', [])
     header_links = ""
@@ -277,7 +278,7 @@ def generate_html(data):
         """
 
     edus = data.get('education', [])
-    limit = counts.get('education', 100)
+    limit = counts.get('education') if counts.get('education') is not None else 100
     if edus and limit > 0:
         html += '\n        <div class="section"><h2>EDUCATION</h2>'
         for edu in edus[:limit]:
@@ -295,7 +296,7 @@ def generate_html(data):
         html += "\n        </div>"
         
     exps = data.get('experience', [])
-    limit = counts.get('workExperience', 100)
+    limit = counts.get('workExperience') if counts.get('workExperience') is not None else 100
     if exps and limit > 0:
         html += '\n        <div class="section"><h2>WORK EXPERIENCE</h2>'
         for exp in exps[:limit]:
@@ -318,7 +319,7 @@ def generate_html(data):
         html += "\n        </div>"
         
     projs = data.get('projects', [])
-    limit = counts.get('projects', 100)
+    limit = counts.get('projects') if counts.get('projects') is not None else 100
     if projs and limit > 0:
         html += '\n        <div class="section"><h2>PROJECTS</h2>'
         for proj in projs[:limit]:
@@ -335,7 +336,7 @@ def generate_html(data):
         html += "\n        </div>"
 
     pubs = data.get('publications', [])
-    limit = counts.get('publications', 100)
+    limit = counts.get('publications') if counts.get('publications') is not None else 100
     if pubs and limit > 0:
         html += '\n        <div class="section"><h2>PUBLICATIONS</h2><div class="grid-container">'
         for p in pubs[:limit]:
@@ -344,7 +345,7 @@ def generate_html(data):
         html += "\n        </div>\n        </div>"
     
     certs = data.get('certificates', [])
-    limit = counts.get('certificates', 100)
+    limit = counts.get('certificates') if counts.get('certificates') is not None else 100
     if certs and limit > 0:
         html += '\n        <div class="section"><h2>CERTIFICATIONS</h2><div class="grid-container">'
         for c in certs[:limit]:
@@ -353,7 +354,7 @@ def generate_html(data):
         html += '\n        </div>\n        </div>'
         
     skills = data.get('skills', {})
-    limit = counts.get('skills', 100)
+    limit = counts.get('skills') if counts.get('skills') is not None else 100
     if skills and limit > 0:
         flat_skills = []
         for s in skills.get('top', []): flat_skills.append(s.get('title'))
