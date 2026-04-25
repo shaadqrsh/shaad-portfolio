@@ -151,6 +151,9 @@ def main():
         'other': parse_js_object(sc, 'nameless')
     }
     
+    header_content = read_file('header.ts')
+    resume_data['eduEmail'] = parse_js_object(header_content, 'eduEmail')
+    
     resume_data['projects'] = parse_js_object(read_file('Projects.ts'), 'projects')
 
     resume_data['counts'] = {
@@ -161,8 +164,6 @@ def main():
         'skills': parse_js_object(data_content, 'maxSkillsCount'),
         'publications': parse_js_object(data_content, 'maxPublicationsCount')
     }
-    
-    header_content = read_file('header.ts')
     raw_links = []
     
     parsed_links = parse_js_object(header_content, 'links')
