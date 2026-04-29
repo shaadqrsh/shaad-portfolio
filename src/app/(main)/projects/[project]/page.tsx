@@ -3,27 +3,23 @@ import { name } from "@/lib/Data";
 import { Metadata } from "next";
 import ProjectIdPage from "./ProjectIdPage";
 
-// @ts-expect-error type any
-export async function generateMetadata({ params }): Promise<Metadata> {
-  const slug = Array.isArray(params.project)
-    ? params.project[0]
-    : params.project;
-  const project = data[slug];
+export async function generateMetadata({ params }: { params: Promise<{ project: string }> }): Promise<Metadata> {
+  const { project } = await params;
+  const slug = Array.isArray(project) ? project[0] : project;
+  const projectData = data[slug];
 
-  if (!project) {
+  if (!projectData) {
     return { title: `Project Not Found | ${name}` };
   }
 
   return {
-    title: `${project.title} | ${name}`,
-    description: project.desc,
+    title: `${projectData.title} | ${name}`,
+    description: projectData.desc,
   };
 }
 
-// @ts-expect-error type any
-export default function Page({ params }) {
-  const slug = Array.isArray(params.project)
-    ? params.project[0]
-    : params.project;
+export default async function Page({ params }: { params: Promise<{ project: string }> }) {
+  const { project } = await params;
+  const slug = Array.isArray(project) ? project[0] : project;
   return <ProjectIdPage url={slug} />;
 }

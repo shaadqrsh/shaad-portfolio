@@ -78,6 +78,7 @@ const ImageWithAbstractShape = ({ src, alt, onLoad, enableAnimation = true }: Im
           className="object-cover"
           priority
           onLoad={onLoad}
+          sizes="(max-width: 768px) 300px, (max-width: 1024px) 300px, (max-width: 1280px) 400px, 500px"
         />
       </div>
     </motion.div>

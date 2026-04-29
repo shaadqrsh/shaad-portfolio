@@ -11,9 +11,10 @@ interface ProjectsCardProps {
   desc: string;
   url: string;
   onLoad?: () => void;
+  priority?: boolean;
 }
 
-const ProjectsCard = ({ desc, url, title, onLoad }: ProjectsCardProps) => {
+const ProjectsCard = ({ desc, url, title, onLoad, priority }: ProjectsCardProps) => {
   const router = useRouter();
 
   function handleRoute() {
@@ -34,6 +35,7 @@ const ProjectsCard = ({ desc, url, title, onLoad }: ProjectsCardProps) => {
           fill
           className="object-cover rounded-xl"
           onLoad={onLoad}
+          priority={priority}
           sizes="(max-width: 768px) 100vw, 300px"
         />
       </div>

@@ -28,7 +28,8 @@ const FadeInUp = ({
     return (
         <motion.div
             initial="hidden"
-            whileInView={enableAnimation ? "visible" : "hidden"}
+            animate={enableAnimation ? "visible" : "hidden"}
+            whileInView={enableAnimation ? "visible" : undefined}
             variants={{
                 hidden: { opacity: 0, y: yOffset },
                 visible: { opacity: 1, y: 0 },

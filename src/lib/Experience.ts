@@ -7,7 +7,7 @@ export const experience = [
       "Troubleshoot technical issues in real time, coordinating with ITS staff, House Managers, and Stage Managers.",
       "Program and run light boards to create dynamic lighting designs for performances and university events."
     ],
-    image: "about/img_neu.png",
+    image: "/about/img_neu.png",
     location: "Northeastern University, Boston, MA",
     inProgress: true,
   },
@@ -20,7 +20,7 @@ export const experience = [
       "Delivered end-to-end gameplay systems including physics, AI, and UI, sourced through private Discord communities.",
       "Managed full project lifecycles independently, handling client scoping, iterative development, and final delivery."
     ],
-    image: "about/img_discord.png",
+    image: "/about/img_discord.png",
     location: "Freelance, Remote",
   },
   {
@@ -32,7 +32,7 @@ export const experience = [
       "Collaborated with a 50+ member organizing team to deliver a multi-day festival drawing participation from colleges across Mumbai and nationally.",
       "Supported technical operations including event logistics and digital infrastructure for competitions, speaker sessions, and workshops."
     ],
-    image: "about/img_arthashastra.png",
+    image: "/about/img_arthashastra.png",
     location: "NM Arthashastra, Mumbai, India",
   },
 ];

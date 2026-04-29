@@ -28,6 +28,7 @@ const CoverImg = ({ project, url, onLoad, enableAnimation = true }: CoverImgProp
         src={`/project_${url}/cover.png`}
         alt={`${project?.title || url} cover`}
         fill
+        priority
         className="object-cover object-center blur-xs"
         onLoad={onLoad}
         sizes="100vw"
@@ -73,11 +74,9 @@ const CoverImg = ({ project, url, onLoad, enableAnimation = true }: CoverImgProp
         </DropdownMenu>
 
 
-        <FadeInUp delay={0.2}>
           <h2 className="text-xl mt-6 text-white font-bold text-center">
             Released: <DateDisplay date={project.date} />
           </h2>
-        </FadeInUp>
       </FadeInUp>
     </div>
   );

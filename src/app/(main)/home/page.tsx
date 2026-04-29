@@ -1,5 +1,5 @@
 "use client";
-import Loader, { useSmartLoader } from "@/components/Loader";
+import Loader, { isImageCached, markImageCached, useSmartLoader } from "@/components/Loader";
 import FadeInUp from "@/components/FadeInUp";
 import ImageWithAbstractShape from "@/components/ImageWithAbstractShape";
 import { homePara, name, title } from "@/lib/Data";
@@ -13,10 +13,10 @@ import Card from "@/components/ui/Card";
 
 const Home = () => {
 
-  const [imgLoaded, setImgLoaded] = useState(false);
+  const HOME_IMG = "/img_home.png";
+  const [imgLoaded, setImgLoaded] = useState(() => isImageCached(HOME_IMG));
   const isLoading = useSmartLoader({
     loadingDependencies: [!imgLoaded],
-    minDuration: 200,
   });
 
   return (
@@ -122,7 +122,7 @@ const Home = () => {
           <ImageWithAbstractShape
             src="/img_home.png"
             alt="Shaad Qureshi"
-            onLoad={() => setImgLoaded(true)}
+            onLoad={() => { markImageCached(HOME_IMG); setImgLoaded(true); }}
             enableAnimation={!isLoading}
           />
         </div>

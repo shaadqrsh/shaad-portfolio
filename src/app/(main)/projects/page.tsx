@@ -1,5 +1,5 @@
 "use client";
-import Loader, { useSmartLoader } from "@/components/Loader";
+import Loader, { isImageCached, markImageCached, useSmartLoader } from "@/components/Loader";
 import ProjectsCard from "@/components/ProjectsCard";
 import projects, { categoryOrder } from "@/lib/Projects";
 import FadeInUp from "@/components/FadeInUp";
@@ -11,16 +11,18 @@ import { cn } from "@/lib/utils";
 import { useState, useEffect, useMemo } from "react";
 
 const Projects = () => {
-  const [loadedImages, setLoadedImages] = useState(0);
+  const [loadedImages, setLoadedImages] = useState(() =>
+    projects.filter((p) => isImageCached(`/project_${p.url}/icon.png`)).length
+  );
   const [cols, setCols] = useState(1);
 
-  const isLoading = useSmartLoader({
-    loadingDependencies: [loadedImages < projects.length],
-  });
-
-  const handleImageLoad = () => {
-    setLoadedImages((prev) => prev + 1);
-  };
+  const categoryRank = useMemo(() => {
+    const ranks: Record<string, number> = {};
+    categoryOrder.forEach((c, i) => {
+      ranks[c.name] = i;
+    });
+    return ranks;
+  }, []);
 
   const { categorizedProjects, sortedCategories } = useMemo(() => {
     const categorized = projects.reduce((acc, project) => {
@@ -33,19 +35,15 @@ const Projects = () => {
     }, {} as Record<string, typeof projects>);
 
     const sorted = Object.keys(categorized).sort((a, b) => {
-      const indexA = categoryOrder.findIndex((c) => c.name === a);
-      const indexB = categoryOrder.findIndex((c) => c.name === b);
+      const rankA = categoryRank[a] ?? Infinity;
+      const rankB = categoryRank[b] ?? Infinity;
 
-      if (indexA !== -1 && indexB !== -1) {
-        return indexA - indexB; // Both in order list, sort by their order
-      }
-      if (indexA !== -1) return -1; // Only A in order list, A comes first
-      if (indexB !== -1) return 1;  // Only B in order list, B comes first
-      return a.localeCompare(b);    // Neither in order list, sort alphabetically
+      if (rankA !== rankB) return rankA - rankB;
+      return a.localeCompare(b);
     });
 
     return { categorizedProjects: categorized, sortedCategories: sorted };
-  }, []);
+  }, [categoryRank]);
 
   const [minimizedCategories, setMinimizedCategories] = useState<Record<string, boolean>>(() => {
     const initialMinimized: Record<string, boolean> = {};
@@ -56,6 +54,19 @@ const Projects = () => {
     return initialMinimized;
   });
 
+  const visibleProjectsCount = useMemo(() => {
+    return sortedCategories.reduce((acc, category) => {
+      if (!minimizedCategories[category]) {
+        return acc + categorizedProjects[category].length;
+      }
+      return acc;
+    }, 0);
+  }, [minimizedCategories, categorizedProjects, sortedCategories]);
+
+  const isLoading = useSmartLoader({
+    loadingDependencies: [loadedImages < visibleProjectsCount],
+  });
+
   const toggleCategory = (category: string) => {
     setMinimizedCategories(prev => ({
       ...prev,
@@ -63,9 +74,12 @@ const Projects = () => {
     }));
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  const handleImageLoad = (url: string) => {
+    markImageCached(`/project_${url}/icon.png`);
+    setLoadedImages((prev) => prev + 1);
+  };
 
+  useEffect(() => {
     const updateCols = () => {
       if (window.innerWidth >= 1024) {
         setCols(2);
@@ -150,7 +164,8 @@ const Projects = () => {
                                 title={p.title}
                                 desc={p.desc}
                                 url={p.url}
-                                onLoad={handleImageLoad}
+                                onLoad={() => handleImageLoad(p.url)}
+                                priority={idx < 2}
                               />
                             </FadeInUp>
                           );

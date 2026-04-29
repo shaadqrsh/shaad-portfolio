@@ -69,6 +69,7 @@ const ExperienceCard = ({
             height={100}
             alt={title}
             className="lg:mr-4 max-lg:mb-2 rounded-lg"
+            style={{ width: "auto", height: "auto" }}
           />
         )}
 
