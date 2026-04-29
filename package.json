@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build --turbopack",
     "start": "next start",
     "lint": "next lint",
     "resume": "python public/resume_gen/scripts/lib_to_yaml.py && python public/resume_gen/scripts/yaml_to_html.py"
