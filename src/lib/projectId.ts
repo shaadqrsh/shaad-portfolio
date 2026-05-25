@@ -1,9 +1,17 @@
 import { projectData } from '@/types';
+import resumeData from './resume_data.json';
+
+const getProjBase = (urlKey: string) => {
+  const proj = resumeData.projects.find(p => p.url === urlKey);
+  return {
+    title: proj?.title || "",
+    date: proj?.date || ""
+  };
+};
 
 export const data: { [key: string]: projectData } = {
   bushido: {
-    title: 'Pokémon Bushido',
-    date: '00/08/2021',
+    ...getProjBase('bushido'),
     game: true,
     imgCount: 9,
     urls: [
@@ -82,8 +90,7 @@ export const data: { [key: string]: projectData } = {
     ],
   },
   splice: {
-    title: 'Pokémon Splice',
-    date: '00/08/2020',
+    ...getProjBase('splice'),
     game: true,
     imgCount: 9,
     urls: [
@@ -153,8 +160,7 @@ export const data: { [key: string]: projectData } = {
     ],
   },
   careerpath: {
-    title: 'CareerPath AI',
-    date: '00/11/2025',
+    ...getProjBase('careerpath'),
     game: false,
     imgCount: 9,
     urls: [
@@ -226,8 +232,7 @@ export const data: { [key: string]: projectData } = {
     ],
   },
   sqllift: {
-    title: 'SQLift',
-    date: '00/04/2026',
+    ...getProjBase('sqllift'),
     game: false,
     imgCount: 9,
     urls: [
@@ -296,8 +301,7 @@ export const data: { [key: string]: projectData } = {
     ],
   },
   homi: {
-    title: 'HOMI - Helpful Online Mentor Interface',
-    date: '00/02/2025',
+    ...getProjBase('homi'),
     game: false,
     imgCount: 10,
     urls: [
@@ -370,8 +374,7 @@ export const data: { [key: string]: projectData } = {
     ],
   },
   findly: {
-    title: 'Findly - Lost and Found Application',
-    date: '00/01/2025',
+    ...getProjBase('findly'),
     game: false,
     imgCount: 9,
     urls: [

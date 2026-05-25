@@ -1,31 +1,16 @@
-export const name = "Shaad Qureshi";
-export const fullName = "Shaad Abid Qureshi";
-export const title = "Aspiring Game Developer";
+import resumeData from "./resume_data.json";
 
+export const name = resumeData.name;
+export const fullName = resumeData.fullName;
+export const title = resumeData.title;
 
-export const maxWorkExperienceCount = 3;
-export const maxProjectsCount = 3;
-export const maxEducationCount = 2;
-export const maxCertificatesCount = 8;
-export const maxSkillsCount = 20;
-export const maxPublicationsCount = 2;
+export const maxWorkExperienceCount = resumeData.counts.workExperience;
+export const maxProjectsCount = resumeData.counts.projects;
+export const maxEducationCount = resumeData.counts.education;
+export const maxCertificatesCount = resumeData.counts.certificates;
+export const maxSkillsCount = resumeData.counts.skills;
+export const maxPublicationsCount = resumeData.counts.publications;
 
-
-export const homePara = `I'm a game developer with a strong computer science background, specializing in implementing core gameplay mechanics with Unity and Unreal Engine. My passion is creating engaging worlds that captivate players and inspire new creators.`;
-
-export const whoAmI = `I am a Computer Science student with a proficiency in AI, but I'm a passionate game developer at heart. My love for unique worlds and storytelling began with a Nintendo Wii in my childhood. I specialize in implementing core gameplay mechanics, using my C# skills in Unity and Blueprint expertise in Unreal Engine to bring creative visions to life. Through freelance projects, I've enjoyed collaborating with designers, offering technical solutions to realize their complex concepts. My ultimate ambition is to contribute to the development of beloved games at major studios and one day create my own, inspiring the next generation of gamers.`;
-
-export const testimonials = [
-  {
-    label: "Years",
-    count: "3+",
-  },
-  {
-    label: "Projects",
-    count: "5+",
-  },
-  {
-    label: "Clients",
-    count: "40+",
-  },
-];
+export const homePara = resumeData.summary;
+export const whoAmI = resumeData.about;
+export const testimonials = resumeData.testimonials;

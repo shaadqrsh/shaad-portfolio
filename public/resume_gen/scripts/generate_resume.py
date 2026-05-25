@@ -216,16 +216,96 @@ def generate_html(data):
 
     return final_html
 
-def main():
-    if not os.path.exists(YAML_FILE):
-        print(f"Error: {YAML_FILE} not found.")
-        return
+def generate_cover_letter_html(cl_data, resume_data):
+    CL_TEMPLATE_PATH = os.path.join(RESUME_GEN_DIR, 'templates', 'cover_letter_template.html')
+    if not os.path.exists(CL_TEMPLATE_PATH):
+        raise FileNotFoundError(f"Cover letter template not found at {CL_TEMPLATE_PATH}")
 
-    try:
-        with open(YAML_FILE, 'r', encoding='utf-8') as f:
-            data = yaml.safe_load(f)
-    except Exception as e:
-        print(f"Error parse YAML: {e}")
+    with open(CL_TEMPLATE_PATH, 'r', encoding='utf-8') as f:
+        template = f.read()
+
+    cl_html = template
+    cl_html = cl_html.replace('[NAME]', resume_data.get('name', ''))
+    cl_html = cl_html.replace('[FULL_NAME]', resume_data.get('fullName', ''))
+    cl_html = cl_html.replace('[TITLE]', resume_data.get('title', ''))
+    cl_html = cl_html.replace('[DATE]', datetime.now().strftime("%B %d, %Y"))
+
+    links = resume_data.get('links', [])
+    links_html = ""
+    for link in links:
+        url = link.get('url', '')
+        links_html += f"<div>{url_display_clean(url)}</div>"
+    cl_html = cl_html.replace('[HEADER_LINKS]', links_html)
+
+    cl_html = cl_html.replace('[INTRODUCTION]', cl_data.get('introduction', ''))
+    cl_html = cl_html.replace('[PARAGRAPH 1]', cl_data.get('paragraph1', ''))
+    cl_html = cl_html.replace('[PARAGRAPH 2]', cl_data.get('paragraph2', ''))
+    cl_html = cl_html.replace('[CONCLUSION]', cl_data.get('conclusion', ''))
+
+    return cl_html
+
+def clean_data(data):
+    if isinstance(data, dict):
+        for key in list(data.keys()):
+            if key in ['image', 'icon', 'label']:
+                del data[key]
+            else:
+                clean_data(data[key])
+    elif isinstance(data, list):
+        for item in data:
+            clean_data(item)
+    return data
+
+def load_base_data():
+    JSON_PATH = os.path.join(os.path.dirname(os.path.dirname(RESUME_GEN_DIR)), 'src', 'lib', 'resume_data.json')
+    if os.path.exists(JSON_PATH):
+        print(f"Loading base resume data directly from JSON: {JSON_PATH}")
+        try:
+            import json
+            with open(JSON_PATH, 'r', encoding='utf-8') as f:
+                resume_data = json.load(f)
+            
+            # 1. Map skills.top3 -> skills.top for resume compliance
+            if 'skills' in resume_data and 'top3' in resume_data['skills']:
+                resume_data['skills']['top'] = resume_data['skills'].pop('top3')
+                
+            # 2. Filter and map links to match resume format (LinkedIn, Website, Email with 'url' key)
+            raw_links = resume_data.get('links', [])
+            final_links = []
+            
+            linkedin = next((l for l in raw_links if l.get('text') == 'LinkedIn'), None)
+            if linkedin:
+                final_links.append({'text': 'LinkedIn', 'url': linkedin.get('href')})
+                
+            website_url = resume_data.get('websiteUrl') or 'https://www.shaadqrsh.com'
+            final_links.append({'text': 'Website', 'url': website_url})
+            
+            email = next((l for l in raw_links if l.get('text') == 'Email'), None)
+            if email:
+                final_links.append({'text': 'Email', 'url': email.get('href')})
+                
+            resume_data['links'] = final_links
+            
+            cleaned_data = clean_data(resume_data)
+            return cleaned_data
+        except Exception as e:
+            print(f"Error loading JSON data: {e}")
+            
+    # Fallback to local YAML file if JSON not found (e.g. running in tailored folders)
+    if os.path.exists(YAML_FILE):
+        print(f"Falling back to local YAML file: {YAML_FILE}")
+        try:
+            with open(YAML_FILE, 'r', encoding='utf-8') as f:
+                return yaml.safe_load(f)
+        except Exception as e:
+            print(f"Error parsing local YAML: {e}")
+            
+    return None
+
+def main():
+    data = load_base_data()
+    if not data:
+        print("Error: Could not load resume data from JSON database or local YAML.")
         return
 
     try:
@@ -240,3 +320,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

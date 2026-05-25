@@ -7,48 +7,27 @@ import {
   Twitter,
   User,
 } from "lucide-react";
+import resumeData from "./resume_data.json";
 
-export const headers = [
-  {
-    label: "Home",
-    link: "/home",
-    icon: House,
-  },
-  {
-    label: "About",
-    link: "/about",
-    icon: User,
-  },
-  {
-    label: "Projects",
-    link: "/projects",
-    icon: Joystick,
-  },
-];
+const iconMap = {
+  House,
+  User,
+  Joystick,
+  Linkedin,
+  Twitter,
+  Github,
+  Mail,
+};
 
-export const links = [
-  {
-    label: Linkedin,
-    href: "https://www.linkedin.com/in/shaadrqrsh/",
-    text: "LinkedIn",
-  },
-  {
-    label: Twitter,
-    href: "https://x.com/shaadqrsh",
-    text: "Twitter",
-  },
-  {
-    label: Github,
-    href: "https://github.com/shaadqrsh",
-    text: "GitHub",
-  },
-  {
-    label: Mail,
-    href: "shaadqrsh.work@gmail.com",
-    text: "Email",
-  },
-];
+export const headers = resumeData.headers.map((h) => ({
+  ...h,
+  icon: iconMap[h.icon as keyof typeof iconMap],
+}));
 
-export const eduEmail = "qureshi.sha@northeastern.edu";
-export const websiteUrl = "https://www.shaadqrsh.com";
+export const links = resumeData.links.map((l) => ({
+  ...l,
+  label: iconMap[l.label as keyof typeof iconMap],
+}));
 
+export const eduEmail = resumeData.eduEmail;
+export const websiteUrl = resumeData.websiteUrl;

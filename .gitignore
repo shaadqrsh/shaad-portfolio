@@ -47,11 +47,10 @@ next-env.d.ts
 /public/resume_gen/*
 !/public/resume_gen/scripts/
 /public/resume_gen/scripts/*
-!/public/resume_gen/scripts/lib_to_yaml.py
-!/public/resume_gen/scripts/yaml_to_html.py
-!/public/resume_gen/resume.html
-!/public/resume_gen/resume_data.yaml
+!/public/resume_gen/scripts/generate_resume.py
 !/public/resume_gen/templates/
 /public/resume_gen/templates/*
 !/public/resume_gen/templates/resume_template.html
+!/public/resume_gen/templates/cover_letter_template.html
+!/public/resume_gen/resume.html
 **/__pycache__/

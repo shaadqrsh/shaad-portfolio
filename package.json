@@ -7,7 +7,9 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "next lint",
-    "resume": "python public/resume_gen/scripts/lib_to_yaml.py && python public/resume_gen/scripts/yaml_to_html.py"
+    "resume": "python public/resume_gen/scripts/generate_resume.py",
+    "reformat": "python public/resume_gen/scripts/reformat_docs.py",
+    "tailor": "python public/resume_gen/scripts/generate_docs.py"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",

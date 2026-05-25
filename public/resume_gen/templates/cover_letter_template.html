@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>[NAME] - Cover Letter</title>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 0; 
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #525659;
+            display: flex;
+            justify-content: center;
+            font-family: "Times New Roman", serif;
+            -webkit-print-color-adjust: exact;
+        }
+        .resume-container {
+            width: 21cm;
+            min-height: 29.7cm;
+            margin: 1cm auto;
+            padding: 2.5cm; 
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            box-sizing: border-box;
+            font-size: 14px;
+            line-height: 1.5;
+            color: black;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                display: block;
+            }
+            .resume-container {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 2.5cm;
+                box-shadow: none;
+            }
+        }
+
+        h1, h3 { margin: 0; padding: 0; }
+        h1 {
+            font-size: 28px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        h3 {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 2px;
+            margin-top: -1px; 
+        }
+        
+        .header-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            border-bottom: 2px solid;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .header-left { text-align: left; vertical-align: top; padding-bottom: 10px; }
+        .header-right { 
+            text-align: right; 
+            font-size: 12px; 
+            line-height: 1.5; 
+            vertical-align: top; 
+            padding-top: 6px;
+        }
+
+        .letter-content {
+            margin-top: 2em;
+            text-align: left;
+        }
+        
+        .date {
+            margin-bottom: 2em;
+        }
+        
+        .salutation {
+            margin-bottom: 1em;
+        }
+        
+        p {
+            margin-bottom: 1em;
+            text-align: justify;
+        }
+        
+        .closing {
+            margin-top: 2em;
+        }
+        
+        .signature-img {
+            display: block;
+            height: 60px;
+            width: auto;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .signature-text {
+            font-weight: bold;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <table class="header-table">
+            <tr>
+                <td class="header-left">
+                    <h1>[FULL_NAME]</h1>
+                    <h3>[TITLE]</h3>
+                </td>
+                <td class="header-right">
+                    [HEADER_LINKS]
+                </td>
+            </tr>
+        </table>
+
+        <div class="letter-content">
+            <div class="date">[DATE]</div>
+
+            <div class="salutation">Dear Hiring Manager,</div>
+
+            <p>[INTRODUCTION]</p>
+
+            <p>[PARAGRAPH 1]</p>
+
+            <p>[PARAGRAPH 2]</p>
+
+            <p>[CONCLUSION]</p>
+
+            <div class="closing">
+                Sincerely,
+            </div>
+
+            <img src="../templates/signature.png" alt="Signature" class="signature-img">
+            <div class="signature-text">
+                [FULL_NAME]
+            </div>
+        </div>
+    </div>
+</body>
+</html>
