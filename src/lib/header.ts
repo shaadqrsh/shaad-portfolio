@@ -50,3 +50,5 @@ export const links = [
 ];
 
 export const eduEmail = "qureshi.sha@northeastern.edu";
+export const websiteUrl = "https://www.shaadqrsh.com";
+

@@ -191,7 +191,9 @@ def main():
     if linkedin:
         final_links.append(linkedin)
         
-    final_links.append({'text': 'Website', 'url': 'https://www.shaadqrsh.in'})
+    website_url = parse_js_object(header_content, 'websiteUrl') or 'https://www.shaadqrsh.com'
+    final_links.append({'text': 'Website', 'url': website_url})
+
     
     email = next((l for l in raw_links if l.get('text') == 'Email'), None)
     if email:
