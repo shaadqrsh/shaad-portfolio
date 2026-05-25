@@ -1,10 +1,19 @@
 import os
 import sys
+
+# Ensure requirements are met first
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if _SCRIPT_DIR not in sys.path:
+    sys.path.append(_SCRIPT_DIR)
+import check_requirements
+
+from pathlib import Path
+
 try:
     import yaml
+    import generate_pdf
 except ImportError:
-    print("Error: 'pyyaml' module not found.")
-    print("Please install it using: pip install pyyaml")
+    print("Error: 'pyyaml' or 'generate_pdf' module not found.")
     sys.exit(1)
 
 from datetime import datetime
@@ -313,6 +322,14 @@ def main():
         with open(OUTPUT_HTML, 'w', encoding='utf-8') as f:
             f.write(html)
         print(f"Success! HTML saved to {OUTPUT_HTML}")
+        
+        # Automatically convert compiled HTML to PDF
+        try:
+            output_pdf = os.path.splitext(OUTPUT_HTML)[0] + ".pdf"
+            scale = generate_pdf.convert_html_to_pdf(Path(OUTPUT_HTML), Path(output_pdf))
+            print(f"Success! Base PDF generated (scale={scale:.3f}) and saved to {output_pdf}")
+        except Exception as e:
+            print(f"Warning: Error generating base PDF: {e}")
             
     except Exception as e:
         print(f"Critical Error: {e}")
