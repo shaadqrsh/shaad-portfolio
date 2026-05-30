@@ -127,9 +127,7 @@ def convert_html_to_pdf(html_path: Path, pdf_path: Path) -> float:
 
 
 def main():
-    print("=" * 60)
-    print("PDF GENERATOR")
-    print("=" * 60)
+    print("\n--- PDF GENERATOR ---")
 
     html_files = find_html_files(RESUME_GEN_DIR)
     if not html_files:
@@ -161,12 +159,13 @@ def main():
         finally:
             browser.close()
 
-    print("\n" + "=" * 60)
-    print(f"Done. {len(successes)} succeeded, {len(failures)} failed.")
-    if failures:
-        for rel, err in failures:
-            print(f"  - {rel}: {err}")
-    print("=" * 60)
+    print("\n--- PDF CONVERSION SUMMARY ---")
+    print(f"Succeeded: {len(successes)} | Failed: {len(failures)}")
+    for rel in successes:
+        print(f"  [OK]    {rel}")
+    for rel, err in failures:
+        print(f"  [ERROR] {rel}: {err}")
+    print("-" * 30)
 
 
 if __name__ == "__main__":
