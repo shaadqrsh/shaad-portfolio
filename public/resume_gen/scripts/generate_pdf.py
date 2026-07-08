@@ -147,10 +147,28 @@ def main():
 
             for html in html_files:
                 rel = html.relative_to(RESUME_GEN_DIR)
-                pdf_path = html.with_suffix('.pdf')
+                
+                candidate_name = "Candidate"
+                yaml_path = html.parent / 'resume_data.yaml'
+                if yaml_path.is_file():
+                    try:
+                        import yaml
+                        with open(yaml_path, 'r', encoding='utf-8') as f:
+                            y_data = yaml.safe_load(f)
+                            candidate_name = y_data.get('name', 'Candidate')
+                    except:
+                        pass
+                
+                if html.name == 'resume.html':
+                    pdf_path = html.parent / f"{candidate_name} - Resume.pdf"
+                elif html.name == 'cover_letter.html':
+                    pdf_path = html.parent / f"{candidate_name} - Cover Letter.pdf"
+                else:
+                    pdf_path = html.with_suffix('.pdf')
+
                 try:
                     scale = render_single_page_pdf(page, html, pdf_path)
-                    print(f"  OK  {rel}  (scale={scale:.3f})")
+                    print(f"  OK  {rel} -> {pdf_path.name}  (scale={scale:.3f})")
                     successes.append(rel)
                 except Exception as e:
                     print(f"  FAIL {rel}: {e}")

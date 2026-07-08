@@ -10,7 +10,6 @@ def ensure_requirements():
     REQUIRED_IMPORTS = [
         ('yaml', 'pyyaml'),
         ('dotenv', 'python-dotenv'),
-        ('google.genai', 'google-genai'),
         ('playwright', 'playwright'),
         ('pypdf', 'pypdf'),
     ]

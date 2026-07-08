@@ -245,6 +245,7 @@ def generate_cover_letter_html(cl_data, resume_data):
         url = link.get('url', '')
         links_html += f"<div>{url_display_clean(url)}</div>"
     cl_html = cl_html.replace('[HEADER_LINKS]', links_html)
+    cl_html = cl_html.replace('[CONTACT_DETAILS]', links_html)
 
     cl_html = cl_html.replace('[INTRODUCTION]', cl_data.get('introduction', ''))
     cl_html = cl_html.replace('[PARAGRAPH 1]', cl_data.get('paragraph1', ''))

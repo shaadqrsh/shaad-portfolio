@@ -1,5 +1,4 @@
 pyyaml
 python-dotenv
-google-genai
 playwright
 pypdf

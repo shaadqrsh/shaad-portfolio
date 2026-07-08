@@ -13,20 +13,57 @@
     "publications": 2
   },
   "testimonials": [
-    { "label": "Years", "count": "3+" },
-    { "label": "Projects", "count": "5+" },
-    { "label": "Clients", "count": "40+" }
+    {
+      "label": "Years",
+      "count": "4+"
+    },
+    {
+      "label": "Projects",
+      "count": "100+"
+    },
+    {
+      "label": "Clients",
+      "count": "50+"
+    }
   ],
   "headers": [
-    { "label": "Home", "link": "/home", "icon": "House" },
-    { "label": "About", "link": "/about", "icon": "User" },
-    { "label": "Projects", "link": "/projects", "icon": "Joystick" }
+    {
+      "label": "Home",
+      "link": "/home",
+      "icon": "House"
+    },
+    {
+      "label": "About",
+      "link": "/about",
+      "icon": "User"
+    },
+    {
+      "label": "Projects",
+      "link": "/projects",
+      "icon": "Joystick"
+    }
   ],
   "links": [
-    { "label": "Linkedin", "href": "https://www.linkedin.com/in/shaadrqrsh/", "text": "LinkedIn" },
-    { "label": "Twitter", "href": "https://x.com/shaadqrsh", "text": "Twitter" },
-    { "label": "Github", "href": "https://github.com/shaadqrsh", "text": "GitHub" },
-    { "label": "Mail", "href": "shaadqrsh.work@gmail.com", "text": "Email" }
+    {
+      "label": "Linkedin",
+      "href": "https://www.linkedin.com/in/shaadrqrsh/",
+      "text": "LinkedIn"
+    },
+    {
+      "label": "Twitter",
+      "href": "https://x.com/shaadqrsh",
+      "text": "Twitter"
+    },
+    {
+      "label": "Github",
+      "href": "https://github.com/shaadqrsh",
+      "text": "GitHub"
+    },
+    {
+      "label": "Mail",
+      "href": "shaadqrsh.work@gmail.com",
+      "text": "Email"
+    }
   ],
   "eduEmail": "qureshi.sha@northeastern.edu",
   "websiteUrl": "https://www.shaadqrsh.com",
@@ -94,7 +131,7 @@
       "startDate": "00/06/2023",
       "endDate": "00/11/2025",
       "subtitle": [
-        "Developed game mechanics in Unity (C#) and Unreal Engine (C++/Blueprints) for 45+ clients across 90+ projects.",
+        "Developed game mechanics in Unity (C#) and Unreal Engine (C++/Blueprints) for 50+ clients across 100+ micro-projects.",
         "Delivered end-to-end gameplay systems including physics, AI, and UI, sourced through private Discord communities.",
         "Managed full project lifecycles independently, handling client scoping, iterative development, and final delivery."
       ],
@@ -230,34 +267,95 @@
       }
     ],
     "main": [
-      { "icon": "icon_godot.svg", "name": "Godot" },
-      { "icon": "icon_photoshop.svg", "name": "Photoshop" },
-      { "icon": "icon_premiere.svg", "name": "Premiere Pro" },
-      { "icon": "icon_aseprite.svg", "name": "Pixel Art" },
-      { "icon": "icon_cs.svg", "name": "C#" },
-      { "icon": "icon_cpp.svg", "name": "C++" },
-      { "icon": "icon_ruby.svg", "name": "Ruby" },
-      { "icon": "icon_python.svg", "name": "Python" },
-      { "icon": "icon_java.svg", "name": "Java" },
-      { "icon": "icon_git.svg", "name": "Git" },
-      { "icon": "icon_android.svg", "name": "Android" },
-      { "icon": "icon_microsoft.svg", "name": "Microsoft Office" }
+      {
+        "icon": "icon_godot.svg",
+        "name": "Godot"
+      },
+      {
+        "icon": "icon_photoshop.svg",
+        "name": "Photoshop"
+      },
+      {
+        "icon": "icon_premiere.svg",
+        "name": "Premiere Pro"
+      },
+      {
+        "icon": "icon_aseprite.svg",
+        "name": "Pixel Art"
+      },
+      {
+        "icon": "icon_cs.svg",
+        "name": "C#"
+      },
+      {
+        "icon": "icon_cpp.svg",
+        "name": "C++"
+      },
+      {
+        "icon": "icon_ruby.svg",
+        "name": "Ruby"
+      },
+      {
+        "icon": "icon_python.svg",
+        "name": "Python"
+      },
+      {
+        "icon": "icon_java.svg",
+        "name": "Java"
+      },
+      {
+        "icon": "icon_git.svg",
+        "name": "Git"
+      },
+      {
+        "icon": "icon_android.svg",
+        "name": "Android"
+      },
+      {
+        "icon": "icon_microsoft.svg",
+        "name": "Microsoft Office"
+      }
     ],
     "other": [
-      { "title": "Project Management" },
-      { "title": "UI Design" },
-      { "title": "Level Design" },
-      { "title": "Prompt Engineering" },
-      { "title": "Problem Solving" },
-      { "title": "Testing & Debugging" },
-      { "title": "Collaboration & Teamwork" },
-      { "title": "Time Management" }
+      {
+        "title": "Project Management"
+      },
+      {
+        "title": "UI Design"
+      },
+      {
+        "title": "Level Design"
+      },
+      {
+        "title": "Prompt Engineering"
+      },
+      {
+        "title": "Problem Solving"
+      },
+      {
+        "title": "Testing & Debugging"
+      },
+      {
+        "title": "Collaboration & Teamwork"
+      },
+      {
+        "title": "Time Management"
+      }
     ]
   },
   "categoryOrder": [
-    { "name": "Game Projects", "minimizedByDefault": false },
-    { "name": "Web Applications", "minimizedByDefault": false },
-    { "name": "Mobile Applications", "minimizedByDefault": true }
+    {
+      "name": "Game Projects",
+      "minimizedByDefault": false
+    },
+    {
+      "name": "Web Applications",
+      "minimizedByDefault": false
+    },
+    {
+      "name": "Mobile Applications",
+      "minimizedByDefault": true
+    }
   ],
   "projects": [
     {

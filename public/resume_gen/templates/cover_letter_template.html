@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>[NAME] - Cover Letter</title>
     <style>
         @page {
             size: A4 portrait;
-            margin: 0; 
+            margin: 0;
         }
+
         body {
             margin: 0;
             padding: 0;
@@ -17,13 +19,14 @@
             font-family: "Times New Roman", serif;
             -webkit-print-color-adjust: exact;
         }
+
         .resume-container {
             width: 21cm;
             min-height: 29.7cm;
             margin: 1cm auto;
-            padding: 2.5cm; 
+            padding: 2.5cm;
             background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             box-sizing: border-box;
             font-size: 14px;
             line-height: 1.5;
@@ -35,6 +38,7 @@
                 background-color: white;
                 display: block;
             }
+
             .resume-container {
                 width: 100%;
                 height: 100%;
@@ -44,33 +48,45 @@
             }
         }
 
-        h1, h3 { margin: 0; padding: 0; }
+        h1,
+        h3 {
+            margin: 0;
+            padding: 0;
+        }
+
         h1 {
             font-size: 28px;
             text-transform: uppercase;
             font-weight: bold;
             margin-bottom: 2px;
         }
+
         h3 {
             font-size: 18px;
             font-weight: normal;
             margin-bottom: 2px;
-            margin-top: -1px; 
+            margin-top: -1px;
         }
-        
-        .header-table { 
-            width: 100%; 
-            border-collapse: collapse; 
+
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
             border-bottom: 2px solid;
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
-        .header-left { text-align: left; vertical-align: top; padding-bottom: 10px; }
-        .header-right { 
-            text-align: right; 
-            font-size: 12px; 
-            line-height: 1.5; 
-            vertical-align: top; 
+
+        .header-left {
+            text-align: left;
+            vertical-align: top;
+            padding-bottom: 10px;
+        }
+
+        .header-right {
+            text-align: right;
+            font-size: 12px;
+            line-height: 1.5;
+            vertical-align: top;
             padding-top: 6px;
         }
 
@@ -78,24 +94,24 @@
             margin-top: 2em;
             text-align: left;
         }
-        
+
         .date {
             margin-bottom: 2em;
         }
-        
+
         .salutation {
             margin-bottom: 1em;
         }
-        
+
         p {
             margin-bottom: 1em;
             text-align: justify;
         }
-        
+
         .closing {
             margin-top: 2em;
         }
-        
+
         .signature-img {
             display: block;
             height: 60px;
@@ -108,8 +124,16 @@
             font-weight: bold;
             margin-top: 0;
         }
+
+        .signature-contacts {
+            font-size: 12px;
+            color: #555;
+            margin-top: 5px;
+            line-height: 1.4;
+        }
     </style>
 </head>
+
 <body>
     <div class="resume-container">
         <table class="header-table">
@@ -138,14 +162,18 @@
             <p>[CONCLUSION]</p>
 
             <div class="closing">
-                Sincerely,
+                Best regards,
             </div>
 
             <img src="../templates/signature.png" alt="Signature" class="signature-img">
             <div class="signature-text">
                 [FULL_NAME]
             </div>
+            <div class="signature-contacts">
+                [CONTACT_DETAILS]
+            </div>
         </div>
     </div>
 </body>
+
 </html>
