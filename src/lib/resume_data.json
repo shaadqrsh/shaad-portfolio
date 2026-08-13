@@ -359,6 +359,20 @@
   ],
   "projects": [
     {
+      "title": "Counting Sheep",
+      "url": "countingsheep",
+      "category": "Game Projects",
+      "date": "00/08/2026",
+      "desc": "An atmospheric 3D arcade platformer developed for the GMTK Game Jam 2026. Set inside a sleeper's subconscious, players guide a floaty sheep across shifting voxel cloud-numerals that crumble and reform in real time as the sleeper counts down to sleep."
+    },
+    {
+      "title": "Harvest Rush",
+      "url": "harvestrush",
+      "category": "Game Projects",
+      "date": "00/08/2026",
+      "desc": "A fast-paced couch co-op and solo farming game where players till soil, sow seeds, water crops, and rush harvested produce to a scheduled delivery truck while defending the farm from hungry pests and spreading fires."
+    },
+    {
       "title": "Pokémon Bushido",
       "url": "bushido",
       "category": "Game Projects",

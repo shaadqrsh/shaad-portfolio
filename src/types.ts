@@ -2,7 +2,6 @@ export type projectData = {
   title: string;
   date: string;
   game: boolean;
-  imgCount: number;
   urls: { label: string; icon: string; url: string }[];
   desc: string;
   features: { heading: string; content: string }[];

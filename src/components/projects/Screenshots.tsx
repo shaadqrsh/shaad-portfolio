@@ -1,4 +1,5 @@
 import Title from "@/components/Title";
+import { getImgCount } from "@/lib/imgCounts";
 import { ProjectIdPageProps } from "@/types";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
@@ -10,7 +11,9 @@ import {
 } from "@/components/ui/carousel";
 import ImageDialog from "./ImageDialog";
 
-const Screenshots = ({ project, url }: ProjectIdPageProps) => {
+const Screenshots = ({ url }: ProjectIdPageProps) => {
+  const imgCount = getImgCount(url);
+
   return (
     <div className="flex flex-col gap-x-2 mt-10 bg-shaad-200 shadow-2xl rounded-4xl p-8 w-full">
       <Title>Screenshots</Title>
@@ -26,7 +29,7 @@ const Screenshots = ({ project, url }: ProjectIdPageProps) => {
             ]}
           >
             <CarouselContent>
-              {Array.from({ length: project?.imgCount || 0 }, (_, i) => (
+              {Array.from({ length: imgCount }, (_, i) => (
                 <CarouselItem
                   key={i}
                   className="flex justify-center lg:basis-1/3 "
