@@ -6,7 +6,7 @@
   "about": "I am a Computer Science student with a proficiency in AI, but I'm a passionate game developer at heart. My love for unique worlds and storytelling began with a Nintendo Wii in my childhood. I specialize in implementing core gameplay mechanics, using my C# skills in Unity and Blueprint expertise in Unreal Engine to bring creative visions to life. Through freelance projects, I've enjoyed collaborating with designers, offering technical solutions to realize their complex concepts. My ultimate ambition is to contribute to the development of beloved games at major studios and one day create my own, inspiring the next generation of gamers.",
   "counts": {
     "workExperience": 3,
-    "projects": 3,
+    "projects": 4,
     "education": 2,
     "certificates": 8,
     "skills": 20,
@@ -124,7 +124,13 @@
       ],
       "image": "/about/img_neu.png",
       "location": "Northeastern University, Boston, MA",
-      "inProgress": true
+      "inProgress": true,
+      "evidence": [
+        "Live event AV: lighting boards, sound boards, microphones, projection systems",
+        "Coordinates in real time with ITS staff, House Managers, and Stage Managers",
+        "Venues: performances and university events on campus",
+        "NO QUANTIFIED OUTCOMES RECORDED - write these bullets qualitatively"
+      ]
     },
     {
       "title": "Game Programmer",
@@ -136,7 +142,14 @@
         "Managed full project lifecycles independently, handling client scoping, iterative development, and final delivery."
       ],
       "image": "/about/img_discord.png",
-      "location": "Freelance, Remote"
+      "location": "Freelance, Remote",
+      "evidence": [
+        "Unity (C#), Unreal Engine (C++ and Blueprints)",
+        "50+ distinct clients, 100+ delivered micro-projects over roughly 2.5 years",
+        "Systems shipped: gameplay mechanics, physics, AI, UI",
+        "Owned each project end to end: client scoping, iterative development, final delivery",
+        "Sourced entirely through private Discord communities, with no agency or marketplace platform"
+      ]
     },
     {
       "title": "Member (Technical Dept.)",
@@ -148,7 +161,13 @@
         "Supported technical operations including event logistics and digital infrastructure for competitions, speaker sessions, and workshops."
       ],
       "image": "/about/img_arthashastra.png",
-      "location": "NM Arthashastra, Mumbai, India"
+      "location": "NM Arthashastra, Mumbai, India",
+      "evidence": [
+        "WordPress for the festival website",
+        "NM College annual inter-collegiate academic festival, 27+ events across multiple domains",
+        "50+ member organizing team; multi-day event drawing colleges from Mumbai and nationally",
+        "Scope covered event logistics and digital infrastructure for competitions, speaker sessions, and workshops"
+      ]
     }
   ],
   "publications": [
@@ -349,12 +368,8 @@
       "minimizedByDefault": false
     },
     {
-      "name": "Web Applications",
+      "name": "Other Projects",
       "minimizedByDefault": false
-    },
-    {
-      "name": "Mobile Applications",
-      "minimizedByDefault": true
     }
   ],
   "projects": [
@@ -363,7 +378,7 @@
       "url": "countingsheep",
       "category": "Game Projects",
       "date": "00/08/2026",
-      "desc": "An atmospheric 3D arcade platformer developed for the GMTK Game Jam 2026. Set inside a sleeper's subconscious, players guide a floaty sheep across shifting voxel cloud-numerals that crumble and reform in real time as the sleeper counts down to sleep."
+      "desc": "A 3D arcade platformer built for the GMTK Game Jam 2026. Players guide a floaty sheep across voxel cloud-numerals that crumble and reform underneath them as the sleeper counts down to sleep."
     },
     {
       "title": "Harvest Rush",
@@ -389,28 +404,28 @@
     {
       "title": "CareerPath AI",
       "url": "careerpath",
-      "category": "Web Applications",
+      "category": "Other Projects",
       "date": "00/11/2025",
       "desc": "A 'vibe coding' experiment built in 3 days with Gemini 3 Pro. This AI counselor generates hyper-personalized career roadmaps and realistic 'day-in-the-life' visualizations to help users find their ideal career."
     },
     {
       "title": "SQLift",
       "url": "sqllift",
-      "category": "Web Applications",
+      "category": "Other Projects",
       "date": "00/04/2026",
       "desc": "SQLift is a full-stack workout tracking web application with a rich relational database at its core. Users can plan custom workouts, track live sessions set-by-set, monitor body measurements and analytics over time, and compete on global and friend leaderboards."
     },
     {
       "title": "HOMI - Helpful Online Mentor Interface",
       "url": "homi",
-      "category": "Web Applications",
+      "category": "Other Projects",
       "date": "00/02/2025",
       "desc": "An AI-powered learning assistant for IT students, using LLMs to offer personalized study material, real-time query resolution, automated test generation, and attendance and assignment tracking."
     },
     {
       "title": "Findly - Lost and Found Application",
       "url": "findly",
-      "category": "Mobile Applications",
+      "category": "Other Projects",
       "date": "00/01/2025",
       "desc": "An Android application with a Firebase-powered backend, which acts as a platform to list lost or found items and chat with users to recover lost items or return found ones."
     }

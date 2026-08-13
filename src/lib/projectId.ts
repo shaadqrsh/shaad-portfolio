@@ -20,32 +20,32 @@ export const data: { [key: string]: projectData } = {
         url: 'https://github.com/neu-5850-2026/110-finalproject-shaadqrsh',
       },
     ],
-    desc: 'Harvest Rush is a frantic one to two player couch co-op and solo farming game inspired by the hectic multitasking of Overcooked. Set on a bustling, tile-based family farm, players scramble against the clock to keep a demanding delivery truck supplied with fresh produce. The peaceful countryside rhythm quickly turns into delightful chaos as players till soil with rakes, sow seeds, water growing crops through distinct visual stages, and rush harvested carrots, wheat, and tomatoes to the loading dock before the truck pulls away. With mischievous burrowing pests hunting for prize vegetables and wild fires threatening to scorch crops and block critical pathways, players must communicate seamlessly, prioritize urgent farm tasks, and master high-stakes agricultural teamwork to rack up high scores.',
+    desc: 'Harvest Rush is a one or two player farming game about running out of time, built in the multitasking tradition of Overcooked. A delivery truck docks at the edge of a tile-based farm with an order to fill, and you have until it leaves to fill it. That means tilling soil, sowing seeds, watering crops through their growth stages, and carrying finished carrots, wheat, and tomatoes to the loading dock. Pests burrow up from the corners to steal produce, and fires spread across the field and block the paths you were counting on. With two players the whole thing becomes a shouting match about who is doing what.',
     features: [
       {
         heading: 'Frantic Couch Co-op & Solo Play',
         content:
-          'Supports two players collaborating on a shared keyboard or a solo farmer managing the entire estate alone, featuring tuned game-length presets (Short, Medium, Long) that tailor wave budgets and hazard pressure to ensure both collaborative chaos and solo score attacks feel rewarding.',
+          'Two people share a keyboard, or one person runs the farm alone. Three game lengths (Short, Medium, Long) change the wave budgets and how hard the hazards push, so a solo run is tuned differently rather than being the same game with fewer hands.',
       },
       {
         heading: 'Context-Sensitive Tool Pipeline',
         content:
-          'An intuitive, fluid interaction design where a single action button seamlessly adapts based on the tile the farmer faces and the tool in handâ€”effortlessly cycling between tilling soil with rakes, planting reusable seed bags, hydrating plots with watering cans, harvesting crops with bare hands, and staging produce on work tables.',
+          'There is a single action button. What it does depends on the tile you are facing and what you are holding: tilling with a rake, planting from a reusable seed bag, watering a plot, pulling a crop up by hand, or setting produce down on a work table. You never hunt for the right key.',
       },
       {
         heading: 'Dynamic Farm Hazards: Pests & Spreading Fire',
         content:
-          'Keeps players on their toes with sneaky pests that emerge from corner burrows to steal crops from plots and tables, alongside spreading fires that scorch adjacent vegetation and block pathways. Players must quickly mount defenses by sweeping pests with rakes or dousing fire lines with watering cans.',
+          'Pests come up from burrows in the corners and take crops off plots and tables. Fires scorch neighboring tiles and cut off paths. A rake sweeps the pests away and a watering can puts out fire, so the tool you need for the emergency is usually the one you just put down.',
       },
       {
         heading: 'Wave-Based Delivery Truck & Score Chasing',
         content:
-          'The gameplay loop is driven by back-to-back delivery waves where a truck docks at the loading bay with specific produce orders. Fulfilling orders awards direct crop payouts and escalating completion bonuses, culminating in a comprehensive end-of-day results board tracking top runs across every farm and mode.',
+          'Waves run back to back. The truck arrives at the loading bay wanting specific produce, and filling the order pays out per crop plus a completion bonus that grows as you keep up. The day ends on a results board that keeps top runs per farm and mode.',
       },
       {
         heading: 'Vibrant Countryside Atmosphere & Feedback',
         content:
-          'Features a warm, colorful 16:9 pixel-art farm layout enhanced with animated crop growth stages, responsive color-tint pulses, visual progress fill-meters, and dynamic audio cues that bring the charming, chaotic farm to life.',
+          'A 16:9 pixel-art farm with animated growth stages for every crop. Color-tint pulses, fill meters, and audio cues tell you what changed, which matters when both players are watching opposite corners of the screen.',
       },
     ],
     technologies: [
@@ -67,13 +67,13 @@ export const data: { [key: string]: projectData } = {
     ],
     videos: [],
     additional: [
-      'This game was developed as the capstone final project for CS 5850 (Building Game Engines) at Northeastern University, building upon an engine developed from the ground up over the semester.',
-      'The game draws heavy design inspiration from the frantic couch co-op energy of Overcooked and the rewarding agricultural rhythm of Stardew Valley, blending rapid multitasking with farming mechanics.',
-      'Due to tight submission deadlines and a lack of production time for full-screen illustration, generative AI was utilized to create the decorative background artwork for the title screen, help menu, and end-of-day scores screens, while all in-game sprites, tiles, and HUD elements are a mix of custom assets and public assets from itch.io.',
-      'The game evolved through iterative playtesting, cutting tedious mechanics like running to a central water trough and stockpiling in storage bins to emphasize immediate hand-to-hand tool passing and dynamic table staging.',
-      'Shifted from a punishing hard-quota win/loss failure state to an engaging score-attack structure, ensuring chaotic hazard moments remain fun while rewarding every successfully loaded crop.',
-      'A dedicated headless test harness running 50,000 simulated wave generations was developed to empirically verify the mathematical fairness and distribution of the procedural delivery algorithm.',
-      'Includes tailored solo and two-player tuning profiles across multiple difficulty lengths (Short, Medium, Long), ensuring balanced pacing whether playing alone or collaborating with a partner.',
+      'This was my capstone final project for CS 5850 (Building Game Engines) at Northeastern University, built on top of an engine I wrote from scratch over the semester.',
+      'The design borrows the co-op panic of Overcooked and the farming loop of Stardew Valley.',
+      'The decorative background art on the title screen, help menu, and end-of-day scores screens is generative AI. I ran out of time to illustrate three full-screen images before the deadline. Everything in the game itself, the sprites, tiles, and HUD, is a mix of my own assets and public assets from itch.io.',
+      'Playtesting cut two mechanics I had been attached to: running to a central water trough, and stockpiling produce in storage bins. Both slowed the game down. Passing tools hand to hand and staging crops on tables replaced them.',
+      'It used to have a hard quota you either met or failed. That made the fires and pests feel punishing instead of funny, so I moved it to a score attack where every crop you load still counts for something.',
+      'I wrote a headless test harness that ran 50,000 simulated wave generations to check that the procedural delivery algorithm was actually fair, rather than trusting that it looked fine in play.',
+      'Solo and two-player runs have separate tuning profiles across the three lengths (Short, Medium, Long).',
     ],
   },
   countingsheep: {
@@ -86,32 +86,32 @@ export const data: { [key: string]: projectData } = {
         url: 'https://bro-skito.itch.io/counting-sheep',
       },
     ],
-    desc: "Step into the surreal, tranquil world of a sleeper's dream in Counting Sheep, a 3D platformer where the world itself is a countdown ritual. As a fluffy, buoyant sheep, you drift and hop across floating islands of glowing cloud-voxels arranged in the shapes of countdown numerals. With every tick of the timer, the ground beneath you transformsâ€”unstable clouds shudder and plunge into the endless nocturnal abyss below, while new paths rise softly from the fog. Ride the count all the way down to ease the sleeper into deep rest, or risk falling through the gaps and jolting them awake.",
+    desc: 'Counting Sheep is a 3D platformer built around a countdown. You play a sheep drifting across floating islands of glowing cloud-voxels that are arranged in the shape of the number currently being counted. Every tick of the timer, part of the ground goes: the unstable clouds shudder, then drop away into the dark, while new paths rise out of the fog somewhere else. Ride the count all the way down and the sleeper falls asleep. Miss a jump and you wake them up.',
     features: [
       {
         heading: 'Dynamic Shifting Cloud Floors',
         content:
-          'Navigate ever-changing platforms shaped like giant numerals. As the countdown ticks down, disappearing clouds flash visual warning tremors before crumbling away, challenging players to anticipate reflow patterns and leap to safe ground.',
+          'The platforms are giant numerals, and they rearrange as the count goes down. Clouds that are about to disappear shake first, so you get a moment of warning to read where the level is going and jump before the tile you are standing on stops existing.',
       },
       {
         heading: 'Floaty, Buoyant Platforming',
         content:
-          'Experience gentle, airy movement with buoyant hover drift and slow, sweeping jumps. Built-in platforming forgiveness and momentum cushioning reward decisive traversal across perilous void gaps.',
+          'The sheep hovers and drifts, and the jumps are slow and wide. The controller is forgiving on purpose: it cushions your momentum and gives you a little slack at ledges, so committing to a jump usually works out.',
       },
       {
         heading: 'Reactive Soundscape & Dynamic Bleats',
         content:
-          'Immerse yourself in a soothing nocturnal dreamscape guided by hypnotic ambient drones, calming resolution chimes, and expressive, randomized sheep vocalizations that respond to jumps, landings, star pickups, and near misses.',
+          'Ambient drones underneath, chimes when something resolves, and a sheep that bleats. The bleats are randomized and tied to what just happened, so jumps, landings, star pickups, and near misses all sound different.',
       },
       {
         heading: 'Varied Dream Modes & Pacing',
         content:
-          'Tackle structured Dream runs based on descending patterns like Fibonacci, Primes, and Halving sequences, chase high scores and combo multipliers in Endless Mode, or unwind in a tranquil, no-fail Zen Mode with automatic fall rescue.',
+          'Dream runs count down through a set sequence: Fibonacci, primes, or halving. Endless Mode is the high score chase, with combo multipliers. Zen Mode has no fail state at all and catches you when you fall.',
       },
       {
         heading: 'Diegetic Sleep Meter & Radar Planning',
         content:
-          'Track your progress through an organic dream-journal HUD featuring a closing-eyelid sleep gauge that reacts to your precision, accompanied by a top-down minimap revealing upcoming ghost platforms for strategic route planning.',
+          'The HUD is styled as a dream journal. Instead of a progress bar there is an eyelid that closes further the cleaner you play. A top-down minimap shows the platforms that are about to appear, which is how you plan a route more than one jump ahead.',
       },
     ],
     technologies: [
@@ -132,11 +132,11 @@ export const data: { [key: string]: projectData } = {
     ],
     videos: [],
     additional: [
-      'Developed for the GMTK Game Jam 2026, bringing the countdown theme to life through the classic bedtime tradition of counting sheep.',
-      'Built around the guiding design philosophy of "logic blocky, render fluffy" pairing precise, predictable grid-based movement with soft, luminous cloud visuals.',
-      'Visual aesthetic draws heavy inspiration from classic storybooks and ink dream diaries, combining handwritten typography with a soothing indigo and starlight color palette.',
-      'Includes a dedicated Zen Mode created specifically for unwinding, completely stripping away failure conditions, timers, and scoring in favor of peaceful drift recovery and slower rhythms.',
-      'Engineered to deliver a polished, responsive standalone gaming experience with full gamepad and keyboard support.',
+      'Built for the GMTK Game Jam 2026. The theme was countdown, and counting sheep was the first thing that came to mind.',
+      'The rule I kept coming back to was "logic blocky, render fluffy": the movement is strict grid-based and predictable underneath, and everything you actually see is soft and glowing.',
+      'The look comes from storybooks and ink dream diaries, with handwritten type and an indigo and starlight palette.',
+      'Zen Mode exists because I wanted a version with nothing to lose. No timer, no score, no failure. If you fall, it puts you back.',
+      'Runs standalone with both gamepad and keyboard support.',
     ],
   },
   bushido: {

@@ -17,12 +17,14 @@ except ImportError:
     sys.exit(1)
 
 from datetime import datetime
+from html import escape
 import traceback
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 RESUME_GEN_DIR = os.path.dirname(SCRIPT_DIR)
+PUBLIC_DIR = os.path.dirname(RESUME_GEN_DIR)
 YAML_FILE = os.path.join(RESUME_GEN_DIR, 'resume_data.yaml')
-OUTPUT_HTML = os.path.join(RESUME_GEN_DIR, 'resume.html')
+OUTPUT_HTML = os.path.join(PUBLIC_DIR, 'resume.html')
 TEMPLATE_PATH = os.path.join(RESUME_GEN_DIR, 'templates', 'resume_template.html')
 
 def parse_date(date_str):
@@ -196,7 +198,28 @@ def generate_html(data):
 
     skills = data.get('skills', {})
     limit = counts.get('skills') if counts.get('skills') is not None else 100
-    if skills and limit > 0:
+    categories = skills.get('categories') if isinstance(skills, dict) else None
+    if categories:
+        # One labelled row per category, rendered as a comma-separated list.
+        rows = []
+        for cat in categories:
+            if not isinstance(cat, dict):
+                continue
+            label = str(cat.get('label') or '').strip()
+            items = [str(i).strip() for i in (cat.get('items') or []) if str(i).strip()]
+            if label and items:
+                rows.append((label, items))
+        if rows:
+            content_html += '\n        <div class="section">\n            <h2>TECHNICAL SKILLS</h2>'
+            for label, items in rows:
+                content_html += (
+                    f"\n            <div class=\"skill-cat\">"
+                    f"<span class=\"cat-label\">{escape(label)}:</span> "
+                    f"{escape(', '.join(items))}</div>"
+                )
+            content_html += "\n        </div>"
+    elif skills and limit > 0:
+        # Fallback for data without categories: a flat 5-column grid.
         flat_skills = []
         for s in skills.get('top', []):
             flat_skills.append(s.get('title'))
@@ -301,7 +324,7 @@ def load_base_data():
         except Exception as e:
             print(f"Error loading JSON data: {e}")
             
-    # Fallback to local YAML file if JSON not found (e.g. running in tailored folders)
+    # Fallback to a local YAML file when the JSON database is unavailable.
     if os.path.exists(YAML_FILE):
         print(f"Falling back to local YAML file: {YAML_FILE}")
         try:
@@ -320,15 +343,19 @@ def main():
 
     try:
         html = generate_html(data)
+        os.makedirs(os.path.dirname(OUTPUT_HTML), exist_ok=True)
         with open(OUTPUT_HTML, 'w', encoding='utf-8') as f:
             f.write(html)
-        print(f"Success! HTML saved to {OUTPUT_HTML}")
         
+        repo_root = os.path.dirname(PUBLIC_DIR)
+        rel = lambda p: os.path.relpath(p, repo_root).replace('\\', '/')
+        print(f"Success! HTML saved to {rel(OUTPUT_HTML)}")
         # Automatically convert compiled HTML to PDF
         try:
             output_pdf = os.path.splitext(OUTPUT_HTML)[0] + ".pdf"
             scale = generate_pdf.convert_html_to_pdf(Path(OUTPUT_HTML), Path(output_pdf))
-            print(f"Success! Base PDF generated (scale={scale:.3f}) and saved to {output_pdf}")
+            print(f"Success! Base PDF generated (scale={scale:.3f}) and saved to {rel(output_pdf)}")
+            print("  The site serves this at /resume.pdf")
         except Exception as e:
             print(f"Warning: Error generating base PDF: {e}")
             

@@ -37,14 +37,10 @@ SCALE_TOLERANCE = 0.005
 
 
 def find_html_files(root: Path):
-    """Find target HTML files at the root of resume_gen and exactly one level deep.
+    """Find target HTML files at the given root and exactly one level deep.
 
-    Includes:
-      - resume_gen/resume.html (if present)
-      - resume_gen/<job_folder>/resume.html
-      - resume_gen/<job_folder>/cover_letter.html
-
-    Skips: scripts/, templates/, __pycache__/, .git/, and Done/ (and anything deeper).
+    Matches the names in TARGET_FILES, skipping the folders in IGNORE_FOLDERS
+    and anything nested deeper than one level.
     """
     found = []
 

@@ -54,6 +54,5 @@ next-env.d.ts
 /public/resume_gen/templates/*
 !/public/resume_gen/templates/resume_template.html
 !/public/resume_gen/templates/cover_letter_template.html
-!/public/resume_gen/resume.html
-!/public/resume_gen/scripts/requirements.txt
 **/__pycache__/
+/public/resume.html
