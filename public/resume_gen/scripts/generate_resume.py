@@ -161,11 +161,16 @@ def generate_html(data):
         for proj in projs[:limit]:
             p_date = format_date_display(proj.get('date'))
             date_html = f"<span>{p_date}</span>" if p_date else ""
+            desc = proj.get('desc')
+            items = desc if isinstance(desc, list) else [desc]
+            items_html = "".join(
+                f"\n                    <li>{item}</li>"
+                for item in items if item
+            )
             content_html += f"""
             <div class="entry">
                 <div class="job-title">{proj.get('title')} {date_html}</div>
-                <ul>
-                    <li>{proj.get('desc')}</li>
+                <ul>{items_html}
                 </ul>
             </div>"""
         content_html += "\n        </div>"
@@ -243,6 +248,7 @@ def generate_html(data):
     final_html = final_html.replace('[PAGE_TITLE]', data.get('name', 'Resume') + ' - Resume')
     final_html = final_html.replace('[FULL_NAME]', data.get('fullName', ''))
     final_html = final_html.replace('[JOB_TITLE]', data.get('title', ''))
+    final_html = final_html.replace('[LOCATION]', data.get('location', ''))
     final_html = final_html.replace('[HEADER_LINKS]', header_links)
     final_html = final_html.replace('[CONTENT]', content_html)
 
@@ -260,6 +266,7 @@ def generate_cover_letter_html(cl_data, resume_data):
     cl_html = cl_html.replace('[NAME]', resume_data.get('name', ''))
     cl_html = cl_html.replace('[FULL_NAME]', resume_data.get('fullName', ''))
     cl_html = cl_html.replace('[TITLE]', resume_data.get('title', ''))
+    cl_html = cl_html.replace('[LOCATION]', resume_data.get('location', ''))
     cl_html = cl_html.replace('[DATE]', datetime.now().strftime("%B %d, %Y"))
 
     links = resume_data.get('links', [])
