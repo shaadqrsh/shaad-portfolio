@@ -1,17 +1,32 @@
 import resumeData from "./resume_data.json";
 
 // Canonical origin for anything that has to emit absolute URLs (sitemap,
-// robots, JSON-LD, the agent endpoints). Vercel preview/branch deploys get
-// their own hostname, so prefer that when it exists and fall back to the
-// value tracked in resume_data.json for local dev and production.
-const fromVercel = process.env.NEXT_PUBLIC_VERCEL_URL
+// robots, JSON-LD, OpenGraph images, the agent endpoints).
+//
+// The canonical domain must win over NEXT_PUBLIC_VERCEL_URL. That variable
+// holds the per-deployment hostname (shaad-potfolio-<hash>.vercel.app), which
+// sits behind Vercel Deployment Protection and 302s to a login page for
+// anonymous clients. Social scrapers (WhatsApp, Instagram, Discord, iMessage)
+// fetch og:image as a separate anonymous request, so pointing them at that
+// host makes previews render text but no image.
+//
+// VERCEL_PROJECT_PRODUCTION_URL is the stable production domain and is safe;
+// the per-deployment URL is only used as a last resort so preview builds still
+// produce working absolute links when no canonical domain is configured.
+const fromVercel = process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
+  : undefined;
+
+const perDeployment = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
   : undefined;
 
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ||
+  resumeData.websiteUrl ||
   fromVercel ||
-  resumeData.websiteUrl
+  perDeployment ||
+  "http://localhost:3000"
 ).replace(/\/$/, "");
 
 export const abs = (path: string) =>
