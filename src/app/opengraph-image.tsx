@@ -11,7 +11,6 @@ export default function Image() {
   return ogCard({
     title: profile.fullName,
     subtitle: clampText(profile.summary, 170),
-    tags: stats.map((s) => `${s.value} ${s.label}`),
-    footer: profile.location,
+    tags: [profile.location, ...stats.map((s) => `${s.value} ${s.label}`)],
   });
 }

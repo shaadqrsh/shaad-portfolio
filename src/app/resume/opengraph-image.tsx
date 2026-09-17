@@ -16,6 +16,5 @@ export default function Image() {
       `${experience.length} roles` +
       (current?.institution ? ` · ${current.institution.split(",").pop()?.trim()}` : ""),
     tags: ["Download PDF"],
-    footer: profile.url.replace(/^https?:\/\//, "") + "/resume",
   });
 }

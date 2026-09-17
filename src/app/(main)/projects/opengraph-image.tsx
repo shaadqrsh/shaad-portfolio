@@ -14,6 +14,8 @@ export default function Image() {
     subtitle:
       `${projects.length} shipped projects: ${games} games and ` +
       `${projects.length - games} software builds.`,
-    tags: projects.slice(0, 4).map((p) => p.title),
+    // Project titles are long, so 3 chips is the most that fits
+    // without running into the domain on the right.
+    tags: projects.slice(0, 3).map((p) => p.title),
   });
 }
