@@ -54,16 +54,17 @@ export const metadata: Metadata = {
   // src/app/favicon.ico (a renamed copy of the white PNG) took precedence over
   // this block entirely, and Chrome ignores `media` on icon links regardless.
   //
-  // So the SVG leads: Safari and Firefox read the prefers-color-scheme rules
-  // inside it and flip the mark, while Chrome falls back to the SVG's default
-  // brand-red fill, which stays legible on light and dark tab strips alike.
-  // The .ico is the legacy fallback and is also brand red for the same reason.
+  // So the icons are a purple (shaad-100) plate with the SQ knocked out in
+  // white. Contrast is self-contained rather than borrowed from the tab strip,
+  // which is the only approach that survives a light Chrome theme on a
+  // dark-mode OS. shaad-100 is the one palette purple bright enough to clear
+  // 3:1 against both white and dark tab strips.
   icons: {
     icon: [
-      { url: "/icon.svg?v=3", type: "image/svg+xml" },
-      { url: "/favicon.ico?v=3", sizes: "any" },
+      { url: "/icon.svg?v=4", type: "image/svg+xml" },
+      { url: "/favicon.ico?v=4", sizes: "any" },
     ],
-    apple: [{ url: "/apple-icon.png?v=3", sizes: "180x180" }],
+    apple: [{ url: "/apple-icon.png?v=4", sizes: "180x180" }],
   },
 };
 
