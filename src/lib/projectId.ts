@@ -487,6 +487,63 @@ export const data: { [key: string]: projectData } = {
       'The free tier is capped at three restorations a day because Gemini image calls cost money and the app has no revenue.',
     ],
   },
+  emaadportfolio: {
+    ...getProjBase('emaadportfolio'),
+    game: false,
+    urls: [
+      { label: 'Live Site', icon: '', url: 'https://emmeqqu-08.github.io/emaad-portfolio/' },
+      { label: 'GitHub', icon: '', url: 'https://github.com/emmeqqu-08/emaad-portfolio' },
+    ],
+    desc: "A dark, cinematic portfolio site for Emaad's art, with a look borrowed from JoJo's Bizarre Adventure. It has three pages: a home page with a hero and a strip of selected pieces, a Works page with a filterable masonry grid, and an About page. Emaad runs it without me. They log into a Decap CMS dashboard with GitHub, drop in an image, fill out a form, and hit Publish, and the site rebuilds on its own. The whole setup costs nothing to run.",
+    features: [
+      {
+        heading: 'No-Code Artist Dashboard',
+        content: 'Emaad visits /admin, logs in with GitHub, and gets a form for each artwork: image, title, description, year, medium, dimensions, categories, and whether it is for sale. Publishing commits the file to the repo and the site redeploys.',
+      },
+      {
+        heading: 'Masonry Gallery & Fullscreen Lightbox',
+        content: 'The Works page lays pieces out in a Pinterest-style masonry grid. Visitors can filter by category and change the sort order. Clicking a piece opens a fullscreen lightbox with its full details, and the arrow keys and Escape work inside it.',
+      },
+      {
+        heading: 'Every Word Editable from the CMS',
+        content: 'The site name, tagline, hero statement, About text, portraits, category list, and social links all live in one settings file that the dashboard edits. Social links take any number of entries, each with an icon picked from a dropdown of 12 options.',
+      },
+      {
+        heading: 'Curated Auto-Scrolling Selected Strip',
+        content: 'Emaad picks which works appear on the home page with a searchable picker. If more are picked than fit on one row, the strip turns into a looping carousel that pauses on hover or touch and stays still for visitors who prefer reduced motion.',
+      },
+      {
+        heading: 'Link Previews That Actually Work',
+        content: 'Because it is a single-page app, crawlers from Discord, Slack, iMessage and X would only see an empty HTML shell. A post-build script writes the editable title and description into the static index.html so shared links show the right preview.',
+      },
+    ],
+    technologies: [
+      { name: 'React', icon: '' },
+      { name: 'Vite', icon: '' },
+      { name: 'JavaScript', icon: '' },
+      { name: 'Decap CMS', icon: '' },
+      { name: 'Motion', icon: '' },
+      { name: 'GitHub Actions', icon: '' },
+      { name: 'GitHub Pages', icon: '' },
+      { name: 'Vercel', icon: '' },
+    ],
+    responsibilities: [
+      'Built a three-page React 19 and Vite site with React Router and Motion animations',
+      'Integrated Decap CMS with a GitHub backend so a non-technical artist can publish artwork through a web form',
+      'Wrote a dependency-free YAML frontmatter parser that loads CMS markdown files at build time through import.meta.glob',
+      'Self-hosted a GitHub OAuth proxy for Decap as serverless functions on an existing Vercel project, after public proxies kept shutting down',
+      'Configured a GitHub Actions workflow that builds and deploys to GitHub Pages on every push, deriving the Vite base path from the repo name',
+      'Wrote a post-build Node script that injects CMS-editable title and Open Graph tags into the static HTML for social link previews',
+      'Built a reusable auto-scrolling carousel hook that only activates on overflow and respects prefers-reduced-motion',
+    ],
+    videos: [],
+    additional: [
+      "I built this for free for Emaad, who is family, so their art would have one place to live.",
+      'The code took about five days, July 11 to 15, 2026. After that I transferred the repo to their GitHub account so the site belongs to them.',
+      'Since launch Emaad has made over 110 commits through the dashboard without touching code, and the site had 68 artworks on it as of September 2026.',
+      'Hosting is free end to end. GitHub Pages serves the site, GitHub Actions builds it, and the OAuth login runs on a Vercel project I already had for NanoRewind.',
+    ],
+  },
   homi: {
     ...getProjBase('homi'),
     game: false,

@@ -1,7 +1,7 @@
 {
   "name": "Shaad Qureshi",
   "fullName": "Shaad Abid Qureshi",
-  "title": "Aspiring Game Developer",
+  "title": "Gameplay/Engine Programmer",
   "location": "Boston, MA",
   "summary": "I'm a game developer with a strong computer science background, specializing in implementing core gameplay mechanics with Unity and Unreal Engine. My passion is creating engaging worlds that captivate players and inspire new creators.",
   "about": "I am a Computer Science student with a proficiency in AI, but I'm a passionate game developer at heart. My love for unique worlds and storytelling began with a Nintendo Wii in my childhood. I specialize in implementing core gameplay mechanics, using my C# skills in Unity and Blueprint expertise in Unreal Engine to bring creative visions to life. Through freelance projects, I've enjoyed collaborating with designers, offering technical solutions to realize their complex concepts. My ultimate ambition is to contribute to the development of beloved games at major studios and one day create my own, inspiring the next generation of gamers.",
@@ -419,7 +419,7 @@
       "url": "careerpath",
       "category": "Other Projects",
       "date": "00/11/2025",
-      "desc": "A 'vibe coding' experiment built in 3 days with Gemini 3 Pro. This AI counselor generates hyper-personalized career roadmaps and realistic 'day-in-the-life' visualizations to help users find their ideal career."
+      "desc": "An AI-assisted development experiment built in 3 days with Gemini 3 Pro. This AI counselor generates hyper-personalized career roadmaps and realistic 'day-in-the-life' visualizations to help users find their ideal career."
     },
     {
       "title": "SQLift",
@@ -434,6 +434,13 @@
       "category": "Other Projects",
       "date": "00/07/2026",
       "desc": "A web app that restores old, scratched, and blurry photos to 4K using Google Gemini. Results can be rendered in six photographic developer styles, and a drag slider compares the restoration against the original."
+    },
+    {
+      "title": "Artist Portfolio",
+      "url": "emaadportfolio",
+      "category": "Other Projects",
+      "date": "00/06/2026",
+      "desc": "A portfolio website for Emaad, an artist in my family, built with React and Vite and hosted free on GitHub Pages. Emaad adds and edits pieces through a Decap CMS dashboard without writing any code."
     },
     {
       "title": "HOMI - Helpful Online Mentor Interface",
