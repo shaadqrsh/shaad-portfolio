@@ -25,6 +25,10 @@
     {
       "label": "Clients",
       "count": "50+"
+    },
+    {
+      "label": "Jams",
+      "count": "4"
     }
   ],
   "headers": [
@@ -183,6 +187,71 @@
       "publishing": "IEEE Xplore",
       "date": "21/08/2025",
       "url": "https://ieeexplore.ieee.org/document/11115248"
+    }
+  ],
+  "jams": [
+    {
+      "title": "GMTK Game Jam 2026",
+      "date": "00/08/2026",
+      "icon": "/jams/icon_gmtk.png",
+      "project": "countingsheep",
+      "bullets": [
+        "Built Counting Sheep solo in 96 hours, a 3D browser platformer on the jam's countdown theme, in vanilla JavaScript and Three.js",
+        "Rated 4.5/5 in every category except Audio, from 15 players",
+        "Made every visual and sound in code, with no external assets and sheep bleats synthesized through the Web Audio API"
+      ]
+    },
+    {
+      "title": "Roblox Racing Challenge",
+      "date": "00/04/2026",
+      "icon": "/jams/icon_roblox.png",
+      "bullets": [
+        "Won 1st Place (Grand Prize) in a challenge run by Roblox Early Careers",
+        "Wrote a vehicle controller in Lua in Roblox Studio within the one-hour time limit",
+        "Tuned its speed and turning until it beat the other entrants' controllers in a head-to-head race"
+      ]
+    },
+    {
+      "title": "Cyber Cypher 2025",
+      "date": "00/02/2025",
+      "icon": "/jams/icon_nmims.png",
+      "bullets": [
+        "Led a team of 3 that built a disease prediction app in Mumbai",
+        "Fine-tuned a Llama model on medical data to predict a likely disease from a list of symptoms",
+        "Built the frontend where users enter their symptoms and get the model's prediction"
+      ]
+    },
+    {
+      "title": "IIT Madras Shaastra Techathon",
+      "date": "00/07/2024",
+      "icon": "/jams/icon_iitm.png",
+      "bullets": [
+        "Placed 2nd among teams from my college and 116th across India",
+        "Led a team of 4 competing from Mumbai",
+        "Fine-tuned a model in Google Colab that predicts local temperatures from readings at nearby weather stations"
+      ]
+    },
+    {
+      "title": "Relic Castle Winter Jam #2",
+      "date": "00/02/2021",
+      "icon": "/jams/icon_reliccastle.png",
+      "project": "bushido",
+      "bullets": [
+        "Won 1st Place out of 31 entries with Pokémon Bushido, a 10 to 15 hour fangame built by a team of 4 in 30 days",
+        "Developed the core engine and new mechanics including Katana techniques, mid-battle dialogue and following Pokémon",
+        "Became one of the highest rated and most viewed games on Eevee Expo (formerly Relic Castle)"
+      ]
+    },
+    {
+      "title": "Relic Castle Game Jam 6",
+      "date": "00/08/2020",
+      "icon": "/jams/icon_reliccastle.png",
+      "project": "splice",
+      "bullets": [
+        "Won 1st Place out of 46 entries with Pokémon Splice, built by a team of 4 in 30 days",
+        "Developed the core engine and new mechanics including a form-changing starter, mid-battle dialogue and following Pokémon",
+        "Evented cutscenes for a branching story where siding with Team Biogress or Team Quantech changes the game"
+      ]
     }
   ],
   "certificates": [
@@ -404,7 +473,7 @@
       "title": "Pokémon Bushido",
       "url": "bushido",
       "category": "Game Projects",
-      "date": "00/08/2021",
+      "date": "00/02/2021",
       "desc": "Pokémon Bushido is a fan-made game set in a feudal Japan-inspired region, where players train Pokémon to become a Kenshi, battling rival clans and dark forces in a unique samurai-themed adventure."
     },
     {
@@ -429,10 +498,10 @@
       "desc": "SQLift is a full-stack workout tracking web application with a rich relational database at its core. Users can plan custom workouts, track live sessions set-by-set, monitor body measurements and analytics over time, and compete on global and friend leaderboards."
     },
     {
-      "title": "NanoRewind",
+      "title": "NanoRewind 4K",
       "url": "nanorewind",
       "category": "Other Projects",
-      "date": "00/07/2026",
+      "date": "00/12/2025",
       "desc": "A web app that restores old, scratched, and blurry photos to 4K using Google Gemini. Results can be rendered in six photographic developer styles, and a drag slider compares the restoration against the original."
     },
     {

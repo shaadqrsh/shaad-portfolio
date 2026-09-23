@@ -5,13 +5,14 @@ import FadeInUp from "@/components/FadeInUp";
 import Certifications from "@/components/sections/Certifications";
 import Education from "@/components/sections/Education";
 import Experience from "@/components/sections/Experience";
+import Jams from "@/components/sections/Jams";
 import Publications from "@/components/sections/Publications";
 import Skills from "@/components/sections/Skills";
 import Who from "@/components/sections/Who";
 import Image from "next/image";
 import { useState } from "react";
 
-const UI = [Who, Skills, Experience, Education, Publications, Certifications];
+const UI = [Who, Skills, Experience, Jams, Education, Publications, Certifications];
 
 const About = () => {
   const [imageLoaded, setImageLoaded] = useState(false);

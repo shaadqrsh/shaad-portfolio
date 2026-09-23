@@ -539,7 +539,7 @@ export const data: { [key: string]: projectData } = {
     videos: [],
     additional: [
       "I built this for free for Emaad, who is family, so their art would have one place to live.",
-      'The code took about five days, July 11 to 15, 2026. After that I transferred the repo to their GitHub account so the site belongs to them.',
+      'The code took about five days, June 11 to 15, 2026. After that I transferred the repo to their GitHub account so the site belongs to them.',
       'Since launch Emaad has made over 110 commits through the dashboard without touching code, and the site had 68 artworks on it as of September 2026.',
       'Hosting is free end to end. GitHub Pages serves the site, GitHub Actions builds it, and the OAuth login runs on a Vercel project I already had for NanoRewind.',
     ],
