@@ -115,28 +115,28 @@ export const data: { [key: string]: projectData } = {
       },
     ],
     technologies: [
-      { name: 'Unity', icon: 'icon_unity.svg' },
-      { name: 'C#', icon: 'icon_csharp.svg' },
-      { name: 'Universal Render Pipeline (URP)', icon: 'icon_unity.svg' },
-      { name: 'Shader Graph', icon: 'icon_unity.svg' },
-      { name: 'VFX Graph', icon: 'icon_unity.svg' },
-      { name: 'Blender', icon: 'icon_blender.svg' },
+      { name: 'Three.js', icon: 'icon_threejs.svg' },
+      { name: 'JavaScript', icon: 'icon_javascript.svg' },
+      { name: 'WebGL', icon: 'icon_webgl.svg' },
+      { name: 'Web Audio API', icon: 'icon_webaudio.svg' },
+      { name: 'HTML5 Canvas', icon: 'icon_html5.svg' },
+      { name: 'CSS3', icon: 'icon_css.svg' },
     ],
     responsibilities: [
-      'Architected the full Unity game architecture in C# using decoupled ScriptableObject workflows, event channels, and modular state machines for the GMTK Game Jam 2026.',
-      'Developed custom Shader Graph materials for fluffy cloud voxels with dynamic rim lighting, emissive glow, and noise-based dissolution effects.',
-      'Programmed the custom kinematic character controller from scratch, tuning spring buoyancy, coyote time, and inflated bounding boxes for fluid aerial navigation.',
-      'Built high-performance GPU instancing and object pooling systems to guarantee smooth 60+ FPS performance during rapid, large-scale voxel grid reflows.',
-      'Designed dynamic audio behavior in Unity AudioMixer with real-time pitch modulation and formant filtering for procedural sheep vocalizations.',
-      'Implemented the dream-journal UI system, animated eyelid sleep gauge, and 2D canvas radar minimap for tactical route planning.',
+      'Architected and implemented the complete 3D web game engine from scratch in vanilla JavaScript and Three.js with zero external art or audio assets.',
+      'Engineered custom spring-damper kinematics for buoyant hover, low-gravity falls, and coyote-time jump buffers, bypassing external physics engines.',
+      'Built a zero-allocation InstancedMesh rendering pipeline with static buffer pooling to eliminate mid-game garbage collection hitches during high-frequency voxel reflows.',
+      'Developed a 100% procedural Web Audio synthesis engine, programming multi-oscillator formant filters for dynamic sheep bleats and ambient loop beds.',
+      'Designed and coded the responsive dream-diary UI overlay with animated SVG eyelids, dynamic CSS ink-dissolve transitions, and a 2D canvas radar minimap.',
+      'Implemented localStorage state management for custom accessibility toggles (reduce-motion, colorblind-safe cues), difficulty mapping, and per-mode high scores.',
     ],
     videos: [],
     additional: [
-      'Built for the GMTK Game Jam 2026. The theme was countdown, and counting sheep was the first thing that came to mind.',
-      'The rule I kept coming back to was "logic blocky, render fluffy": the movement is strict grid-based and predictable underneath, and everything you actually see is soft and glowing.',
-      'The look comes from storybooks and ink dream diaries, with handwritten type and an indigo and starlight palette.',
-      'Zen Mode exists because I wanted a version with nothing to lose. No timer, no score, no failure. If you fall, it puts you back.',
-      'Runs standalone with both gamepad and keyboard support.',
+      'Developed for the GMTK Game Jam 2026, bringing the countdown theme to life through the classic bedtime tradition of counting sheep.',
+      'Built around the guiding design philosophy of "logic blocky, render fluffy"—pairing precise, predictable grid-based movement with soft, luminous cloud visuals.',
+      'Visual aesthetic draws heavy inspiration from classic storybooks and ink dream diaries, combining handwritten typography with a soothing indigo and starlight color palette.',
+      'Includes a dedicated Zen Mode created specifically for unwinding, completely stripping away failure conditions, timers, and scoring in favor of peaceful drift recovery and slower rhythms.',
+      'Engineered to be lightweight and accessible on any device, running friction-free directly within standard web browsers without downloads or installations.',
     ],
   },
   bushido: {
@@ -423,6 +423,70 @@ export const data: { [key: string]: projectData } = {
       'The project was built collaboratively by a three-person team (Shaad Qureshi, Ben O\'Neil, Sudaiv Shetty) with Git-based workflows and feature branches.',
     ],
   },
+  nanorewind: {
+    ...getProjBase('nanorewind'),
+    game: false,
+    urls: [
+      { label: 'Live Project', icon: '', url: 'https://nanorewind-4k.vercel.app/' },
+      { label: 'GitHub', icon: '', url: 'https://github.com/shaadqrsh/nanorewind-4k' },
+    ],
+    desc: 'NanoRewind restores old, scratched, and blurry photographs to 4K using a Google Gemini image model. Beyond a straight repair, it can render a result in six photographic developer styles, from Silver Gelatin black and white to Kodachrome 64, with optional Chiaroscuro and Matte Emulsion treatments on top. A drag-to-reveal slider sits over the output so you can check the restoration against the original before downloading it. Every free account gets three restorations a day, counted server-side.',
+    features: [
+      {
+        heading: 'Full 4K Photo Restoration',
+        content:
+          'Upload a damaged photo and it comes back repaired at full 4K. Scratches, blur, and age damage are handled in one pass.',
+      },
+      {
+        heading: 'Six Developer Processes',
+        content:
+          'The same restoration can be rendered as Standard, Silver Gelatin black and white, Albumen sepia, Cyanotype, Lumiere Autochrome, or Kodachrome 64. Chiaroscuro deepens the shadows and Matte Emulsion softens the highlights, and both can be layered on any process.',
+      },
+      {
+        heading: 'Drag-to-Reveal Before & After',
+        content:
+          'A slider sits over the result so you can drag across the image and see exactly what changed. The landing page runs the same comparison on a demo pair automatically.',
+      },
+      {
+        heading: 'Server-Side Credit Ledger',
+        content:
+          'Each account gets three restorations a day. The count lives in Postgres and is deducted through a Supabase RPC, so the browser cannot alter its own balance.',
+      },
+      {
+        heading: 'Zero-Secret Frontend',
+        content:
+          'The browser bundle holds no API keys. Gemini and database access run in Vercel serverless functions under /api, same-origin with the frontend, and the client only ever talks to those.',
+      },
+    ],
+    technologies: [
+      { name: 'React', icon: 'icon_react.svg' },
+      { name: 'TypeScript', icon: 'icon_typescript.svg' },
+      { name: 'Vite', icon: '' },
+      { name: 'Vercel', icon: '' },
+      { name: 'Supabase', icon: 'icon_supabase.svg' },
+      { name: 'PostgreSQL', icon: 'icon_postgresql.svg' },
+      { name: 'Google Gemini', icon: 'icon_gemini.svg' },
+      { name: 'Google AI Studio', icon: '' },
+      { name: 'Claude Code', icon: '' },
+    ],
+    responsibilities: [
+      'Built the React 19 and Vite frontend, including the drag-to-reveal comparison slider and the developer-process picker.',
+      'Wrote the Vercel serverless API under /api in TypeScript, keeping the Gemini calls and all database access off the client.',
+      'Designed the Postgres schema in Supabase with row-level security and an RPC that deducts a credit atomically, so a user cannot spend the same credit twice.',
+      'Moved authentication from the browser to the backend, removing the Supabase SDK and both of its keys from the frontend bundle.',
+      'Prototyped and engineered prompts in Google AI Studio to fine-tune Gemini image restoration outputs across six photographic developer processes and atmospheric modifiers.',
+      'Leveraged Claude Code and AI-assisted tooling to scaffold architecture, generate Postgres RPC logic, and streamline full-stack iteration.',
+      'Configured a GitHub Actions workflow that pings Supabase hourly to stop the free-tier database from pausing.',
+    ],
+    videos: [],
+    additional: [
+      'Built solo using Claude Code and AI-assisted workflows alongside Google AI Studio across 48 commits from December 2025 to July 2026, accelerating iteration on both code and generative prompts.',
+      'It started with Supabase running in the browser. I pulled the SDK and both keys out of the frontend and rewrote auth to run server-side, so the client now holds no secrets at all.',
+      'The developer processes came out of wanting more than a clean repair. A restored photo that looks like a Cyanotype or a Kodachrome slide is more interesting than one that just looks new.',
+      'A saved archive was designed and never built: a Supabase Storage bucket scoped per user, list and delete endpoints, and a grid view for reloading past restorations. The schema and endpoints are specified in the TO-DO but the work stopped before them.',
+      'The free tier is capped at three restorations a day because Gemini image calls cost money and the app has no revenue.',
+    ],
+  },
   homi: {
     ...getProjBase('homi'),
     game: false,
@@ -480,7 +544,7 @@ export const data: { [key: string]: projectData } = {
     responsibilities: [
       'Assumed the responsibility of "Project Manager" and managed a team of 6 people working on the project',
       'Trained the LLM (based on DeepSeek R1) on cloud and local machines.',
-      'Collected the data for training the model from textbooks, using manual scanning and several scraping techniques.',
+      'Collected the data for training the model from textbooks, using manual scanning, distillation and several scraping techniques.',
       'Developed several backend features, especially those related to interfacing with the actual model.',
       'Assisted in deploying the backend onto HuggingFace Spaces, and uploaded the model onto HuggingFaces.',
       'Assisted in designing several UI components and pages in the application.',

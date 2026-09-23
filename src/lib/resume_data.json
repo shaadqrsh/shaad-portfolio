@@ -292,6 +292,18 @@
         "name": "Godot"
       },
       {
+        "icon": "icon_react.svg",
+        "name": "React"
+      },
+      {
+        "icon": "icon_lua.svg",
+        "name": "Lua"
+      },
+      {
+        "icon": "icon_claude.svg",
+        "name": "Claude Code"
+      },
+      {
         "icon": "icon_photoshop.svg",
         "name": "Photoshop"
       },
@@ -415,6 +427,13 @@
       "category": "Other Projects",
       "date": "00/04/2026",
       "desc": "SQLift is a full-stack workout tracking web application with a rich relational database at its core. Users can plan custom workouts, track live sessions set-by-set, monitor body measurements and analytics over time, and compete on global and friend leaderboards."
+    },
+    {
+      "title": "NanoRewind",
+      "url": "nanorewind",
+      "category": "Other Projects",
+      "date": "00/07/2026",
+      "desc": "A web app that restores old, scratched, and blurry photos to 4K using Google Gemini. Results can be rendered in six photographic developer styles, and a drag slider compares the restoration against the original."
     },
     {
       "title": "HOMI - Helpful Online Mentor Interface",
