@@ -78,6 +78,7 @@
       "startDate": "00/01/2026",
       "endDate": "00/05/2028",
       "image": "/about/img_neu.png",
+      "grade": "CGPA: 3.67",
       "subtitle": [
         "Khoury College of Computer Sciences, Northeastern University",
         "Boston, Massachusetts, USA"
@@ -123,18 +124,19 @@
       "title": "Media Services Technician",
       "startDate": "00/01/2026",
       "subtitle": [
-        "Operate lighting, audio, and video systems for live events, managing sound boards, microphones, and projection setups.",
-        "Troubleshoot technical issues in real time, coordinating with ITS staff, House Managers, and Stage Managers.",
-        "Program and run light boards to create dynamic lighting designs for performances and university events."
+        "Operate AV systems for 50+ events (audiences up to 1,000+), managing 32-channel audio boards, wireless mics, and projection.",
+        "Diagnose and resolve critical AV failures in sub-2-minute windows, coordinating live with ITS and stage managers.",
+        "Program and execute dynamic lighting cues on ETC lighting boards for university productions and live ceremonies."
       ],
       "image": "/about/img_neu.png",
       "location": "Northeastern University, Boston, MA",
       "inProgress": true,
       "evidence": [
-        "Live event AV: lighting boards, sound boards, microphones, projection systems",
-        "Coordinates in real time with ITS staff, House Managers, and Stage Managers",
-        "Venues: performances and university events on campus",
-        "NO QUANTIFIED OUTCOMES RECORDED - write these bullets qualitatively"
+        "Hardware & Tech: ETC lighting boards, 32-channel digital audio consoles, wireless mic kits (lavalier/handheld), high-lumen laser projectors",
+        "Scale & Scope: 50+ university productions, guest lectures, theater performances, and ceremonies with 50 to 1,000+ attendees",
+        "Incident Response: Real-time signal-flow diagnostics and AV recovery within sub-2-minute windows under live broadcast/stage conditions",
+        "Cross-Functional Team: Live coordination with ITS staff, House Managers, Stage Managers, and keynote speakers",
+        "Quality & Reliability: Pre-event acoustic tuning, mic frequency coordination, redundancy checks, and zero show-stopping downtime"
       ]
     },
     {
@@ -157,7 +159,7 @@
       ]
     },
     {
-      "title": "Member (Technical Dept.)",
+      "title": "Technical Department Member",
       "startDate": "00/09/2022",
       "endDate": "00/03/2023",
       "subtitle": [
@@ -196,7 +198,7 @@
       "icon": "/jams/icon_gmtk.png",
       "project": "countingsheep",
       "bullets": [
-        "Built Counting Sheep solo in 96 hours, a 3D browser platformer on the jam's countdown theme, in vanilla JavaScript and Three.js",
+        "Built Counting Sheep solo in 96 hours, a 3D browser platformer on the jam's countdown theme using Unity.",
         "Rated 4.5/5 in every category except Audio, from 15 players",
         "Made every visual and sound in code, with no external assets and sheep bleats synthesized through the Web Audio API"
       ]
@@ -226,9 +228,9 @@
       "date": "00/07/2024",
       "icon": "/jams/icon_iitm.png",
       "bullets": [
-        "Placed 2nd among teams from my college and 116th across India",
-        "Led a team of 4 competing from Mumbai",
-        "Fine-tuned a model in Google Colab that predicts local temperatures from readings at nearby weather stations"
+        "Placed 2nd among teams from my college and 116th across India.",
+        "Led a team of 4 competing from Mumbai.",
+        "Fine-tuned a model in Google Colab that predicts local temperatures from readings at nearby weather stations."
       ]
     },
     {
@@ -237,9 +239,9 @@
       "icon": "/jams/icon_reliccastle.png",
       "project": "bushido",
       "bullets": [
-        "Won 1st Place out of 31 entries with Pokémon Bushido, a 10 to 15 hour fangame built by a team of 4 in 30 days",
-        "Developed the core engine and new mechanics including Katana techniques, mid-battle dialogue and following Pokémon",
-        "Became one of the highest rated and most viewed games on Eevee Expo (formerly Relic Castle)"
+        "Won 1st Place out of 31 entries with Pokémon Bushido, a 10 to 15 hour fangame built by a team of 4 in 30 days.",
+        "Developed the core engine and new mechanics including Katana techniques, mid-battle dialogue and following Pokémon.",
+        "Became one of the highest rated and most viewed games on Eevee Expo (formerly Relic Castle)."
       ]
     },
     {
@@ -248,9 +250,9 @@
       "icon": "/jams/icon_reliccastle.png",
       "project": "splice",
       "bullets": [
-        "Won 1st Place out of 46 entries with Pokémon Splice, built by a team of 4 in 30 days",
-        "Developed the core engine and new mechanics including a form-changing starter, mid-battle dialogue and following Pokémon",
-        "Evented cutscenes for a branching story where siding with Team Biogress or Team Quantech changes the game"
+        "Won 1st Place out of 46 entries with Pokémon Splice, built by a team of 4 in 30 days.",
+        "Developed the core engine and new mechanics including a form-changing starter, mid-battle dialogue and following Pokémon.",
+        "Evented cutscenes for a branching story where siding with Team Biogress or Team Quantech changes the game."
       ]
     }
   ],

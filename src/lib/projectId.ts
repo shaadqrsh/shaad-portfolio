@@ -17,7 +17,7 @@ export const data: { [key: string]: projectData } = {
       {
         label: 'GitHub',
         icon: '',
-        url: 'https://github.com/neu-5850-2026/110-finalproject-shaadqrsh',
+        url: 'https://github.com/shaadqrsh/harvest-rush',
       },
     ],
     desc: 'Harvest Rush is a one or two player farming game about running out of time, built in the multitasking tradition of Overcooked. A delivery truck docks at the edge of a tile-based farm with an order to fill, and you have until it leaves to fill it. That means tilling soil, sowing seeds, watering crops through their growth stages, and carrying finished carrots, wheat, and tomatoes to the loading dock. Pests burrow up from the corners to steal produce, and fires spread across the field and block the paths you were counting on. With two players the whole thing becomes a shouting match about who is doing what.',
