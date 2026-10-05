@@ -50,7 +50,7 @@ export const data: { [key: string]: projectData } = {
     ],
     technologies: [
       { name: 'C++', icon: 'icon_cpp.svg' },
-      { name: 'SDL3', icon: 'icon_sdl.svg' },
+      { name: 'SDL3', icon: 'icon_cpp.svg' },
       { name: 'CMake', icon: 'icon_cmake.svg' },
       { name: 'Python', icon: 'icon_python.svg' },
       { name: 'Aseprite', icon: 'icon_aseprite.svg' },
@@ -461,13 +461,13 @@ export const data: { [key: string]: projectData } = {
     technologies: [
       { name: 'React', icon: 'icon_react.svg' },
       { name: 'TypeScript', icon: 'icon_typescript.svg' },
-      { name: 'Vite', icon: '' },
-      { name: 'Vercel', icon: '' },
+      { name: 'Vite', icon: 'icon_vite.svg' },
+      { name: 'Vercel', icon: 'icon_vercel.svg' },
       { name: 'Supabase', icon: 'icon_supabase.svg' },
       { name: 'PostgreSQL', icon: 'icon_postgresql.svg' },
       { name: 'Google Gemini', icon: 'icon_gemini.svg' },
-      { name: 'Google AI Studio', icon: '' },
-      { name: 'Claude Code', icon: '' },
+      { name: 'Google AI Studio', icon: 'icon_google_ai.svg' },
+      { name: 'Claude Code', icon: 'icon_claude.svg' },
     ],
     responsibilities: [
       'Built the React 19 and Vite frontend, including the drag-to-reveal comparison slider and the developer-process picker.',
@@ -518,14 +518,14 @@ export const data: { [key: string]: projectData } = {
       },
     ],
     technologies: [
-      { name: 'React', icon: '' },
-      { name: 'Vite', icon: '' },
-      { name: 'JavaScript', icon: '' },
-      { name: 'Decap CMS', icon: '' },
-      { name: 'Motion', icon: '' },
-      { name: 'GitHub Actions', icon: '' },
-      { name: 'GitHub Pages', icon: '' },
-      { name: 'Vercel', icon: '' },
+      { name: 'React', icon: 'icon_react.svg' },
+      { name: 'Vite', icon: 'icon_vite.svg' },
+      { name: 'JavaScript', icon: 'icon_javascript.svg' },
+      { name: 'Decap CMS', icon: 'icon_decap.svg' },
+      { name: 'Motion', icon: 'icon_motion.svg' },
+      { name: 'GitHub Actions', icon: 'icon_git.svg' },
+      { name: 'GitHub Pages', icon: 'icon_git.svg' },
+      { name: 'Vercel', icon: 'icon_vercel.svg' },
     ],
     responsibilities: [
       'Built a three-page React 19 and Vite site with React Router and Motion animations',
@@ -658,7 +658,7 @@ export const data: { [key: string]: projectData } = {
       { name: 'Java', icon: 'icon_java.svg' },
       { name: 'XML', icon: 'icon_xml.svg' },
       { name: 'Android Studio', icon: 'icon_android.svg' },
-      { name: 'Firebase', icon: 'firebase.svg' }
+      { name: 'Firebase', icon: 'icon_firebase.svg' }
     ],
     responsibilities: [
       'Designed, implemented, and maintained the client-side Android application',
