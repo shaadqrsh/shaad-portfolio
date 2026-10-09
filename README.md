@@ -85,13 +85,26 @@ This runs [generate_resume.py](public/resume_gen/scripts/generate_resume.py), wh
 2. Fills in [resume_template.html](public/resume_gen/templates/resume_template.html) and writes `public/resume.html`.
 3. Converts that HTML into `public/resume.pdf`, which the site serves at `/resume.pdf`. Visitors who click download get it saved as `{name} - Resume.pdf`.
 
+Commit the regenerated `public/resume.pdf`; it's a site asset, not a build output.
+
+### Clickable links
+
+The PDF keeps real hyperlinks, which some studios ask for on application resumes:
+
+- **Projects**: each project's title links to its page on the site, `<websiteUrl>/projects/<url>`, using the same `url` field that names the route. A `url` that is already a full `http(s)://` address is used as-is, so a project can point somewhere else. Only the title is linked, with no address printed next to it, so the text a resume parser reads is unchanged.
+- **Contact lines**: the header's LinkedIn, website, and email lines are clickable (`mailto:` for the email). The cover letter template links the same lines in its header and signature, plus any of them quoted in the letter's text.
+
+Links show in blue, so they're easy to spot on screen. A black-and-white print looks the same as before.
+
+Adding a project to `resume_data.json` is enough for its link to appear on the next `npm run resume`.
+
 ### Zero-setup Python
 
-Every script calls [check_requirements.py](public/resume_gen/scripts/check_requirements.py) first. It checks [requirements.txt](public/resume_gen/scripts/requirements.txt) (`pyyaml`, `python-dotenv`, `playwright`, `pypdf`), pip-installs anything missing, and downloads Playwright's headless Chromium. All you need is Python 3.8+.
+Every script calls [check_requirements.py](public/resume_gen/scripts/check_requirements.py) first. It checks [requirements.txt](public/resume_gen/scripts/requirements.txt) (`pyyaml`, `python-dotenv`, `playwright`, `pypdf`), pip-installs anything missing, and downloads Playwright's headless Chromium when it had to install Playwright itself. All you need is Python 3.8+.
 
 ### One-page PDF scaling
 
-[generate_pdf.py](public/resume_gen/scripts/generate_pdf.py) prints the HTML to an A4 PDF in headless Chromium. If the full-scale render runs past one page, it binary-searches the print scale (between 0.1 and 2.0, stopping at a 0.005 window) for the largest value that still fits on exactly one page. Content changes never mean hand-tuning margins or font sizes.
+[generate_pdf.py](public/resume_gen/scripts/generate_pdf.py) prints the HTML to an A4 PDF in headless Chromium. If the full-scale render runs past one page, it binary-searches the print scale (between 0.1 and 1.0, stopping at a 0.005 window) for the largest value that still fits on exactly one page. It never scales up, so a resume that fits at full size prints at full size. Content changes never mean hand-tuning margins or font sizes.
 
 Run it directly to batch-convert any `resume.html` / `cover_letter.html` files in `public/resume_gen/` and one folder below it. The cover letter layout lives in [cover_letter_template.html](public/resume_gen/templates/cover_letter_template.html).
 

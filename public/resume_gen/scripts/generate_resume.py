@@ -18,6 +18,7 @@ except ImportError:
 
 from datetime import datetime
 from html import escape
+import re
 import traceback
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -98,14 +99,89 @@ def url_display_clean(url):
         clean = clean[:-1]
     return clean
 
+def link_href(url):
+    """The href for a contact line. Emails are stored bare, so they get mailto:
+    here, and a value made only of digits and dialling punctuation gets tel:.
+    Anything else is treated as a URL."""
+    url = str(url or '').strip()
+    if not url:
+        return ''
+    if url.startswith(('http://', 'https://', 'mailto:', 'tel:')):
+        return url
+    if '@' in url and '/' not in url:
+        return 'mailto:' + url
+    digits = ''.join(ch for ch in url if ch.isdigit())
+    if len(digits) >= 7 and all(ch.isdigit() or ch in '+-(). ' for ch in url):
+        return 'tel:' + ''.join(ch for ch in url if ch.isdigit() or ch == '+')
+    return 'https://' + url
+
+def links_html(links):
+    """Header contact lines, each clickable in the PDF."""
+    out = ""
+    for link in links or []:
+        url = link.get('url', '')
+        text = escape(url_display_clean(url))
+        href = link_href(url)
+        out += f'<div><a href="{escape(href)}">{text}</a></div>' if href else f"<div>{text}</div>"
+    return out
+
+def link_contacts_in(text, links):
+    """Make the contact lines a paragraph quotes (an email address, the site)
+    clickable, matching them as they print in the header. The site also
+    matches without its www., since prose often drops it. Longest first, in
+    one pass, so a shorter value never matches inside a longer one."""
+    if not text:
+        return text
+    targets = {}
+    for link in links or []:
+        url = link.get('url', '')
+        shown = url_display_clean(url)
+        href = link_href(url)
+        if not shown or not href:
+            continue
+        targets[shown] = href
+        if shown.startswith('www.'):
+            targets.setdefault(shown[4:], href)
+    if not targets:
+        return text
+    pattern = re.compile(r'(?<![\w.@/])(' + '|'.join(
+        re.escape(t) for t in sorted(targets, key=len, reverse=True)) + r')(?![\w@/])')
+    return pattern.sub(
+        lambda m: f'<a href="{escape(targets[m.group(1)])}">{m.group(1)}</a>', text)
+
+def site_url(data):
+    """The portfolio's root URL: websiteUrl, else the header's Website link."""
+    root = data.get('websiteUrl')
+    if not root:
+        site = next((l for l in data.get('links') or []
+                     if str(l.get('text', '')).lower() == 'website'), None)
+        root = site.get('url') if site else ''
+    root = str(root or '').strip().rstrip('/')
+    if root and not root.startswith(('http://', 'https://')):
+        root = 'https://' + root
+    return root
+
+def project_url(proj, root):
+    """Where a project's page lives on the portfolio, or '' when unknown.
+
+    A project's `url` is its route slug (/projects/<url>), the same field the
+    site builds its pages from. A full http(s) URL is used as given, so an
+    entry can point somewhere other than the portfolio if it ever needs to.
+    """
+    slug = str(proj.get('url') or '').strip()
+    if not slug:
+        return ''
+    if slug.startswith(('http://', 'https://')):
+        return slug
+    if not root:
+        return ''
+    return f"{root}/projects/{slug.strip('/')}"
+
 def generate_html(data):
     counts = data.get('counts') or {}
 
-    links = data.get('links', [])
-    header_links = ""
-    for link in links:
-        url = link.get('url', '')
-        header_links += f"<div>{url_display_clean(url)}</div>"
+    header_links = links_html(data.get('links', []))
+    root = site_url(data)
 
     content_html = ""
 
@@ -167,9 +243,17 @@ def generate_html(data):
                 f"\n                    <li>{item}</li>"
                 for item in items if item
             )
+            # The title itself is the link. Printing the address beside it was
+            # tried and dropped: an ATS reading the text layer took it as part
+            # of the project name. The template colours every link blue, which
+            # is styling, so it never reaches the text.
+            href = project_url(proj, root)
+            title = proj.get('title')
+            if href:
+                title = f'<a class="proj-link" href="{escape(href)}">{title}</a>'
             content_html += f"""
             <div class="entry">
-                <div class="job-title">{proj.get('title')} {date_html}</div>
+                <div class="job-title">{title} {date_html}</div>
                 <ul>{items_html}
                 </ul>
             </div>"""
@@ -269,18 +353,14 @@ def generate_cover_letter_html(cl_data, resume_data):
     cl_html = cl_html.replace('[LOCATION]', resume_data.get('location', ''))
     cl_html = cl_html.replace('[DATE]', datetime.now().strftime("%B %d, %Y"))
 
-    links = resume_data.get('links', [])
-    links_html = ""
-    for link in links:
-        url = link.get('url', '')
-        links_html += f"<div>{url_display_clean(url)}</div>"
-    cl_html = cl_html.replace('[HEADER_LINKS]', links_html)
-    cl_html = cl_html.replace('[CONTACT_DETAILS]', links_html)
+    contact_html = links_html(resume_data.get('links', []))
+    cl_html = cl_html.replace('[HEADER_LINKS]', contact_html)
+    cl_html = cl_html.replace('[CONTACT_DETAILS]', contact_html)
 
-    cl_html = cl_html.replace('[INTRODUCTION]', cl_data.get('introduction', ''))
-    cl_html = cl_html.replace('[PARAGRAPH 1]', cl_data.get('paragraph1', ''))
-    cl_html = cl_html.replace('[PARAGRAPH 2]', cl_data.get('paragraph2', ''))
-    cl_html = cl_html.replace('[CONCLUSION]', cl_data.get('conclusion', ''))
+    links = resume_data.get('links', [])
+    for token, key in (('[INTRODUCTION]', 'introduction'), ('[PARAGRAPH 1]', 'paragraph1'),
+                       ('[PARAGRAPH 2]', 'paragraph2'), ('[CONCLUSION]', 'conclusion')):
+        cl_html = cl_html.replace(token, link_contacts_in(cl_data.get(key, ''), links))
 
     return cl_html
 
