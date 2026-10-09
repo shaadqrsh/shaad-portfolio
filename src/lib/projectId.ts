@@ -86,57 +86,60 @@ export const data: { [key: string]: projectData } = {
         url: 'https://bro-skito.itch.io/counting-sheep',
       },
     ],
-    desc: 'Counting Sheep is a 3D platformer built around a countdown. You play a sheep drifting across floating islands of glowing cloud-voxels that are arranged in the shape of the number currently being counted. Every tick of the timer, part of the ground goes: the unstable clouds shudder, then drop away into the dark, while new paths rise out of the fog somewhere else. Ride the count all the way down and the sleeper falls asleep. Miss a jump and you wake them up.',
+    desc: 'Someone is counting themselves to sleep, and you are the sheep. Each number they count becomes a floor of glowing cloud-cubes in the shape of that numeral. When the count ticks down, the floor reflows: unstable clouds shudder and drop into the dark, and new ones rise out of the fog somewhere else. Ride the count all the way down and the sleeper drifts off. Miss a jump and you wake them up.',
     features: [
       {
         heading: 'Dynamic Shifting Cloud Floors',
         content:
-          'The platforms are giant numerals, and they rearrange as the count goes down. Clouds that are about to disappear shake first, so you get a moment of warning to read where the level is going and jump before the tile you are standing on stops existing.',
+          'Every number is drawn in a 5x7 pixel font, and each lit pixel is a cube you can stand on. When the count drops, clouds that are about to vanish flash and shake first, and incoming clouds show up as faint ghosts, so you have a moment to jump before the tile under you disappears.',
       },
       {
         heading: 'Floaty, Buoyant Platforming',
         content:
-          'The sheep hovers and drifts, and the jumps are slow and wide. The controller is forgiving on purpose: it cushions your momentum and gives you a little slack at ledges, so committing to a jump usually works out.',
+          'The sheep hovers on a spring above the clouds and falls slowly. A standing jump clears a one-cube gap and a running jump clears about two. You can still jump for a split second after leaving a ledge, and you can hang a little past an edge without falling.',
       },
       {
         heading: 'Reactive Soundscape & Dynamic Bleats',
         content:
-          'Ambient drones underneath, chimes when something resolves, and a sheep that bleats. The bleats are randomized and tied to what just happened, so jumps, landings, star pickups, and near misses all sound different.',
+          'An ambient drone plays underneath, with chimes when the floor changes. The sheep bleats when it jumps, lands, grabs a star, nearly falls, and falls asleep, and every bleat has a randomized pitch, length and vibrato.',
       },
       {
         heading: 'Varied Dream Modes & Pacing',
         content:
-          'Dream runs count down through a set sequence: Fibonacci, primes, or halving. Endless Mode is the high score chase, with combo multipliers. Zen Mode has no fail state at all and catches you when you fall.',
+          'Dream runs count down through a set sequence such as Fibonacci, primes, halving, or a 20-to-1 Long Night. Endless Mode is the high score chase, with star combos and a timer that tightens the longer you last. Zen Mode has no fail state and floats you back to safety when you drift off a cloud.',
       },
       {
         heading: 'Diegetic Sleep Meter & Radar Planning',
         content:
-          'The HUD is styled as a dream journal. Instead of a progress bar there is an eyelid that closes further the cleaner you play. A top-down minimap shows the platforms that are about to appear, which is how you plan a route more than one jump ahead.',
+          'The HUD is styled as a dream journal. Instead of a progress bar there is a pen-sketched eye whose lid closes as the run goes on and startles open when you fall. A top-down minimap shows your position and the shape of the next number, so you can plan a route before the floor changes.',
       },
     ],
     technologies: [
       { name: 'Unity', icon: 'icon_unity.svg' },
-      { name: 'C#', icon: 'icon_csharp.svg' },
+      { name: 'C#', icon: 'icon_cs.svg' },
       { name: 'Universal Render Pipeline (URP)', icon: 'icon_unity.svg' },
       { name: 'Shader Graph', icon: 'icon_unity.svg' },
-      { name: 'VFX Graph', icon: 'icon_unity.svg' },
+      { name: 'UI Toolkit', icon: 'icon_unity.svg' },
       { name: 'Blender', icon: 'icon_blender.svg' },
     ],
     responsibilities: [
-      'Architected the full Unity game architecture in C# using decoupled ScriptableObject workflows, event channels, and modular state machines for the GMTK Game Jam 2026.',
-      'Developed custom Shader Graph materials for fluffy cloud voxels with dynamic rim lighting, emissive glow, and noise-based dissolution effects.',
-      'Programmed the custom kinematic character controller from scratch, tuning spring buoyancy, coyote time, and inflated bounding boxes for fluid aerial navigation.',
-      'Built high-performance GPU instancing and object pooling systems to guarantee smooth 60+ FPS performance during rapid, large-scale voxel grid reflows.',
-      'Designed dynamic audio behavior in Unity AudioMixer with real-time pitch modulation and formant filtering for procedural sheep vocalizations.',
-      'Implemented the dream-journal UI system, animated eyelid sleep gauge, and 2D canvas radar minimap for tactical route planning.',
+      'Built the game solo in Unity 6 and C# in 96 hours for the GMTK Game Jam 2026, around ScriptableObject config assets, event channels and a game state machine',
+      'Wrote a custom kinematic character controller with a damped hover spring, low gravity, coyote time and an inflated support footprint for forgiving ledges',
+      'Built the number floor as a fixed pool of cube slots drawn with GPU instancing, so each reflow toggles cell state and never creates or destroys objects',
+      'Made a Shader Graph material for the cloud cubes with Fresnel rim lighting, emissive glow and alpha-clip crumbling',
+      'Wrote a procedural synthesizer in C# that renders randomized sheep bleats from detuned saw waves and a formant filter, then pitch-bends them live through an AudioMixer',
+      'Implemented the dream-journal HUD in UI Toolkit, including the animated eyelid sleep gauge and a minimap that previews the next number',
+      'Modelled the sheep, cloud cube and star in Blender and exported them to Unity as FBX',
     ],
     videos: [],
     additional: [
-      'Developed for the GMTK Game Jam 2026, bringing the countdown theme to life through the classic bedtime tradition of counting sheep.',
-      'Built around the guiding design philosophy of "logic blocky, render fluffy"—pairing precise, predictable grid-based movement with soft, luminous cloud visuals.',
-      'Visual aesthetic draws heavy inspiration from classic storybooks and ink dream diaries, combining handwritten typography with a soothing indigo and starlight color palette.',
-      'Includes a dedicated Zen Mode created specifically for unwinding, completely stripping away failure conditions, timers, and scoring in favor of peaceful drift recovery and slower rhythms.',
-      'Engineered to deliver a polished, responsive standalone gaming experience with full gamepad and keyboard support.',
+      'Made solo in 96 hours for the GMTK Game Jam 2026. Counting sheep is already a countdown ritual, and sheep jump, so the theme fit the premise without any stretching.',
+      'Players rated it 4.5 out of 5 in every category except Audio, from 15 ratings.',
+      'The guiding rule was "logic blocky, render fluffy". Movement and collision run on an exact cube grid, and the soft glowing clouds are only drawn on top.',
+      "My rule for difficulty was that a death should feel like your fault, not the game's. Turning the slider up only shortens the timing. The warning flash and the grace window never go away.",
+      'The look comes from storybooks and ink dream diaries, with handwritten type on an indigo and starlight palette.',
+      'Zen Mode is there for unwinding. It has no timer pressure, no score and no way to fail.',
+      'It plays with a gamepad or a keyboard.',
     ],
   },
   bushido: {

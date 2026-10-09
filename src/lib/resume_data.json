@@ -200,7 +200,7 @@
       "bullets": [
         "Built Counting Sheep solo in 96 hours, a 3D browser platformer on the jam's countdown theme using Unity.",
         "Rated 4.5/5 in every category except Audio, from 15 players",
-        "Made every visual and sound in code, with no external assets and sheep bleats synthesized through the Web Audio API"
+        "Synthesized every sound in C# with no audio files, including randomized sheep bleats, and modelled the characters in Blender"
       ]
     },
     {
@@ -462,7 +462,7 @@
       "url": "countingsheep",
       "category": "Game Projects",
       "date": "00/08/2026",
-      "desc": "A 3D arcade platformer built for the GMTK Game Jam 2026. Players guide a floaty sheep across voxel cloud-numerals that crumble and reform underneath them as the sleeper counts down to sleep."
+      "desc": "A 3D arcade platformer made solo in 96 hours for the GMTK Game Jam 2026. You guide a floaty sheep across cloud-cube numerals that crumble and reform under you as a sleeper counts down to sleep."
     },
     {
       "title": "Harvest Rush",
