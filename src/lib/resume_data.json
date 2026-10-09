@@ -472,6 +472,13 @@
       "desc": "A fast-paced couch co-op and solo farming game where players till soil, sow seeds, water crops, and rush harvested produce to a scheduled delivery truck while defending the farm from hungry pests and spreading fires."
     },
     {
+      "title": "Tic-Tac-Gone",
+      "url": "tictacgone",
+      "category": "Game Projects",
+      "date": "00/10/2026",
+      "desc": "A 3D take on tic-tac-toe for the browser where each player can only keep three pieces on the board, and placing a fourth removes their oldest. Built with Three.js, with local two-player and a computer opponent on three difficulty levels."
+    },
+    {
       "title": "Pokémon Bushido",
       "url": "bushido",
       "category": "Game Projects",

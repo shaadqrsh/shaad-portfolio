@@ -142,6 +142,71 @@ export const data: { [key: string]: projectData } = {
       'It plays with a gamepad or a keyboard.',
     ],
   },
+  tictacgone: {
+    ...getProjBase('tictacgone'),
+    game: true,
+    urls: [
+      {
+        label: 'Itch.io',
+        icon: '',
+        url: 'https://bro-skito.itch.io/tic-tac-gone',
+      },
+    ],
+    desc: "Tic-Tac-Gone is tic-tac-toe with a short memory. Each player can only have three pieces on the board, so placing a fourth removes your oldest one and the grid never fills up into a draw. The piece you are about to lose fades and pulses, and that is where most of the thinking happens because a line you are blocking can open up the moment your own piece leaves. It started as a scrapbook idea from undergrad and now runs in the browser on desktop and phones, against a friend on the same device or against the computer.",
+    features: [
+      {
+        heading: 'Three-Piece FIFO Rule & No Draws',
+        content: "Each player can have three pieces on the board. Placing a fourth removes that player's oldest piece, so every game ends with a winner. The next piece to go fades and pulses, and the pips on each player card show the same queue.",
+      },
+      {
+        heading: 'Three-Tier Computer Opponent',
+        content: 'Easy plays mostly at random and spots an immediate win half the time. Normal takes a winning move, otherwise blocks yours, and accounts for its own oldest piece disappearing when it blocks. Hard searches 6 moves ahead early in the game and 9 once the board is full.',
+      },
+      {
+        heading: 'Beat-the-Clock Turn Timer',
+        content: 'An optional limit of 5, 10, 20 or 30 seconds per move. When it runs out, the game either plays a random move for you or skips your turn, depending on the setting. The timer stops while the game is paused and never applies to the computer.',
+      },
+      {
+        heading: 'Tactile 3D Board on Desktop & Mobile',
+        content: 'Pieces drop onto a low-poly wooden board, and you can drag to tilt it. On a phone, pressing a tile previews your piece, lifting your finger on the same tile places it, and sliding away cancels. Keyboard players can use 1 to 9 or the arrow keys and Enter.',
+      },
+      {
+        heading: 'Fully Synthesized Audio',
+        content: 'Every sound effect and the ambient music are generated at runtime with the Web Audio API. There are no audio files in the game. Music and effects have separate volume sliders.',
+      },
+      {
+        heading: 'Living Title Screen & Rematch Scoring',
+        content: 'A computer-vs-computer game plays behind the main menu. The result screen keeps score across rematches, and settings are saved in localStorage between visits.',
+      },
+    ],
+    technologies: [
+      { name: 'JavaScript', icon: 'icon_javascript.svg' },
+      { name: 'Three.js', icon: '' },
+      { name: 'Vite', icon: 'icon_vite.svg' },
+      { name: 'HTML5', icon: '' },
+      { name: 'CSS', icon: '' },
+      { name: 'Web Audio API', icon: '' },
+      { name: 'Claude Fable', icon: 'icon_claude.svg' },
+    ],
+    responsibilities: [
+      'Wrote the game design document defining the three-piece FIFO rule, the win condition, both game modes and the original rule-based AI',
+      'Designed the faded, pulsing "next to go" cue so players can always see which of their pieces leaves on their next move',
+      'Set the art direction of warm low-poly wood against a cool navy backdrop and used Claude Fable to model the board, pieces and background shapes procedurally in Three.js',
+      'Wrote large parts of the JavaScript and Three.js code across 7 modules covering rules, AI, rendering, audio, UI, game flow and settings',
+      'Refined and extended the codebase with Claude Fable, reviewing each change before keeping it',
+      'Playtested builds on desktop and mobile, covering the three AI difficulty levels, the turn timer and touch controls',
+      'Prepared the itch.io HTML5 release with a Vite build using relative asset paths and a one-command ZIP script',
+    ],
+    videos: [],
+    additional: [
+      'This started as a scrapbook idea from undergrad i.e. tic-tac-toe where your pieces do not stay forever. I first pictured it in Unity, but a full engine felt like too much for a 3x3 board, so I built it for the browser instead.',
+      "I mainly wanted an HTML5 Three.js project under my belt. It was also my first time using Claude Fable, which I tried through Claude's introductory $100 in credits.",
+      'I wrote big chunks of the code myself and used Fable to refine it. Fable made the 3D models, and I was impressed by how well it handled modelling in code.',
+      'There are no image, model or audio files in the game. The board and pieces are built from Three.js geometry, and the music and sound effects are synthesized with Web Audio.',
+      'The design doc only called for an AI that wins, blocks or plays randomly. That became Normal difficulty, and the finished game also has Easy and a Hard mode that runs a negamax search with alpha-beta pruning.',
+      "What I'm proudest of is taking a simple scrapbook game and making it feel fresh. Solo personal project, finished in October 2026.",
+    ],
+  },
   bushido: {
     ...getProjBase('bushido'),
     game: true,
@@ -162,17 +227,17 @@ export const data: { [key: string]: projectData } = {
         url: 'https://github.com/TheLuxDiablo/Pokemon-Bushido',
       },
     ],
-    desc: "Journey into the Aisho Region, a land steeped in ancient traditions and home to the captivating world of PokÃ©mon Bushido. As the child of the Royal Samurai, your path unfolds through a rich narrative, where you'll train alongside your PokÃ©mon in the martial arts, discover the role of a 'Kenshi', and confront the enigmatic Akui Clan with their dangerous Shadow PokÃ©mon. This fangame offers a fresh take on the PokÃ©mon formula, blending classic gameplay with a distinct feudal Japanese aesthetic, featuring new mechanics, visually stunning environments, riveting story and challenging gameplay that will test your honor and skill.",
+    desc: "Journey into the Aisho Region, a land steeped in ancient traditions and home to the captivating world of Pokémon Bushido. As the child of the Royal Samurai, your path unfolds through a rich narrative, where you'll train alongside your Pokémon in the martial arts, discover the role of a 'Kenshi', and confront the enigmatic Akui Clan with their dangerous Shadow Pokémon. This fangame offers a fresh take on the Pokémon formula, blending classic gameplay with a distinct feudal Japanese aesthetic, featuring new mechanics, visually stunning environments, riveting story and challenging gameplay that will test your honor and skill.",
     features: [
       {
         heading: 'Immersive Feudal Japan-Inspired World',
         content:
-          'Explore the Aisho region, a brand new land meticulously designed with a rich samurai-themed aesthetic, offering a unique departure from traditional PokÃ©mon settings.',
+          'Explore the Aisho region, a brand new land meticulously designed with a rich samurai-themed aesthetic, offering a unique departure from traditional Pokémon settings.',
       },
       {
-        heading: 'Diverse Roster of PokÃ©mon',
+        heading: 'Diverse Roster of Pokémon',
         content:
-          'Build your team with a wide selection of PokÃ©mon, featuring species from up to the 8th Generation, all rendered in classic Gen 4-styled graphics for a nostalgic yet expanded experience.',
+          'Build your team with a wide selection of Pokémon, featuring species from up to the 8th Generation, all rendered in classic Gen 4-styled graphics for a nostalgic yet expanded experience.',
       },
       {
         heading: 'Original Storyline',
@@ -180,9 +245,9 @@ export const data: { [key: string]: projectData } = {
           'Embark on a 10-15 hour narrative-driven adventure as the child of the Royal Samurai, training to become a Kenshi and uncovering the secrets and conflicts within the Aisho region, including the nefarious Akui Clan.',
       },
       {
-        heading: 'Return of Shadow PokÃ©mon',
+        heading: 'Return of Shadow Pokémon',
         content:
-          'Encounter and battle formidable Shadow PokÃ©mon, a concept inspired by PokÃ©mon XD: Gale of Darkness. These corrupted PokÃ©mon present unique challenges and can be snagged from opposing trainers for purification.',
+          'Encounter and battle formidable Shadow Pokémon, a concept inspired by Pokémon XD: Gale of Darkness. These corrupted Pokémon present unique challenges and can be snagged from opposing trainers for purification.',
       },
       {
         heading: 'Katana Styles',
@@ -198,7 +263,7 @@ export const data: { [key: string]: projectData } = {
     ],
     responsibilities: [
       'Developed the core engine in which the game was made.',
-      'Created new mechanics (Katana techniques, mid-battle dialogue, Following PokÃ©mon, battle animations, etc) to differenciate it from mainline PokÃ©mom games.',
+      'Created new mechanics (Katana techniques, mid-battle dialogue, Following Pokémon, battle animations, etc) to differenciate it from mainline PokÃ©mom games.',
       'Aggregated publically available assets for developing the game within 30 days.',
       'Evented multiple in-game cutscenes, while also writing custom scripts for functionality.',
       "Designed various UI/UX elements to enhance the immersion of the battle system, with detailed battle backgrounds and themes to fit the game's aesthetic.",
@@ -212,12 +277,12 @@ export const data: { [key: string]: projectData } = {
     ],
     additional: [
       'This game was developed for the Relic Castle (Eevee Expo) Winter Game Jam #2. It was developed in 30 days, and the team ended up winning the competition.',
-      'The idea of setting a game in a feudal Japan setting was devised months before the official PokÃ©mon games took a similar direction with PokÃ©mon Legends: Arceus.',
+      'The idea of setting a game in a feudal Japan setting was devised months before the official Pokémon games took a similar direction with Pokémon Legends: Arceus.',
       'Future expansions were planned, to expand the Aisho region and provide more story for important characters in the game. The team, however, disbanded and further expansions were scrapped.',
-      'The game draws heavy inspiration from mainline entries like PokÃ©mon Conquest and PokÃ©mon XD: Gale of Darkness, and borrows assets from them, along with other mainline PokÃ©mon games.',
+      'The game draws heavy inspiration from mainline entries like Pokémon Conquest and Pokémon XD: Gale of Darkness, and borrows assets from them, along with other mainline Pokémon games.',
       'The development of this project was headed by Thundaga, a YouTuber, and the development of this game has been recorded as VODs on their YouTube and Twitch.',
       'This is one of the highest rated and most viewed games on Eevee Expo (formerly Relic Castle), the forum on which this game was initially launched.',
-      'This game has been regarded as one of the best PokÃ©mon Fangames of 2021.',
+      'This game has been regarded as one of the best Pokémon Fangames of 2021.',
     ],
   },
   splice: {
@@ -235,17 +300,17 @@ export const data: { [key: string]: projectData } = {
         url: 'https://drive.google.com/file/d/1igsvdRzCU9S3AgiGcCIR9jpDKJBDoWgv/view',
       },
     ],
-    desc: 'Assume the role of a research assistant aiding Professor Cypress in the study of newly discovered PokÃ©mon forms in this new fangame. Embark on a journey through the Stacona region with a new starter PokÃ©mon, Arenay, which possesses the ability to change its type. Align with either Team Biogress, emphasizing natural development, or Team Quantech, focused on technological enhancement. Experience a branching storyline, where you are presented with significant choices which will completely alter your experience. The fate of PokÃ©mon research hangs in the balance - whose side will you choose?',
+    desc: 'Assume the role of a research assistant aiding Professor Cypress in the study of newly discovered Pokémon forms in this new fangame. Embark on a journey through the Stacona region with a new starter Pokémon, Arenay, which possesses the ability to change its type. Align with either Team Biogress, emphasizing natural development, or Team Quantech, focused on technological enhancement. Experience a branching storyline, where you are presented with significant choices which will completely alter your experience. The fate of Pokémon research hangs in the balance - whose side will you choose?',
     features: [
       {
         heading: 'New Region',
         content:
-          'PokÃ©mon Splice is set in the entirely new Stacona Region, a brand new world with its own unique environments and never before seen PokÃ©mon species.',
+          'Pokémon Splice is set in the entirely new Stacona Region, a brand new world with its own unique environments and never before seen Pokémon species.',
       },
       {
-        heading: 'New PokÃ©mon Species',
+        heading: 'New Pokémon Species',
         content:
-          'The game features several new species of PokÃ©mon, such as Arenay, the starter with a unique form changing gimmick, as well as evolutions and pre-evolutions for existing PokÃ©mon like Pinsir, Skarmory and Combee and more!',
+          'The game features several new species of Pokémon, such as Arenay, the starter with a unique form changing gimmick, as well as evolutions and pre-evolutions for existing Pokémon like Pinsir, Skarmory and Combee and more!',
       },
       {
         heading: 'Branching Storylines',
@@ -260,7 +325,7 @@ export const data: { [key: string]: projectData } = {
       {
         heading: 'Distinct Gen-3 Artsyle',
         content:
-          'The game pays hommage to the GameBoy Advance generation of PokÃ©mon games with its environment and UI design, but still has all the QOL improvements of the modern games.',
+          'The game pays hommage to the GameBoy Advance generation of Pokémon games with its environment and UI design, but still has all the QOL improvements of the modern games.',
       },
     ],
     technologies: [
@@ -271,7 +336,7 @@ export const data: { [key: string]: projectData } = {
     ],
     responsibilities: [
       'Developed the core engine in which the game was made.',
-      'Created new mechanics (Form changing, mid-battle dialogue, Following PokÃ©mon, battle animations, etc) to differenciate it from mainline PokÃ©mom games.',
+      'Created new mechanics (Form changing, mid-battle dialogue, Following Pokémon, battle animations, etc) to differenciate it from mainline PokÃ©mom games.',
       'Aggregated publically available assets for developing the game within 30 days.',
       'Evented multiple in-game cutscenes, while also writing custom scripts for functionality.',
       'Designed various UI/UX elements to enhance the immersion of the battle system, with detailed battle backgrounds and themes to fit the Generation 3 aesthetic.',
