@@ -1,15 +1,7 @@
 "use client";
 import FadeInUp from "@/components/FadeInUp";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { ProjectIdPageProps } from "@/types";
-import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Button from "@/components/ui/button";
 import DateDisplay from "../DateDisplay";
@@ -20,8 +12,6 @@ interface CoverImgProps extends ProjectIdPageProps {
 }
 
 const CoverImg = ({ project, url, onLoad, enableAnimation = true }: CoverImgProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
       <Image
@@ -47,32 +37,25 @@ const CoverImg = ({ project, url, onLoad, enableAnimation = true }: CoverImgProp
           </h2>
         </FadeInUp>
 
-        <DropdownMenu onOpenChange={setIsOpen}>
-          <DropdownMenuTrigger asChild>
-            <Button className="px-6 py-3 mt-8 font-semibold">
-              <ChevronDown
-                size={20}
-                className={cn("transition-transform duration-300", isOpen && "rotate-180")}
-              />
-              Download
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-shaad-600 border-shaad-600 text-white">
+        {project.urls.length > 0 && (
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
             {project.urls.map((u, idx) => (
-              <a
+              <Button
                 key={idx}
                 href={u.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                variant={idx === 0 ? "default" : "outline"}
+                className={cn(
+                  "font-semibold text-white hover:scale-105",
+                  idx === 0 && "border-2 border-transparent"
+                )}
               >
-                <DropdownMenuItem className="cursor-pointer">
-                  {u.label}
-                </DropdownMenuItem>
-              </a>
+                {u.label}
+              </Button>
             ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
-
+          </div>
+        )}
 
           <h2 className="text-xl mt-6 text-white font-bold text-center">
             Released: <DateDisplay date={project.date} />

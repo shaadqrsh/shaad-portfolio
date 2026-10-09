@@ -147,14 +147,14 @@ export const data: { [key: string]: projectData } = {
     game: true,
     urls: [
       {
-        label: 'Direct Download',
-        icon: '',
-        url: 'https://drive.google.com/file/d/1IZ3AlFv5rm8xrUn9YbwLe4i-Bu9YwHpO/view',
-      },
-      {
         label: 'Eevee Expo',
         icon: '',
         url: 'https://eeveeexpo.com/bushido/',
+      },
+      {
+        label: 'Direct Download',
+        icon: '',
+        url: 'https://drive.google.com/file/d/1IZ3AlFv5rm8xrUn9YbwLe4i-Bu9YwHpO/view',
       },
       {
         label: 'GitHub',
@@ -225,14 +225,14 @@ export const data: { [key: string]: projectData } = {
     game: true,
     urls: [
       {
-        label: 'Direct Download',
-        icon: '',
-        url: 'https://drive.google.com/file/d/1igsvdRzCU9S3AgiGcCIR9jpDKJBDoWgv/view',
-      },
-      {
         label: 'Eevee Expo',
         icon: '',
         url: 'https://eeveeexpo.com/splice/',
+      },
+      {
+        label: 'Direct Download',
+        icon: '',
+        url: 'https://drive.google.com/file/d/1igsvdRzCU9S3AgiGcCIR9jpDKJBDoWgv/view',
       },
     ],
     desc: 'Assume the role of a research assistant aiding Professor Cypress in the study of newly discovered PokÃ©mon forms in this new fangame. Embark on a journey through the Stacona region with a new starter PokÃ©mon, Arenay, which possesses the ability to change its type. Align with either Team Biogress, emphasizing natural development, or Team Quantech, focused on technological enhancement. Experience a branching storyline, where you are presented with significant choices which will completely alter your experience. The fate of PokÃ©mon research hangs in the balance - whose side will you choose?',
@@ -494,7 +494,7 @@ export const data: { [key: string]: projectData } = {
     ...getProjBase('emaadportfolio'),
     game: false,
     urls: [
-      { label: 'Live Site', icon: '', url: 'https://emmeqqu-08.github.io/emaad-portfolio/' },
+      { label: 'Live Project', icon: '', url: 'https://emmeqqu-08.github.io/emaad-portfolio/' },
       { label: 'GitHub', icon: '', url: 'https://github.com/emmeqqu-08/emaad-portfolio' },
     ],
     desc: "A dark, cinematic portfolio site for Emaad's art, with a look borrowed from JoJo's Bizarre Adventure. It has three pages: a home page with a hero and a strip of selected pieces, a Works page with a filterable masonry grid, and an About page. Emaad runs it without me. They log into a Decap CMS dashboard with GitHub, drop in an image, fill out a form, and hit Publish, and the site rebuilds on its own. The whole setup costs nothing to run.",

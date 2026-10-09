@@ -7,17 +7,18 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const useMediaQuery = (query: string): boolean => {
-  const [matches, setMatches] = React.useState(false);
+  const subscribe = React.useCallback(
+    (onChange: () => void) => {
+      const mediaQueryList = window.matchMedia(query);
+      mediaQueryList.addEventListener("change", onChange);
+      return () => mediaQueryList.removeEventListener("change", onChange);
+    },
+    [query]
+  );
 
-  React.useEffect(() => {
-    const mediaQueryList = window.matchMedia(query);
-    const listener = (event: MediaQueryListEvent) => setMatches(event.matches);
-
-    setMatches(mediaQueryList.matches);
-    mediaQueryList.addEventListener("change", listener);
-
-    return () => mediaQueryList.removeEventListener("change", listener);
-  }, [query]);
-
-  return matches;
+  return React.useSyncExternalStore(
+    subscribe,
+    () => window.matchMedia(query).matches,
+    () => false
+  );
 };
