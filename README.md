@@ -75,17 +75,15 @@ You don't need to record a screenshot count anywhere. [next.config.ts](next.conf
 
 The resume is built from the same `resume_data.json` as the website, so the two never drift apart.
 
-```bash
-npm run resume
-```
-
-This runs [generate_resume.py](public/resume_gen/scripts/generate_resume.py), which:
+You don't run anything by hand. When a push to `main` touches `resume_data.json`, the resume template, or the generator scripts, the [Regenerate resume](.github/workflows/resume.yml) GitHub Action runs [generate_resume.py](public/resume_gen/scripts/generate_resume.py), which:
 
 1. Loads `src/lib/resume_data.json` and maps it to the resume's format (strips icons/images, keeps LinkedIn, Website, and Email as the contact links).
 2. Fills in [resume_template.html](public/resume_gen/templates/resume_template.html) and writes `public/resume.html`.
 3. Converts that HTML into `public/resume.pdf`, which the site serves at `/resume.pdf`. Visitors who click download get it saved as `{name} - Resume.pdf`.
 
-Commit the regenerated `public/resume.pdf`; it's a site asset, not a build output.
+The Action then commits the new `public/resume.pdf` back to `main`, and Vercel deploys that commit. Your own push deploys too, with the previous PDF, so the new resume goes live a minute or two after the site changes. The Action can also be started by hand from the repo's Actions tab.
+
+To preview the PDF locally, run `python public/resume_gen/scripts/generate_resume.py`. There's no need to commit the result, since the Action rebuilds it anyway.
 
 ### Clickable links
 
@@ -96,7 +94,7 @@ The PDF keeps real hyperlinks, which some studios ask for on application resumes
 
 Links show in blue, so they're easy to spot on screen. A black-and-white print looks the same as before.
 
-Adding a project to `resume_data.json` is enough for its link to appear on the next `npm run resume`.
+Adding a project to `resume_data.json` and pushing is enough for its link to appear in the resume.
 
 ### Zero-setup Python
 
@@ -140,7 +138,6 @@ npm run dev      # http://localhost:3000
 | `npm run build` | Production build |
 | `npm run start` | Serve the production build |
 | `npm run lint` | Run ESLint |
-| `npm run resume` | Regenerate `public/resume.html` and `public/resume.pdf` from `resume_data.json` |
 
 The site is deployed on Vercel (see [vercel.json](vercel.json)).
 
