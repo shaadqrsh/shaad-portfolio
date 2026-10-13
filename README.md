@@ -54,10 +54,11 @@ shaad-portfolio/
 │   │   ├── resume_data.json     # Single source of truth for site content
 │   │   ├── projectId.ts         # Long-form detail for each project page
 │   │   ├── agentProfile.ts      # Flattened profile used by every machine-readable surface
+│   │   ├── images.ts            # Finds each image's real file, whether .png or .jpg
 │   │   └── ...                  # Typed adapters (Experience, Skills, Jams, ...), OG + JSON-LD helpers
 │   └── types.ts
 └── public/
-    ├── project_<url>/           # cover.png, icon.png, img_1.png ... img_N.png per project
+    ├── project_<url>/           # cover, icon, img_1 ... img_N per project (.png or .jpg)
     ├── jams/, skills/, about/   # Section icons and images
     ├── resume.pdf               # Resume served on the site (generated)
     └── resume_gen/
@@ -73,15 +74,15 @@ shaad-portfolio/
 
 ## Editing content
 
-`resume_data.json` holds the name, bio, nav links, experience, education, publications, certifications, jams, skills, the project list, and the order of project categories. The files in `src/lib/` are thin typed adapters over it. When you edit the JSON, the pages, the resume, and the machine-readable data all follow.
+`resume_data.json` holds the name, bio, nav links, experience, education, publications, certifications, jams, skills, the project list, and the order of project categories. The files in `src/lib/` are thin typed adapters over it. When you edit the JSON, the pages, the resume, and the machine-readable data all follow. Images live in `public/` and can be `.png`, `.jpg` or `.jpeg` in any letter case. An image path in the JSON finds the file in whichever format it's saved, so swapping a PNG for a JPG doesn't mean editing anything.
 
 ### Adding a project
 
 1. Add an entry to `projects` in `resume_data.json`. Its `url` field becomes the route (`/projects/<url>`).
 2. Add a matching key to `data` in [src/lib/projectId.ts](src/lib/projectId.ts) with the description, features, technologies, responsibilities, videos, and extra notes.
-3. Create `public/project_<url>/` with `cover.png`, `icon.png`, and screenshots named `img_1.png`, `img_2.png`, and so on.
+3. Create `public/project_<url>/` with a `cover`, an `icon`, and screenshots named `img_1`, `img_2`, and so on, each as a `.png` or `.jpg`.
 
-You don't have to record how many screenshots there are. [next.config.ts](next.config.ts) scans the `project_*` folders at build time and inlines the counts. It stops at the first gap in the `img_N.png` sequence, so a missing file can't turn into a broken image.
+You don't have to record how many screenshots there are or what format each one is in. At build time, [next.config.ts](next.config.ts) lists every image in `public/`, and [src/lib/images.ts](src/lib/images.ts) uses that list to find each file and count the screenshots. The count stops at the first gap in the `img_N` sequence, so a missing file can't turn into a broken image. If one image exists in both formats, the build warns and uses the `.png`. The list is only read when the server starts, so restart `npm run dev` after adding or renaming images.
 
 After that, pushing is enough. The sitemap, `llms.txt`, the JSON endpoints and the JSON-LD pick up the new project on their own, and the resume gets a link to its page.
 

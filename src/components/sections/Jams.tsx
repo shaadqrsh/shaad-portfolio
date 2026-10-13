@@ -16,7 +16,7 @@ interface JamsProps {
   enableAnimation?: boolean;
 }
 
-// Square PNG logo for the event. Falls back to a trophy tile until the file exists.
+// Square logo for the event (.png or .jpg). Falls back to a trophy tile until the file exists.
 const JamIcon = ({ src, alt }: { src: string; alt: string }) => {
   const [imgError, setImgError] = useState(false);
 

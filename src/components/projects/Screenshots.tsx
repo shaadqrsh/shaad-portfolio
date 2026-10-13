@@ -1,5 +1,5 @@
 import Title from "@/components/Title";
-import { getImgCount } from "@/lib/imgCounts";
+import { getImgCount, projectImg } from "@/lib/images";
 import { ProjectIdPageProps } from "@/types";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
@@ -34,9 +34,9 @@ const Screenshots = ({ url }: ProjectIdPageProps) => {
                   key={i}
                   className="flex justify-center lg:basis-1/3 "
                 >
-                  <ImageDialog src={`/project_${url}/img_${i + 1}.png`}>
+                  <ImageDialog src={projectImg(url, `img_${i + 1}`)}>
                     <Image
-                      src={`/project_${url}/img_${i + 1}.png`}
+                      src={projectImg(url, `img_${i + 1}`)}
                       alt={`Project image ${i + 1}`}
                       width={1920}
                       height={1080}

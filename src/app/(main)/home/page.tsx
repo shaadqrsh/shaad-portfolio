@@ -4,6 +4,7 @@ import FadeInUp from "@/components/FadeInUp";
 import ImageWithAbstractShape from "@/components/ImageWithAbstractShape";
 import { homePara, name, title } from "@/lib/Data";
 import { EMAIL, handleEmail } from "@/lib/Email";
+import { img } from "@/lib/images";
 import { links } from "@/lib/header";
 import { motion } from "motion/react";
 import Image from "next/image";
@@ -13,7 +14,8 @@ import Card from "@/components/ui/Card";
 
 const Home = () => {
 
-  const HOME_IMG = "/img_home.png";
+  const HOME_IMG = img("/img_home");
+  const BG_IMG = img("/bg_home");
   const [imgLoaded, setImgLoaded] = useState(() => isImageCached(HOME_IMG));
   const isLoading = useSmartLoader({
     loadingDependencies: [!imgLoaded],
@@ -24,7 +26,7 @@ const Home = () => {
       <Loader isLoading={isLoading} />
       <div className="hidden">
         <Image
-          src="/bg_home.png"
+          src={BG_IMG}
           alt="bg"
           width={1440}
           height={1080}
@@ -35,7 +37,7 @@ const Home = () => {
         <div
           className="fixed inset-0 z-0"
           style={{
-            backgroundImage: "url('/bg_home.png')",
+            backgroundImage: `url('${BG_IMG}')`,
             backgroundRepeat: "repeat",
             backgroundSize: "1440px",
             filter: "blur(2px) brightness(0.4)",
@@ -120,7 +122,7 @@ const Home = () => {
             </div>
           </motion.div>
           <ImageWithAbstractShape
-            src="/img_home.png"
+            src={HOME_IMG}
             alt="Shaad Qureshi"
             onLoad={() => { markImageCached(HOME_IMG); setImgLoaded(true); }}
             enableAnimation={!isLoading}

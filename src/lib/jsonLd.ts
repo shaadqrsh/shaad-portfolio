@@ -8,6 +8,7 @@ import {
   skills,
 } from "./agentProfile";
 import { abs } from "./siteUrl";
+import { img, projectImg } from "./images";
 
 /**
  * Schema.org graph embedded in every page's <head>. This is what Google,
@@ -31,7 +32,7 @@ export const personJsonLd = () => {
           ? `mailto:${profile.contact.email}`
           : undefined,
         url: profile.url,
-        image: abs("/icon.png"),
+        image: abs(img("/icon")),
         address: {
           "@type": "PostalAddress",
           addressLocality: city,
@@ -111,7 +112,7 @@ export const personJsonLd = () => {
         name: proj.title,
         description: proj.description || proj.summary,
         url: proj.url,
-        image: abs(`/project_${proj.slug}/icon.png`),
+        image: abs(projectImg(proj.slug, "icon")),
         dateCreated: proj.date,
         author: { "@id": abs("/#person") },
         applicationCategory:

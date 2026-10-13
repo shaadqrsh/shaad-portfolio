@@ -1,4 +1,5 @@
 import resumeData from "./resume_data.json";
+import { img } from "./images";
 
 export interface Jam {
   title: string;
@@ -9,4 +10,4 @@ export interface Jam {
   url?: string;
 }
 
-export const Jams: Jam[] = resumeData.jams;
+export const Jams: Jam[] = resumeData.jams.map((j) => ({ ...j, icon: img(j.icon) }));

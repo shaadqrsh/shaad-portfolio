@@ -2,35 +2,51 @@ import type { NextConfig } from "next";
 import fs from "fs";
 import path from "path";
 
-// Scans public/project_*/ at build time (and on dev server start) so screenshot
-// counts never have to be hand-maintained. The result is inlined into the
+const IMAGE_EXT = /\.(png|jpe?g)$/i;
+
+// Scans public/ at build time (and on dev server start) for every .png, .jpg
+// and .jpeg, keyed by its lowercased path without the extension. src/lib/images.ts
+// uses this to find whichever format is on disk, and to count screenshots
+// without anyone hand-maintaining a number. The result is inlined into the
 // bundle as an env constant, which keeps it working on Vercel where the
 // serverless runtime can't read public/ from disk.
-const readImgCounts = () => {
+const readImages = () => {
   const publicDir = path.join(process.cwd(), "public");
-  const counts: { [key: string]: number } = {};
+  const images: { [key: string]: string } = {};
 
-  for (const entry of fs.readdirSync(publicDir, { withFileTypes: true })) {
-    if (!entry.isDirectory() || !entry.name.startsWith("project_")) continue;
+  const walk = (dir: string) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        // The resume generator's assets aren't served as site images.
+        if (entry.name !== "resume_gen") walk(full);
+        continue;
+      }
+      if (!IMAGE_EXT.test(entry.name)) continue;
 
-    const url = entry.name.slice("project_".length);
-    const images = fs
-      .readdirSync(path.join(publicDir, entry.name))
-      .filter((file) => /^img_\d+\.png$/.test(file));
+      const src = "/" + path.relative(publicDir, full).split(path.sep).join("/");
+      const key = src.replace(IMAGE_EXT, "").toLowerCase();
 
-    // Count only the unbroken img_1..img_N run so a gap never renders a 404.
-    let count = 0;
-    while (images.includes(`img_${count + 1}.png`)) count++;
+      // Two formats of the same image: keep the .png so the pick doesn't
+      // depend on directory order, and say so.
+      if (images[key]) {
+        const keep = /\.png$/i.test(images[key]) ? images[key] : src;
+        const drop = keep === src ? images[key] : src;
+        console.warn(`public${keep} and public${drop} both exist; using ${keep}.`);
+        images[key] = keep;
+        continue;
+      }
+      images[key] = src;
+    }
+  };
 
-    counts[url] = count;
-  }
-
-  return counts;
+  walk(publicDir);
+  return images;
 };
 
 const nextConfig: NextConfig = {
   env: {
-    NEXT_PUBLIC_IMG_COUNTS: JSON.stringify(readImgCounts()),
+    NEXT_PUBLIC_IMAGES: JSON.stringify(readImages()),
   },
 };
 

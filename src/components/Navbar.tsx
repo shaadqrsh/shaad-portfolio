@@ -6,6 +6,7 @@ import { FileUser } from "lucide-react";
 import { AnimatePresence } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
+import { img } from "@/lib/images";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import MobileNav from "./MobileNav";
@@ -32,7 +33,7 @@ const Navbar = () => {
             <h1 className="min-sm:text-2xl text-lg text-white font-bold tracking-wider flex items-center">
               <a href="/home">
                 <Image
-                  src="/icon.png"
+                  src={img("/icon")}
                   alt="Logo"
                   width={55}
                   height={55}

@@ -5,13 +5,14 @@ import Screenshots from "@/components/projects/Screenshots";
 import TechAndFeatures from "@/components/projects/TechAndFeatures";
 import VidsNInfo from "@/components/projects/VidsNInfo";
 import { data } from "@/lib/projectId";
+import { projectImg } from "@/lib/images";
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { Parallax } from "react-scroll-parallax";
 
 const ProjectIdPage = ({ url }: { url: string }) => {
-  const coverSrc = `/project_${url}/cover.png`;
+  const coverSrc = projectImg(url, "cover");
   const project = url in data ? data[url] : null;
   const [imageLoaded, setImageLoaded] = useState(() => isImageCached(coverSrc));
   const router = useRouter();

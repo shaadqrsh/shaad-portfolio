@@ -2,6 +2,7 @@
 import Loader, { isImageCached, markImageCached, useSmartLoader } from "@/components/Loader";
 import ProjectsCard from "@/components/ProjectsCard";
 import projects, { categoryOrder } from "@/lib/Projects";
+import { projectImg } from "@/lib/images";
 import FadeInUp from "@/components/FadeInUp";
 import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown } from "lucide-react";
@@ -12,7 +13,7 @@ import { useState, useEffect, useMemo } from "react";
 
 const Projects = () => {
   const [loadedImages, setLoadedImages] = useState(() =>
-    projects.filter((p) => isImageCached(`/project_${p.url}/icon.png`)).length
+    projects.filter((p) => isImageCached(projectImg(p.url, "icon"))).length
   );
   const [cols, setCols] = useState(1);
 
@@ -75,7 +76,7 @@ const Projects = () => {
   };
 
   const handleImageLoad = (url: string) => {
-    markImageCached(`/project_${url}/icon.png`);
+    markImageCached(projectImg(url, "icon"));
     setLoadedImages((prev) => prev + 1);
   };
 

@@ -1,5 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
+import { projectImg } from "@/lib/images";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
@@ -30,7 +31,7 @@ const ProjectsCard = ({ desc, url, title, onLoad, priority }: ProjectsCardProps)
     >
       <div className="w-[300px] max-md:w-full flex-shrink-0 relative aspect-[6/5]">
         <Image
-          src={`/project_${url}/icon.png`}
+          src={projectImg(url, "icon")}
           alt={title}
           fill
           className="object-cover rounded-xl"

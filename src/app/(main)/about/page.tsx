@@ -9,6 +9,7 @@ import Jams from "@/components/sections/Jams";
 import Publications from "@/components/sections/Publications";
 import Skills from "@/components/sections/Skills";
 import Who from "@/components/sections/Who";
+import { img } from "@/lib/images";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -34,7 +35,7 @@ const About = () => {
           >
             <div className="relative h-full w-full rounded-4xl overflow-hidden">
               <Image
-                src="/about/img_about.png"
+                src={img("/about/img_about")}
                 alt="Shaad Qureshi"
                 fill
                 className="object-cover"

@@ -1,6 +1,7 @@
 "use client";
 import FadeInUp from "@/components/FadeInUp";
 import { cn } from "@/lib/utils";
+import { projectImg } from "@/lib/images";
 import { ProjectIdPageProps } from "@/types";
 import Image from "next/image";
 import Button from "@/components/ui/button";
@@ -15,7 +16,7 @@ const CoverImg = ({ project, url, onLoad, enableAnimation = true }: CoverImgProp
   return (
     <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
       <Image
-        src={`/project_${url}/cover.png`}
+        src={projectImg(url, "cover")}
         alt={`${project?.title || url} cover`}
         fill
         priority

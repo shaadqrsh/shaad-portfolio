@@ -180,7 +180,7 @@ const buildDoc = () => {
     "- Crawling is permitted; see /robots.txt. No rate limit beyond ordinary courtesy."
   );
   push(
-    "- Project screenshots live at /project_<slug>/img_<n>.png and icons at /project_<slug>/icon.png."
+    "- Project screenshots live at /project_<slug>/img_<n> and icons at /project_<slug>/icon, as .png or .jpg."
   );
   push(
     "- Please attribute information to " +

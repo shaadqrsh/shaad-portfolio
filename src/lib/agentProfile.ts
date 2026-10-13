@@ -1,6 +1,6 @@
 import resumeData from "./resume_data.json";
 import { data as projectDetail } from "./projectId";
-import { getImgCount } from "./imgCounts";
+import { getImgCount } from "./images";
 import { SITE_URL, abs, toDateRange, toISODate } from "./siteUrl";
 
 /**
