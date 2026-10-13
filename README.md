@@ -1,16 +1,30 @@
-# Shaad Qureshi - Portfolio
+# Shaad Qureshi's portfolio
 
-Source for [shaadqrsh.com](https://www.shaadqrsh.com), my personal portfolio as a game developer. It's a Next.js 16 / React 19 site with animated pages, a page for each project, and a machine-readable layer (JSON-LD, `llms.txt`, JSON endpoints) so recruiters, crawlers, and AI agents can read it without scraping the client-rendered HTML.
+This is the source for [shaadqrsh.com](https://www.shaadqrsh.com), my portfolio as a game developer. It's a Next.js 16 and React 19 site with animated pages and a page for each project. The site renders on the client, so it also publishes its content as JSON-LD, `llms.txt`, and plain JSON endpoints that recruiters, crawlers, and AI agents can read without scraping the HTML.
 
-## Tech Stack
+Nearly everything, the resume PDF included, comes from one file: [src/lib/resume_data.json](src/lib/resume_data.json). Most of this README is about how that file becomes the site and the resume.
 
-- **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Turbopack) with React 19 and TypeScript
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/), `tw-animate-css`
-- **Animation**: [Motion](https://motion.dev/), [React Spring Parallax](https://react-spring.dev/), `react-scroll-parallax`
-- **UI**: [Radix UI](https://www.radix-ui.com/) primitives, Embla Carousel, Lucide icons
-- **Hosting & Analytics**: Vercel, `@vercel/analytics`
+## Running it locally
 
-## Pages
+You need Node.js and npm. Python 3.8+ only matters if you want to build the resume yourself.
+
+```bash
+npm install
+npm run dev      # http://localhost:3000
+```
+
+| Script | Description |
+| --- | --- |
+| `npm run dev` | Start the dev server (Turbopack) |
+| `npm run build` | Production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | Run ESLint |
+
+The live site is hosted on Vercel, with its settings in [vercel.json](vercel.json).
+
+## What's in here
+
+The site uses the [Next.js](https://nextjs.org/) App Router with Turbopack, TypeScript, and [Tailwind CSS v4](https://tailwindcss.com/) with `tw-animate-css`. Animation comes from [Motion](https://motion.dev/), [React Spring Parallax](https://react-spring.dev/) and `react-scroll-parallax`. The UI is built on [Radix UI](https://www.radix-ui.com/) primitives, Embla Carousel and Lucide icons, and analytics go through `@vercel/analytics`.
 
 | Route | What it shows |
 | --- | --- |
@@ -20,9 +34,7 @@ Source for [shaadqrsh.com](https://www.shaadqrsh.com), my personal portfolio as 
 | `/projects/[project]` | Project page: description, features, tech stack, responsibilities, videos, screenshots, and notes |
 | `/resume` | Embedded resume PDF with a download button |
 
-Every route has its own generated OpenGraph image, so links shared on Discord, WhatsApp, iMessage, LinkedIn, etc. show a proper preview card.
-
-## Project Structure
+Each route generates its own OpenGraph image, so a link pasted into Discord, WhatsApp, iMessage or LinkedIn shows a proper preview card.
 
 ```text
 shaad-portfolio/
@@ -59,88 +71,71 @@ shaad-portfolio/
             └── cover_letter_template.html
 ```
 
-## Content
+## Editing content
 
-Almost everything on the site is read from [src/lib/resume_data.json](src/lib/resume_data.json): name, bio, nav links, experience, education, publications, certifications, jams, skills, project list, and project category order. The files in `src/lib/` are thin typed adapters over that JSON.
+`resume_data.json` holds the name, bio, nav links, experience, education, publications, certifications, jams, skills, the project list, and the order of project categories. The files in `src/lib/` are thin typed adapters over it. When you edit the JSON, the pages, the resume, and the machine-readable data all follow.
 
 ### Adding a project
 
 1. Add an entry to `projects` in `resume_data.json`. Its `url` field becomes the route (`/projects/<url>`).
 2. Add a matching key to `data` in [src/lib/projectId.ts](src/lib/projectId.ts) with the description, features, technologies, responsibilities, videos, and extra notes.
-3. Create `public/project_<url>/` containing `cover.png`, `icon.png`, and screenshots named `img_1.png`, `img_2.png`, and so on.
+3. Create `public/project_<url>/` with `cover.png`, `icon.png`, and screenshots named `img_1.png`, `img_2.png`, and so on.
 
-You don't need to record a screenshot count anywhere. [next.config.ts](next.config.ts) scans the `project_*` folders at build time and inlines the counts, stopping at the first gap in the `img_N.png` sequence so a missing file never becomes a broken image. The sitemap, `llms.txt`, JSON endpoints, and JSON-LD all pick up the new project automatically.
+You don't have to record how many screenshots there are. [next.config.ts](next.config.ts) scans the `project_*` folders at build time and inlines the counts. It stops at the first gap in the `img_N.png` sequence, so a missing file can't turn into a broken image.
 
-## Resume Generation
+After that, pushing is enough. The sitemap, `llms.txt`, the JSON endpoints and the JSON-LD pick up the new project on their own, and the resume gets a link to its page.
 
-The resume is built from the same `resume_data.json` as the website, so the two never drift apart.
+### Skills
 
-You don't run anything by hand. When a push to `main` touches `resume_data.json`, the resume template, or the generator scripts, the [Regenerate resume](.github/workflows/resume.yml) GitHub Action runs [generate_resume.py](public/resume_gen/scripts/generate_resume.py), which:
+Every skill in `top3`, `main` and `other` needs a `category`. The resume prints one line per category, like `Languages & Frameworks: C#, C++, ...`. Categories appear in the order of their first skill, and skills keep their order from the JSON, so reordering skills on the site reorders them on the resume too. If a skill has no `category`, the build fails instead of leaving that skill off the resume.
 
-1. Loads `src/lib/resume_data.json` and maps it to the resume's format (strips icons/images, keeps LinkedIn, Website, and Email as the contact links).
+## The resume
+
+The resume is generated from the same `resume_data.json` as the site, which keeps the two in sync. You don't build it by hand for the live site; a GitHub Action does that on push.
+
+### How the PDF is built
+
+[generate_resume.py](public/resume_gen/scripts/generate_resume.py) does three things:
+
+1. Loads `src/lib/resume_data.json` and maps it to the resume's format. It strips icons and images, keeps LinkedIn, Website and Email as the contact links, and groups skills by `category`.
 2. Fills in [resume_template.html](public/resume_gen/templates/resume_template.html) and writes `public/resume.html`.
 3. Converts that HTML into `public/resume.pdf`, which the site serves at `/resume.pdf`. Visitors who click download get it saved as `{name} - Resume.pdf`.
 
-The Action then commits the new `public/resume.pdf` back to `main`, and Vercel deploys that commit. Your own push deploys too, with the previous PDF, so the new resume goes live a minute or two after the site changes. The Action can also be started by hand from the repo's Actions tab.
+The conversion happens in [generate_pdf.py](public/resume_gen/scripts/generate_pdf.py), which prints the HTML to an A4 PDF in headless Chromium. If the full-size render runs past one page, it binary-searches the print scale between 0.1 and 1.0 (stopping at a 0.005 window) for the largest value that still fits on one page. It never scales up, so a resume that fits at full size prints at full size, and adding content never means hand-tuning margins or font sizes.
 
-To preview the PDF locally, run `python public/resume_gen/scripts/generate_resume.py`. There's no need to commit the result, since the Action rebuilds it anyway.
+The PDF keeps real hyperlinks, which some studios ask for on application resumes. Each project title links to its page on the site, `<websiteUrl>/projects/<url>`, using the same `url` field that names the route. If `url` is already a full `http(s)://` address, it's used as is, so a project can point somewhere else. Only the title is linked and no address is printed next to it, which means a resume parser reads exactly the same text. The LinkedIn, website and email lines in the header are clickable too (`mailto:` for the email). The cover letter template links the same lines in its header and signature, along with any of them quoted in the letter itself. Links are blue on screen and look like ordinary text in a black-and-white print.
 
-### Clickable links
+### How it gets deployed
 
-The PDF keeps real hyperlinks, which some studios ask for on application resumes:
+On every push to `main`, the [Regenerate resume](.github/workflows/resume.yml) Action checks whether the resume changed. If it did, the Action runs `generate_resume.py`, commits the new `public/resume.pdf` back to `main`, and Vercel deploys that commit. You can also start the Action by hand from the repo's Actions tab.
 
-- **Projects**: each project's title links to its page on the site, `<websiteUrl>/projects/<url>`, using the same `url` field that names the route. A `url` that is already a full `http(s)://` address is used as-is, so a project can point somewhere else. Only the title is linked, with no address printed next to it, so the text a resume parser reads is unchanged.
-- **Contact lines**: the header's LinkedIn, website, and email lines are clickable (`mailto:` for the email). The cover letter template links the same lines in its header and signature, plus any of them quoted in the letter's text.
+Whether the resume changed is decided by [resume_fingerprint.py](.github/scripts/resume_fingerprint.py). It hashes the HTML the generator would write together with the PDF script, and compares that with the fingerprint the committed PDF was built from (`.github/resume-fingerprint`). Site-only edits, such as images, testimonials or the About text, leave the fingerprint alone, so those pushes deploy normally with no bot commit.
 
-Links show in blue, so they're easy to spot on screen. A black-and-white print looks the same as before.
+Vercel runs the same script as its [ignored build step](vercel.json). When a push changes the resume, Vercel skips that push and deploys the Action's commit instead, so the site changes and the new PDF go live in a single deployment. The downside is that if the Action fails, the push won't deploy until it's fixed. To deploy anyway, put `[force deploy]` in a commit message.
 
-Adding a project to `resume_data.json` and pushing is enough for its link to appear in the resume.
+### Building it yourself
 
-### Zero-setup Python
+To preview the PDF locally, run `python public/resume_gen/scripts/generate_resume.py`. You don't need to commit the output, since the Action rebuilds it.
 
-Every script calls [check_requirements.py](public/resume_gen/scripts/check_requirements.py) first. It checks [requirements.txt](public/resume_gen/scripts/requirements.txt) (`pyyaml`, `python-dotenv`, `playwright`, `pypdf`), pip-installs anything missing, and downloads Playwright's headless Chromium when it had to install Playwright itself. All you need is Python 3.8+.
+Each script calls [check_requirements.py](public/resume_gen/scripts/check_requirements.py) first. It checks [requirements.txt](public/resume_gen/scripts/requirements.txt) (`pyyaml`, `python-dotenv`, `playwright`, `pypdf`), pip-installs whatever is missing, and downloads Playwright's headless Chromium if it had to install Playwright. Python 3.8+ is all you need to start.
 
-### One-page PDF scaling
+You can also run `generate_pdf.py` on its own to batch-convert any `resume.html` or `cover_letter.html` files in `public/resume_gen/` and one folder below it. The cover letter layout is in [cover_letter_template.html](public/resume_gen/templates/cover_letter_template.html).
 
-[generate_pdf.py](public/resume_gen/scripts/generate_pdf.py) prints the HTML to an A4 PDF in headless Chromium. If the full-scale render runs past one page, it binary-searches the print scale (between 0.1 and 1.0, stopping at a 0.005 window) for the largest value that still fits on exactly one page. It never scales up, so a resume that fits at full size prints at full size. Content changes never mean hand-tuning margins or font sizes.
+## Machine-readable data
 
-Run it directly to batch-convert any `resume.html` / `cover_letter.html` files in `public/resume_gen/` and one folder below it. The cover letter layout lives in [cover_letter_template.html](public/resume_gen/templates/cover_letter_template.html).
+Since the pages render on the client, the site also publishes its content in formats that are easy to parse:
 
-## Machine-Readable Data
+- `/llms.txt` is the whole portfolio as one Markdown document, following the [llmstxt.org](https://llmstxt.org) convention.
+- `/api/profile.json` has the full profile: experience, education, projects, skills and the rest.
+- `/api/projects.json` has only the projects, in full detail.
+- `/api/resume.json` is a [JSON Resume](https://jsonresume.org) v1.0.0 export for resume parsers.
+- Every page's `<head>` carries a Schema.org `Person` graph as JSON-LD.
+- `/sitemap.xml` and `/robots.txt` are generated from the same data, and `robots.txt` explicitly allows the major AI crawlers.
 
-The site is client-rendered, so it also publishes its content in forms that are easy to parse:
+All of these are statically generated from [src/lib/agentProfile.ts](src/lib/agentProfile.ts), so they update whenever the JSON does.
 
-- **`/llms.txt`**: the whole portfolio as one Markdown document, following the [llmstxt.org](https://llmstxt.org) convention
-- **`/api/profile.json`**: the full profile (experience, education, projects, skills, and more)
-- **`/api/projects.json`**: just the projects, with full detail
-- **`/api/resume.json`**: a [JSON Resume](https://jsonresume.org) v1.0.0 export for resume parsers
-- **JSON-LD**: a Schema.org `Person` graph in every page's `<head>`
-- **`/sitemap.xml`** and **`/robots.txt`**: generated from the same data. `robots.txt` explicitly allows the major AI crawlers.
-
-All of these are statically generated and built from [src/lib/agentProfile.ts](src/lib/agentProfile.ts), so editing the JSON updates every one of them.
-
-### Site URL
-
-Absolute URLs (OG images, sitemap, JSON-LD) are resolved in [src/lib/siteUrl.ts](src/lib/siteUrl.ts), in this order: `NEXT_PUBLIC_SITE_URL`, `websiteUrl` in `resume_data.json`, Vercel's production domain, then the per-deployment Vercel URL. The canonical domain is deliberately checked before the per-deployment URL: per-deployment URLs sit behind Vercel's login wall, which breaks social preview images.
-
-## Getting Started
-
-**Prerequisites:** Node.js and npm, plus Python 3.8+ if you want to regenerate the resume
-
-```bash
-npm install
-npm run dev      # http://localhost:3000
-```
-
-| Script | Description |
-| --- | --- |
-| `npm run dev` | Start the dev server (Turbopack) |
-| `npm run build` | Production build |
-| `npm run start` | Serve the production build |
-| `npm run lint` | Run ESLint |
-
-The site is deployed on Vercel (see [vercel.json](vercel.json)).
+Absolute URLs (OG images, the sitemap, JSON-LD) are resolved in [src/lib/siteUrl.ts](src/lib/siteUrl.ts). It tries `NEXT_PUBLIC_SITE_URL` first, then `websiteUrl` in `resume_data.json`, then Vercel's production domain, and finally the per-deployment Vercel URL. The per-deployment URL comes last on purpose: those URLs sit behind Vercel's login wall, which breaks social preview images.
 
 ## Credits
 
-- **Design**: UI and website design by [Hardik Malhotra](https://hardik-malhotra.vercel.app).
+The UI and website design are by [Hardik Malhotra](https://hardik-malhotra.vercel.app).

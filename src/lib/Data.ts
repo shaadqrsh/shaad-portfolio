@@ -8,7 +8,6 @@ export const maxWorkExperienceCount = resumeData.counts.workExperience;
 export const maxProjectsCount = resumeData.counts.projects;
 export const maxEducationCount = resumeData.counts.education;
 export const maxCertificatesCount = resumeData.counts.certificates;
-export const maxSkillsCount = resumeData.counts.skills;
 export const maxPublicationsCount = resumeData.counts.publications;
 
 export const homePara = resumeData.summary;

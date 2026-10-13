@@ -7,10 +7,9 @@
   "about": "I am a Computer Science student with a proficiency in AI, but I'm a passionate game developer at heart. My love for unique worlds and storytelling began with a Nintendo Wii in my childhood. I specialize in implementing core gameplay mechanics, using my C# skills in Unity and Blueprint expertise in Unreal Engine to bring creative visions to life. Through freelance projects, I've enjoyed collaborating with designers, offering technical solutions to realize their complex concepts. My ultimate ambition is to contribute to the development of beloved games at major studios and one day create my own, inspiring the next generation of gamers.",
   "counts": {
     "workExperience": 3,
-    "projects": 4,
+    "projects": 5,
     "education": 2,
     "certificates": 6,
-    "skills": 20,
     "publications": 2
   },
   "testimonials": [
@@ -344,105 +343,131 @@
       {
         "icon": "icon_unity.svg",
         "title": "Unity",
+        "category": "Engines & Tools",
         "subTitle": "I can build core gameplay mechanics and systems using C#. My focus is on writing clean, reusable code for everything from player controls to UI elements."
       },
       {
         "icon": "icon_unreal.svg",
         "title": "Unreal Engine",
+        "category": "Engines & Tools",
         "subTitle": "I can construct interactive environments and gameplay events. I build most systems and logic directly within Blueprints, but I am adept with C++ for performance-critical functions."
       },
       {
         "icon": "icon_blender.svg",
         "title": "Blender",
+        "category": "Engines & Tools",
         "subTitle": "I can create optimized 3D assets ready to be implemented in my games. I manage the entire creation pipeline, from hard-surface modeling and UV mapping to PBR texturing."
       }
     ],
     "main": [
       {
         "icon": "icon_godot.svg",
-        "name": "Godot"
+        "name": "Godot",
+        "category": "Engines & Tools"
       },
       {
         "icon": "icon_react.svg",
-        "name": "React"
+        "name": "React",
+        "category": "Languages & Frameworks"
       },
       {
         "icon": "icon_lua.svg",
-        "name": "Lua"
+        "name": "Lua",
+        "category": "Languages & Frameworks"
       },
       {
         "icon": "icon_claude.svg",
-        "name": "Claude Code"
+        "name": "Claude Code",
+        "category": "Engines & Tools"
       },
       {
         "icon": "icon_photoshop.svg",
-        "name": "Photoshop"
+        "name": "Photoshop",
+        "category": "Engines & Tools"
       },
       {
         "icon": "icon_premiere.svg",
-        "name": "Premiere Pro"
+        "name": "Premiere Pro",
+        "category": "Engines & Tools"
       },
       {
         "icon": "icon_aseprite.svg",
-        "name": "Pixel Art"
+        "name": "Pixel Art",
+        "category": "Design & Practices"
       },
       {
         "icon": "icon_cs.svg",
-        "name": "C#"
+        "name": "C#",
+        "category": "Languages & Frameworks"
       },
       {
         "icon": "icon_cpp.svg",
-        "name": "C++"
+        "name": "C++",
+        "category": "Languages & Frameworks"
       },
       {
         "icon": "icon_ruby.svg",
-        "name": "Ruby"
+        "name": "Ruby",
+        "category": "Languages & Frameworks"
       },
       {
         "icon": "icon_python.svg",
-        "name": "Python"
+        "name": "Python",
+        "category": "Languages & Frameworks"
       },
       {
         "icon": "icon_java.svg",
-        "name": "Java"
+        "name": "Java",
+        "category": "Languages & Frameworks"
       },
       {
         "icon": "icon_git.svg",
-        "name": "Git"
+        "name": "Git",
+        "category": "Engines & Tools"
       },
       {
         "icon": "icon_android.svg",
-        "name": "Android"
+        "name": "Android",
+        "category": "Languages & Frameworks"
       },
       {
         "icon": "icon_microsoft.svg",
-        "name": "Microsoft Office"
+        "name": "Microsoft Office",
+        "category": "Engines & Tools"
       }
     ],
     "other": [
       {
-        "title": "Project Management"
+        "title": "Project Management",
+        "category": "Design & Practices"
       },
       {
-        "title": "UI Design"
+        "title": "UI Design",
+        "category": "Design & Practices"
       },
       {
-        "title": "Level Design"
+        "title": "Level Design",
+        "category": "Design & Practices"
       },
       {
-        "title": "Prompt Engineering"
+        "title": "Prompt Engineering",
+        "category": "Design & Practices"
       },
       {
-        "title": "Problem Solving"
+        "title": "Problem Solving",
+        "category": "Design & Practices"
       },
       {
-        "title": "Testing & Debugging"
+        "title": "Testing & Debugging",
+        "category": "Design & Practices"
       },
       {
-        "title": "Collaboration & Teamwork"
+        "title": "Collaboration & Teamwork",
+        "category": "Design & Practices"
       },
       {
-        "title": "Time Management"
+        "title": "Time Management",
+        "category": "Design & Practices"
       }
     ]
   },

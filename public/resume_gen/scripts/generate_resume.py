@@ -1,30 +1,24 @@
 import os
 import sys
 
-# Ensure requirements are met first
+# Only the standard library at import time: CI and Vercel's ignored build step
+# import this module to fingerprint the rendered HTML (.github/scripts/
+# resume_fingerprint.py) without Playwright installed. main() imports
+# check_requirements and generate_pdf itself.
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 if _SCRIPT_DIR not in sys.path:
     sys.path.append(_SCRIPT_DIR)
-import check_requirements
 
 from pathlib import Path
-
-try:
-    import yaml
-    import generate_pdf
-except ImportError:
-    print("Error: 'pyyaml' or 'generate_pdf' module not found.")
-    sys.exit(1)
-
 from datetime import datetime
 from html import escape
+import json
 import re
 import traceback
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 RESUME_GEN_DIR = os.path.dirname(SCRIPT_DIR)
 PUBLIC_DIR = os.path.dirname(RESUME_GEN_DIR)
-YAML_FILE = os.path.join(RESUME_GEN_DIR, 'resume_data.yaml')
 OUTPUT_HTML = os.path.join(PUBLIC_DIR, 'resume.html')
 TEMPLATE_PATH = os.path.join(RESUME_GEN_DIR, 'templates', 'resume_template.html')
 
@@ -91,9 +85,6 @@ def format_date_display(date_str, end_date_str=None, in_progress=False):
     return format_single(date_str)
 
 def url_display_clean(url):
-    if not url: return ""
-    if not isinstance(url, str):
-        url = str(url)
     clean = url.replace('https://', '').replace('http://', '').replace('mailto:', '')
     if clean.endswith('/'):
         clean = clean[:-1]
@@ -103,9 +94,7 @@ def link_href(url):
     """The href for a contact line. Emails are stored bare, so they get mailto:
     here, and a value made only of digits and dialling punctuation gets tel:.
     Anything else is treated as a URL."""
-    url = str(url or '').strip()
-    if not url:
-        return ''
+    url = url.strip()
     if url.startswith(('http://', 'https://', 'mailto:', 'tel:')):
         return url
     if '@' in url and '/' not in url:
@@ -118,11 +107,10 @@ def link_href(url):
 def links_html(links):
     """Header contact lines, each clickable in the PDF."""
     out = ""
-    for link in links or []:
-        url = link.get('url', '')
-        text = escape(url_display_clean(url))
-        href = link_href(url)
-        out += f'<div><a href="{escape(href)}">{text}</a></div>' if href else f"<div>{text}</div>"
+    for link in links:
+        text = escape(url_display_clean(link['url']))
+        href = link_href(link['url'])
+        out += f'<div><a href="{escape(href)}">{text}</a></div>'
     return out
 
 def link_contacts_in(text, links):
@@ -133,124 +121,127 @@ def link_contacts_in(text, links):
     if not text:
         return text
     targets = {}
-    for link in links or []:
-        url = link.get('url', '')
-        shown = url_display_clean(url)
-        href = link_href(url)
-        if not shown or not href:
-            continue
+    for link in links:
+        shown = url_display_clean(link['url'])
+        href = link_href(link['url'])
         targets[shown] = href
         if shown.startswith('www.'):
             targets.setdefault(shown[4:], href)
-    if not targets:
-        return text
     pattern = re.compile(r'(?<![\w.@/])(' + '|'.join(
         re.escape(t) for t in sorted(targets, key=len, reverse=True)) + r')(?![\w@/])')
     return pattern.sub(
         lambda m: f'<a href="{escape(targets[m.group(1)])}">{m.group(1)}</a>', text)
 
-def site_url(data):
-    """The portfolio's root URL: websiteUrl, else the header's Website link."""
-    root = data.get('websiteUrl')
-    if not root:
-        site = next((l for l in data.get('links') or []
-                     if str(l.get('text', '')).lower() == 'website'), None)
-        root = site.get('url') if site else ''
-    root = str(root or '').strip().rstrip('/')
-    if root and not root.startswith(('http://', 'https://')):
-        root = 'https://' + root
-    return root
+def parse_skill_categories(raw):
+    """Normalise a `skills.categories` list to [{'label', 'items'}, ...].
 
-def project_url(proj, root):
-    """Where a project's page lives on the portfolio, or '' when unknown.
-
-    A project's `url` is its route slug (/projects/<url>), the same field the
-    site builds its pages from. A full http(s) URL is used as given, so an
-    entry can point somewhere other than the portfolio if it ever needs to.
+    The one parser for categorised skills: every categories list goes through
+    it, so there is a single format. Labels and items become stripped strings,
+    a bare string of items becomes a one-item list, an item already used by an
+    earlier category is dropped (case-insensitive), and a category left
+    without a label or items is dropped.
     """
-    slug = str(proj.get('url') or '').strip()
-    if not slug:
-        return ''
-    if slug.startswith(('http://', 'https://')):
-        return slug
-    if not root:
-        return ''
-    return f"{root}/projects/{slug.strip('/')}"
+    categories = []
+    seen = set()
+    for cat in raw:
+        if not isinstance(cat, dict):
+            continue
+        label = str(cat.get('label') or '').strip()
+        items = cat.get('items') or []
+        if isinstance(items, str):
+            items = [items]
+        kept = []
+        for item in items:
+            name = str(item).strip()
+            if name and name.lower() not in seen:
+                seen.add(name.lower())
+                kept.append(name)
+        if label and kept:
+            categories.append({'label': label, 'items': kept})
+    return categories
+
+def skill_categories(skills):
+    """The skills section as categories.
+
+    An explicit `skills.categories` list is used as given. Otherwise skills are
+    grouped by each entry's `category` in resume_data.json: categories print in
+    the order their first skill appears across top, main and other, and items
+    keep their order in those lists.
+    """
+    if 'categories' in skills:
+        return parse_skill_categories(skills['categories'])
+    grouped = {}
+    for bucket, key in (('top', 'title'), ('main', 'name'), ('other', 'title')):
+        for entry in skills[bucket]:
+            if 'category' not in entry:
+                raise KeyError(f"Skill {entry[key]!r} in resume_data.json has no 'category'")
+            grouped.setdefault(entry['category'], []).append(entry[key])
+    return parse_skill_categories(
+        [{'label': label, 'items': items} for label, items in grouped.items()])
 
 def generate_html(data):
-    counts = data.get('counts') or {}
+    counts = data['counts']
 
-    header_links = links_html(data.get('links', []))
-    root = site_url(data)
+    header_links = links_html(data['links'])
+    root = data['websiteUrl'].rstrip('/')
 
     content_html = ""
 
-    if data.get('summary'):
+    if data['summary']:
         content_html += f"""
         <div class="section">
             <h2>PROFESSIONAL SUMMARY</h2>
-            <p style="margin-top:2px;">{data.get('summary')}</p>
+            <p style="margin-top:2px;">{data['summary']}</p>
         </div>"""
 
-    edus = data.get('education', [])
-    limit = counts.get('education') if counts.get('education') is not None else 100
+    edus = data['education']
+    limit = counts['education']
     if edus and limit > 0:
         content_html += '\n        <div class="section">\n            <h2>EDUCATION</h2>'
         for edu in edus[:limit]:
-            date_str = format_date_display(edu.get('startDate'), edu.get('endDate'), edu.get('inProgress'))
-            subtitle = edu.get('subtitle', [])
-            if isinstance(subtitle, list):
-                subtitle = ", ".join(subtitle)
-            grade = edu.get('grade', '')
+            date_str = format_date_display(edu['startDate'], edu.get('endDate'), edu.get('inProgress'))
+            subtitle = ", ".join(edu['subtitle'])
+            grade = edu.get('grade')
             grade_html = f"<b>&ensp;&#9679;&ensp;{grade}</b>" if grade else ""
             content_html += f"""
             <div class="entry">
-                <div class="degree-info">{edu.get('title')} <span>{date_str}</span></div>
+                <div class="degree-info">{edu['title']} <span>{date_str}</span></div>
                 <p class="institution">{subtitle}{grade_html}</p>
             </div>"""
         content_html += "\n        </div>"
 
-    exps = data.get('experience', [])
-    limit = counts.get('workExperience') if counts.get('workExperience') is not None else 100
+    exps = data['experience']
+    limit = counts['workExperience']
     if exps and limit > 0:
         content_html += '\n        <div class="section">\n            <h2>WORK EXPERIENCE</h2>'
         for exp in exps[:limit]:
-            date_str = format_date_display(exp.get('startDate'), exp.get('endDate'), exp.get('inProgress'))
-            location = exp.get('location', '')
-            subtitles = exp.get('subtitle', [])
-            if isinstance(subtitles, str):
-                subtitles = [subtitles]
-            location_html = f'\n                <p class="location">{location}</p>' if location else ""
-            bullets = "".join(f"\n                    <li>{sub}</li>" for sub in subtitles if sub)
+            date_str = format_date_display(exp['startDate'], exp.get('endDate'), exp.get('inProgress'))
+            location_html = f'\n                <p class="location">{exp["location"]}</p>'
+            bullets = "".join(f"\n                    <li>{sub}</li>" for sub in exp['subtitle'])
             content_html += f"""
             <div class="entry">
-                <div class="job-title">{exp.get('title')} <span>{date_str}</span></div>{location_html}
+                <div class="job-title">{exp['title']} <span>{date_str}</span></div>{location_html}
                 <ul>{bullets}
                 </ul>
             </div>"""
         content_html += "\n        </div>"
 
-    projs = data.get('projects', [])
-    limit = counts.get('projects') if counts.get('projects') is not None else 100
+    projs = data['projects']
+    limit = counts['projects']
     if projs and limit > 0:
         content_html += '\n        <div class="section">\n            <h2>PROJECTS</h2>'
         for proj in projs[:limit]:
-            p_date = format_date_display(proj.get('date'))
-            date_html = f"<span>{p_date}</span>" if p_date else ""
-            desc = proj.get('desc')
+            date_html = f"<span>{format_date_display(proj['date'])}</span>"
+            # One paragraph, or a list of bullets.
+            desc = proj['desc']
             items = desc if isinstance(desc, list) else [desc]
-            items_html = "".join(
-                f"\n                    <li>{item}</li>"
-                for item in items if item
-            )
+            items_html = "".join(f"\n                    <li>{item}</li>" for item in items)
             # The title itself is the link. Printing the address beside it was
             # tried and dropped: an ATS reading the text layer took it as part
             # of the project name. The template colours every link blue, which
             # is styling, so it never reaches the text.
-            href = project_url(proj, root)
-            title = proj.get('title')
-            if href:
-                title = f'<a class="proj-link" href="{escape(href)}">{title}</a>'
+            href = f"{root}/projects/{proj['url']}"
+            title = f'<a class="proj-link" href="{escape(href)}">{proj["title"]}</a>'
             content_html += f"""
             <div class="entry">
                 <div class="job-title">{title} {date_html}</div>
@@ -259,80 +250,50 @@ def generate_html(data):
             </div>"""
         content_html += "\n        </div>"
 
-    pubs = data.get('publications', [])
-    limit = counts.get('publications') if counts.get('publications') is not None else 100
+    pubs = data['publications']
+    limit = counts['publications']
     if pubs and limit > 0:
         content_html += '\n        <div class="section">\n            <h2>PUBLICATIONS</h2>\n            <div class="grid-container">'
         for p in pubs[:limit]:
-            d = format_date_display(p.get('date'))
+            d = format_date_display(p['date'])
             content_html += f"""
                 <div class="grid-item">
-                    <span>{p.get("name")}</span><br/>
-                    <span>{p.get("publishing")} &#9679; {d}</span>
+                    <span>{p["name"]}</span><br/>
+                    <span>{p["publishing"]} &#9679; {d}</span>
                 </div>"""
         content_html += "\n            </div>\n        </div>"
 
-    certs = data.get('certificates', [])
-    limit = counts.get('certificates') if counts.get('certificates') is not None else 100
+    certs = data['certificates']
+    limit = counts['certificates']
     if certs and limit > 0:
         content_html += '\n        <div class="section">\n            <h2>CERTIFICATIONS</h2>\n            <div class="grid-container">'
         for c in certs[:limit]:
-            d = format_date_display(c.get('date'))
+            d = format_date_display(c['date'])
             content_html += f"""
                 <div class="grid-item">
-                    <span>{c.get("title")}</span><br/>
-                    <span>{c.get("subtitle")} &#9679; {d}</span>
+                    <span>{c["title"]}</span><br/>
+                    <span>{c["subtitle"]} &#9679; {d}</span>
                 </div>"""
         content_html += "\n            </div>\n        </div>"
 
-    skills = data.get('skills', {})
-    limit = counts.get('skills') if counts.get('skills') is not None else 100
-    categories = skills.get('categories') if isinstance(skills, dict) else None
-    if categories:
-        # One labelled row per category, rendered as a comma-separated list.
-        rows = []
-        for cat in categories:
-            if not isinstance(cat, dict):
-                continue
-            label = str(cat.get('label') or '').strip()
-            items = [str(i).strip() for i in (cat.get('items') or []) if str(i).strip()]
-            if label and items:
-                rows.append((label, items))
-        if rows:
-            content_html += '\n        <div class="section">\n            <h2>TECHNICAL SKILLS</h2>'
-            for label, items in rows:
-                content_html += (
-                    f"\n            <div class=\"skill-cat\">"
-                    f"<span class=\"cat-label\">{escape(label)}:</span> "
-                    f"{escape(', '.join(items))}</div>"
-                )
-            content_html += "\n        </div>"
-    elif skills and limit > 0:
-        # Fallback for data without categories: a flat 5-column grid.
-        flat_skills = []
-        for s in skills.get('top', []):
-            flat_skills.append(s.get('title'))
-        for s in skills.get('main', []):
-            flat_skills.append(s.get('name'))
-        for s in skills.get('other', []):
-            flat_skills.append(s.get('title'))
-        flat_skills = flat_skills[:limit]
-        content_html += '\n        <div class="section">\n            <h2>SKILLS</h2>\n            <ul class="skills-grid">'
-        for skill in flat_skills:
-            content_html += f"\n                <li>{skill}</li>"
-        content_html += "\n            </ul>\n        </div>"
-
-    if not os.path.exists(TEMPLATE_PATH):
-        return f"Error: Template not found at {TEMPLATE_PATH}. Please ensure it exists."
+    # One labelled row per category, rendered as a comma-separated list.
+    content_html += '\n        <div class="section">\n            <h2>TECHNICAL SKILLS</h2>'
+    for cat in skill_categories(data['skills']):
+        content_html += (
+            f"\n            <div class=\"skill-cat\">"
+            f"<span class=\"cat-label\">{escape(cat['label'])}:</span> "
+            f"{escape(', '.join(cat['items']))}</div>"
+        )
+    content_html += "\n        </div>"
 
     with open(TEMPLATE_PATH, 'r', encoding='utf-8') as f:
         template = f.read()
 
     final_html = template
-    final_html = final_html.replace('[PAGE_TITLE]', data.get('name', 'Resume') + ' - Resume')
-    final_html = final_html.replace('[FULL_NAME]', data.get('fullName', ''))
-    final_html = final_html.replace('[JOB_TITLE]', data.get('title', ''))
-    final_html = final_html.replace('[LOCATION]', data.get('location', ''))
+    final_html = final_html.replace('[PAGE_TITLE]', data['name'] + ' - Resume')
+    final_html = final_html.replace('[FULL_NAME]', data['fullName'])
+    final_html = final_html.replace('[JOB_TITLE]', data['title'])
+    final_html = final_html.replace('[LOCATION]', data['location'])
     final_html = final_html.replace('[HEADER_LINKS]', header_links)
     final_html = final_html.replace('[CONTENT]', content_html)
 
@@ -340,24 +301,22 @@ def generate_html(data):
 
 def generate_cover_letter_html(cl_data, resume_data):
     CL_TEMPLATE_PATH = os.path.join(RESUME_GEN_DIR, 'templates', 'cover_letter_template.html')
-    if not os.path.exists(CL_TEMPLATE_PATH):
-        raise FileNotFoundError(f"Cover letter template not found at {CL_TEMPLATE_PATH}")
 
     with open(CL_TEMPLATE_PATH, 'r', encoding='utf-8') as f:
         template = f.read()
 
     cl_html = template
-    cl_html = cl_html.replace('[NAME]', resume_data.get('name', ''))
-    cl_html = cl_html.replace('[FULL_NAME]', resume_data.get('fullName', ''))
-    cl_html = cl_html.replace('[TITLE]', resume_data.get('title', ''))
-    cl_html = cl_html.replace('[LOCATION]', resume_data.get('location', ''))
+    cl_html = cl_html.replace('[NAME]', resume_data['name'])
+    cl_html = cl_html.replace('[FULL_NAME]', resume_data['fullName'])
+    cl_html = cl_html.replace('[TITLE]', resume_data['title'])
+    cl_html = cl_html.replace('[LOCATION]', resume_data['location'])
     cl_html = cl_html.replace('[DATE]', datetime.now().strftime("%B %d, %Y"))
 
-    contact_html = links_html(resume_data.get('links', []))
+    contact_html = links_html(resume_data['links'])
     cl_html = cl_html.replace('[HEADER_LINKS]', contact_html)
     cl_html = cl_html.replace('[CONTACT_DETAILS]', contact_html)
 
-    links = resume_data.get('links', [])
+    links = resume_data['links']
     for token, key in (('[INTRODUCTION]', 'introduction'), ('[PARAGRAPH 1]', 'paragraph1'),
                        ('[PARAGRAPH 2]', 'paragraph2'), ('[CONCLUSION]', 'conclusion')):
         cl_html = cl_html.replace(token, link_contacts_in(cl_data.get(key, ''), links))
@@ -377,57 +336,29 @@ def clean_data(data):
     return data
 
 def load_base_data():
+    """The resume from src/lib/resume_data.json, shaped for rendering."""
     JSON_PATH = os.path.join(os.path.dirname(os.path.dirname(RESUME_GEN_DIR)), 'src', 'lib', 'resume_data.json')
-    if os.path.exists(JSON_PATH):
-        print(f"Loading base resume data directly from JSON: {JSON_PATH}")
-        try:
-            import json
-            with open(JSON_PATH, 'r', encoding='utf-8') as f:
-                resume_data = json.load(f)
-            
-            # 1. Map skills.top3 -> skills.top for resume compliance
-            if 'skills' in resume_data and 'top3' in resume_data['skills']:
-                resume_data['skills']['top'] = resume_data['skills'].pop('top3')
-                
-            # 2. Filter and map links to match resume format (LinkedIn, Website, Email with 'url' key)
-            raw_links = resume_data.get('links', [])
-            final_links = []
-            
-            linkedin = next((l for l in raw_links if l.get('text') == 'LinkedIn'), None)
-            if linkedin:
-                final_links.append({'text': 'LinkedIn', 'url': linkedin.get('href')})
-                
-            website_url = resume_data.get('websiteUrl') or 'https://www.shaadqrsh.com'
-            final_links.append({'text': 'Website', 'url': website_url})
-            
-            email = next((l for l in raw_links if l.get('text') == 'Email'), None)
-            if email:
-                final_links.append({'text': 'Email', 'url': email.get('href')})
-                
-            resume_data['links'] = final_links
-            
-            cleaned_data = clean_data(resume_data)
-            return cleaned_data
-        except Exception as e:
-            print(f"Error loading JSON data: {e}")
-            
-    # Fallback to a local YAML file when the JSON database is unavailable.
-    if os.path.exists(YAML_FILE):
-        print(f"Falling back to local YAML file: {YAML_FILE}")
-        try:
-            with open(YAML_FILE, 'r', encoding='utf-8') as f:
-                return yaml.safe_load(f)
-        except Exception as e:
-            print(f"Error parsing local YAML: {e}")
-            
-    return None
+    with open(JSON_PATH, 'r', encoding='utf-8') as f:
+        resume_data = json.load(f)
+
+    # The resume calls skills.top3 skills.top.
+    resume_data['skills']['top'] = resume_data['skills'].pop('top3')
+
+    # The header carries exactly LinkedIn, Website, Email.
+    links = {l['text']: l['href'] for l in resume_data['links']}
+    resume_data['links'] = [
+        {'text': 'LinkedIn', 'url': links['LinkedIn']},
+        {'text': 'Website', 'url': resume_data['websiteUrl']},
+        {'text': 'Email', 'url': links['Email']},
+    ]
+
+    return clean_data(resume_data)
 
 def main():
-    data = load_base_data()
-    if not data:
-        print("Error: Could not load resume data from JSON database or local YAML.")
-        return
+    import check_requirements  # noqa: F401  (installs anything missing)
+    import generate_pdf
 
+    data = load_base_data()
     try:
         html = generate_html(data)
         os.makedirs(os.path.dirname(OUTPUT_HTML), exist_ok=True)

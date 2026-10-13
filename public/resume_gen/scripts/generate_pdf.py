@@ -7,6 +7,7 @@ if _SCRIPT_DIR not in sys.path:
     sys.path.append(_SCRIPT_DIR)
 import check_requirements
 
+import json
 import traceback
 from pathlib import Path
 
@@ -131,6 +132,9 @@ def main():
         return
 
     print(f"Found {len(html_files)} HTML file(s) to convert.\n")
+    with open(RESUME_GEN_DIR.parent.parent / 'src' / 'lib' / 'resume_data.json',
+              encoding='utf-8') as f:
+        candidate_name = json.load(f)['name']
 
     successes = []
     failures = []
@@ -143,18 +147,6 @@ def main():
 
             for html in html_files:
                 rel = html.relative_to(RESUME_GEN_DIR)
-                
-                candidate_name = "Candidate"
-                yaml_path = html.parent / 'resume_data.yaml'
-                if yaml_path.is_file():
-                    try:
-                        import yaml
-                        with open(yaml_path, 'r', encoding='utf-8') as f:
-                            y_data = yaml.safe_load(f)
-                            candidate_name = y_data.get('name', 'Candidate')
-                    except:
-                        pass
-                
                 if html.name == 'resume.html':
                     pdf_path = html.parent / f"{candidate_name} - Resume.pdf"
                 elif html.name == 'cover_letter.html':
