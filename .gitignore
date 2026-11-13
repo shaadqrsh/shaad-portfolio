@@ -56,3 +56,6 @@ next-env.d.ts
 !/public/resume_gen/templates/cover_letter_template.html
 **/__pycache__/
 /public/resume.html
+
+# GitHub profile repo (shaadqrsh/shaadqrsh), its own nested git repo
+/portfolio_entry/
