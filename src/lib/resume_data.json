@@ -535,8 +535,8 @@
       "title": "NanoRewind 4K",
       "url": "nanorewind",
       "category": "Other Projects",
-      "date": "00/12/2025",
-      "desc": "A web app that restores old, scratched, and blurry photos to 4K using Google Gemini. Results can be rendered in six photographic developer styles, and a drag slider compares the restoration against the original."
+      "date": "00/11/2026",
+      "desc": "A full-fledged web app that restores old, scratched and faded family photos with Google Gemini. It runs on React and Vercel serverless functions, with Supabase handling accounts, credits and a private photo album."
     },
     {
       "title": "Artist Portfolio",
