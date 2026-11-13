@@ -184,7 +184,7 @@
       "url": "https://www.ijert.org/gpt-vs--open-source-llms--a-comprehensive-performance-and-capability-assessment"
     },
     {
-      "name": "Building Trust in Transformers with a Shap- Based Approach for Explaining AI Decisions",
+      "name": "Building Trust in Transformers with a SHAP-Based Approach for Explaining AI Decisions",
       "publishing": "IEEE Xplore",
       "date": "21/08/2025",
       "url": "https://ieeexplore.ieee.org/document/11115248"
@@ -535,7 +535,7 @@
       "title": "NanoRewind 4K",
       "url": "nanorewind",
       "category": "Other Projects",
-      "date": "00/11/2026",
+      "date": "00/12/2025",
       "desc": "A full-fledged web app that restores old, scratched and faded family photos with Google Gemini. It runs on React and Vercel serverless functions, with Supabase handling accounts, credits and a private photo album."
     },
     {
