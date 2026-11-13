@@ -1,0 +1,73 @@
+# Rebuilds the GitHub profile README (shaadqrsh/shaadqrsh) from this repo's
+# resume data and pushes it there when it changes.
+#
+# The generator, template and hand-written blurbs live in the profile repo
+# (scripts/build_readme.mjs, README.template.md, readme.config.json). Locally
+# that repo sits at portfolio_entry/, which this repo ignores; here it's
+# checked out to the same path so the script finds this repo at "..".
+#
+# Pushing to another repo needs a token: PROFILE_README_TOKEN is a
+# fine-grained PAT with Contents: Read and write on shaadqrsh/shaadqrsh only.
+#
+# The Regenerate resume Action commits .github/resume-fingerprint with
+# GITHUB_TOKEN, and those pushes don't trigger workflows. That's fine: the
+# fingerprint only changes after resume_data.json does, and that push already
+# ran this workflow.
+name: Update profile README
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - src/lib/resume_data.json
+      - src/lib/projectId.ts
+      - .github/resume-fingerprint
+      - .github/workflows/profile-readme.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: profile-readme
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/checkout@v4
+        with:
+          repository: shaadqrsh/shaadqrsh
+          path: portfolio_entry
+          token: ${{ secrets.PROFILE_README_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      # The generator loads src/lib/projectId.ts with jiti from this repo's
+      # node_modules. --ignore-scripts skips postinstall work it doesn't need.
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Build README
+        run: node portfolio_entry/scripts/build_readme.mjs
+
+      - name: Push if changed
+        working-directory: portfolio_entry
+        run: |
+          if git diff --quiet -- README.md; then
+            echo "Profile README already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Update README from resume data" -m "From shaadqrsh/shaad-portfolio@${GITHUB_SHA::7}"
+          git push origin HEAD:main
