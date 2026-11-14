@@ -65,7 +65,9 @@ export const data: { [key: string]: projectData } = {
       'Created custom TTF font rendering with dynamic outline generation, color-flash shader effects, and atomic file I/O pipelines for persistent high-score serialization.',
       'Built automated Python sprite-sheet packing scripts and configured cross-platform CMake build systems and automated test harnesses.',
     ],
-    videos: [],
+    videos: [
+      'https://www.youtube.com/watch?v=vy0YEP0-qF8'
+    ],
     additional: [
       'This was my capstone final project for CS 5850 (Building Game Engines) at Northeastern University, built on top of an engine I wrote from scratch over the semester.',
       'The design borrows the co-op panic of Overcooked and the farming loop of Stardew Valley.',
@@ -132,7 +134,7 @@ export const data: { [key: string]: projectData } = {
       'Modelled the sheep, cloud cube and star in Blender and exported them to Unity as FBX',
     ],
     videos: [
-      'https://youtu.be/5QQGjnN5d8g'
+      'https://www.youtube.com/watch?v=5QQGjnN5d8g'
     ],
     additional: [
       'Made solo in 96 hours for the GMTK Game Jam 2026. Counting sheep is already a countdown ritual, and sheep jump, so the theme fit the premise without any stretching.',
@@ -200,7 +202,7 @@ export const data: { [key: string]: projectData } = {
       'Prepared the itch.io HTML5 release with a Vite build using relative asset paths and a one-command ZIP script',
     ],
     videos: [
-      'https://youtu.be/ILDVz_3mmkk'
+      'https://www.youtube.com/watch?v=ILDVz_3mmkk'
     ],
     additional: [
       'This started as a scrapbook idea from undergrad i.e. tic-tac-toe where your pieces do not stay forever. I first pictured it in Unity, but a full engine felt like too much for a 3x3 board, so I built it for the browser instead.',
