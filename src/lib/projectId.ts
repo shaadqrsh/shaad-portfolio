@@ -131,7 +131,9 @@ export const data: { [key: string]: projectData } = {
       'Implemented the dream-journal HUD in UI Toolkit, including the animated eyelid sleep gauge and a minimap that previews the next number',
       'Modelled the sheep, cloud cube and star in Blender and exported them to Unity as FBX',
     ],
-    videos: [],
+    videos: [
+      'https://youtu.be/5QQGjnN5d8g'
+    ],
     additional: [
       'Made solo in 96 hours for the GMTK Game Jam 2026. Counting sheep is already a countdown ritual, and sheep jump, so the theme fit the premise without any stretching.',
       'Players rated it 4.5 out of 5 in every category except Audio, from 15 ratings.',
@@ -197,7 +199,9 @@ export const data: { [key: string]: projectData } = {
       'Playtested builds on desktop and mobile, covering the three AI difficulty levels, the turn timer and touch controls',
       'Prepared the itch.io HTML5 release with a Vite build using relative asset paths and a one-command ZIP script',
     ],
-    videos: [],
+    videos: [
+      'https://youtu.be/ILDVz_3mmkk'
+    ],
     additional: [
       'This started as a scrapbook idea from undergrad i.e. tic-tac-toe where your pieces do not stay forever. I first pictured it in Unity, but a full engine felt like too much for a 3x3 board, so I built it for the browser instead.',
       "I mainly wanted an HTML5 Three.js project under my belt. It was also my first time using Claude Fable, which I tried through Claude's introductory $100 in credits.",
