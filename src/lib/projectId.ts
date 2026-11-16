@@ -20,20 +20,20 @@ export const data: { [key: string]: projectData } = {
         url: 'https://github.com/shaadqrsh/harvest-rush',
       },
     ],
-    desc: 'Harvest Rush is a one or two player farming game about running out of time, built in the multitasking tradition of Overcooked. A delivery truck docks at the edge of a tile-based farm with an order to fill, and you have until it leaves to fill it. That means tilling soil, sowing seeds, watering crops through their growth stages, and carrying finished carrots, wheat, and tomatoes to the loading dock. Pests burrow up from the corners to steal produce, and fires spread across the field and block the paths you were counting on. With two players the whole thing becomes a shouting match about who is doing what.',
+    desc: 'Harvest Rush is a one or two player farming game about running out of time, with the same kind of juggling as Overcooked. A delivery truck docks at the edge of a tile-based farm with an order to fill, and you have until it leaves to fill it. That means tilling soil, sowing seeds, watering crops through their growth stages, and carrying finished carrots, wheat, and tomatoes to the loading dock. Pests burrow up from the corners to steal produce, and fires spread across the field and block the paths you were counting on. With two players the whole thing becomes a shouting match about who is doing what.',
     features: [
       {
         heading: 'Frantic Couch Co-op & Solo Play',
         content:
-          'Two people share a keyboard, or one person runs the farm alone. Three game lengths (Short, Medium, Long) change the wave budgets and how hard the hazards push, so a solo run is tuned differently rather than being the same game with fewer hands.',
+          'Two people share a keyboard, or one person runs the farm alone. Three game lengths (Short, Medium, Long) change the wave budgets and how hard the hazards push, so a solo run has its own tuning instead of being the same game with fewer hands.',
       },
       {
         heading: 'Context-Sensitive Tool Pipeline',
         content:
-          'There is a single action button. What it does depends on the tile you are facing and what you are holding: tilling with a rake, planting from a reusable seed bag, watering a plot, pulling a crop up by hand, or setting produce down on a work table. You never hunt for the right key.',
+          'There is a single action button, and what it does depends on the tile you are facing and what you are holding. It can till with a rake, plant from a reusable seed bag, water a plot, pull a crop up by hand, or set produce down on a work table, so you never hunt for the right key.',
       },
       {
-        heading: 'Dynamic Farm Hazards: Pests & Spreading Fire',
+        heading: 'Pests & Spreading Fire',
         content:
           'Pests come up from burrows in the corners and take crops off plots and tables. Fires scorch neighboring tiles and cut off paths. A rake sweeps the pests away and a watering can puts out fire, so the tool you need for the emergency is usually the one you just put down.',
       },
@@ -43,9 +43,9 @@ export const data: { [key: string]: projectData } = {
           'Waves run back to back. The truck arrives at the loading bay wanting specific produce, and filling the order pays out per crop plus a completion bonus that grows as you keep up. The day ends on a results board that keeps top runs per farm and mode.',
       },
       {
-        heading: 'Vibrant Countryside Atmosphere & Feedback',
+        heading: 'Pixel-Art Farm & Clear Feedback',
         content:
-          'A 16:9 pixel-art farm with animated growth stages for every crop. Color-tint pulses, fill meters, and audio cues tell you what changed, which matters when both players are watching opposite corners of the screen.',
+          'The farm is 16:9 pixel art, with animated growth stages for every crop. Color-tint pulses, fill meters, and audio cues tell you what changed, which matters when both players are watching opposite corners of the screen.',
       },
     ],
     technologies: [
@@ -57,22 +57,32 @@ export const data: { [key: string]: projectData } = {
       { name: 'Photoshop', icon: 'icon_photoshop.svg' },
     ],
     responsibilities: [
-      'Architected and implemented a high-performance 2D game engine in modern C++ (C++20) and SDL3 using a cache-friendly Entity Component System (ECS) pattern.',
-      'Engineered grid-locked tile glide movement, directional facing systems, and unified context-sensitive interaction resolution for independent dual-player keyboard control.',
-      'Implemented A* pathfinding for pest AI navigation, integrating dynamic obstacle avoidance via blackboard coordinate sets to navigate around live fires and fellow critters in real time.',
-      'Developed a recursive backtracking procedural order generator with reachability pruning, ensuring wave orders match balanced labor budgets without deadlocks or impossible requests.',
-      'Designed and built a modular interaction timer system supporting player-freezing channels, partner abort safety, and flood-fill fire extinguishing logic.',
-      'Created custom TTF font rendering with dynamic outline generation, color-flash shader effects, and atomic file I/O pipelines for persistent high-score serialization.',
-      'Built automated Python sprite-sheet packing scripts and configured cross-platform CMake build systems and automated test harnesses.',
+      'Wrote a 2D game engine in C++20 and SDL3 around a cache-friendly Entity Component System (ECS).',
+      'Built grid-locked movement that glides from tile to tile, directional facing, and one context-sensitive interaction system that both players use on the same keyboard.',
+      'Implemented A* pathfinding for the pests, using blackboard coordinate sets so they route around live fires and each other in real time.',
+      'Wrote a procedural order generator that uses recursive backtracking with reachability pruning, so every wave order fits its labor budget and never deadlocks or asks for something impossible.',
+      'Built a modular timer system for interactions, covering channels that freeze the player, safe aborts between partners, and flood-fill logic for putting out fires.',
+      'Wrote TTF font rendering with generated outlines, color-flash shader effects, and atomic file writes so high scores save safely.',
+      'Wrote Python scripts that pack the sprite sheets, and set up the cross-platform CMake build and automated test harnesses.',
+    ],
+    captions: [
+      'The title screen. You set the number of farmers, the farm and the length of the day here.',
+      "The How to Play screen fits the whole loop and both players' controls on one page.",
+      'The score board keeps the best runs for each farm and player count.',
+      'Two farmers at the start of a day. The panel in the top left shows the first order, three carrots and one wheat.',
+      'Every plot starts out untilled, so the first few seconds of a wave go to raking.',
+      'Mid-wave. One wheat is ready to pick, two plots are watered, and a fire is spreading between them while pests wander in.',
+      'The truck has docked in the bottom left, and the fire now cuts across the paths to it.',
+      'Day Complete shows the final score and where the run lands on the high-score table.',
     ],
     videos: [
-      'https://www.youtube.com/watch?v=vy0YEP0-qF8'
+      { url: 'https://www.youtube.com/watch?v=vy0YEP0-qF8', title: 'Harvest Rush - Gameplay Demo', channel: 'Shaad Qureshi' },
     ],
     additional: [
       'This was my capstone final project for CS 5850 (Building Game Engines) at Northeastern University, built on top of an engine I wrote from scratch over the semester.',
       'The design borrows the co-op panic of Overcooked and the farming loop of Stardew Valley.',
       'The decorative background art on the title screen, help menu, and end-of-day scores screens is generative AI. I ran out of time to illustrate three full-screen images before the deadline. Everything in the game itself, the sprites, tiles, and HUD, is a mix of my own assets and public assets from itch.io.',
-      'Playtesting cut two mechanics I had been attached to: running to a central water trough, and stockpiling produce in storage bins. Both slowed the game down. Passing tools hand to hand and staging crops on tables replaced them.',
+      'Playtesting cut two mechanics I had been attached to, running to a central water trough and stockpiling produce in storage bins. Both slowed the game down. Passing tools hand to hand and staging crops on tables replaced them.',
       'It used to have a hard quota you either met or failed. That made the fires and pests feel punishing instead of funny, so I moved it to a score attack where every crop you load still counts for something.',
       'I wrote a headless test harness that ran 50,000 simulated wave generations to check that the procedural delivery algorithm was actually fair, rather than trusting that it looked fine in play.',
       'Solo and two-player runs have separate tuning profiles across the three lengths (Short, Medium, Long).',
@@ -88,10 +98,10 @@ export const data: { [key: string]: projectData } = {
         url: 'https://bro-skito.itch.io/counting-sheep',
       },
     ],
-    desc: 'Someone is counting themselves to sleep, and you are the sheep. Each number they count becomes a floor of glowing cloud-cubes in the shape of that numeral. When the count ticks down, the floor reflows: unstable clouds shudder and drop into the dark, and new ones rise out of the fog somewhere else. Ride the count all the way down and the sleeper drifts off. Miss a jump and you wake them up.',
+    desc: 'Someone is counting themselves to sleep, and you are the sheep. Each number they count becomes a floor of glowing cloud-cubes in the shape of that numeral. When the count ticks down, the floor reflows. Unstable clouds shudder and drop into the dark, and new ones rise out of the fog somewhere else. Ride the count all the way down and the sleeper drifts off. Miss a jump and you wake them up.',
     features: [
       {
-        heading: 'Dynamic Shifting Cloud Floors',
+        heading: 'Shifting Cloud Floors',
         content:
           'Every number is drawn in a 5x7 pixel font, and each lit pixel is a cube you can stand on. When the count drops, clouds that are about to vanish flash and shake first, and incoming clouds show up as faint ghosts, so you have a moment to jump before the tile under you disappears.',
       },
@@ -101,17 +111,17 @@ export const data: { [key: string]: projectData } = {
           'The sheep hovers on a spring above the clouds and falls slowly. A standing jump clears a one-cube gap and a running jump clears about two. You can still jump for a split second after leaving a ledge, and you can hang a little past an edge without falling.',
       },
       {
-        heading: 'Reactive Soundscape & Dynamic Bleats',
+        heading: 'Reactive Audio & Randomized Bleats',
         content:
           'An ambient drone plays underneath, with chimes when the floor changes. The sheep bleats when it jumps, lands, grabs a star, nearly falls, and falls asleep, and every bleat has a randomized pitch, length and vibrato.',
       },
       {
-        heading: 'Varied Dream Modes & Pacing',
+        heading: 'Dream, Endless & Zen Modes',
         content:
           'Dream runs count down through a set sequence such as Fibonacci, primes, halving, or a 20-to-1 Long Night. Endless Mode is the high score chase, with star combos and a timer that tightens the longer you last. Zen Mode has no fail state and floats you back to safety when you drift off a cloud.',
       },
       {
-        heading: 'Diegetic Sleep Meter & Radar Planning',
+        heading: 'Dream Journal HUD & Minimap',
         content:
           'The HUD is styled as a dream journal. Instead of a progress bar there is a pen-sketched eye whose lid closes as the run goes on and startles open when you fall. A top-down minimap shows your position and the shape of the next number, so you can plan a route before the floor changes.',
       },
@@ -133,8 +143,14 @@ export const data: { [key: string]: projectData } = {
       'Implemented the dream-journal HUD in UI Toolkit, including the animated eyelid sleep gauge and a minimap that previews the next number',
       'Modelled the sheep, cloud cube and star in Blender and exported them to Unity as FBX',
     ],
+    captions: [
+      'The sheep on a floor of cloud-cubes shaped like the current number. The map in the top right previews the next one.',
+      'Level select. Each level counts down a different sequence, from plain countdowns to primes and Fibonacci.',
+      "The How to Play page sets up the premise. You're a sheep in someone's dream, riding their count down to sleep.",
+      'High scores for Endless mode and for every level at the Short game length.',
+    ],
     videos: [
-      'https://www.youtube.com/watch?v=5QQGjnN5d8g'
+      { url: 'https://www.youtube.com/watch?v=5QQGjnN5d8g', title: 'Counting Sheep - Gameplay Demo', channel: 'Shaad Qureshi' },
     ],
     additional: [
       'Made solo in 96 hours for the GMTK Game Jam 2026. Counting sheep is already a countdown ritual, and sheep jump, so the theme fit the premise without any stretching.',
@@ -201,11 +217,18 @@ export const data: { [key: string]: projectData } = {
       'Playtested builds on desktop and mobile, covering the three AI difficulty levels, the turn timer and touch controls',
       'Prepared the itch.io HTML5 release with a Vite build using relative asset paths and a one-command ZIP script',
     ],
+    captions: [
+      'The title screen. A computer-vs-computer game plays on the board behind the menu.',
+      'A two-player game in progress. The faded X is the piece Player 1 loses on their next move.',
+      'Player 1 wins with three in a row on move 11, and the score carries over into the rematch.',
+      'How to Play fits all four rules and the controls on one screen.',
+      'Setting up a game against the computer. You choose whether to move first and pick one of three difficulties.',
+    ],
     videos: [
-      'https://www.youtube.com/watch?v=ILDVz_3mmkk'
+      { url: 'https://www.youtube.com/watch?v=ILDVz_3mmkk', title: 'Tic-Tac-Gone - Gameplay Demo', channel: 'Shaad Qureshi' },
     ],
     additional: [
-      'This started as a scrapbook idea from undergrad i.e. tic-tac-toe where your pieces do not stay forever. I first pictured it in Unity, but a full engine felt like too much for a 3x3 board, so I built it for the browser instead.',
+      'This started as a scrapbook idea from undergrad, tic-tac-toe where your pieces do not stay forever. I first pictured it in Unity, but a full engine felt like too much for a 3x3 board, so I built it for the browser instead.',
       "I mainly wanted an HTML5 Three.js project under my belt. It was also my first time using Claude Fable, which I tried through Claude's introductory $100 in credits.",
       'I wrote big chunks of the code myself and used Fable to refine it. Fable made the 3D models, and I was impressed by how well it handled modelling in code.',
       'There are no image, model or audio files in the game. The board and pieces are built from Three.js geometry, and the music and sound effects are synthesized with Web Audio.',
@@ -233,32 +256,32 @@ export const data: { [key: string]: projectData } = {
         url: 'https://github.com/TheLuxDiablo/Pokemon-Bushido',
       },
     ],
-    desc: "Journey into the Aisho Region, a land steeped in ancient traditions and home to the captivating world of Pokémon Bushido. As the child of the Royal Samurai, your path unfolds through a rich narrative, where you'll train alongside your Pokémon in the martial arts, discover the role of a 'Kenshi', and confront the enigmatic Akui Clan with their dangerous Shadow Pokémon. This fangame offers a fresh take on the Pokémon formula, blending classic gameplay with a distinct feudal Japanese aesthetic, featuring new mechanics, visually stunning environments, riveting story and challenging gameplay that will test your honor and skill.",
+    desc: "Pokémon Bushido is set in the Aisho Region, a land of old traditions modeled on feudal Japan. You play the child of the Royal Samurai, training in the martial arts alongside your Pokémon, learning what it means to be a Kenshi, and going up against the Akui Clan and their Shadow Pokémon. It keeps the classic Pokémon gameplay and adds new mechanics like Katana techniques, a samurai look across the whole region, and a story that runs 10 to 15 hours.",
     features: [
       {
-        heading: 'Immersive Feudal Japan-Inspired World',
+        heading: 'A Feudal Japan-Inspired World',
         content:
-          'Explore the Aisho region, a brand new land meticulously designed with a rich samurai-themed aesthetic, offering a unique departure from traditional Pokémon settings.',
+          'The Aisho region is a brand new land with a samurai look, which is a big change from the usual Pokémon settings.',
       },
       {
-        heading: 'Diverse Roster of Pokémon',
+        heading: 'Pokémon up to Gen 8',
         content:
-          'Build your team with a wide selection of Pokémon, featuring species from up to the 8th Generation, all rendered in classic Gen 4-styled graphics for a nostalgic yet expanded experience.',
+          'You can build a team from Pokémon up to Generation 8, all drawn in the classic Gen 4 sprite style.',
       },
       {
         heading: 'Original Storyline',
         content:
-          'Embark on a 10-15 hour narrative-driven adventure as the child of the Royal Samurai, training to become a Kenshi and uncovering the secrets and conflicts within the Aisho region, including the nefarious Akui Clan.',
+          'A 10 to 15 hour story where you play the child of the Royal Samurai, training to become a Kenshi and digging into the secrets and conflicts of the Aisho region, including what the Akui Clan is up to.',
       },
       {
         heading: 'Return of Shadow Pokémon',
         content:
-          'Encounter and battle formidable Shadow Pokémon, a concept inspired by Pokémon XD: Gale of Darkness. These corrupted Pokémon present unique challenges and can be snagged from opposing trainers for purification.',
+          'Shadow Pokémon, an idea taken from Pokémon XD: Gale of Darkness, are back. These corrupted Pokémon are tougher to deal with, and you can snag them from opposing trainers and purify them.',
       },
       {
         heading: 'Katana Styles',
         content:
-          'Experience a fresh take on HMs with the introduction of Katanas. These powerful blades not only grant passage through obstacles but can also be wielded in battle to strategically alter weather conditions or inflict status effects.',
+          'Katanas replace HMs. Each one gets you past certain obstacles in the overworld, and you can also use them in battle to change the weather or inflict status effects.',
       },
     ],
     technologies: [
@@ -268,27 +291,38 @@ export const data: { [key: string]: projectData } = {
       { name: 'Aseprite', icon: 'icon_aseprite.svg' },
     ],
     responsibilities: [
-      'Developed the core engine in which the game was made.',
-      'Created new mechanics (Katana techniques, mid-battle dialogue, Following Pokémon, battle animations, etc) to differenciate it from mainline PokÃ©mom games.',
-      'Aggregated publically available assets for developing the game within 30 days.',
-      'Evented multiple in-game cutscenes, while also writing custom scripts for functionality.',
-      "Designed various UI/UX elements to enhance the immersion of the battle system, with detailed battle backgrounds and themes to fit the game's aesthetic.",
-      "Assisted in the design of the game's narrative and core gameplay loop.",
+      'Developed the core engine the game runs on.',
+      'Created new mechanics that set it apart from the mainline Pokémon games, including Katana techniques, mid-battle dialogue, following Pokémon and battle animations.',
+      'Gathered publicly available assets so the game could be finished within 30 days.',
+      'Evented several in-game cutscenes and wrote custom scripts for new functionality.',
+      "Designed UI for the battle system, including detailed battle backgrounds and themes that match the game's samurai look.",
+      "Helped design the game's story and core gameplay loop.",
+    ],
+    captions: [
+      'The Aisho Shogun opens the story by testing you in front of the court.',
+      'The versus screen for Tsuku, one of the Kenshi you fight along the way.',
+      "A trainer asks about the Kenshi's moral code in the middle of a battle.",
+      'An Akui Clan grunt sends out a Shadow Pokémon.',
+      "The Katana of Light's Water Walking Style lets you cross water instead of using Surf.",
+      'A wild Virizion whose soul has been locked away.',
+      'Ryo Masayoshi, the Royal Samurai, gives you your first task.',
+      'A cave battle against an Akui Clan member and their Pangoro.',
+      'Celebi leads you to a shrine hidden in the forest.',
     ],
     videos: [
-      'https://www.youtube.com/watch?v=OH5pCKUim3k',
-      'https://www.youtube.com/watch?v=NNM4zsBrNFQ',
-      'https://www.youtube.com/watch?v=L5ClFPCufkc',
-      'https://www.youtube.com/watch?v=QWEIOSc5Euw',
+      { url: 'https://www.youtube.com/watch?v=OH5pCKUim3k', title: 'SHADOW POKEMON and a NEW JOURNEY! Pokemon Bushido Nuzlocke - EP1', channel: 'aDrive' },
+      { url: 'https://www.youtube.com/watch?v=NNM4zsBrNFQ', title: 'Pokemon Bushido The Awesome Fangame With SAMURAI CULTS!', channel: 'zwiggo' },
+      { url: 'https://www.youtube.com/watch?v=L5ClFPCufkc', title: 'The Pokemon game where you play as a SAMURAI!', channel: 'Twig' },
+      { url: 'https://www.youtube.com/watch?v=QWEIOSc5Euw', title: 'The Pokemon game where you BECOME A SAMURAI', channel: 'Moopsten' },
     ],
     additional: [
-      'This game was developed for the Relic Castle (Eevee Expo) Winter Game Jam #2. It was developed in 30 days, and the team ended up winning the competition.',
-      'The idea of setting a game in a feudal Japan setting was devised months before the official Pokémon games took a similar direction with Pokémon Legends: Arceus.',
-      'Future expansions were planned, to expand the Aisho region and provide more story for important characters in the game. The team, however, disbanded and further expansions were scrapped.',
-      'The game draws heavy inspiration from mainline entries like Pokémon Conquest and Pokémon XD: Gale of Darkness, and borrows assets from them, along with other mainline Pokémon games.',
-      'The development of this project was headed by Thundaga, a YouTuber, and the development of this game has been recorded as VODs on their YouTube and Twitch.',
-      'This is one of the highest rated and most viewed games on Eevee Expo (formerly Relic Castle), the forum on which this game was initially launched.',
-      'This game has been regarded as one of the best Pokémon Fangames of 2021.',
+      'We made this in 30 days for the Relic Castle (Eevee Expo) Winter Game Jam #2, and it won first place.',
+      'We came up with the feudal Japan setting months before the official games went in a similar direction with Pokémon Legends: Arceus.',
+      'We planned expansions that would have made the Aisho region bigger and given the main characters more story, but the team broke up and they were scrapped.',
+      'It takes a lot from Pokémon Conquest and Pokémon XD: Gale of Darkness, including assets from both, and borrows assets from other official Pokémon games too.',
+      'Thundaga, a YouTuber, led the project, and the development was recorded as VODs on their YouTube and Twitch channels.',
+      "It's one of the highest rated and most viewed games on Eevee Expo (formerly Relic Castle), the forum where it first launched.",
+      'People have called it one of the best Pokémon fangames of 2021.',
     ],
   },
   splice: {
@@ -306,32 +340,32 @@ export const data: { [key: string]: projectData } = {
         url: 'https://drive.google.com/file/d/1igsvdRzCU9S3AgiGcCIR9jpDKJBDoWgv/view',
       },
     ],
-    desc: 'Assume the role of a research assistant aiding Professor Cypress in the study of newly discovered Pokémon forms in this new fangame. Embark on a journey through the Stacona region with a new starter Pokémon, Arenay, which possesses the ability to change its type. Align with either Team Biogress, emphasizing natural development, or Team Quantech, focused on technological enhancement. Experience a branching storyline, where you are presented with significant choices which will completely alter your experience. The fate of Pokémon research hangs in the balance - whose side will you choose?',
+    desc: "You play a research assistant helping Professor Cypress study newly discovered Pokémon forms. Your starter, Arenay, can change its type, and you take it across the Stacona region. Along the way you side with either Team Biogress, who believe in natural development, or Team Quantech, who want to improve Pokémon with technology. That choice changes how the rest of the story plays out, and it decides which side of the fight over Pokémon research you end up on.",
     features: [
       {
         heading: 'New Region',
         content:
-          'Pokémon Splice is set in the entirely new Stacona Region, a brand new world with its own unique environments and never before seen Pokémon species.',
+          "Pokémon Splice is set in the Stacona Region, a brand new world with its own environments and Pokémon species you haven't seen before.",
       },
       {
         heading: 'New Pokémon Species',
         content:
-          'The game features several new species of Pokémon, such as Arenay, the starter with a unique form changing gimmick, as well as evolutions and pre-evolutions for existing Pokémon like Pinsir, Skarmory and Combee and more!',
+          'There are several new species, like Arenay, the starter that changes form, plus new evolutions and pre-evolutions for existing Pokémon such as Pinsir, Skarmory and Combee.',
       },
       {
         heading: 'Branching Storylines',
         content:
-          "Players make a pivotal choice to join one of two opposing research organizations: Team Biogress or Team Quantech. This decision significantly influences the story's direction and the player's objectives throughout the game.",
+          "You join one of two rival research groups, Team Biogress or Team Quantech. The choice changes the direction of the story and what you're working toward for the rest of the game.",
       },
       {
         heading: 'New Regional Forms',
         content:
-          'The region houses brand new regional forms. Some of them are naturally occuring, like Dunsparce, and some are the result of experimentation by the 2 research factions, such as the new forms of the Solosis, Lotad, Raichu and Electivire.',
+          "Stacona has its own regional forms. Some occur naturally, like Dunsparce's, and others came out of the two research teams' experiments, like the new forms of Solosis, Lotad, Raichu and Electivire.",
       },
       {
-        heading: 'Distinct Gen-3 Artsyle',
+        heading: 'Gen 3 Art Style',
         content:
-          'The game pays hommage to the GameBoy Advance generation of Pokémon games with its environment and UI design, but still has all the QOL improvements of the modern games.',
+          'The environments and UI are a tribute to the Game Boy Advance era of Pokémon, but the game keeps all the quality-of-life improvements of the modern games.',
       },
     ],
     technologies: [
@@ -341,23 +375,34 @@ export const data: { [key: string]: projectData } = {
       { name: 'Aseprite', icon: 'icon_aseprite.svg' },
     ],
     responsibilities: [
-      'Developed the core engine in which the game was made.',
-      'Created new mechanics (Form changing, mid-battle dialogue, Following Pokémon, battle animations, etc) to differenciate it from mainline PokÃ©mom games.',
-      'Aggregated publically available assets for developing the game within 30 days.',
-      'Evented multiple in-game cutscenes, while also writing custom scripts for functionality.',
-      'Designed various UI/UX elements to enhance the immersion of the battle system, with detailed battle backgrounds and themes to fit the Generation 3 aesthetic.',
-      "Assisted in the design of the game's narrative and core gameplay loop.",
+      'Developed the core engine the game runs on.',
+      'Created new mechanics that set it apart from the mainline Pokémon games, including form changing, mid-battle dialogue, following Pokémon and battle animations.',
+      'Gathered publicly available assets so the game could be finished within 30 days.',
+      'Evented several in-game cutscenes and wrote custom scripts for new functionality.',
+      'Designed UI for the battle system, including detailed battle backgrounds and themes that fit the Generation 3 style.',
+      "Helped design the game's story and core gameplay loop.",
+    ],
+    captions: [
+      'Naming Arenay, the starter that can change its type.',
+      'Running tests on Arenay in the Cypress Lab.',
+      "A rival turns up outside the lab, asking about Professor Cypress's research.",
+      "Arenay's first battle, against a Zubat with Intimidate.",
+      'Lumigen City, one of the towns in the Stacona region.',
+      "Arenay's summary page, showing it as an Electric type.",
+      'Exploring an ice cave with Arenay following behind.',
+      'A wild Heraplex, one of the new species in the game.',
+      'Someone holding an egg takes a closer look at your Arenay.',
     ],
     videos: [
-      'https://www.youtube.com/watch?v=B9DS0Nyegag',
-      'https://www.youtube.com/watch?v=X34OZt5Tvdk',
-      'https://www.youtube.com/watch?v=-XgNEFjSQmc',
+      { url: 'https://www.youtube.com/watch?v=B9DS0Nyegag', title: 'Pokémon Splice - Episode 1 / FUSION REBORN!', channel: 'MunchingOrange' },
+      { url: 'https://www.youtube.com/watch?v=X34OZt5Tvdk', title: 'Speedrunning Pokémon Splice', channel: 'Thundaga' },
+      { url: 'https://www.youtube.com/watch?v=-XgNEFjSQmc', title: "Pokemon Splice - Part 1 - FAKEMON STARTER (Walkthrough/Let's Play)", channel: 'MxRK GG' },
     ],
     additional: [
-      'This game was developed for the Relic Castle (Eevee Expo) Game Jam 6. It was developed in 30 days, and the team ended up winning the competition.',
-      'Future chapters were planned, and assets were developed for them (new legendaries and forms, they are still in the game files). The team, however, disbanded and further expansions were scrapped.',
-      'The development of this project was headed by Thundaga, a YouTuber, and the development of this game has been recorded as VODs on their YouTube and Twitch.',
-      'This game was discontinued in 2023 and the entire team moved on to other projects.',
+      'We made this in 30 days for the Relic Castle (Eevee Expo) Game Jam 6, and it won first place.',
+      'We planned more chapters and made assets for them, including new legendaries and forms that are still in the game files, but the team broke up and the expansions were scrapped.',
+      'Thundaga, a YouTuber, led the project, and the development was recorded as VODs on their YouTube and Twitch channels.',
+      'The game was discontinued in 2023, and everyone on the team moved on to other projects.',
     ],
   },
   careerpath: {
@@ -375,32 +420,32 @@ export const data: { [key: string]: projectData } = {
         url: 'https://github.com/shaadqrsh/pathfinder-ai',
       },
     ],
-    desc: "CareerPath AI serves as a proof-of-concept for the potential of 'vibe coding' with next-gen models. Built entirely over a single three-day weekend using Gemini 3 Pro, this platform acts as an intelligent career counselor that moves beyond generic advice. It ingests user demographics and quiz results to generate hyper-personalized career roadmaps. The system helps users visualize their future by generating realistic 'day-in-the-life' image slideshows using AI, bridging the gap between abstract job titles and daily reality. This project demonstrates how modern AI tools can accelerate the development of complex, full-stack applications with robust architectures.",
+    desc: "CareerPath AI was my test of how far 'vibe coding' with Gemini 3 Pro could go. I built it over a single three-day weekend, and it works as a career counselor that tries to go past generic advice. You give it some background about yourself and take a quiz, and it suggests careers that fit you, each with a roadmap for getting there. It can also generate a realistic 'day in the life' slideshow for a career, so a job title turns into a picture of what the work looks like from day to day. It's a full-stack app with a React front end and a Python backend, and the AI wrote nearly all of it.",
     features: [
       {
-        heading: 'Deep Profile Analysis',
+        heading: 'Profile Analysis',
         content:
-          'The core engine utilizes Google Gemini 2.5 Flash to reason through user data, creating matches based on aptitude and personality rather than simple keyword associations.',
+          'Google Gemini 2.5 Flash reads through your profile and quiz answers and matches you with careers based on your aptitude and personality instead of keywords.',
       },
       {
-        heading: 'Actionable Roadmaps',
+        heading: 'Career Roadmaps',
         content:
-          'Users receive step-by-step educational and professional plans detailing exactly how to transition from their current state to their target career, including location-specific advice.',
+          'Each career comes with a step-by-step plan for the education and experience you need to get there from where you are now, including advice for where you live.',
       },
       {
-        heading: 'Generative Day-in-the-Life',
+        heading: 'Day-in-the-Life Slideshows',
         content:
-          'A unique visualization feature (powered by Google\'s Nano Banana) that generates realistic, non-glamorized photo slideshows of what a specific job looks like daily, helping users emotionally connect with potential career paths.',
+          "Google's Nano Banana image model generates a realistic slideshow of an ordinary day in a job, without glamorizing it, so you can get a feel for whether you'd actually want to do it.",
       },
       {
-        heading: 'Decoupled Architecture',
+        heading: 'Backend Proxy',
         content:
-          'The application uses a secure "headless" structure with a React frontend and a Python FastAPI backend acting as a proxy to manage API keys and business logic securely.',
+          'The React front end never talks to Gemini directly. A Python FastAPI backend sits in between as a proxy and holds the API keys and the business logic.',
       },
       {
-        heading: 'Smart Rate Limiting',
+        heading: 'Daily Limits',
         content:
-          'To maintain sustainability, a custom database-level quota system manages daily limits for expensive operations like image generation and detailed career analysis.',
+          'A quota system in the database caps how many times a day each user can run the expensive parts, like image generation and detailed career analysis.',
       },
     ],
     technologies: [
@@ -414,19 +459,30 @@ export const data: { [key: string]: projectData } = {
       { name: 'Docker', icon: 'icon_docker.svg' },
     ],
     responsibilities: [
-      'Prompt-engineered the entire full-stack codebase using Gemini 3 Pro, acting as the architect while the AI handled the implementation details.',
-      'Deployed the backend to Hugging Face Spaces using Docker and the frontend to Vercel, ensuring a seamless global delivery pipeline.',
-      'Designed the comprehensive database schema and Row Level Security policies to ensure strict user data privacy within Supabase.',
-      'Orchestrated the asynchronous image generation pipeline, coordinating multiple parallel API calls to reduce wait times for the end user.',
-      'Implemented a robust state management system using Zustand to handle the complex user journey from onboarding to result visualization.'
+      'Built the full-stack codebase by prompting Gemini 3 Pro. I made the architecture decisions and the AI wrote the implementation.',
+      'Deployed the backend to Hugging Face Spaces with Docker and the front end to Vercel.',
+      'Designed the Supabase schema and Row Level Security policies so each user can only see their own data.',
+      'Set up image generation as parallel async API calls, which cut down how long users wait for their slideshows.',
+      'Used Zustand to manage state across the whole flow, from onboarding through to the results.'
+    ],
+    captions: [
+      'The login page.',
+      'The dashboard, where you pick a quiz for one field or take the general quiz.',
+      'A quiz question asking how much the industry matters to you.',
+      'The loading screen while Gemini reads your profile and looks for matches.',
+      'Your career matches, ranked by match score with salary ranges and growth outlook.',
+      "A career's detail page, with why it fits you and the skills it asks for.",
+      'The roadmap from your current background to the role, broken into steps with rough timelines.',
+      'A generated day-in-the-life slideshow for a Product Analyst.',
+      'Saved careers, which you can reopen or delete.',
     ],
     videos: [],
     additional: [
-      'This project was an experiment in "vibe coding" to test the reasoning capabilities of Gemini 3 Pro. The entire application was built in just 3 days with the AI generating nearly all the code.',
-      'The "intelligence" of the app relies on rigid JSON-enforced prompt engineering, which forces the LLM to output structured data that the frontend can reliably render.',
-      'Unlike simple API wrappers, this project implements a full backend proxy to secure the Gemini API keys, preventing them from being exposed in the client-side code.',
-      'I implemented a "lazy-loading" strategy for the career details to save on token costs; detailed roadmaps are only generated when a user explicitly clicks to explore a specific career.',
-      'The UI features a "Nano Banana" badge in the loading screens, a playful nod to the internal codename and the rapid, fluid nature of the development session.',
+      'I built this to see how well Gemini 3 Pro could reason through a real project. It took 3 days, and the AI wrote nearly all of the code.',
+      'Most of what makes the app work is strict prompting that forces the LLM to answer in JSON, so the front end always gets structured data it can render.',
+      'The Gemini API keys stay on the backend proxy, so they never show up in the client-side code.',
+      'To save on tokens, career details load lazily. The detailed roadmap for a career is only generated when someone clicks into it.',
+      'The loading screens have a "Nano Banana" badge as a nod to the image model\'s codename.',
     ],
   },
   sqllift: {
@@ -444,32 +500,32 @@ export const data: { [key: string]: projectData } = {
         url: 'https://github.com/btoneil2021/cs-5200-project',
       },
     ],
-    desc: 'SQLift is a full-stack workout tracking web application built as a CS-5200 Database Management course project. It lets users plan custom workouts from a library of 1000+ exercises, track live sessions set-by-set with weights and reps, and review progress through analytics graphs and personal records. A social layer allows users to befriend each other and compete on global and friend leaderboards ranked by total workout volume, while an achievements system rewards fitness milestones.',
+    desc: "SQLift is a full-stack workout tracker we built for CS-5200 Database Management. You plan workouts from a library of 1000+ exercises, log each set's weight and reps during a live session, and look back at your progress through graphs and personal records. You can also add friends, compete on global and friends-only leaderboards ranked by total workout volume, and earn achievements for hitting fitness milestones.",
     features: [
       {
         heading: 'Live Session Tracking',
         content:
-          'During an active workout, users log every set in real time, with details like weight, reps, RPE, rest time, and set type (warm-up, working, drop) and with auto-fill from the previous set to speed up logging.',
+          'During a workout you log each set as you go, with the weight, reps, RPE, rest time and set type (warm-up, working or drop). Each new set auto-fills from the one before it to save typing.',
       },
       {
         heading: 'Exercise Library',
         content:
-          'A pre-populated library of 1000+ exercises sourced from the Wger API, each tagged with targeted muscle groups and required equipment, supports filtering and browsing by category.',
+          'The library has 1000+ exercises pulled from the Wger API, each tagged with the muscle groups it works and the equipment it needs, and you can filter and browse it by category.',
       },
       {
         heading: 'Progress Analytics',
         content:
-          'The stats page visualizes exercise progression over configurable time ranges, tracks body measurements, displays muscle group volume breakdowns, and surfaces hero stats like total volume, heaviest set, and session streaks.',
+          'The stats page charts your progress on each exercise over a time range you choose, tracks body measurements, breaks down volume by muscle group, and shows headline numbers like total volume, heaviest set and session streaks.',
       },
       {
         heading: 'Social & Leaderboards',
         content:
-          'Users can send and manage friend requests, set friendship visibility levels, and compete on both a global and friends-only leaderboard ranked by cumulative workout volume.',
+          'You can send and manage friend requests, choose how much your friends can see, and compete on a global or friends-only leaderboard ranked by total workout volume.',
       },
       {
         heading: 'Achievements & Goals',
         content:
-          'An achievements system awards badges for fitness milestones, and a goals feature lets users set personal objectives with target completion dates and track them over time.',
+          'Achievements award badges for fitness milestones, and goals let you set a personal target with a completion date and track it over time.',
       },
     ],
     technologies: [
@@ -480,21 +536,32 @@ export const data: { [key: string]: projectData } = {
       { name: 'Supabase', icon: 'icon_supabase.svg' },
     ],
     responsibilities: [
-      'Designed the relational database schema, including the multi-level session of record set hierarchy, friendship graph, achievements, and goals tables.',
-      'Built and maintained backend Flask API modules for workout CRUD, live session tracking, analytics, leaderboard calculations, and achievements.',
-      'Wrote the Python web scraper to populate the exercise library with 1000+ entries, muscle group mappings, and equipment data from the Wger API.',
-      'Implemented session-based authentication with bcrypt password hashing and contributed to profile and friend management endpoints.',
-      'Contributed to the React frontend, including the live session page, stats visualizations, and leaderboard views.',
-      'Configured the GitHub Actions CI/CD pipeline for automated deployment to Vercel with smoke tests against the live backend.',
+      'Designed the relational database schema, including the multi-level hierarchy from sessions down to individual set records, the friendship graph, and the achievements and goals tables.',
+      'Built and maintained the Flask API modules for workout CRUD, live session tracking, analytics, leaderboard calculations and achievements.',
+      'Wrote the Python web scraper that filled the exercise library with 1000+ entries, muscle group mappings and equipment data from the Wger API.',
+      'Implemented session-based authentication with bcrypt password hashing and worked on the profile and friend management endpoints.',
+      'Worked on the React front end, including the live session page, stats visualizations and leaderboard views.',
+      'Set up the GitHub Actions CI/CD pipeline that deploys to Vercel and runs smoke tests against the live backend.',
+    ],
+    captions: [
+      'The landing page.',
+      'The Command Center home page, with saved programs and a summary of your training.',
+      'The exercise library, with search and muscle group filters.',
+      'The profile page, with your details, latest body measurements and goals.',
+      'Achievements further down the profile page, each with the date it was earned.',
+      'Performance Metrics, where you log body measurements and track goals.',
+      'Workout streaks and a calendar of past sessions, above your lifetime bests and an exercise progression chart.',
+      'Progress charts for body measurements over time.',
+      'The leaderboard, ranked by total volume lifted, with a toggle between friends and everyone.',
     ],
     videos: [],
     additional: [
-      'This project was built as the final project for CS-5200 Database Management Systems at Northeastern University, with a focus on relational database design and complex SQL querying.',
-      'The database schema spans 15+ tables with multi-level relational hierarchies, covering users, workouts, sessions, set logs, exercises, muscle groups, equipment, measurements, friendships, goals, and achievements.',
-      'Supabase transaction pooler (port 6543) is used for efficient connection management, allowing the stateless Vercel serverless backend to interact with PostgreSQL without exhausting connections.',
-      'The exercise library was populated using a custom Python scraper that fetched and normalized data from the Wger open-source fitness API across multiple pages.',
-      'Additional features were planned, such as multiple user roles (for trainers) as well as more achievements and a way to upload profile pictures, but were scrapped due to time constraints.',
-      'The project was built collaboratively by a three-person team (Shaad Qureshi, Ben O\'Neil, Sudaiv Shetty) with Git-based workflows and feature branches.',
+      'This was our final project for CS-5200 Database Management Systems at Northeastern University, so most of the effort went into relational database design and complex SQL queries.',
+      'The schema has 15+ tables covering users, workouts, sessions, set logs, exercises, muscle groups, equipment, measurements, friendships, goals and achievements.',
+      "The backend connects through Supabase's transaction pooler on port 6543, which lets the stateless Vercel serverless functions talk to PostgreSQL without running out of connections.",
+      'My scraper filled the exercise library by paging through the open-source Wger fitness API and normalizing what came back.',
+      'We also planned separate user roles for trainers, more achievements and profile picture uploads, but ran out of time.',
+      "I built it with Ben O'Neil and Sudaiv Shetty, and we worked on feature branches in Git.",
     ],
   },
   nanorewind: {
@@ -508,7 +575,7 @@ export const data: { [key: string]: projectData } = {
     features: [
       {
         heading: 'Six Darkroom Processes & Atmospheric Modifiers',
-        content: 'Before restoring, you choose Standard, Silver Gelatin, Albumen, Cyanotype, Lumière Autochrome or Kodachrome 64. Two optional extras go on top: Chiaroscuro for deeper shadows and Matte Emulsion for softer, paper-like highlights.',
+        content: 'Before restoring, you choose Standard, Silver Gelatin, Albumen, Cyanotype, Lumière Autochrome or Kodachrome 64. Two optional extras go on top of that, Chiaroscuro for deeper shadows and Matte Emulsion for softer, paper-like highlights.',
       },
       {
         heading: 'Loupe, Slider & Side-by-Side Comparison',
@@ -552,6 +619,18 @@ export const data: { [key: string]: projectData } = {
       "Wrote privacy, terms and cookie policies covering India's DPDP Act and the GDPR, plus a Vite build plugin that prerenders them as static HTML and emits per-route meta tags and sitemap.xml.",
       'Brought all text to WCAG AA contrast (lowest 5.37:1), added skip links and focus trapping in dialogs, and code-split the bundle to cut home page JavaScript from 91 to 79 KB gzipped.',
     ],
+    captions: [
+      'The sign-in page, with a before and after of a restored print.',
+      'The restore page, where you add a photo and choose one of six styles.',
+      'Three photos queued up and waiting to be restored.',
+      'A photo partway through restoring. It usually takes a few seconds.',
+      'Side by side view of the original and the restored photo.',
+      'The slider view. Drag the line to compare before and after.',
+      'The loupe shows the restored photo at 2.4x wherever you hover.',
+      'The album, where every restoration is saved.',
+      'Creating an unlisted share link for a photo.',
+      "What you see once the day's three free restorations are used up, with a countdown to the refill.",
+    ],
     videos: [],
     additional: [
       'A solo personal project, built on and off between December 2025 and November 2026.',
@@ -559,7 +638,7 @@ export const data: { [key: string]: projectData } = {
       "Some of my own marketing copy was wrong. \"3 free restorations a day\" didn't match the logic, which refills 1 credit every 24 hours, and \"a few seconds\" was closer to a minute. I fixed both everywhere, including the preview image.",
       'I ran a security audit partway through. It found a token leak in the Decap CMS login proxy that lives in this repo, where any website could receive a CMS user\'s GitHub token. It now only goes to an allowlist of origins, and the same pass took dependency advisories from 23 to 0.',
       'I left out a public gallery on purpose. These are mostly family photos, so share links stay unlisted.',
-      "For the redesign I wrote a list of things I didn't want it to look like: purple and black, glassmorphism, bento grids, Inter. I picked an oxblood family-album look out of three mockups.",
+      "For the redesign I wrote down what I didn't want it to look like, which was purple and black, glassmorphism, bento grids and Inter. I picked an oxblood family-album look out of three mockups.",
       "Before calling it ready for the public I spent a whole phase on compliance and accessibility. It is 18+ because India's DPDP Act treats under-18s as children and the Gemini API terms rule them out. I also dropped Google Fonts, since it sent every visitor's IP to Google, and now self-host the fonts.",
     ],
   },
@@ -570,11 +649,11 @@ export const data: { [key: string]: projectData } = {
       { label: 'Live Project', icon: '', url: 'https://emmeqqu-08.github.io/emaad-portfolio/' },
       { label: 'GitHub', icon: '', url: 'https://github.com/emmeqqu-08/emaad-portfolio' },
     ],
-    desc: "A dark, cinematic portfolio site for Emaad's art, with a look borrowed from JoJo's Bizarre Adventure. It has three pages: a home page with a hero and a strip of selected pieces, a Works page with a filterable masonry grid, and an About page. Emaad runs it without me. They log into a Decap CMS dashboard with GitHub, drop in an image, fill out a form, and hit Publish, and the site rebuilds on its own. The whole setup costs nothing to run.",
+    desc: "A dark, cinematic portfolio site for Emaad's art, with a look borrowed from JoJo's Bizarre Adventure. There's a home page with a hero and a strip of selected pieces, a Works page with a filterable masonry grid, and an About page. Emaad runs it without me. They log into a Decap CMS dashboard with GitHub, drop in an image, fill out a form, and hit Publish, and the site rebuilds on its own. The whole setup costs nothing to run.",
     features: [
       {
         heading: 'No-Code Artist Dashboard',
-        content: 'Emaad visits /admin, logs in with GitHub, and gets a form for each artwork: image, title, description, year, medium, dimensions, categories, and whether it is for sale. Publishing commits the file to the repo and the site redeploys.',
+        content: 'Emaad visits /admin, logs in with GitHub, and gets a form for each artwork with fields for the image, title, description, year, medium, dimensions, categories, and whether it is for sale. Publishing commits the file to the repo and the site redeploys.',
       },
       {
         heading: 'Masonry Gallery & Fullscreen Lightbox',
@@ -612,6 +691,14 @@ export const data: { [key: string]: projectData } = {
       'Wrote a post-build Node script that injects CMS-editable title and Open Graph tags into the static HTML for social link previews',
       'Built a reusable auto-scrolling carousel hook that only activates on overflow and respects prefers-reduced-motion',
     ],
+    captions: [
+      'The home page hero.',
+      'The Spotlight strip of selected pieces on the home page.',
+      'The Works page, a masonry grid you can filter by category.',
+      'The About page.',
+      'The Decap CMS form Emaad fills out to add a new piece.',
+      'The list of artworks in the CMS dashboard.',
+    ],
     videos: [],
     additional: [
       "I built this for free for Emaad, who is family, so their art would have one place to live.",
@@ -635,32 +722,32 @@ export const data: { [key: string]: projectData } = {
         url: 'https://github.com/shaadqrsh/HOMI-distro',
       },
     ],
-    desc: 'This project is a full-stack application that leverages a fine-tuned Large Language Model (LLM) to provide AI-powered assistance for objective-based learning, specifically for BSc. IT students. The application aims to enhance the learning experience by offering personalized study materials, dynamically generating MCQs based on proficiency levels, resolving user doubts in real-time through a chatbot, and providing tools for assignment tracking, and attendance logging. This system seeks to address the limitations of traditional teaching methods by offering adaptive and interactive educational tools, making learning more accessible, engaging, and effective for IT students.',
+    desc: "HOMI is a full-stack study assistant for BSc IT students, built on a fine-tuned large language model (LLM). It writes study material tailored to you, generates multiple-choice questions that match your level, and answers your doubts through a chatbot as they come up. It also keeps track of your attendance and assignments. We built it because regular classes don't adapt to how each student is doing, and we wanted studying to feel more personal and interactive.",
     features: [
       {
-        heading: 'LLM Integration',
+        heading: 'Fine-Tuned LLM',
         content:
-          'This system utilizes a customized LLM (based on DeepSeek) for core AI functionalities such as query processing and question generation.',
+          'A customized LLM based on DeepSeek does the AI work, like answering questions and generating tests.',
       },
       {
-        heading: 'Chatbot Query Resolution',
+        heading: 'Chatbot',
         content:
-          'The user can chat with the model to ask questions, generate personalized study material and store and organize them with a robust folder structure system.',
+          'You can chat with the model to ask questions or generate study material, and sort everything it gives you into folders.',
       },
       {
         heading: 'Attendance and Assignment Tracking',
         content:
-          'Users can track and log their attendance and calcuate the number. The user can also log their assignments and use the website as a checklist for these assignments.',
+          'You log your attendance for each subject, and HOMI works out how many more classes you can miss and still stay above your target. You can also log assignments and use the site as a checklist for them.',
       },
       {
         heading: 'Test Generation',
         content:
-          'The user can assess their knowledge about a certain topic they have studied in the form of graded multiple-choice based tests and as flashcards.',
+          "You can test yourself on a topic you've studied with graded multiple-choice tests or with flashcards.",
       },
       {
         heading: 'Secure Authentication',
         content:
-          'The application uses secure authentication methods to log into the system, and a robust database to store user details, questions, tests and more.',
+          'Logging in uses secure authentication, and a PostgreSQL database stores user details, questions, tests and the rest.',
       },
     ],
     technologies: [
@@ -675,21 +762,33 @@ export const data: { [key: string]: projectData } = {
       { name: 'Docker', icon: 'icon_docker.svg' },
     ],
     responsibilities: [
-      'Assumed the responsibility of "Project Manager" and managed a team of 6 people working on the project',
+      'Worked as project manager for the team of 6 people building it.',
       'Trained the LLM (based on DeepSeek R1) on cloud and local machines.',
-      'Collected the data for training the model from textbooks, using manual scanning, distillation and several scraping techniques.',
-      'Developed several backend features, especially those related to interfacing with the actual model.',
-      'Assisted in deploying the backend onto HuggingFace Spaces, and uploaded the model onto HuggingFaces.',
-      'Assisted in designing several UI components and pages in the application.',
-      'Funded the development of the application until a grant was offered to us by our college.',
+      'Collected the training data from textbooks, using manual scanning, distillation and several scraping techniques.',
+      'Built several backend features, mostly the parts that talk to the model.',
+      'Helped deploy the backend to Hugging Face Spaces, and uploaded the model to Hugging Face.',
+      'Helped design several UI components and pages.',
+      'Paid for development myself until our college gave us a grant.',
+    ],
+    captions: [
+      "HOMI answering a question about the 8051's timer registers.",
+      'The chat sidebar, where conversations can be sorted into folders.',
+      'Attendance by subject, with how many more classes you can miss and still stay above your target.',
+      'Adding an assignment with its marks and due date.',
+      'Ongoing and submitted assignments.',
+      'Starting a test on a topic. You can practice with HOMI or take a timed test.',
+      'A timed multiple-choice question on database normalization.',
+      'The results page, with every question marked right or wrong.',
+      'An explanation of why an answer was wrong.',
+      'The sign-up page.',
     ],
     videos: [],
     additional: [
-      'This capstone project spanned seven months from ideation to presentation and was presented before my graduation.',
-      'Features like a mental health guide, study roadmap generator, and PDF chat export were planned, but they were scrapped due to time constraints.',
-      'The project successfully attracted an external investor grant, and these investors plan to further expand its capabilities.',
-      'The research done on this project yielded 3 research papers. One was presented at an IEEE conference, one was published in the IJERT journal and one is currently under review.',
-      "The project's technical sophistication and innovation were highly praised by an examiner from IITB (Indian Institute of Technology - Bombay) during its final assessment.",
+      'This was my undergrad capstone. It took seven months from the first idea to the final presentation, which happened before I graduated.',
+      'We also planned a mental health guide, a study roadmap generator and PDF export for chats, but ran out of time.',
+      'The project got a grant from outside investors, who plan to keep building on it.',
+      'Our research for it turned into 3 papers. One was presented at an IEEE conference, one was published in IJERT, and one is still under review.',
+      'During the final assessment, an examiner from IIT Bombay (Indian Institute of Technology Bombay) singled out the project for its technical depth and originality.',
     ],
   },
   findly: {
@@ -702,32 +801,32 @@ export const data: { [key: string]: projectData } = {
         url: 'https://github.com/shaadqrsh/findly-android-studio/',
       }
     ],
-    desc: 'A comprehensive Android application designed to help users connect and exchange information about lost and found items. It provides a platform where users can post detailed listings of items they have lost or found, complete with categories, descriptions, and images. The app facilitates direct communication between users through an integrated real-time chat system, allowing for efficient resolution and return of items. It also includes robust user management features, personal item listings, and a dynamic interface for a seamless user experience.',
+    desc: "Findly is an Android app for lost and found items. People post listings for things they've lost or found, with a category, description and photos, and then chat inside the app to work out how to get each item back to its owner. You can also manage your own listings and your profile from the app.",
     features: [
       {
         heading: 'Instant Item Updates',
         content:
-          'The live, continuously updating feed of lost and found items lets users see new item posts and existing item updates instantly, ensuring they always have the most current information.',
+          'The feed of lost and found items updates live, so new posts and changes to existing ones show up right away.',
       },
       {
-        heading: 'In-App Chat Feature',
+        heading: 'In-App Chat',
         content:
-          'Users can participate in private conversations directly within the app, facilitating direct and secure communication between 2 people to discuss item details and coordinate returns.',
+          'Two people can chat privately inside the app to talk through an item and arrange to return it.',
       },
       {
         heading: 'Camera and Gallery Integration',
         content:
-          "The app has robust photo upload capabilities, enabling users to attach images to item listings and profile pictures directly from their device's camera or photo gallery.",
+          'You can attach photos to listings and set a profile picture straight from the camera or the photo gallery.',
       },
       {
         heading: 'Secure Contact Sharing',
         content:
-          'Chats feature an integrated option for users to securely share their personal contact details (phone number and/or email), facilitating direct contact while maintaining privacy.',
+          "From inside a chat you can share your phone number, your email or both, so your contact details only go to the person you're talking to.",
       },
       {
-        heading: 'Personalized Item Browsing Views',
+        heading: 'Lost, Found & Mine Tabs',
         content:
-          'The app offers distinct browsing categories, each with dynamic search capability: "Lost" and "Found" for general listings, and a "Mine" section for the current user\'s items.',
+          'Listings are split into Lost, Found and Mine, where Mine holds your own posts, and each tab has its own search.',
       },
     ],
     technologies: [
@@ -737,20 +836,31 @@ export const data: { [key: string]: projectData } = {
       { name: 'Firebase', icon: 'icon_firebase.svg' }
     ],
     responsibilities: [
-      'Designed, implemented, and maintained the client-side Android application',
-      'Structured the Firebase Realtime Database for storage and retrieval of user profiles, item listings, and real-time messages.',
-      'Implemented custom user registration and login flows, managing user sessions, and ensuring that users can only access and modify data relevant to them.',
-      'Developed image capture/select functionality, and integrating with Firebase Storage for secure image uploads and retrieval.',
-      'Developing layouts, implementing responsive UI elements, smooth navigation, and providing clear user feedback through XML and Java.',
+      'Designed, built and maintained the Android app.',
+      'Structured the Firebase Realtime Database that stores user profiles, item listings and chat messages.',
+      'Wrote custom sign-up and login flows and session handling, and made sure users can only see and change their own data.',
+      'Built photo capture and selection, with uploads to and downloads from Firebase Storage.',
+      'Built the layouts, navigation and on-screen feedback in XML and Java.',
+    ],
+    captions: [
+      "The Lost feed, with each item's category, status and when it was posted.",
+      "An item's page, with who posted it and buttons to edit it or mark it closed.",
+      'Adding a photo to a listing from the camera or the gallery.',
+      'The profile page, where you change your picture and contact details.',
+      'A chat with the person who found your item.',
+      'Sharing your phone number from inside the chat.',
+      'The messages inbox, with one thread per item.',
+      'Creating an account.',
+      'Logging in.',
     ],
     videos: [],
     additional: [
-      'This project was developed as a project showcase for the subject "Advanced Mobile Programming". It was developed in a span of 3 weeks, and completed 3 months before our evaluation.',
-      'The inspiration for Findly sprang from first-hand experience of the inefficiency of poorly managed lost-and-found system on campus. The vision was to replace messy lost-and-found boxes with a streamlined digital solution.',
-      'The practical utility of the app impressed our professor and there were discussions about its potential deployment as the official lost-and-found system for the entire college campus.',
-      'Ideas like Google Maps for item location tracking, leveraging AI for image matching between lost and found items, incorporating push notifications for category alerts were considered during planning, but were scrapped for the initial release to focus on getting the key features in place first.',
-      "As a solo developer, I opted for Firebase as the backend, for its real-time features for dynamic updates and live chat. Despite the credit card requirement, this choice simplified infrastructure setup, freeing me to concentrate on the Android app's UI/UX and core logic, ultimately making it the sole project in the batch with a robust server backend.",
-      'The project utilizes a custom authentication system developed from the ground-up using Firebase and traditional encryption techniques, because I was unable to integrate Firebase Authentication. This was removed in the GitHub release, where passwords are plaintext instead.'
+      'I made this for my Advanced Mobile Programming course. It took 3 weeks and was done 3 months before our evaluation.',
+      "The idea came from dealing with our campus lost-and-found, which was badly run. I wanted to replace the messy lost-and-found boxes with an app.",
+      'Our professor liked it enough that there was some talk of making it the official lost-and-found system for the whole campus.',
+      'I thought about adding Google Maps to show where items were lost, AI image matching between lost and found posts, and push notifications for categories you follow, but left them out of the first release to get the main features working first.',
+      "Since I was working alone, I went with Firebase for the backend because its real-time features covered the live feed and chat. It needed a credit card, but it saved me from setting up servers, so I could spend my time on the app's UI and logic. It ended up being the only project in our batch with a real server backend.",
+      "I couldn't get Firebase Authentication working, so I wrote my own login system on top of Firebase with traditional encryption. The GitHub release doesn't include it, and passwords there are stored in plain text."
     ],
   },
 };

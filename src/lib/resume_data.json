@@ -3,8 +3,8 @@
   "fullName": "Shaad Abid Qureshi",
   "title": "Gameplay/Engine Programmer",
   "location": "Boston, MA",
-  "summary": "I'm a game developer with a strong computer science background, specializing in implementing core gameplay mechanics with Unity and Unreal Engine. My passion is creating engaging worlds that captivate players and inspire new creators.",
-  "about": "I am a Computer Science student with a proficiency in AI, but I'm a passionate game developer at heart. My love for unique worlds and storytelling began with a Nintendo Wii in my childhood. I specialize in implementing core gameplay mechanics, using my C# skills in Unity and Blueprint expertise in Unreal Engine to bring creative visions to life. Through freelance projects, I've enjoyed collaborating with designers, offering technical solutions to realize their complex concepts. My ultimate ambition is to contribute to the development of beloved games at major studios and one day create my own, inspiring the next generation of gamers.",
+  "summary": "I'm a game developer with a computer science background, and most of my work is building core gameplay mechanics in Unity and Unreal Engine. I want to make worlds that pull players in and get other people excited to make games of their own.",
+  "about": "I'm a Computer Science student with a background in AI, but I've always been a game developer at heart. It started with a Nintendo Wii when I was a kid, and I've loved games with their own worlds and stories ever since. Most of what I build is core gameplay, in C# for Unity and Blueprints for Unreal Engine. Freelancing has had me working with a lot of designers and figuring out how to make their more complicated ideas actually work in the engine. I want to work on games people love at a big studio, and one day make my own that gets the next generation of players hooked.",
   "counts": {
     "workExperience": 3,
     "projects": 5,
@@ -123,19 +123,19 @@
       "title": "Media Services Technician",
       "startDate": "00/01/2026",
       "subtitle": [
-        "Operate AV systems for 50+ events (audiences up to 1,000+), managing 32-channel audio boards, wireless mics, and projection.",
-        "Diagnose and resolve critical AV failures in sub-2-minute windows, coordinating live with ITS and stage managers.",
-        "Program and execute dynamic lighting cues on ETC lighting boards for university productions and live ceremonies."
+        "Run AV for 50+ events with audiences of up to 1,000+, handling 32-channel audio boards, wireless mics, and projection.",
+        "Fix AV failures during live events in under 2 minutes, working with ITS and stage managers in real time.",
+        "Program and run lighting cues on ETC lighting boards for university productions and live ceremonies."
       ],
       "image": "/about/img_neu.png",
       "location": "Northeastern University, Boston, MA",
       "inProgress": true,
       "evidence": [
-        "Hardware & Tech: ETC lighting boards, 32-channel digital audio consoles, wireless mic kits (lavalier/handheld), high-lumen laser projectors",
-        "Scale & Scope: 50+ university productions, guest lectures, theater performances, and ceremonies with 50 to 1,000+ attendees",
-        "Incident Response: Real-time signal-flow diagnostics and AV recovery within sub-2-minute windows under live broadcast/stage conditions",
-        "Cross-Functional Team: Live coordination with ITS staff, House Managers, Stage Managers, and keynote speakers",
-        "Quality & Reliability: Pre-event acoustic tuning, mic frequency coordination, redundancy checks, and zero show-stopping downtime"
+        "Equipment includes ETC lighting boards, 32-channel digital audio consoles, lavalier and handheld wireless mics, and high-lumen laser projectors",
+        "Covered 50+ university productions, guest lectures, theater performances, and ceremonies, with 50 to 1,000+ attendees",
+        "Trace signal flow and get AV working again in under 2 minutes during live stage and broadcast events",
+        "Coordinate live with ITS staff, house managers, stage managers, and keynote speakers",
+        "Do acoustic tuning, mic frequency coordination, and redundancy checks before each event, with no show-stopping downtime so far"
       ]
     },
     {
@@ -144,17 +144,17 @@
       "endDate": "00/11/2025",
       "subtitle": [
         "Developed game mechanics in Unity (C#) and Unreal Engine (C++/Blueprints) for 50+ clients across 100+ micro-projects.",
-        "Delivered end-to-end gameplay systems including physics, AI, and UI, sourced through private Discord communities.",
-        "Managed full project lifecycles independently, handling client scoping, iterative development, and final delivery."
+        "Built complete gameplay systems, including physics, AI, and UI, for clients found through private Discord communities.",
+        "Ran each project on my own, from scoping it with the client through iteration to final delivery."
       ],
       "image": "/about/img_discord.png",
       "location": "Freelance, Remote",
       "evidence": [
         "Unity (C#), Unreal Engine (C++ and Blueprints)",
         "50+ distinct clients, 100+ delivered micro-projects over roughly 2.5 years",
-        "Systems shipped: gameplay mechanics, physics, AI, UI",
-        "Owned each project end to end: client scoping, iterative development, final delivery",
-        "Sourced entirely through private Discord communities, with no agency or marketplace platform"
+        "Shipped gameplay mechanics, physics, AI, and UI systems",
+        "Owned each project end to end, from client scoping through iterative development to final delivery",
+        "Every client came through private Discord communities, not an agency or a marketplace"
       ]
     },
     {
@@ -162,9 +162,9 @@
       "startDate": "00/09/2022",
       "endDate": "00/03/2023",
       "subtitle": [
-        "Built and maintained the festival website using WordPress for NM College's annual inter-collegiate academic festival featuring 27+ events across multiple domains.",
-        "Collaborated with a 50+ member organizing team to deliver a multi-day festival drawing participation from colleges across Mumbai and nationally.",
-        "Supported technical operations including event logistics and digital infrastructure for competitions, speaker sessions, and workshops."
+        "Built and maintained the WordPress website for NM College's annual inter-collegiate academic festival, which ran 27+ events across multiple domains.",
+        "Worked with a 50+ member organizing team on a multi-day festival that drew colleges from across Mumbai and the rest of India.",
+        "Helped with event logistics and the technical setup for competitions, speaker sessions, and workshops."
       ],
       "image": "/about/img_arthashastra.png",
       "location": "NM Arthashastra, Mumbai, India",
@@ -194,10 +194,12 @@
     {
       "title": "GMTK Game Jam 2026",
       "date": "00/08/2026",
+      "kind": "Game Jam",
+      "result": "4.5/5 rating",
       "icon": "/jams/icon_gmtk.png",
       "project": "countingsheep",
       "bullets": [
-        "Built Counting Sheep solo in 96 hours, a 3D browser platformer on the jam's countdown theme using Unity.",
+        "Built Counting Sheep, a 3D browser platformer in Unity, solo in 96 hours for the jam's countdown theme.",
         "Rated 4.5/5 in every category except Audio, from 15 players",
         "Synthesized every sound in C# with no audio files, including randomized sheep bleats, and modelled the characters in Blender"
       ]
@@ -205,6 +207,8 @@
     {
       "title": "Roblox Racing Challenge",
       "date": "00/04/2026",
+      "kind": "Challenge",
+      "result": "1st, Grand Prize",
       "icon": "/jams/icon_roblox.png",
       "bullets": [
         "Won 1st Place (Grand Prize) in a challenge run by Roblox Early Careers",
@@ -215,6 +219,7 @@
     {
       "title": "Cyber Cypher 2025",
       "date": "00/02/2025",
+      "kind": "Hackathon",
       "icon": "/jams/icon_nmims.png",
       "bullets": [
         "Led a team of 3 that built a disease prediction app in Mumbai",
@@ -225,6 +230,8 @@
     {
       "title": "IIT Madras Shaastra Techathon",
       "date": "00/07/2024",
+      "kind": "Hackathon",
+      "result": "116th in India",
       "icon": "/jams/icon_iitm.png",
       "bullets": [
         "Placed 2nd among teams from my college and 116th across India.",
@@ -235,6 +242,8 @@
     {
       "title": "Relic Castle Winter Jam #2",
       "date": "00/02/2021",
+      "kind": "Game Jam",
+      "result": "1st of 31",
       "icon": "/jams/icon_reliccastle.png",
       "project": "bushido",
       "bullets": [
@@ -246,6 +255,8 @@
     {
       "title": "Relic Castle Game Jam 6",
       "date": "00/08/2020",
+      "kind": "Game Jam",
+      "result": "1st of 46",
       "icon": "/jams/icon_reliccastle.png",
       "project": "splice",
       "bullets": [
@@ -344,19 +355,19 @@
         "icon": "icon_unity.svg",
         "title": "Unity",
         "category": "Engines & Tools",
-        "subTitle": "I can build core gameplay mechanics and systems using C#. My focus is on writing clean, reusable code for everything from player controls to UI elements."
+        "subTitle": "I build gameplay mechanics and systems in C#, and I try to keep the code clean and reusable, from player controls to UI."
       },
       {
         "icon": "icon_unreal.svg",
         "title": "Unreal Engine",
         "category": "Engines & Tools",
-        "subTitle": "I can construct interactive environments and gameplay events. I build most systems and logic directly within Blueprints, but I am adept with C++ for performance-critical functions."
+        "subTitle": "I build interactive environments and gameplay events. Most of my systems and logic live in Blueprints, and I switch to C++ when something needs to run fast."
       },
       {
         "icon": "icon_blender.svg",
         "title": "Blender",
         "category": "Engines & Tools",
-        "subTitle": "I can create optimized 3D assets ready to be implemented in my games. I manage the entire creation pipeline, from hard-surface modeling and UV mapping to PBR texturing."
+        "subTitle": "I make optimized 3D assets for my own games and handle the whole process myself, from hard-surface modeling and UV mapping to PBR texturing."
       }
     ],
     "main": [
@@ -487,6 +498,7 @@
       "url": "countingsheep",
       "category": "Game Projects",
       "date": "00/08/2026",
+      "featured": 1,
       "desc": "A 3D arcade platformer made solo in 96 hours for the GMTK Game Jam 2026. You guide a floaty sheep across cloud-cube numerals that crumble and reform under you as a sleeper counts down to sleep."
     },
     {
@@ -494,13 +506,15 @@
       "url": "harvestrush",
       "category": "Game Projects",
       "date": "00/08/2026",
-      "desc": "A fast-paced couch co-op and solo farming game where players till soil, sow seeds, water crops, and rush harvested produce to a scheduled delivery truck while defending the farm from hungry pests and spreading fires."
+      "featured": 2,
+      "desc": "A farming game for one player or two on the same couch. You till, plant, and water crops, then rush the harvest onto a delivery truck before it leaves, while pests steal produce and fires spread across the field."
     },
     {
       "title": "Tic-Tac-Gone",
       "url": "tictacgone",
       "category": "Game Projects",
       "date": "00/10/2026",
+      "featured": 3,
       "desc": "A 3D take on tic-tac-toe for the browser where each player can only keep three pieces on the board, and placing a fourth removes their oldest. Built with Three.js, with local two-player and a computer opponent on three difficulty levels."
     },
     {
@@ -508,35 +522,37 @@
       "url": "bushido",
       "category": "Game Projects",
       "date": "00/02/2021",
-      "desc": "Pokémon Bushido is a fan-made game set in a feudal Japan-inspired region, where players train Pokémon to become a Kenshi, battling rival clans and dark forces in a unique samurai-themed adventure."
+      "featured": 4,
+      "desc": "A Pokémon fangame set in a region inspired by feudal Japan, where you train with your Pokémon to become a Kenshi and fight the Akui Clan and their Shadow Pokémon."
     },
     {
       "title": "Pokémon Splice",
       "url": "splice",
       "category": "Game Projects",
       "date": "00/08/2020",
-      "desc": "Pokémon Splice is a fan-made game where you're a research assistant helping Professor Cypress discover new Pokémon forms, featuring a unique, type-changing starter and a branching story."
+      "featured": 5,
+      "desc": "A Pokémon fangame where you play a research assistant helping Professor Cypress study new Pokémon forms, with a starter that can change its type and a story that branches on which team you join."
     },
     {
       "title": "CareerPath AI",
       "url": "careerpath",
       "category": "Other Projects",
       "date": "00/11/2025",
-      "desc": "An AI-assisted development experiment built in 3 days with Gemini 3 Pro. This AI counselor generates hyper-personalized career roadmaps and realistic 'day-in-the-life' visualizations to help users find their ideal career."
+      "desc": "An AI career counselor I built in 3 days as an experiment in coding with Gemini 3 Pro. It suggests careers that fit your profile, maps out how to get into each one, and generates 'day in the life' images of the job."
     },
     {
       "title": "SQLift",
       "url": "sqllift",
       "category": "Other Projects",
       "date": "00/04/2026",
-      "desc": "SQLift is a full-stack workout tracking web application with a rich relational database at its core. Users can plan custom workouts, track live sessions set-by-set, monitor body measurements and analytics over time, and compete on global and friend leaderboards."
+      "desc": "A full-stack workout tracker built around a relational database. You plan workouts, log live sessions set by set, track body measurements and progress over time, and compete on global and friends-only leaderboards."
     },
     {
       "title": "NanoRewind 4K",
       "url": "nanorewind",
       "category": "Other Projects",
       "date": "00/12/2025",
-      "desc": "A full-fledged web app that restores old, scratched and faded family photos with Google Gemini. It runs on React and Vercel serverless functions, with Supabase handling accounts, credits and a private photo album."
+      "desc": "A web app that uses Google Gemini to restore old, scratched and faded family photos. It runs on React and Vercel serverless functions, with Supabase handling accounts, credits and a private photo album."
     },
     {
       "title": "Artist Portfolio",
@@ -550,14 +566,14 @@
       "url": "homi",
       "category": "Other Projects",
       "date": "00/02/2025",
-      "desc": "An AI-powered learning assistant for IT students, using LLMs to offer personalized study material, real-time query resolution, automated test generation, and attendance and assignment tracking."
+      "desc": "A study assistant for IT students built on a fine-tuned LLM. It answers questions, writes study material, generates practice tests, and tracks attendance and assignments."
     },
     {
       "title": "Findly - Lost and Found Application",
       "url": "findly",
       "category": "Other Projects",
       "date": "00/01/2025",
-      "desc": "An Android application with a Firebase-powered backend, which acts as a platform to list lost or found items and chat with users to recover lost items or return found ones."
+      "desc": "An Android app with a Firebase backend where people post lost or found items and chat with each other to get them back to their owners."
     }
   ]
 }
