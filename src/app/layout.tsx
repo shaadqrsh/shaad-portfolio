@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 import { name } from "@/lib/Data";
@@ -7,10 +7,23 @@ import { personJsonLd } from "@/lib/jsonLd";
 import { SITE_URL, abs } from "@/lib/siteUrl";
 import type { Metadata } from "next";
 
-const inter = Inter({
+// Site fonts. next/font sets the --ff-* variables; globals.css maps them to
+// Tailwind's font-display, font-sans and font-label utilities. The names differ
+// on purpose so a theme variable never points at itself.
+const display = Space_Grotesk({
+  subsets: ["latin", "latin-ext"],
+  weight: ["500", "600", "700"],
+  variable: "--ff-display",
+});
+const body = IBM_Plex_Sans({
+  subsets: ["latin", "latin-ext"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--ff-body",
+});
+const label = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  variable: "--inter",
+  weight: ["500"],
+  variable: "--ff-label",
 });
 
 export const metadata: Metadata = {
@@ -77,6 +90,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
+      className={`${display.variable} ${body.variable} ${label.variable}`}
     >
       <head>
         <script
@@ -85,7 +99,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}
         />
       </head>
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className="font-sans antialiased">{children}</body>
       <Analytics />
     </html>
   );

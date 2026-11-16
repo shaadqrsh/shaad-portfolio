@@ -1,67 +1,88 @@
 "use client";
-import { headers } from "@/lib/header";
 import { cn } from "@/lib/utils";
-import { FileUser } from "lucide-react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import Button from "./ui/button";
+import { Socials, isActive, pages } from "./NavLinks";
+import { TransitionLink } from "./PageTransition";
 
-const MobileNav = () => {
+interface MobileNavProps {
+  open: boolean;
+  /** Distance from the top of the screen to the navbar's bottom edge. */
+  top: number;
+  onClose: () => void;
+}
+
+const EASE = [0.2, 0.8, 0.2, 1] as const;
+
+/** Phone menu: a sheet that rises from the bottom over a dimmed page. */
+const MobileNav = ({ open, top, onClose }: MobileNavProps) => {
   const pathname = usePathname();
+  const reduce = useReducedMotion();
 
   useEffect(() => {
+    if (!open) return;
+    // Locking the page's scroll removes its scrollbar; pad the page by the
+    // scrollbar's width so nothing shifts sideways while the menu is open.
+    const gap = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = "hidden";
-
+    if (gap > 0) document.body.style.paddingRight = `${gap}px`;
+    // The menu only exists on narrow screens; close it if the window widens.
+    const onResize = () => window.innerWidth > 900 && onClose();
+    window.addEventListener("resize", onResize);
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+      window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [open, onClose]);
 
   return (
-    <>
-      <motion.nav
-        initial={{ opacity: 0, y: "-100vh" }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        exit={{ opacity: 0, y: "-100vh" }}
-        className="flex flex-col items-center justify-center fixed bg-shaad-400 top-0 left-0 w-full h-full z-40"
-      >
-        <ul className="list-none p-0 flex flex-col gap-8 mt-6 -ml-6">
-          {headers.map((h, idx) => (
-            <li key={idx}>
-              <a
-                href={h.link}
-                className={cn(
-                  "text-white flex tracking-wider items-center font-semibold text-xl hover:text-shaad-600 transition",
-                  pathname.startsWith(h.link) ? "text-white" : "text-shaad-100"
-                )}
-              >
-                <div className="w-4 mr-2 flex justify-center items-center">
-                  {pathname.startsWith(h.link) && (
-                    <div className="bg-shaad-600 w-2 h-2 rounded-full" />
-                  )}
-                </div>
-                <h.icon
-                  className="mr-2"
-                  size={23}
-                />
-                {h.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <Button
-          className="px-6 py-3 mt-10 text-lg"
-          href="/resume"
-        >
-          <FileUser
-            size={20}
+    <AnimatePresence>
+      {open && (
+        <div id="mobile-menu" className="fixed inset-x-0 bottom-0 z-40 overflow-hidden" style={{ top }}>
+          <motion.div
+            className="absolute inset-0 bg-[#0c0a17cc]"
+            onClick={onClose}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduce ? 0 : 0.18, ease: "easeOut" }}
           />
-          <span className="font-semibold">View CV</span>
-        </Button>
-      </motion.nav>
-    </>
+          <motion.nav
+            aria-label="Pages"
+            className="absolute inset-x-0 bottom-0 flex max-h-full flex-col gap-6 overflow-y-auto rounded-t-3xl bg-shaad-200 px-[max(20px,env(safe-area-inset-left))] pt-6 pb-[calc(env(safe-area-inset-bottom)+24px)] text-white shadow-[0_-20px_40px_#00000088]"
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ duration: reduce ? 0 : 0.26, ease: EASE }}
+          >
+            <ul className="flex flex-col gap-1.5">
+              {pages.map(({ label, link, icon: Icon }) => {
+                const active = isActive(pathname, link);
+                return (
+                  <li key={link}>
+                    <TransitionLink
+                      href={link}
+                      onClick={onClose}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "flex items-center gap-3.5 rounded-[14px] px-4 py-2.5 font-display text-[28px] font-bold transition-colors duration-200",
+                        active ? "bg-shaad-600 text-white" : "text-shaad-ink-2 hover:bg-shaad-300 hover:text-white"
+                      )}
+                    >
+                      <Icon className="size-[26px] shrink-0" aria-hidden />
+                      {label}
+                    </TransitionLink>
+                  </li>
+                );
+              })}
+            </ul>
+            <Socials />
+          </motion.nav>
+        </div>
+      )}
+    </AnimatePresence>
   );
 };
 

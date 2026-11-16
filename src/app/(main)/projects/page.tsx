@@ -1,185 +1,165 @@
 "use client";
 import Loader, { isImageCached, markImageCached, useSmartLoader } from "@/components/Loader";
+import { Appear, AppearReady, stagger, useAppear } from "@/components/projects/Appear";
 import ProjectsCard from "@/components/ProjectsCard";
-import projects, { categoryOrder } from "@/lib/Projects";
+import { countClass } from "@/components/ui/Section";
 import { projectImg } from "@/lib/images";
-import FadeInUp from "@/components/FadeInUp";
-import { motion, AnimatePresence } from "motion/react";
-import { ChevronDown } from "lucide-react";
-import Card from "@/components/ui/Card";
+import projects, { categoryOrder } from "@/lib/Projects";
 import { cn } from "@/lib/utils";
+import { ChevronDown } from "lucide-react";
+import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react";
+import { useMemo, useState } from "react";
 
-import { useState, useEffect, useMemo } from "react";
+type Project = (typeof projects)[number];
+
+const COLLAPSE = { duration: 0.2, ease: "easeInOut" } as const;
+
+/** The furthest the page can scroll right now, measured from the footer. */
+const maxScroll = () => {
+  const footer = document.querySelector("footer");
+  return footer ? footer.getBoundingClientRect().bottom + window.scrollY - window.innerHeight : Infinity;
+};
+
+/**
+ * Chrome keeps the scroll position while content shrinks and only corrects
+ * it once the shrinking element is removed, so closing a category near the
+ * bottom of the page showed empty space under the footer and then snapped.
+ * Before a category closes, this works out where the page will be able to
+ * scroll to afterwards and scrolls there with the same timing as the close,
+ * so the footer stays on the bottom edge the whole way.
+ */
+const scrollWithCollapse = (region: HTMLElement | null) => {
+  if (!region) return;
+  // The page loses the region's full height.
+  const lost = region.offsetHeight;
+  const target = Math.max(0, maxScroll() - lost);
+  if (window.scrollY <= target) return;
+  animate(window.scrollY, target, { ...COLLAPSE, onUpdate: (y) => window.scrollTo({ top: y, behavior: "instant" }) });
+};
+
+/** Clears any rounding left over once the close finishes. */
+const settleScroll = () => {
+  const max = maxScroll();
+  if (window.scrollY > max) window.scrollTo({ top: Math.max(0, max), behavior: "instant" });
+};
+
+/** Projects grouped by category, in categoryOrder, with unlisted categories last. */
+const useCategories = () =>
+  useMemo(() => {
+    const rank = new Map(categoryOrder.map((c, i) => [c.name, i]));
+    const groups = new Map<string, Project[]>();
+    for (const p of projects) {
+      const cat = p.category || "Miscellaneous";
+      groups.set(cat, [...(groups.get(cat) ?? []), p]);
+    }
+    return [...groups.entries()].sort(
+      ([a], [b]) => (rank.get(a) ?? Infinity) - (rank.get(b) ?? Infinity) || a.localeCompare(b)
+    );
+  }, []);
+
+const Category = ({
+  name,
+  items,
+  open,
+  onToggle,
+  onImageLoad,
+}: {
+  name: string;
+  items: Project[];
+  open: boolean;
+  onToggle: () => void;
+  onImageLoad: (url: string) => void;
+}) => {
+  const reduce = useReducedMotion();
+  const id = `cat-${name.replace(/\W+/g, "-").toLowerCase()}`;
+  return (
+    <motion.section {...useAppear()} className="min-w-0 rounded-4xl bg-shaad-200 p-8 text-white shadow-2xl max-sm:rounded-3xl max-sm:p-5">
+      <button
+        type="button"
+        onClick={() => {
+          if (open && !reduce) scrollWithCollapse(document.getElementById(id));
+          onToggle();
+        }}
+        aria-expanded={open}
+        aria-controls={id}
+        className="flex w-full cursor-pointer items-center gap-3 text-left"
+      >
+        <h2 className="font-display text-[34px] leading-tight font-bold tracking-[-0.01em] text-shaad-600 max-sm:text-[26px]">{name}</h2>
+        <span className={countClass}>{items.length}</span>
+        <ChevronDown
+          aria-hidden
+          className={cn("ml-auto size-6 shrink-0 text-shaad-600 transition-transform duration-200", open && "rotate-180")}
+        />
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            id={id}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={reduce ? { duration: 0 } : COLLAPSE}
+            onAnimationComplete={settleScroll}
+            // The box clips while it opens and closes. It reaches 24px past the
+            // cards on every side (20px on phones, the panel's own padding) so
+            // their hover glow fits inside instead of being cut off.
+            className="-mx-6 -mb-6 overflow-hidden max-sm:-mx-5 max-sm:-mb-5"
+          >
+            <div className="grid grid-cols-3 gap-5 px-6 pt-6 pb-6 max-[1150px]:grid-cols-2 max-sm:grid-cols-1 max-sm:px-5 max-sm:pb-5">
+              {items.map((p, i) => (
+                <Appear key={p.url} delay={stagger(i % 3)} className="h-full">
+                  <ProjectsCard
+                    title={p.title}
+                    desc={p.desc}
+                    url={p.url}
+                    date={p.date}
+                    onLoad={() => onImageLoad(p.url)}
+                    priority={i < 3}
+                  />
+                </Appear>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.section>
+  );
+};
 
 const Projects = () => {
-  const [loadedImages, setLoadedImages] = useState(() =>
-    projects.filter((p) => isImageCached(projectImg(p.url, "icon"))).length
+  const categories = useCategories();
+  const [closed, setClosed] = useState<Record<string, boolean>>(() =>
+    Object.fromEntries(categoryOrder.map((c) => [c.name, c.minimizedByDefault]))
   );
-  const [cols, setCols] = useState(1);
+  const [loaded, setLoaded] = useState(() => new Set(projects.filter((p) => isImageCached(projectImg(p.url, "icon"))).map((p) => p.url)));
 
-  const categoryRank = useMemo(() => {
-    const ranks: Record<string, number> = {};
-    categoryOrder.forEach((c, i) => {
-      ranks[c.name] = i;
-    });
-    return ranks;
-  }, []);
+  // Wait for the first row of covers in each open category before lifting the
+  // first-visit loader. Covers further down load lazily as you scroll.
+  const waiting = categories.some(([name, items]) => !closed[name] && items.slice(0, 3).some((p) => !loaded.has(p.url)));
+  const isLoading = useSmartLoader({ loadingDependencies: [waiting] });
 
-  const { categorizedProjects, sortedCategories } = useMemo(() => {
-    const categorized = projects.reduce((acc, project) => {
-      const cat = project.category || "Miscellaneous";
-      if (!acc[cat]) {
-        acc[cat] = [];
-      }
-      acc[cat].push(project);
-      return acc;
-    }, {} as Record<string, typeof projects>);
-
-    const sorted = Object.keys(categorized).sort((a, b) => {
-      const rankA = categoryRank[a] ?? Infinity;
-      const rankB = categoryRank[b] ?? Infinity;
-
-      if (rankA !== rankB) return rankA - rankB;
-      return a.localeCompare(b);
-    });
-
-    return { categorizedProjects: categorized, sortedCategories: sorted };
-  }, [categoryRank]);
-
-  const [minimizedCategories, setMinimizedCategories] = useState<Record<string, boolean>>(() => {
-    const initialMinimized: Record<string, boolean> = {};
-    sortedCategories.forEach(cat => {
-      const config = categoryOrder.find(c => c.name === cat);
-      initialMinimized[cat] = config ? config.minimizedByDefault : false;
-    });
-    return initialMinimized;
-  });
-
-  const visibleProjectsCount = useMemo(() => {
-    return sortedCategories.reduce((acc, category) => {
-      if (!minimizedCategories[category]) {
-        return acc + categorizedProjects[category].length;
-      }
-      return acc;
-    }, 0);
-  }, [minimizedCategories, categorizedProjects, sortedCategories]);
-
-  const isLoading = useSmartLoader({
-    loadingDependencies: [loadedImages < visibleProjectsCount],
-  });
-
-  const toggleCategory = (category: string) => {
-    setMinimizedCategories(prev => ({
-      ...prev,
-      [category]: !prev[category]
-    }));
-  };
-
-  const handleImageLoad = (url: string) => {
+  const onImageLoad = (url: string) => {
     markImageCached(projectImg(url, "icon"));
-    setLoadedImages((prev) => prev + 1);
+    setLoaded((s) => new Set(s).add(url));
   };
-
-  useEffect(() => {
-    const updateCols = () => {
-      if (window.innerWidth >= 1024) {
-        setCols(2);
-      } else {
-        setCols(1);
-      }
-    };
-
-    updateCols();
-    window.addEventListener("resize", updateCols);
-    return () => window.removeEventListener("resize", updateCols);
-  }, []);
 
   return (
     <>
       <Loader isLoading={isLoading} />
-      <section className="min-3xl:container text-white h-full w-full flex flex-col justify-center p-6 max-md:pb-14">
-        <div className="flex flex-col gap-6 w-full">
-          {sortedCategories.map((category) => {
-            const isMinimized = minimizedCategories[category];
-            const categoryProjects = categorizedProjects[category];
-
-            return (
-              <Card
-                key={category}
-                className={cn(
-                  "w-full flex-col relative transition-shadow duration-300 !bg-shaad-200 rounded-4xl p-6",
-                  isMinimized ? "cursor-pointer hover:shadow-[0_0_20px_var(--color-shaad-600)]" : ""
-                )}
-                onClick={() => {
-                  if (isMinimized) toggleCategory(category);
-                }}
-              >
-                <div
-                  className={cn(
-                    "w-full relative px-2 py-2 flex justify-between items-center transition-colors",
-                    !isMinimized ? "cursor-pointer hover:text-white/80" : ""
-                  )}
-                  onClick={(e) => {
-                    if (!isMinimized) {
-                      e.stopPropagation();
-                      toggleCategory(category);
-                    }
-                  }}
-                >
-                  <h2 className="text-3xl font-bold text-white pr-8">{category}</h2>
-                  <ChevronDown
-                    className={cn(
-                      "text-shaad-600 transition-transform duration-500 linear flex-shrink-0",
-                      !isMinimized ? "rotate-180" : "rotate-0"
-                    )}
-                    size={24}
-                  />
-                </div>
-                <AnimatePresence initial={false}>
-                  {!isMinimized && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden w-full"
-                    >
-                      <div
-                        className="grid grid-cols-2 justify-center items-center gap-8 max-lg:flex max-lg:flex-col pt-8 pb-4 px-4 w-full"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        {categoryProjects.map((p, idx) => {
-                          const isLastOdd = categoryProjects.length % 2 !== 0 && idx === categoryProjects.length - 1;
-                          return (
-                            <FadeInUp
-                              delay={0.1 * (idx % cols)}
-                              key={`${category}-${idx}`}
-                              className={
-                                isLastOdd
-                                  ? "col-span-2 justify-self-center w-full max-w-[calc(50%-0.75rem)] max-lg:max-w-full"
-                                  : "w-full"
-                              }
-                              enableAnimation={!isLoading}
-                            >
-                              <ProjectsCard
-                                title={p.title}
-                                desc={p.desc}
-                                url={p.url}
-                                onLoad={() => handleImageLoad(p.url)}
-                                priority={idx < 2}
-                              />
-                            </FadeInUp>
-                          );
-                        })}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </Card>
-            );
-          })}
-        </div>
-      </section>
+      <AppearReady.Provider value={!isLoading}>
+        <section className="flex w-full max-w-[1400px] flex-col gap-8 px-8 py-8 max-sm:gap-6 max-sm:px-4 max-sm:pb-14">
+          {categories.map(([name, items]) => (
+            <Category
+              key={name}
+              name={name}
+              items={items}
+              open={!closed[name]}
+              onToggle={() => setClosed((c) => ({ ...c, [name]: !c[name] }))}
+              onImageLoad={onImageLoad}
+            />
+          ))}
+        </section>
+      </AppearReady.Provider>
     </>
   );
 };

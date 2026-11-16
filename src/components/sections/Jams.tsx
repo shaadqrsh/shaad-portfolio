@@ -1,120 +1,135 @@
 "use client";
+import { TransitionLink } from "@/components/PageTransition";
+import Logo from "@/components/ui/Logo";
+import Meta from "@/components/ui/Meta";
+import Section from "@/components/ui/Section";
+import Tag from "@/components/ui/Tag";
+import { dateKey, formatDate } from "@/lib/dates";
 import { Jam, Jams as jamsData } from "@/lib/Jams";
-import FadeInUp from "@/components/FadeInUp";
-import Card from "@/components/ui/Card";
-import AboutCard from "../AboutCard";
-import DateDisplay from "../DateDisplay";
-import useManualCols from "@/hooks/useManualCols";
 import { cn } from "@/lib/utils";
-import { ArrowUpRight, ChevronDown, Trophy } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
-import Image from "next/image";
-import Link from "next/link";
+import { ArrowUpRight, Trophy } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
+import MasterDetail, { PointList } from "./MasterDetail";
 
-interface JamsProps {
-  enableAnimation?: boolean;
-}
+const all = [...jamsData].sort((a, b) => dateKey(b.date) - dateKey(a.date));
 
-// Square logo for the event (.png or .jpg). Falls back to a trophy tile until the file exists.
-const JamIcon = ({ src, alt }: { src: string; alt: string }) => {
-  const [imgError, setImgError] = useState(false);
+// Short labels so the switcher fits on one line on phones.
+const FILTERS = [
+  { key: "all", label: "All", test: () => true },
+  { key: "jam", label: "Game Jams", test: (j: Jam) => j.kind === "Game Jam" },
+  { key: "hack", label: "Hackathons", test: (j: Jam) => j.kind !== "Game Jam" },
+] as const;
+type FilterKey = (typeof FILTERS)[number]["key"];
 
+/** All / Game Jams / Hackathons, with a red pill that slides to the one you pick. */
+const Switcher = ({ value, onChange }: { value: FilterKey; onChange: (k: FilterKey) => void }) => {
+  const reduce = useReducedMotion();
   return (
-    <div className="relative w-12 h-12 shrink-0 rounded-lg overflow-hidden bg-shaad-200 flex items-center justify-center">
-      {src && !imgError ? (
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes="48px"
-          className="object-cover"
-          onError={() => setImgError(true)}
-        />
-      ) : (
-        <Trophy className="w-6 h-6 text-shaad-600" />
-      )}
+    <div role="group" aria-label="Filter events" className="flex gap-1 rounded-full bg-shaad-300 p-1">
+      {FILTERS.map((f) => {
+        const on = f.key === value;
+        return (
+          <button
+            key={f.key}
+            type="button"
+            aria-pressed={on}
+            onClick={() => onChange(f.key)}
+            className={cn(
+              "relative cursor-pointer rounded-full px-3.5 py-1.5 text-sm font-semibold whitespace-nowrap transition-colors duration-200 max-sm:px-3 max-sm:text-[13px]",
+              on ? "text-white" : "text-shaad-ink-2 hover:text-white"
+            )}
+          >
+            {on && (
+              <motion.span
+                layoutId="jam-filter-pill"
+                className="absolute inset-0 rounded-full bg-shaad-600 shadow-md"
+                transition={reduce ? { duration: 0 } : { duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+              />
+            )}
+            <span className="relative">
+              {f.label}
+              <span className="ml-1.5 tabular-nums opacity-75">{all.filter(f.test).length}</span>
+            </span>
+          </button>
+        );
+      })}
     </div>
   );
 };
 
-const JamCard = ({ jam }: { jam: Jam }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  // A portfolio project page wins over an external link.
-  const href = jam.project ? `/projects/${jam.project}` : jam.url;
-
-  return (
-    <Card
-      className="cursor-pointer transition-shadow duration-300 hover:shadow-[0_0_20px_var(--color-shaad-600)]"
-      onClick={() => setIsExpanded(!isExpanded)}
-    >
-      <div className="flex items-center gap-4 pr-8 relative">
-        <JamIcon src={jam.icon} alt={jam.title} />
-        <div>
-          <h2 className="text-lg font-semibold text-white leading-tight">{jam.title}</h2>
-          <DateDisplay date={jam.date} className="text-sm text-shaad-500" />
-        </div>
-        <ChevronDown
-          className={cn(
-            "absolute right-0 top-1/2 -translate-y-1/2 text-shaad-600 transition-transform duration-500",
-            isExpanded ? "rotate-180" : "rotate-0"
-          )}
-          size={22}
-        />
-      </div>
-
-      <AnimatePresence initial={false}>
-        {isExpanded && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden"
-          >
-            <div className="mt-3">
-              {jam.bullets.map((b, i) => (
-                <div className="text-sm mt-1 flex items-start text-white" key={i}>
-                  <span className="mr-2">•</span>
-                  <span>{b}</span>
-                </div>
-              ))}
-
-              {href && (
-                <Link
-                  href={href}
-                  target={jam.project ? undefined : "_blank"}
-                  onClick={(e) => e.stopPropagation()}
-                  className="inline-flex items-center gap-1 mt-3 text-sm font-semibold text-shaad-600 hover:text-shaad-500"
-                >
-                  {jam.project ? "View project" : "Visit"}
-                  <ArrowUpRight size={16} />
-                </Link>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </Card>
-  );
+const JamLink = ({ jam }: { jam: Jam }) => {
+  const cls = "inline-flex items-center gap-1.5 self-start font-semibold text-shaad-500 transition-colors hover:text-white";
+  if (jam.project)
+    return (
+      <TransitionLink href={`/projects/${jam.project}`} className={cls}>
+        View project <ArrowUpRight className="size-4" />
+      </TransitionLink>
+    );
+  if (jam.url)
+    return (
+      <a href={jam.url} target="_blank" rel="noopener noreferrer" className={cls}>
+        Visit <ArrowUpRight className="size-4" />
+      </a>
+    );
+  return null;
 };
 
-const Jams = ({ enableAnimation = true }: JamsProps) => {
-  const cols = useManualCols(2, 1);
+/** Jams and hackathons, newest first, filterable by type. */
+const Jams = () => {
+  const [filter, setFilter] = useState<FilterKey>("all");
+  const [selected, setSelected] = useState(0);
+  const list = all.filter(FILTERS.find((f) => f.key === filter)!.test);
+  const jam = list[Math.min(selected, list.length - 1)];
 
-  if (jamsData.length === 0) return null;
+  if (all.length === 0) return null;
 
   return (
-    <AboutCard title="Game Jams & Hackathons">
-      {/* items-start so opening one card doesn't stretch its row neighbour */}
-      <div className="gap-4 mt-4 lg:grid lg:grid-cols-2 lg:items-start flex flex-col">
-        {jamsData.map((jam, idx) => (
-          <FadeInUp key={idx} enableAnimation={enableAnimation} delay={0.1 * (idx % cols)}>
-            <JamCard jam={jam} />
-          </FadeInUp>
-        ))}
-      </div>
-    </AboutCard>
+    <Section
+      title="Game Jams & Hackathons"
+      count={all.length}
+      head={
+        <Switcher
+          value={filter}
+          onChange={(k) => {
+            setFilter(k);
+            setSelected(0);
+          }}
+        />
+      }
+    >
+      <MasterDetail
+        label="Events"
+        selected={Math.min(selected, list.length - 1)}
+        onSelect={setSelected}
+        items={list.map((j) => ({
+          key: `${j.title}-${j.date}`,
+          logo: <Logo src={j.icon} alt={j.title} size="sm" fallback={<Trophy />} />,
+          title: j.title,
+          sub: j.result ? <span className="result font-semibold text-shaad-500">{j.result}</span> : j.kind,
+          side: formatDate(j.date),
+        }))}
+        detail={
+          <>
+            <div className="flex items-center gap-4">
+              <Logo src={jam.icon} alt={jam.title} size="lg" fallback={<Trophy />} />
+              <div className="flex flex-wrap items-center gap-2.5">
+                <h3 className="font-display text-xl leading-tight font-bold">{jam.title}</h3>
+                <Tag>{jam.kind}</Tag>
+              </div>
+            </div>
+            <Meta
+              items={[
+                ["Date", formatDate(jam.date)],
+                ["Result", jam.result && <span className="text-shaad-500">{jam.result}</span>],
+              ]}
+            />
+            <PointList points={jam.bullets} />
+            <JamLink jam={jam} />
+          </>
+        }
+      />
+    </Section>
   );
 };
 

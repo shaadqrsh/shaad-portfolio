@@ -8,6 +8,14 @@ const imageCache = new Set<string>();
 export const isImageCached = (src: string) => imageCache.has(src);
 export const markImageCached = (src: string) => imageCache.add(src);
 
+// Only the first page of a visit shows the full-screen loader. After that,
+// navigating inside the site animates the new page in instead (see
+// PageTransition), and a loader flash would hide that.
+let navigated = false;
+export const markNavigated = () => {
+    navigated = true;
+};
+
 interface LoaderProps {
     isLoading: boolean;
 }
@@ -38,7 +46,7 @@ export const useSmartLoader = ({
     minDuration?: number;
     maxDuration?: number;
 }) => {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(() => !navigated);
 
     useEffect(() => {
         if (isLoading && !loadingDependencies.some((dep) => dep)) {

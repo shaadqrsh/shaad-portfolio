@@ -12,6 +12,10 @@
   --color-shaad-500: #ec5f68; /*Accent 2*/
   --color-shaad-550: #ec5f6866; /*Accent 2 (Transparent)*/
   --color-shaad-600: #d84b54; /*Accent 1*/
+  --color-shaad-ink: #e8e5f1; /*Long-form text, softer than pure white*/
+  --color-shaad-ink-2: #cfcbe0; /*Secondary text*/
+  --color-shaad-ink-3: #a19cba; /*Labels and captions*/
+  --color-shaad-void: #0b0916; /*Full-screen viewer backdrop*/
 
   --breakpoint-3xl: 2160px;
 }
@@ -19,8 +23,11 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Set by next/font in app/layout.tsx. */
+  --font-sans: var(--ff-body);
+  --font-display: var(--ff-display);
+  --font-label: var(--ff-label);
+  --font-mono: var(--ff-label);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -131,5 +138,31 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Site-wide scrollbars: shaad-600 thumb on a shaad-300 track. Firefox uses
+     the standard properties; Chromium and Safari use the pseudo-elements. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-shaad-600) var(--color-shaad-300);
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-shaad-300);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-shaad-600);
+    border-radius: 99px;
+    border: 2px solid var(--color-shaad-300);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-shaad-500);
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
   }
 }

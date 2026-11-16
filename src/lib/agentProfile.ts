@@ -95,7 +95,7 @@ export const projects = resumeData.projects.map((proj) => {
       })) ?? [],
     contributions: detail?.responsibilities ?? [],
     notes: detail?.additional ?? [],
-    videos: detail?.videos ?? [],
+    videos: detail?.videos?.map((v) => v.url) ?? [],
     screenshotCount: getImgCount(proj.url),
   };
 });

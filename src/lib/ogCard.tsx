@@ -1,4 +1,4 @@
-import { readFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { join } from "path";
 import { ImageResponse } from "next/og";
 import { profile } from "./agentProfile";
@@ -28,16 +28,22 @@ const GLOW = "#ec5f6866"; // --color-shaad-550, the homepage card's glow color
 const SHADOW = "#0d0a18cc"; // dark purple, a shade under shaad-400
 const TEXT = "#ffffff";
 
-// Satori needs real font binaries. The site loads Inter via next/font/google,
-// so the same family is vendored here to keep the cards on-brand.
+// Satori needs real font binaries. The site loads Space Grotesk, IBM Plex Sans
+// and IBM Plex Mono via next/font/google, so the same faces are vendored here
+// (Fontsource latin WOFF files, OFL licensed) to keep the cards on-brand.
 const fontDir = join(process.cwd(), "src/lib/og-fonts");
-const inter = (weight: 400 | 600 | 800) =>
-  readFileSync(join(fontDir, `Inter-${weight}.ttf`));
+const font = (file: string) => readFileSync(join(fontDir, file));
+
+const DISPLAY = "Space Grotesk";
+const BODY = "IBM Plex Sans";
+const LABEL = "IBM Plex Mono";
 
 const fonts = [
-  { name: "Inter", data: inter(400), weight: 400 as const, style: "normal" as const },
-  { name: "Inter", data: inter(600), weight: 600 as const, style: "normal" as const },
-  { name: "Inter", data: inter(800), weight: 800 as const, style: "normal" as const },
+  { name: DISPLAY, data: font("SpaceGrotesk-500.woff"), weight: 500 as const, style: "normal" as const },
+  { name: DISPLAY, data: font("SpaceGrotesk-700.woff"), weight: 700 as const, style: "normal" as const },
+  { name: BODY, data: font("IBMPlexSans-400.woff"), weight: 400 as const, style: "normal" as const },
+  { name: BODY, data: font("IBMPlexSans-600.woff"), weight: 600 as const, style: "normal" as const },
+  { name: LABEL, data: font("IBMPlexMono-500.woff"), weight: 500 as const, style: "normal" as const },
 ];
 
 type CardProps = {
@@ -64,7 +70,7 @@ export const ogCard = ({ eyebrow, title, subtitle, tags }: CardProps) => {
           // Generous margin so the blurred homepage pattern and the card's red
           // glow both have room to read around the panel.
           padding: 62,
-          fontFamily: "Inter",
+          fontFamily: BODY,
           position: "relative",
         }}
       >
@@ -130,10 +136,11 @@ export const ogCard = ({ eyebrow, title, subtitle, tags }: CardProps) => {
             {eyebrow ? (
               <div
                 style={{
+                  fontFamily: LABEL,
                   fontSize: 20,
-                  fontWeight: 600,
+                  fontWeight: 500,
                   color: ACCENT,
-                  letterSpacing: 2,
+                  letterSpacing: 1.5,
                   textTransform: "uppercase",
                   background: NAV,
                   borderRadius: 999,
@@ -150,11 +157,12 @@ export const ogCard = ({ eyebrow, title, subtitle, tags }: CardProps) => {
             {/* Project titles are text-shaad-600 on the real cards. */}
             <div
               style={{
+                fontFamily: DISPLAY,
                 fontSize: titleSize,
-                fontWeight: 800,
+                fontWeight: 700,
                 color: ACCENT,
                 lineHeight: 1.05,
-                letterSpacing: -2,
+                letterSpacing: -1.5,
               }}
             >
               {title}
@@ -195,6 +203,153 @@ export const ogCard = ({ eyebrow, title, subtitle, tags }: CardProps) => {
               ))}
             </div>
           </div>
+        </div>
+      </div>
+    ),
+    { ...OG_SIZE, fonts }
+  );
+};
+
+/**
+ * A project image from public/project_<slug>/ as a data URI, shrunk with sharp
+ * when it's available (some covers are 7MB PNGs). Satori can't load files by
+ * path, so images have to be inlined. Returns null if the file is missing.
+ */
+const projectImageUri = async (slug: string, name: string, width: number) => {
+  const dir = join(process.cwd(), "public", `project_${slug}`);
+  const file = ["png", "jpg", "jpeg"].map((ext) => join(dir, `${name}.${ext}`)).find(existsSync);
+  if (!file) return null;
+  const raw = readFileSync(file);
+  try {
+    const sharp = (await import("sharp")).default;
+    const out = await sharp(raw).resize({ width, withoutEnlargement: true }).png().toBuffer();
+    return `data:image/png;base64,${out.toString("base64")}`;
+  } catch {
+    const type = file.endsWith(".png") ? "png" : "jpeg";
+    return `data:image/${type};base64,${raw.toString("base64")}`;
+  }
+};
+
+type ProjectCardProps = { slug: string; title: string; summary?: string };
+
+/**
+ * Project link preview, laid out like the project page's hero: the cover image
+ * behind a centered card, the project icon over the card's top edge, then the
+ * title and one-line summary. A small badge names the author.
+ */
+export const projectOgCard = async ({ slug, title, summary }: ProjectCardProps) => {
+  const [cover, icon] = await Promise.all([
+    projectImageUri(slug, "cover", OG_SIZE.width),
+    projectImageUri(slug, "icon", 240),
+  ]);
+  const titleSize = title.length > 34 ? 50 : title.length > 22 ? 60 : 70;
+  const CARD_W = 900;
+  const ICON = 120;
+
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: BG,
+          fontFamily: BODY,
+          position: "relative",
+        }}
+      >
+        {cover ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={cover}
+            width={OG_SIZE.width}
+            height={OG_SIZE.height}
+            alt=""
+            style={{ position: "absolute", top: 0, left: 0, objectFit: "cover" }}
+          />
+        ) : null}
+        {/* Same fade as the hero, darker so the card reads at thumbnail size. */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundImage: "linear-gradient(to bottom, rgba(24,20,41,0.35), rgba(24,20,41,0.8) 70%, rgba(24,20,41,0.95))",
+          }}
+        />
+
+        <div
+          style={{
+            position: "absolute",
+            top: 32,
+            left: 36,
+            display: "flex",
+            alignItems: "center",
+            gap: 14,
+            background: "rgba(24,20,41,0.85)",
+            border: `1px solid ${NAV}`,
+            borderRadius: 999,
+            padding: "10px 22px 10px 16px",
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={LOGO_DATA_URI} width={39} height={30} alt="" />
+          <div style={{ fontSize: 22, fontWeight: 600, color: TEXT }}>{profile.fullName}</div>
+        </div>
+
+        <div
+          style={{
+            position: "relative",
+            width: CARD_W,
+            marginTop: 70,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
+            gap: 18,
+            background: "rgba(24,20,41,0.9)",
+            border: `1px solid ${NAV}`,
+            borderRadius: 32,
+            padding: `${ICON / 2 + 28}px 60px 44px`,
+            boxShadow: `0 25px 50px -12px ${SHADOW}`,
+          }}
+        >
+          {icon ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={icon}
+              width={ICON}
+              height={ICON}
+              alt=""
+              style={{
+                position: "absolute",
+                top: -ICON / 2,
+                left: (CARD_W - ICON) / 2,
+                borderRadius: 30,
+                border: `5px solid ${BG}`,
+                background: PANEL,
+              }}
+            />
+          ) : null}
+          <div
+            style={{
+              fontFamily: DISPLAY,
+              fontSize: titleSize,
+              fontWeight: 700,
+              color: TEXT,
+              lineHeight: 1.06,
+              letterSpacing: -1.5,
+            }}
+          >
+            {title}
+          </div>
+          {summary ? (
+            <div style={{ fontSize: 25, color: "#e8e5f1", lineHeight: 1.5 }}>{clampText(summary, 150)}</div>
+          ) : null}
         </div>
       </div>
     ),

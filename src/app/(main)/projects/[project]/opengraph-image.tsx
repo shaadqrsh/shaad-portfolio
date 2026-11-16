@@ -1,5 +1,5 @@
 import { profile, projects } from "@/lib/agentProfile";
-import { OG_CONTENT_TYPE, OG_SIZE, clampText, ogCard } from "@/lib/ogCard";
+import { OG_CONTENT_TYPE, OG_SIZE, clampText, ogCard, projectOgCard } from "@/lib/ogCard";
 
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
@@ -40,10 +40,5 @@ export default async function Image({
     });
   }
 
-  return ogCard({
-    eyebrow: proj.type === "game" ? "Game Project" : proj.category,
-    title: proj.title,
-    subtitle: clampText(proj.summary, 165),
-    tags: proj.technologies.slice(0, 5),
-  });
+  return projectOgCard({ slug: proj.slug, title: proj.title, summary: proj.summary });
 }

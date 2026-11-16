@@ -1,8 +1,4 @@
-"use client";
-
 import { ReactNode } from "react";
-
-import { ParallaxProvider } from "react-scroll-parallax";
 
 interface MainLayout {
   children: ReactNode;
@@ -10,11 +6,11 @@ interface MainLayout {
 
 const layout = ({ children }: MainLayout) => {
   return (
-    <ParallaxProvider>
-      <div className="flex flex-col min-h-screen bg-shaad-400">
-        <main className="flex flex-1 relative">{children}</main>
-      </div>
-    </ParallaxProvider>
+    // min-w-0 lets these flex items shrink to the screen instead of growing
+    // to fit wide content, like the scrolling thumbnail rows.
+    <div className="flex flex-col min-h-screen w-full min-w-0 bg-shaad-400">
+      <main className="flex flex-1 relative min-w-0">{children}</main>
+    </div>
   );
 };
 

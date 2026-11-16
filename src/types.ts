@@ -7,7 +7,10 @@ export type projectData = {
   features: { heading: string; content: string }[];
   technologies: { name: string; icon: string }[];
   responsibilities: string[];
-  videos: string[];
+  /** One caption per screenshot, in order: captions[0] describes img_1. */
+  captions: string[];
+  /** YouTube videos. Title and channel come from YouTube's oEmbed data. */
+  videos: { url: string; title: string; channel: string }[];
   additional: string[];
 };
 

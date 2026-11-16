@@ -226,7 +226,9 @@ def generate_html(data):
             </div>"""
         content_html += "\n        </div>"
 
-    projs = data['projects']
+    # Featured projects in their featured order. The site's home page shows
+    # the first three; the resume lists the first counts.projects.
+    projs = sorted((p for p in data['projects'] if p.get('featured')), key=lambda p: p['featured'])
     limit = counts['projects']
     if projs and limit > 0:
         content_html += '\n        <div class="section">\n            <h2>PROJECTS</h2>'
@@ -354,6 +356,15 @@ def load_base_data():
 
     return clean_data(resume_data)
 
+def render_preview(pdf_path, dpi=250):
+    """Renders the PDF's page to a PNG beside it. /resume shows this image,
+    drawn at well over twice its display size so the text stays sharp."""
+    import pymupdf
+    out = Path(pdf_path).with_suffix('.png')
+    with pymupdf.open(pdf_path) as doc:
+        doc[0].get_pixmap(dpi=dpi).save(out)
+    return out
+
 def main():
     import check_requirements  # noqa: F401  (installs anything missing)
     import generate_pdf
@@ -374,6 +385,11 @@ def main():
             scale = generate_pdf.convert_html_to_pdf(Path(OUTPUT_HTML), Path(output_pdf))
             print(f"Success! Base PDF generated (scale={scale:.3f}) and saved to {rel(output_pdf)}")
             print("  The site serves this at /resume.pdf")
+            try:
+                preview = render_preview(output_pdf)
+                print(f"Success! Page preview saved to {rel(preview)}")
+            except Exception as e:
+                print(f"Warning: Error rendering page preview: {e}")
         except Exception as e:
             print(f"Warning: Error generating base PDF: {e}")
             

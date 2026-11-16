@@ -1,19 +1,21 @@
 "use client";
 import Loader, { isImageCached, markImageCached, useSmartLoader } from "@/components/Loader";
-import CoverImg from "@/components/projects/CoverImg";
-import Screenshots from "@/components/projects/Screenshots";
-import TechAndFeatures from "@/components/projects/TechAndFeatures";
-import VidsNInfo from "@/components/projects/VidsNInfo";
-import { data } from "@/lib/projectId";
+import { AppearReady } from "@/components/projects/Appear";
+import MediaPanel from "@/components/projects/MediaPanel";
+import ProjectDetails from "@/components/projects/ProjectDetails";
+import ProjectHero from "@/components/projects/ProjectHero";
+import ProjectOverview from "@/components/projects/ProjectOverview";
 import { projectImg } from "@/lib/images";
-import { motion } from "motion/react";
+import { data } from "@/lib/projectId";
+import resumeData from "@/lib/resume_data.json";
 import { useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { Parallax } from "react-scroll-parallax";
 
 const ProjectIdPage = ({ url }: { url: string }) => {
   const coverSrc = projectImg(url, "cover");
   const project = url in data ? data[url] : null;
+  // The same one-line summary the projects list and resume use.
+  const summary = resumeData.projects.find((p) => p.url === url)?.desc;
   const [imageLoaded, setImageLoaded] = useState(() => isImageCached(coverSrc));
   const router = useRouter();
 
@@ -21,7 +23,9 @@ const ProjectIdPage = ({ url }: { url: string }) => {
     const prev = history.scrollRestoration;
     history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
-    return () => { history.scrollRestoration = prev; };
+    return () => {
+      history.scrollRestoration = prev;
+    };
   }, []);
 
   useEffect(() => {
@@ -33,36 +37,30 @@ const ProjectIdPage = ({ url }: { url: string }) => {
   });
 
   return (
-    <section className="min-3xl:container">
+    <section className="w-full min-w-0">
       <Loader isLoading={isLoading} />
-      <Parallax
-        speed={-50}
-        className={`h-[75vh] w-full mt-[-10vh]`}
-      >
-        {project && (
-          <CoverImg
+      {project && (
+        <>
+          <ProjectHero
             project={project}
             url={url}
-            onLoad={() => { markImageCached(coverSrc); setImageLoaded(true); }}
+            summary={summary}
             enableAnimation={!isLoading}
+            onCoverLoad={() => {
+              markImageCached(coverSrc);
+              setImageLoaded(true);
+            }}
           />
-        )}
-      </Parallax>
-
-      <motion.section
-        className={`text-white flex flex-col justify-center p-6 items-center rounded-t-2xl bg-shaad-400 relative z-10 mt-[5vh]`}
-      >
-        {project && <TechAndFeatures project={project} enableAnimation={!isLoading} />}
-
-        {project && (
-          <Screenshots
-            project={project}
-            url={url}
-          />
-        )}
-
-        {project && <VidsNInfo project={project} enableAnimation={!isLoading} />}
-      </motion.section>
+          {/* Cards wait for the loader to lift, then fade up as they scroll into view. */}
+          <AppearReady.Provider value={!isLoading}>
+            <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-col gap-8 px-4 pb-[72px] pt-2 sm:px-6 max-sm:gap-5 max-sm:pb-12">
+              <ProjectOverview project={project} />
+              <MediaPanel project={project} url={url} />
+              <ProjectDetails project={project} />
+            </div>
+          </AppearReady.Provider>
+        </>
+      )}
     </section>
   );
 };

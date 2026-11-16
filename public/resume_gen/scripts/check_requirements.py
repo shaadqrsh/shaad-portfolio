@@ -12,6 +12,7 @@ def ensure_requirements():
         ('dotenv', 'python-dotenv'),
         ('playwright', 'playwright'),
         ('pypdf', 'pypdf'),
+        ('pymupdf', 'pymupdf'),
     ]
     
     missing = []

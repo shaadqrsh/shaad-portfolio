@@ -1,4 +1,4 @@
-# Rebuilds public/resume.pdf when the resume itself changes and commits it back
+# Rebuilds public/resume.pdf (and resume.png, the sharp preview /resume shows) when the resume itself changes and commits it back
 # to main. Vercel skips the push that changed it (see vercel.json's
 # ignoreCommand and .github/scripts/resume_fingerprint.py) and deploys this
 # Action's commit instead, so each push deploys once, with the right PDF.
@@ -66,9 +66,10 @@ jobs:
       - name: Generate resume
         if: steps.check.outputs.stale == 'true'
         run: |
-          rm -f public/resume.pdf
+          rm -f public/resume.pdf public/resume.png
           python public/resume_gen/scripts/generate_resume.py
           test -f public/resume.pdf
+          test -f public/resume.png
           python .github/scripts/resume_fingerprint.py --write
 
       - name: Commit regenerated PDF
@@ -76,7 +77,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git add public/resume.pdf .github/resume-fingerprint
+          git add public/resume.pdf public/resume.png .github/resume-fingerprint
           git commit -m "Regenerate resume"
           git pull --rebase origin main
           git push origin HEAD:main
