@@ -1,12 +1,13 @@
 "use client";
 import DynamicIcon from "@/components/DynamicIcon";
 import { TransitionLink } from "@/components/PageTransition";
-import { cardClass, tintHoverClass, tintTitleClass } from "@/components/ui/Card";
+import { cardArrowClass, cardClass, tintHoverClass, tintTitleClass } from "@/components/ui/Card";
 import Meta from "@/components/ui/Meta";
 import { formatDate } from "@/lib/dates";
 import { projectImg } from "@/lib/images";
 import { data } from "@/lib/projectId";
 import { cn } from "@/lib/utils";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 
 interface ProjectsCardProps {
@@ -51,7 +52,10 @@ const ProjectsCard = ({ title, desc, url, date, onLoad, priority }: ProjectsCard
       </div>
 
       <div className="flex flex-1 flex-col gap-2 px-1.5">
-        <h3 className={cn(tintTitleClass, "font-display text-[21px] leading-tight font-bold")}>{title}</h3>
+        <div className="flex justify-between gap-3">
+          <h3 className={cn(tintTitleClass, "font-display text-[21px] leading-tight font-bold")}>{title}</h3>
+          <ArrowUpRight className={cardArrowClass} aria-hidden />
+        </div>
         <p className="line-clamp-3 text-[15px] leading-[1.6] text-shaad-ink-2">{desc}</p>
       </div>
 

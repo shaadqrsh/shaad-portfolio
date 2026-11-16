@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { Appear, stagger, useAppear } from "./Appear";
 import { Panel } from "./Panel";
 
-/** Features as heading and text rows, responsibilities as a two-column list, notes as a card grid. */
+/** Features as heading and text rows; responsibilities and notes as the same two-column list. */
 const ProjectDetails = ({ project }: { project: projectData }) => (
   <>
     {project.features.length > 0 && (
@@ -31,35 +31,26 @@ const ProjectDetails = ({ project }: { project: projectData }) => (
       </Panel>
     )}
 
-    {project.responsibilities.length > 0 && (
-      <Panel title="Key Responsibilities">
-        <Card className="p-5 max-sm:p-4">
-          <ul className="gap-11 md:columns-2">
-            {project.responsibilities.map((r, i) => (
-              <Bullet key={r} delay={stagger(i)}>
-                {r}
-              </Bullet>
-            ))}
-          </ul>
-        </Card>
-      </Panel>
-    )}
-
-    {project.additional.length > 0 && (
-      <Panel title="Additional Information">
-        <div className="gap-4 md:columns-2">
-          {project.additional.map((t, i) => (
-            <Appear key={t} delay={stagger(i)} className="mb-4 break-inside-avoid max-sm:mb-3">
-              <Card className="p-5 max-sm:p-4">
-                <p className="leading-[1.6] text-shaad-ink-2 max-sm:text-[15.5px] max-sm:leading-[1.7]">{t}</p>
-              </Card>
-            </Appear>
-          ))}
-        </div>
-      </Panel>
-    )}
+    <BulletPanel title="Key Responsibilities" items={project.responsibilities} />
+    <BulletPanel title="Additional Information" items={project.additional} />
   </>
 );
+
+/** A titled card holding a two-column bullet list. Renders nothing when empty. */
+const BulletPanel = ({ title, items }: { title: string; items: string[] }) =>
+  items.length > 0 && (
+    <Panel title={title}>
+      <Card className="p-5 max-sm:p-4">
+        <ul className="gap-11 md:columns-2">
+          {items.map((t, i) => (
+            <Bullet key={t} delay={stagger(i)}>
+              {t}
+            </Bullet>
+          ))}
+        </ul>
+      </Card>
+    </Panel>
+  );
 
 const Bullet = ({ children, delay }: { children: string; delay: number }) => (
   <motion.li

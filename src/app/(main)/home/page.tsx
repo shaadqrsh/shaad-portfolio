@@ -5,11 +5,12 @@ import { TransitionLink } from "@/components/PageTransition";
 import { Appear, AppearReady, stagger, useAppear } from "@/components/projects/Appear";
 import ProjectsCard from "@/components/ProjectsCard";
 import { buttonVariants } from "@/components/ui/button";
+import { cardArrowClass } from "@/components/ui/Card";
 import { fullName, homePara, name, title } from "@/lib/Data";
 import { img } from "@/lib/images";
 import { featuredProjects } from "@/lib/Projects";
 import { cn } from "@/lib/utils";
-import { ArrowRight, FileUser, User } from "lucide-react";
+import { ArrowUpRight, FileUser, User } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
@@ -67,9 +68,9 @@ const Home = () => {
               <h2 className="font-display text-[34px] leading-tight font-bold tracking-[-0.01em] whitespace-nowrap text-shaad-600 max-sm:text-[min(26px,6.2vw)]">
                 Featured Projects
               </h2>
-              <TransitionLink href="/projects" className={cn(buttonVariants({ variant: "tinted", size: "sm" }), "shrink-0")}>
+              <TransitionLink href="/projects" className={cn(buttonVariants({ variant: "tinted", size: "sm" }), "group shrink-0")}>
                 <span className="font-semibold">Projects</span>
-                <ArrowRight className="size-4" />
+                <ArrowUpRight className={cn(cardArrowClass, "size-4 text-current")} />
               </TransitionLink>
             </div>
             {/* Three cards, so three columns until they would get too narrow, then one; never a lone card on its own row. */}

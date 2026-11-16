@@ -8,7 +8,7 @@ import projects, { categoryOrder } from "@/lib/Projects";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import { AnimatePresence, animate, motion, useReducedMotion } from "motion/react";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 type Project = (typeof projects)[number];
 
@@ -72,12 +72,21 @@ const Category = ({
 }) => {
   const reduce = useReducedMotion();
   const id = `cat-${name.replace(/\W+/g, "-").toLowerCase()}`;
+  // Cards fade up the first time they're shown: on page load for an open
+  // category, or on the first open of one that starts minimized. Reopening
+  // after that shows them straight away.
+  const shownBefore = useRef(open);
+  const [fadeCards, setFadeCards] = useState(open);
   return (
     <motion.section {...useAppear()} className="min-w-0 rounded-4xl bg-shaad-200 p-8 text-white shadow-2xl max-sm:rounded-3xl max-sm:p-5">
       <button
         type="button"
         onClick={() => {
           if (open && !reduce) scrollWithCollapse(document.getElementById(id));
+          if (!open) {
+            setFadeCards(!shownBefore.current);
+            shownBefore.current = true;
+          }
           onToggle();
         }}
         aria-expanded={open}
@@ -106,8 +115,8 @@ const Category = ({
             className="-mx-6 -mb-6 overflow-hidden max-sm:-mx-5 max-sm:-mb-5"
           >
             <div className="grid grid-cols-3 gap-5 px-6 pt-6 pb-6 max-[1150px]:grid-cols-2 max-sm:grid-cols-1 max-sm:px-5 max-sm:pb-5">
-              {items.map((p, i) => (
-                <Appear key={p.url} delay={stagger(i % 3)} className="h-full">
+              {items.map((p, i) => {
+                const card = (
                   <ProjectsCard
                     title={p.title}
                     desc={p.desc}
@@ -116,8 +125,17 @@ const Category = ({
                     onLoad={() => onImageLoad(p.url)}
                     priority={i < 3}
                   />
-                </Appear>
-              ))}
+                );
+                return fadeCards ? (
+                  <Appear key={p.url} delay={stagger(i % 3)} className="h-full">
+                    {card}
+                  </Appear>
+                ) : (
+                  <div key={p.url} className="h-full">
+                    {card}
+                  </div>
+                );
+              })}
             </div>
           </motion.div>
         )}

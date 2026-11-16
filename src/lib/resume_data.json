@@ -514,7 +514,6 @@
       "url": "tictacgone",
       "category": "Game Projects",
       "date": "00/10/2026",
-      "featured": 3,
       "desc": "A 3D take on tic-tac-toe for the browser where each player can only keep three pieces on the board, and placing a fourth removes their oldest. Built with Three.js, with local two-player and a computer opponent on three difficulty levels."
     },
     {
@@ -522,6 +521,7 @@
       "url": "bushido",
       "category": "Game Projects",
       "date": "00/02/2021",
+      "featured": 3,
       "desc": "A Pokémon fangame set in a region inspired by feudal Japan, where you train with your Pokémon to become a Kenshi and fight the Akui Clan and their Shadow Pokémon."
     },
     {

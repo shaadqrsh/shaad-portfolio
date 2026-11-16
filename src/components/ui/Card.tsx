@@ -14,6 +14,8 @@ export const cardClass = "rounded-xl bg-shaad-300 shadow-md transition-shadow du
  */
 export const tintHoverClass = "transition-[background-color,box-shadow] duration-200 hover:bg-shaad-tint hover:shadow-xl";
 export const tintTitleClass = "transition-colors duration-200 group-hover:text-shaad-500";
+/** The ArrowUpRight on clickable cards and links, nudging toward its corner on hover. */
+export const cardArrowClass = "size-5 shrink-0 text-shaad-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5";
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;

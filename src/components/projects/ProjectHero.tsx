@@ -1,5 +1,6 @@
 "use client";
 import Button from "@/components/ui/button";
+import { linkIcon } from "@/components/projects/LinkIcon";
 import { projectImg } from "@/lib/images";
 import { projectData } from "@/types";
 import { motion, useReducedMotion } from "motion/react";
@@ -60,18 +61,23 @@ const ProjectHero = ({ project, url, summary, onCoverLoad, enableAnimation = tru
           )}
           {project.urls.length > 0 && (
             <div className="mt-1 flex w-full flex-wrap justify-center gap-2.5">
-              {project.urls.map((u, idx) => (
-                <Button
-                  key={u.url}
-                  href={u.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant={idx === 0 ? "default" : "tinted"}
-                  className="font-semibold max-sm:flex-auto max-sm:px-4 max-sm:py-2.5"
-                >
-                  {u.label}
-                </Button>
-              ))}
+              {project.urls.map((u, idx) => {
+                const { before, after } = linkIcon(u);
+                return (
+                  <Button
+                    key={u.url}
+                    href={u.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant={idx === 0 ? "default" : "tinted"}
+                    className="group font-semibold max-sm:flex-auto max-sm:px-4 max-sm:py-2.5"
+                  >
+                    {before}
+                    {u.label}
+                    {after}
+                  </Button>
+                );
+              })}
             </div>
           )}
       </motion.div>

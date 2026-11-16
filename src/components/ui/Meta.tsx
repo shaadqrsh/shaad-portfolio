@@ -16,13 +16,13 @@ type Item = [label: string, value: ReactNode];
  * an empty value are skipped.
  */
 const Meta = ({ items, column, className }: { items: (Item | false | null | undefined)[]; column?: boolean; className?: string }) => (
-  <dl className={cn("flex flex-wrap gap-x-7 gap-y-2.5", column && "flex-col gap-y-3", className)}>
+  <dl className={cn("flex flex-wrap gap-x-10 gap-y-4", column && "flex-col gap-y-4", className)}>
     {items
       .filter((i): i is Item => !!i && i[1] !== "" && i[1] != null)
       .map(([label, value]) => (
-        <div key={label} className="flex min-w-0 flex-col gap-0.5">
-          <dt className={labelClass}>{label}</dt>
-          <dd className="font-medium tabular-nums text-white">{value}</dd>
+        <div key={label} className="flex min-w-0 flex-col gap-1.5">
+          <dt className={cn(labelClass, "leading-none tracking-[0.1em]")}>{label}</dt>
+          <dd className="leading-snug font-medium tabular-nums text-white">{value}</dd>
         </div>
       ))}
   </dl>

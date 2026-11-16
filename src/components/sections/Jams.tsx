@@ -1,5 +1,7 @@
 "use client";
 import { TransitionLink } from "@/components/PageTransition";
+import { buttonVariants } from "@/components/ui/button";
+import { cardArrowClass } from "@/components/ui/Card";
 import Logo from "@/components/ui/Logo";
 import Meta from "@/components/ui/Meta";
 import Section from "@/components/ui/Section";
@@ -59,17 +61,19 @@ const Switcher = ({ value, onChange }: { value: FilterKey; onChange: (k: FilterK
 };
 
 const JamLink = ({ jam }: { jam: Jam }) => {
-  const cls = "inline-flex items-center gap-1.5 self-start font-semibold text-shaad-500 transition-colors hover:text-white";
+  // The site's secondary button, small, with the publications arrow.
+  const cls = cn(buttonVariants({ variant: "tinted", size: "sm" }), "group self-start font-semibold");
+  const arrow = <ArrowUpRight className={cn(cardArrowClass, "size-4 text-current")} aria-hidden />;
   if (jam.project)
     return (
       <TransitionLink href={`/projects/${jam.project}`} className={cls}>
-        View project <ArrowUpRight className="size-4" />
+        View project {arrow}
       </TransitionLink>
     );
   if (jam.url)
     return (
       <a href={jam.url} target="_blank" rel="noopener noreferrer" className={cls}>
-        Visit <ArrowUpRight className="size-4" />
+        Visit {arrow}
       </a>
     );
   return null;
