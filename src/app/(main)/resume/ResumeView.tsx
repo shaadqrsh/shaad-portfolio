@@ -77,7 +77,7 @@ const ResumeView = ({ updated }: { updated: string | null }) => (
           <Download className="size-[18px]" />
           <span className="font-semibold">Download PDF</span>
         </Button>
-        <Button href="/resume.pdf" target="_blank" rel="noopener" variant="outline">
+        <Button href="/resume.pdf" target="_blank" rel="noopener" variant="tinted">
           <ExternalLink className="size-[18px]" />
           <span className="font-semibold">Open in a new tab</span>
         </Button>

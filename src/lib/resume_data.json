@@ -19,7 +19,7 @@
     },
     {
       "label": "Projects",
-      "count": "100+"
+      "count": "10+"
     },
     {
       "label": "Clients",
@@ -522,7 +522,6 @@
       "url": "bushido",
       "category": "Game Projects",
       "date": "00/02/2021",
-      "featured": 4,
       "desc": "A Pokémon fangame set in a region inspired by feudal Japan, where you train with your Pokémon to become a Kenshi and fight the Akui Clan and their Shadow Pokémon."
     },
     {
@@ -530,7 +529,6 @@
       "url": "splice",
       "category": "Game Projects",
       "date": "00/08/2020",
-      "featured": 5,
       "desc": "A Pokémon fangame where you play a research assistant helping Professor Cypress study new Pokémon forms, with a starter that can change its type and a story that branches on which team you join."
     },
     {
@@ -552,6 +550,7 @@
       "url": "nanorewind",
       "category": "Other Projects",
       "date": "00/12/2025",
+      "featured": 4,
       "desc": "A web app that uses Google Gemini to restore old, scratched and faded family photos. It runs on React and Vercel serverless functions, with Supabase handling accounts, credits and a private photo album."
     },
     {
@@ -559,6 +558,7 @@
       "url": "emaadportfolio",
       "category": "Other Projects",
       "date": "00/06/2026",
+      "featured": 5,
       "desc": "A portfolio website for Emaad, an artist in my family, built with React and Vite and hosted free on GitHub Pages. Emaad adds and edits pieces through a Decap CMS dashboard without writing any code."
     },
     {

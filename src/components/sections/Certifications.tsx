@@ -1,8 +1,10 @@
 "use client";
 import { Appear, stagger } from "@/components/projects/Appear";
+import { cardClass } from "@/components/ui/Card";
 import Section, { countClass } from "@/components/ui/Section";
 import { Certificates } from "@/lib/Certificates";
 import { yearOf } from "@/lib/dates";
+import { cn } from "@/lib/utils";
 
 type Cert = (typeof Certificates)[number] & { url?: string };
 
@@ -14,7 +16,7 @@ const groups = (() => {
 })();
 
 const IssuerCard = ({ issuer, certs, delay }: { issuer: string; certs: Cert[]; delay: number }) => (
-  <Appear delay={delay} className="flex flex-col gap-3 rounded-xl bg-shaad-300 p-5 shadow-md">
+  <Appear delay={delay} className={cn(cardClass, "flex flex-col gap-3 p-5")}>
     <div className="flex items-start justify-between gap-3">
       <h3 className="leading-snug font-semibold">{issuer}</h3>
       <span className={countClass}>{certs.length}</span>

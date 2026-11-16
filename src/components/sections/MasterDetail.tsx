@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ReactNode } from "react";
+import { cardClass, tintHoverClass, tintTitleClass } from "../ui/Card";
 import { labelClass } from "../ui/Meta";
 
 export interface MasterItem {
@@ -32,7 +33,7 @@ const MasterDetail = ({ label, items, selected, onSelect, detail }: MasterDetail
   const reduce = useReducedMotion();
   return (
     <div className="grid grid-cols-[340px_minmax(0,1fr)] items-start gap-5 max-[1150px]:grid-cols-[280px_minmax(0,1fr)] max-[900px]:grid-cols-1">
-      {/* The padding gives the hover glow room inside the scroll area. */}
+      {/* The padding gives the hover shadow room inside the scroll area. */}
       <div
         role="tablist"
         aria-label={label}
@@ -48,13 +49,13 @@ const MasterDetail = ({ label, items, selected, onSelect, detail }: MasterDetail
               aria-selected={on}
               onClick={() => onSelect(i)}
               className={cn(
-                "grid shrink-0 cursor-pointer grid-cols-[auto_minmax(0,1fr)] items-start gap-3 rounded-xl px-3 py-2.5 text-left shadow-md transition duration-150 max-[900px]:w-[270px]",
-                on ? "bg-shaad-600" : "bg-shaad-300 hover:shadow-[0_0_20px_var(--color-shaad-600)]"
+                "group grid shrink-0 cursor-pointer grid-cols-[auto_minmax(0,1fr)] items-start gap-3 rounded-xl px-3 py-2.5 text-left shadow-md transition duration-150 max-[900px]:w-[270px]",
+                on ? "bg-shaad-600" : cn("bg-shaad-300", tintHoverClass)
               )}
             >
               {item.logo}
               <span className="flex min-w-0 flex-col gap-1">
-                <strong className="leading-tight font-semibold text-white">{item.title}</strong>
+                <strong className={cn("leading-tight font-semibold text-white", !on && tintTitleClass)}>{item.title}</strong>
                 <span className="flex items-baseline justify-between gap-3">
                   <span className={cn("min-w-0 truncate text-sm", on ? "text-[#ffe3e5] [&_.result]:text-[#ffe3e5]" : "text-shaad-ink-2")}>{item.sub}</span>
                   <span className={cn(labelClass, "shrink-0 text-[11.5px] whitespace-nowrap", on && "text-[#ffe3e5]")}>{item.side}</span>
@@ -65,7 +66,7 @@ const MasterDetail = ({ label, items, selected, onSelect, detail }: MasterDetail
         })}
       </div>
 
-      <div role="tabpanel" className="min-h-full rounded-xl bg-shaad-300 p-6 shadow-md max-sm:p-5">
+      <div role="tabpanel" className={cn(cardClass, "min-h-full p-6 max-sm:p-5")}>
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={items[selected]?.key}

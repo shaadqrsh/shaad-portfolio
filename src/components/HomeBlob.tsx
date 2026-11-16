@@ -1,40 +1,11 @@
 "use client";
 import { usePageEntry } from "@/components/PageTransition";
+import { BLOB_RING_1, BLOB_RING_2, BLOB_SHAPE } from "@/lib/blob";
 import { motion, useReducedMotion } from "motion/react";
 import { useId } from "react";
 
-// A smooth closed shape through seven points around the centre, in a 0 to 1
-// box, each point at its own distance from the centre.
-const N = 7;
-const BASE = [0.45, 0.43, 0.47, 0.44, 0.46, 0.42, 0.45];
-const PHASE = [0, 1.7, 3.1, 4.4, 0.9, 2.6, 5.2];
-
-const blobPath = (t: number, scale = 1, amp = 0.035) => {
-  const pts = BASE.map((base, i) => {
-    const a = (i / N) * Math.PI * 2 - Math.PI / 2;
-    const r = (base + amp * Math.sin(t * 0.55 + PHASE[i])) * scale;
-    return [0.5 + r * Math.cos(a), 0.5 + r * Math.sin(a)];
-  });
-  const P = (i: number) => pts[(i + N) % N];
-  const f = (n: number) => n.toFixed(4);
-  let d = `M${f(P(0)[0])},${f(P(0)[1])}`;
-  // Catmull-Rom through the points, written as cubic Beziers.
-  for (let i = 0; i < N; i++) {
-    const [p0, p1, p2, p3] = [P(i - 1), P(i), P(i + 1), P(i + 2)];
-    d += ` C${f(p1[0] + (p2[0] - p0[0]) / 6)},${f(p1[1] + (p2[1] - p0[1]) / 6)} ${f(p2[0] - (p3[0] - p1[0]) / 6)},${f(p2[1] - (p3[1] - p1[1]) / 6)} ${f(p2[0])},${f(p2[1])}`;
-  }
-  return `${d} Z`;
-};
-
 // The shapes never change; only their layers rotate, which the browser does
 // on the GPU without repainting, so the page scrolls smoothly.
-const SHAPE = blobPath(0, 1, 0);
-const RING_1 = blobPath(2, 1.07, 0.03);
-const RING_2 = blobPath(4, 1.14, 0.03);
-// The photo is cut to a circle that stays inside the blob at every angle (the
-// blob's nearest edge is 0.42 from the centre), so the blob can turn behind it.
-const PHOTO_R = 0.415;
-
 const spin = "absolute inset-0 will-change-transform motion-reduce:animate-none";
 
 /**
@@ -65,27 +36,33 @@ const HomeBlob = ({ src, alt, ready }: { src: string; alt: string; ready: boolea
       <div aria-hidden className="absolute inset-[4%] animate-[pulse_2s_ease-in-out_infinite] rounded-full bg-shaad-600/80 blur-[36px] motion-reduce:animate-none" />
       <div aria-hidden className={`${spin} animate-[spin_60s_linear_infinite]`}>
         <svg viewBox="0 0 1 1" className="size-full overflow-visible">
-          <path d={SHAPE} fill="#d84b54" />
+          <defs>
+            {/* objectBoundingBox, so the 0 to 1 blob path scales to whatever element it clips. */}
+            <clipPath id={clipId} clipPathUnits="objectBoundingBox">
+              <path d={BLOB_SHAPE} />
+            </clipPath>
+          </defs>
+          <path d={BLOB_SHAPE} fill="#d84b54" />
         </svg>
       </div>
       <div aria-hidden className={`${spin} animate-[spin_36s_linear_infinite_reverse]`}>
         <svg viewBox="0 0 1 1" className="size-full overflow-visible">
-          <path d={RING_1} fill="none" stroke="#ec5f68" strokeWidth={0.012} opacity={0.9} />
+          <path d={BLOB_RING_1} fill="none" stroke="#ec5f68" strokeWidth={0.012} opacity={0.9} />
         </svg>
       </div>
       <div aria-hidden className={`${spin} animate-[spin_26s_linear_infinite]`}>
         <svg viewBox="0 0 1 1" className="size-full overflow-visible">
-          <path d={RING_2} fill="none" stroke="#ec5f68" strokeWidth={0.006} opacity={0.5} />
+          <path d={BLOB_RING_2} fill="none" stroke="#ec5f68" strokeWidth={0.006} opacity={0.5} />
         </svg>
       </div>
-      <svg viewBox="0 0 1 1" aria-hidden className="absolute inset-0 size-full">
-        <defs>
-          <clipPath id={clipId}>
-            <circle cx={0.5} cy={0.5} r={PHOTO_R} />
-          </clipPath>
-        </defs>
-        <image href={src} x={0} y={0} width={1} height={1} preserveAspectRatio="xMidYMin slice" clipPath={`url(#${clipId})`} />
-      </svg>
+      {/* The photo, cut to the blob's own shape so it reaches the blob's edge.
+          This layer turns with the blob, carrying the cut with it, and the
+          photo inside turns back the other way at the same speed, so it
+          stays upright while its edge follows the blob. */}
+      <div aria-hidden className={`${spin} animate-[spin_60s_linear_infinite]`} style={{ clipPath: `url(#${clipId})` }}>
+        {/* eslint-disable-next-line @next/next/no-img-element -- preloaded by the home page, which waits on it */}
+        <img src={src} alt="" draggable={false} className={`${spin} size-full animate-[spin_60s_linear_infinite_reverse] object-cover object-top`} />
+      </div>
     </motion.div>
   );
 };

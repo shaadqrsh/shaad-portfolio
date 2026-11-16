@@ -1,5 +1,5 @@
 import { profile, projects } from "@/lib/agentProfile";
-import { OG_CONTENT_TYPE, OG_SIZE, clampText, ogCard, projectOgCard } from "@/lib/ogCard";
+import { OG_CONTENT_TYPE, OG_SIZE, projectCard } from "@/lib/ogCard";
 
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
@@ -31,14 +31,5 @@ export default async function Image({
   params: Promise<{ project: string }> | { project: string };
 }) {
   const { project } = await params;
-  const proj = projects.find((p) => p.slug === project);
-
-  if (!proj) {
-    return ogCard({
-      title: profile.fullName,
-      subtitle: clampText(profile.summary, 170),
-    });
-  }
-
-  return projectOgCard({ slug: proj.slug, title: proj.title, summary: proj.summary });
+  return projectCard(project);
 }

@@ -179,6 +179,26 @@ def skill_categories(skills):
     return parse_skill_categories(
         [{'label': label, 'items': items} for label, items in grouped.items()])
 
+def resume_projects(projects, limit):
+    """The counts.projects projects for the resume, listed featured first.
+
+    More featured projects than the limit: keep the newest featured ones.
+    Fewer: take every featured one, then fill with the newest of the rest.
+    """
+    def newest(p):
+        parsed = parse_date(p.get('date'))
+        return parsed[0] if parsed else datetime.min
+
+    if limit <= 0:
+        return []
+    # Sorted by rank first, so projects from the same month keep rank order.
+    featured = sorted((p for p in projects if p.get('featured')), key=lambda p: p['featured'])
+    if len(featured) >= limit:
+        keep = {id(p) for p in sorted(featured, key=newest, reverse=True)[:limit]}
+        return [p for p in featured if id(p) in keep]
+    rest = sorted((p for p in projects if not p.get('featured')), key=newest, reverse=True)
+    return featured + rest[:limit - len(featured)]
+
 def generate_html(data):
     counts = data['counts']
 
@@ -226,13 +246,12 @@ def generate_html(data):
             </div>"""
         content_html += "\n        </div>"
 
-    # Featured projects in their featured order. The site's home page shows
-    # the first three; the resume lists the first counts.projects.
-    projs = sorted((p for p in data['projects'] if p.get('featured')), key=lambda p: p['featured'])
-    limit = counts['projects']
-    if projs and limit > 0:
+    # The site's home page shows the first three featured projects; the
+    # resume picks counts.projects of them with resume_projects().
+    projs = resume_projects(data['projects'], counts['projects'])
+    if projs:
         content_html += '\n        <div class="section">\n            <h2>PROJECTS</h2>'
-        for proj in projs[:limit]:
+        for proj in projs:
             date_html = f"<span>{format_date_display(proj['date'])}</span>"
             # One paragraph, or a list of bullets.
             desc = proj['desc']

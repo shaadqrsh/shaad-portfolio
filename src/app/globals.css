@@ -16,6 +16,9 @@
   --color-shaad-ink-2: #cfcbe0; /*Secondary text*/
   --color-shaad-ink-3: #a19cba; /*Labels and captions*/
   --color-shaad-void: #0b0916; /*Full-screen viewer backdrop*/
+  --color-shaad-tint: #362139; /*Hover tint: shaad-300 with 12% shaad-600*/
+  --color-shaad-rose: #f6858c; /*Text on tinted buttons*/
+  --color-shaad-rose-2: #ffa3a9; /*Text on tinted buttons, hovered*/
 
   --breakpoint-3xl: 2160px;
 }

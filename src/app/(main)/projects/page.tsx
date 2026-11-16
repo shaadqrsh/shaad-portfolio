@@ -102,7 +102,7 @@ const Category = ({
             onAnimationComplete={settleScroll}
             // The box clips while it opens and closes. It reaches 24px past the
             // cards on every side (20px on phones, the panel's own padding) so
-            // their hover glow fits inside instead of being cut off.
+            // their hover shadow fits inside instead of being cut off.
             className="-mx-6 -mb-6 overflow-hidden max-sm:-mx-5 max-sm:-mb-5"
           >
             <div className="grid grid-cols-3 gap-5 px-6 pt-6 pb-6 max-[1150px]:grid-cols-2 max-sm:grid-cols-1 max-sm:px-5 max-sm:pb-5">

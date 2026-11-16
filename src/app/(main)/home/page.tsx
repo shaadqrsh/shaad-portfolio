@@ -52,7 +52,7 @@ const Home = () => {
                   <User className="size-[18px]" />
                   <span className="font-semibold">About me</span>
                 </TransitionLink>
-                <TransitionLink href="/resume" className={buttonVariants({ variant: "outline" })}>
+                <TransitionLink href="/resume" className={buttonVariants({ variant: "tinted" })}>
                   <FileUser className="size-[18px]" />
                   <span className="font-semibold">Resume</span>
                 </TransitionLink>
@@ -67,7 +67,7 @@ const Home = () => {
               <h2 className="font-display text-[34px] leading-tight font-bold tracking-[-0.01em] whitespace-nowrap text-shaad-600 max-sm:text-[min(26px,6.2vw)]">
                 Featured Projects
               </h2>
-              <TransitionLink href="/projects" className={cn(buttonVariants({ variant: "outline" }), "shrink-0 px-4 py-2 text-sm")}>
+              <TransitionLink href="/projects" className={cn(buttonVariants({ variant: "tinted", size: "sm" }), "shrink-0")}>
                 <span className="font-semibold">Projects</span>
                 <ArrowRight className="size-4" />
               </TransitionLink>

@@ -136,7 +136,7 @@ const Navbar = () => {
                     aria-current={active ? "page" : undefined}
                     className={cn(
                       "relative flex items-center gap-2 rounded-full px-5 py-2 font-semibold transition-colors duration-200 max-[1150px]:px-4",
-                      active ? "text-white" : "text-shaad-ink-2 hover:bg-shaad-200 hover:text-white"
+                      active ? "text-white" : "text-shaad-ink-2 hover:bg-shaad-tint hover:text-shaad-500"
                     )}
                   >
                     <Icon className="size-[18px]" aria-hidden />

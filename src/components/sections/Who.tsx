@@ -1,5 +1,6 @@
 "use client";
 import { Appear, stagger, useAppear } from "@/components/projects/Appear";
+import { cardClass } from "@/components/ui/Card";
 import Meta from "@/components/ui/Meta";
 import Section from "@/components/ui/Section";
 import { fullName, testimonials, whoAmI } from "@/lib/Data";
@@ -7,6 +8,7 @@ import { education } from "@/lib/Education";
 import { experience } from "@/lib/Experience";
 import { img } from "@/lib/images";
 import resumeData from "@/lib/resume_data.json";
+import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import Image from "next/image";
 
@@ -49,7 +51,7 @@ const Who = ({ onPhotoLoad }: { onPhotoLoad?: () => void }) => (
       <p className="max-w-[68ch] text-[17px] leading-[1.7] text-shaad-ink max-sm:text-base">{whoAmI}</p>
       <div className="mt-[22px] grid grid-cols-4 gap-3 max-sm:grid-cols-2">
         {testimonials.map((t, i) => (
-          <Appear key={t.label} delay={stagger(i)} className="rounded-xl bg-shaad-300 px-4 py-3.5 shadow-md">
+          <Appear key={t.label} delay={stagger(i)} className={cn(cardClass, "px-4 py-3.5")}>
             <b className="block font-display text-[30px] leading-[1.1] font-bold tabular-nums text-shaad-500">{t.count}</b>
             <span className="text-sm text-shaad-ink-2">{t.label}</span>
           </Appear>

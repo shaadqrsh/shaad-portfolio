@@ -1,7 +1,6 @@
 "use client";
 import Button from "@/components/ui/button";
 import { projectImg } from "@/lib/images";
-import { cn } from "@/lib/utils";
 import { projectData } from "@/types";
 import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
@@ -49,7 +48,7 @@ const ProjectHero = ({ project, url, summary, onCoverLoad, enableAnimation = tru
             alt=""
             width={176}
             height={176}
-            className="absolute -top-11 left-1/2 size-[88px] -translate-x-1/2 rounded-3xl border-4 border-shaad-400 bg-shaad-300 object-cover shadow-md max-sm:-top-9 max-sm:size-[72px] max-sm:rounded-[20px]"
+            className="absolute -top-11 left-1/2 size-[88px] -translate-x-1/2 rounded-3xl bg-shaad-300 object-cover shadow-md max-sm:-top-9 max-sm:size-[72px] max-sm:rounded-[20px]"
           />
           <h1 className="text-balance font-display text-[46px] font-bold leading-[1.06] tracking-[-0.02em] text-white max-sm:text-[28px]">
             {project.title}
@@ -67,11 +66,8 @@ const ProjectHero = ({ project, url, summary, onCoverLoad, enableAnimation = tru
                   href={u.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  variant={idx === 0 ? "default" : "outline"}
-                  className={cn(
-                    "px-[22px] py-[11px] font-semibold text-white hover:scale-105 max-sm:flex-auto max-sm:px-4 max-sm:py-2.5",
-                    idx === 0 && "border-2 border-transparent"
-                  )}
+                  variant={idx === 0 ? "default" : "tinted"}
+                  className="font-semibold max-sm:flex-auto max-sm:px-4 max-sm:py-2.5"
                 >
                   {u.label}
                 </Button>

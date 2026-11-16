@@ -7,14 +7,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-shaad-600 text-white shadow-md hover:shadow-lg hover:scale-105",
-        outline: "border-2 border-shaad-600 bg-transparent hover:bg-shaad-600 hover:text-white",
+        default: "bg-shaad-600 text-white hover:scale-104 hover:bg-shaad-500",
+        // The same red at low strength with red text, for the second action.
+        tinted: "bg-shaad-600/16 text-shaad-rose hover:scale-104 hover:bg-shaad-500/26 hover:text-shaad-rose-2",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        default: "px-6 py-3",
-        sm: "h-9 rounded-md px-3",
+        default: "px-[22px] py-[11px]",
+        sm: "px-3.5 py-[7px] text-sm",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
       },
