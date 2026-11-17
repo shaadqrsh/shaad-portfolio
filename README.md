@@ -1,42 +1,46 @@
-# Shaad Qureshi's portfolio
+# shaadqrsh.com
 
-This is the source for [shaadqrsh.com](https://www.shaadqrsh.com), my portfolio as a game developer. It's a Next.js 16 and React 19 site with a page for each project. The pages render on the client, so the site also publishes its content as JSON-LD, `llms.txt`, and plain JSON endpoints that recruiters, crawlers, and AI agents can read without scraping the HTML.
+Source for [shaadqrsh.com](https://www.shaadqrsh.com), my game development portfolio. It's a Next.js site with a page for every project, plus a one-page resume PDF built from the same data.
 
-Nearly everything comes from one file, [src/lib/resume_data.json](src/lib/resume_data.json). That includes the resume PDF and my GitHub profile README. Most of this README is about how that file turns into everything else.
+The content lives in two files: [src/lib/resume_data.json](src/lib/resume_data.json) for the profile, experience, skills and project list, and [src/lib/projectId.ts](src/lib/projectId.ts) for the long-form text on each project page. The site, the resume, the JSON endpoints and my GitHub profile README are all generated from them. Updating the portfolio usually means editing those files and pushing.
 
-## Running it locally
+## Getting started
 
-You need Node.js and npm. Python 3.8+ only matters if you want to build the resume yourself.
+You need Node.js and npm. Python 3.8+ is only needed if you want to build the resume locally.
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
+npm run dev
 ```
 
-| Script | Description |
+The dev server runs at http://localhost:3000.
+
+| Script | What it does |
 | --- | --- |
-| `npm run dev` | Start the dev server (Turbopack) |
+| `npm run dev` | Dev server with Turbopack |
 | `npm run build` | Production build |
 | `npm run start` | Serve the production build |
-| `npm run lint` | Run ESLint |
+| `npm run lint` | ESLint |
 
-The live site is hosted on Vercel, with its settings in [vercel.json](vercel.json).
+## Stack
 
-## What's in here
+The site runs on Next.js 16 with the App Router and Turbopack, React 19, TypeScript and Tailwind CSS v4. Animation uses [Motion](https://motion.dev/), the media viewer is built on Radix Dialog, and icons come from Lucide. Headings are set in Space Grotesk, body text in IBM Plex Sans and small labels in IBM Plex Mono, loaded with `next/font`. It's hosted on Vercel, configured in [vercel.json](vercel.json), with `@vercel/analytics` for analytics.
 
-The site uses the [Next.js](https://nextjs.org/) App Router with Turbopack, TypeScript, and [Tailwind CSS v4](https://tailwindcss.com/) with `tw-animate-css`. Animation is all [Motion](https://motion.dev/). The media viewer is built on Radix's dialog, icons are from Lucide, and analytics go through `@vercel/analytics`. Headings are set in Space Grotesk, body text in IBM Plex Sans and small labels in IBM Plex Mono, all loaded through `next/font`.
+## Pages
 
-| Route | What it shows |
+| Route | Contents |
 | --- | --- |
-| `/home` | Landing page with the three featured projects (`/` redirects here) |
-| `/about` | Bio, skills, experience, game jams and hackathons, education, publications, certifications |
-| `/projects` | All projects, grouped into collapsible categories |
-| `/projects/[project]` | Project page with the description, features, tech stack, responsibilities, screenshots, videos and notes |
-| `/resume` | A preview of the resume that opens the PDF, plus download buttons and the date it was last generated |
+| `/home` | Landing page with three featured projects. `/` redirects here. |
+| `/about` | Bio, skills, experience, game jams and hackathons, education, publications and certifications |
+| `/projects` | All projects, newest first, filterable by All, Games or Other |
+| `/projects/[project]` | One project: description, features, tech stack, responsibilities, screenshots, videos and notes |
+| `/resume` | Resume preview that opens the PDF, with download buttons and the date it was generated |
 
-Every page fades out and the next one fades in when you navigate. [template.tsx](src/app/(main)/template.tsx) wraps each page in the transition, and links go through `TransitionLink` in [PageTransition.tsx](src/components/PageTransition.tsx) so the fade out plays before the route changes. The browser's back and forward buttons only get the fade in. Animations respect reduced motion.
+Pages fade out and in on navigation. [template.tsx](src/app/(main)/template.tsx) wraps each page in the transition, and internal links use `TransitionLink` from [PageTransition.tsx](src/components/PageTransition.tsx) so the fade out finishes before the route changes. Back and forward navigation only gets the fade in. All animation respects reduced motion.
 
-Each route also generates its own OpenGraph image in the site's fonts and colors, so a link pasted into Discord, WhatsApp, iMessage or LinkedIn shows a proper preview card.
+Each route renders its own OpenGraph card in the site's fonts and colors. Discord, WhatsApp, iMessage and LinkedIn cache previews by URL, so [next.config.ts](next.config.ts) hashes everything the cards are drawn from (the code, fonts and data in `src/lib`, and the images in `public/`) and puts that hash in every card's URL. Any change to a project or to the card design produces new URLs. LinkedIn only re-reads a page when asked, so run the URL through its [Post Inspector](https://www.linkedin.com/post-inspector/) after deploying.
+
+## Layout
 
 ```text
 shaad-portfolio/
@@ -54,119 +58,122 @@ shaad-portfolio/
 │   │   ├── ui/                  # Shared primitives (button, card, tag, section, logo, ...)
 │   │   └── ...                  # Navbar, footer, loader, page transitions, home backdrop
 │   ├── lib/
-│   │   ├── resume_data.json     # Single source of truth for site content
+│   │   ├── resume_data.json     # Site content
 │   │   ├── projectId.ts         # Long-form detail for each project page
-│   │   ├── agentProfile.ts      # Flattened profile used by every machine-readable surface
-│   │   ├── images.ts            # Finds each image's real file, whether .png or .jpg
-│   │   ├── dates.ts             # Parses and formats the dd/mm/yyyy dates in the JSON
-│   │   ├── og-fonts/            # Font files for the OpenGraph cards
-│   │   └── ...                  # Typed adapters (Experience, Skills, Jams, ...), OG + JSON-LD helpers
+│   │   ├── agentProfile.ts      # Flattened profile behind the machine-readable endpoints
+│   │   ├── images.ts            # Resolves image paths to .png or .jpg files
+│   │   ├── dates.ts             # Parses and formats dd/mm/yyyy dates
+│   │   ├── siteUrl.ts           # Canonical origin for absolute URLs
+│   │   ├── og-fonts/            # Fonts for the OpenGraph cards
+│   │   └── ...                  # Typed adapters (Experience, Skills, Jams, ...), OG and JSON-LD helpers
 │   └── types.ts
 ├── public/
-│   ├── project_<url>/           # cover, icon, img_1 ... img_N per project (.png or .jpg)
+│   ├── project_<url>/           # cover, icon, img_1 ... img_N for each project
 │   ├── jams/, skills/, about/   # Section icons and images
-│   ├── resume.pdf               # Resume served on the site (generated)
-│   ├── resume.png               # Preview image of the resume for /resume (generated)
+│   ├── resume.pdf               # Generated resume
+│   ├── resume.png               # Generated preview image for /resume
 │   └── resume_gen/
 │       ├── scripts/
-│       │   ├── generate_resume.py     # resume_data.json -> resume.html -> resume.pdf + resume.png
-│       │   ├── generate_pdf.py        # HTML -> single-page A4 PDF via headless Chromium
-│       │   ├── check_requirements.py  # Installs missing Python deps + Chromium on first run
+│       │   ├── generate_resume.py     # resume_data.json to resume.html, resume.pdf and resume.png
+│       │   ├── generate_pdf.py        # HTML to a one-page A4 PDF in headless Chromium
+│       │   ├── check_requirements.py  # Installs missing Python packages and Chromium
 │       │   └── requirements.txt
 │       └── templates/
 │           ├── resume_template.html
 │           └── cover_letter_template.html
 └── .github/
     ├── workflows/
-    │   ├── resume.yml           # Regenerates the resume on push
+    │   ├── resume.yml           # Rebuilds the resume on push
     │   └── profile-readme.yml   # Rebuilds the GitHub profile README on push
     └── scripts/resume_fingerprint.py
 ```
 
 ## Editing content
 
-`resume_data.json` holds the name, bio, nav links, experience, education, publications, certifications, jams, skills, the project list, and the order of project categories. The files in `src/lib/` are thin typed adapters over it. When you edit the JSON, the pages, the resume, and the machine-readable data all follow.
+`resume_data.json` holds the name, bio, nav links, experience, education, publications, certifications, jams, skills and projects. The other files in `src/lib/` are typed adapters over it, so the pages, the resume and the machine-readable data all update when it changes.
 
-Dates are `dd/mm/yyyy` strings, and `00` stands for an unknown day or month. `00/08/2026` shows as Aug 2026 and `00/00/2025` as just 2025.
+Dates are `dd/mm/yyyy` strings. Use `00` for an unknown day or month: `00/08/2026` displays as Aug 2026, and `00/00/2025` as 2025.
 
-Images live in `public/` and can be `.png`, `.jpg` or `.jpeg` in any letter case. An image path in the JSON finds the file in whichever format it's saved, so swapping a PNG for a JPG doesn't mean editing anything.
+Images in `public/` can be `.png`, `.jpg` or `.jpeg`, in any letter case. An image path in the data finds the file in whichever format it's saved, so you can swap a PNG for a JPG without touching the data. If both formats exist, the build warns and uses the PNG. The image list is read once when the server starts, so restart `npm run dev` after adding or renaming images.
 
 ### Adding a project
 
-1. Add an entry to `projects` in `resume_data.json`. Its `url` field becomes the route (`/projects/<url>`), and its `desc` is the one-line summary used on the projects list, the project page and the resume.
-2. Add a matching key to `data` in [src/lib/projectId.ts](src/lib/projectId.ts) with the description, features, technologies, responsibilities and extra notes. `captions` has one caption per screenshot in order, so `captions[0]` goes under `img_1`. `videos` is a list of YouTube links, each with the video's `title` and `channel`.
-3. Create `public/project_<url>/` with a `cover`, an `icon`, and screenshots named `img_1`, `img_2`, and so on, each as a `.png` or `.jpg`.
+1. Add an entry to `projects` in `resume_data.json`. Its `url` becomes the route, `/projects/<url>`. Its `desc` is the one-line summary shown on `/projects`, on the project page and on the resume.
+2. Add an entry under the same key in `data` in [projectId.ts](src/lib/projectId.ts) with the description, features, technologies, responsibilities and notes. Set `game` to `true` or `false` to put the project under Games or Other. Add `captions` in screenshot order (`captions[0]` goes under `img_1`), and `videos` as YouTube links, each with a `title` and `channel`.
+3. Create `public/project_<url>/` with a `cover`, an `icon`, and screenshots named `img_1`, `img_2` and so on.
 
-You don't have to record how many screenshots there are or what format each one is in. At build time, [next.config.ts](next.config.ts) lists every image in `public/`, and [src/lib/images.ts](src/lib/images.ts) uses that list to find each file and count the screenshots. The count stops at the first gap in the `img_N` sequence, so a missing file can't turn into a broken image. If one image exists in both formats, the build warns and uses the `.png`. The list is only read when the server starts, so restart `npm run dev` after adding or renaming images.
+Screenshots are counted at build time by [images.ts](src/lib/images.ts), so there's no count to keep in sync. Counting stops at the first missing number in the `img_N` sequence.
 
-After that, pushing is enough. The sitemap, `llms.txt`, the JSON endpoints and the JSON-LD pick up the new project on their own, and the resume gets a link to its page.
+Then push. `/projects` sorts by `date`, and the project's position in the array only breaks ties within the same month. The sitemap, `llms.txt`, JSON endpoints and JSON-LD include the new project automatically, and its title on the resume links to its page.
 
 ### Featured projects
 
-A project with a `featured` number gets ranked by it, lowest first. The home page shows the first three, and the resume lists the first `counts.projects` of them. Projects without a `featured` number still get their own page and show up on `/projects`, but they stay off the home page and the resume.
+Give a project a `featured` number to rank it, lowest first. The home page shows the top three.
+
+The resume shows `counts.projects` projects, chosen by `resume_projects` in [generate_resume.py](public/resume_gen/scripts/generate_resume.py). When more projects are featured than that, it takes the newest featured ones and lists them in `featured` order. When fewer are featured, it lists all of them and fills the rest with the newest unfeatured projects.
 
 ### Jams
 
-Each entry in `jams` has a `kind` and an optional `result` such as `1st of 46`. The About page splits jams into two tabs, with `Game Jam` entries under Game Jams and every other kind (Hackathon, Challenge) under Hackathons. The `result` shows under the title in the list, and entries without one show their `kind` there instead. If the jam produced one of the projects, set `project` to that project's `url` and the entry gets a link to its page.
+Each entry in `jams` has a `kind` and an optional `result`, such as `1st of 46`. On the About page, `Game Jam` entries go under the Game Jams tab and every other kind (Hackathon, Challenge) goes under Hackathons. The `result` appears under the title, or the `kind` if there's no result. Set `project` to a project's `url` to link the jam to that project's page.
 
 ### Skills
 
-Every skill in `top3`, `main` and `other` needs a `category`. The resume prints one line per category, like `Languages & Frameworks: C#, C++, ...`. Categories appear in the order of their first skill, and skills keep their order from the JSON, so reordering skills on the site reorders them on the resume too. If a skill has no `category`, the build fails instead of leaving that skill off the resume.
+Every skill in `top3`, `main` and `other` needs a `category`, and the build fails if one is missing. The resume prints a line per category, such as `Languages & Frameworks: C#, C++, ...`. Categories appear in the order their first skill does, and skills keep their order from the JSON, so the resume follows whatever order the site uses.
 
-## The resume
+## Resume
 
-The resume is generated from the same `resume_data.json` as the site, which keeps the two in sync. You don't build it by hand for the live site, because a GitHub Action does that on push.
+A GitHub Action builds the resume from `resume_data.json` on push, so it always matches the site.
 
-### How the PDF is built
+### Build
 
-[generate_resume.py](public/resume_gen/scripts/generate_resume.py) does four things.
+[generate_resume.py](public/resume_gen/scripts/generate_resume.py) runs in four steps:
 
-1. Loads `src/lib/resume_data.json` and maps it to the resume's format. It strips icons and images, keeps LinkedIn, Website and Email as the contact links, groups skills by `category`, and picks the featured projects.
-2. Fills in [resume_template.html](public/resume_gen/templates/resume_template.html) and writes `public/resume.html`.
-3. Converts that HTML into `public/resume.pdf`, which the site serves at `/resume.pdf`. Visitors who click download get it saved as `{name} - Resume.pdf`.
-4. Renders the PDF's page to `public/resume.png` at 250 dpi with PyMuPDF. That's the image `/resume` shows, drawn at well over twice its display size so the text stays sharp. The "last updated" date on that page comes from the PDF's own creation date.
+1. Load `resume_data.json` and reshape it for the resume. Icons and images are dropped, LinkedIn, website and email become the contact links, skills are grouped by category, and projects are chosen as described in [Featured projects](#featured-projects).
+2. Fill in [resume_template.html](public/resume_gen/templates/resume_template.html) and write `public/resume.html`.
+3. Print that HTML to `public/resume.pdf` with [generate_pdf.py](public/resume_gen/scripts/generate_pdf.py). The site serves it at `/resume.pdf`, and the download button saves it as `{name} - Resume.pdf`.
+4. Render the PDF to `public/resume.png` at 250 dpi with PyMuPDF, for the preview on `/resume`. The "last updated" date on that page is the PDF's creation date.
 
-The conversion happens in [generate_pdf.py](public/resume_gen/scripts/generate_pdf.py), which prints the HTML to an A4 PDF in headless Chromium. If the full-size render runs past one page, it binary-searches the print scale between 0.1 and 1.0 (stopping at a 0.005 window) for the largest value that still fits on one page. It never scales up, so a resume that fits at full size prints at full size, and adding content never means hand-tuning margins or font sizes.
+`generate_pdf.py` prints to A4 in headless Chromium. If the content runs past one page, it searches for the largest print scale that fits on one page. It never scales above 100%, so you don't have to adjust margins or font sizes when the content grows.
 
-The PDF keeps real hyperlinks, which some studios ask for on application resumes. Each project title links to its page on the site, `<websiteUrl>/projects/<url>`, using the same `url` field that names the route. If `url` is already a full `http(s)://` address, it's used as is, so a project can point somewhere else. Only the title is linked and no address is printed next to it, which means a resume parser reads exactly the same text. The LinkedIn, website and email lines in the header are clickable too (`mailto:` for the email). The cover letter template links the same lines in its header and signature, along with any of them quoted in the letter itself. Links are blue on screen and look like ordinary text in a black-and-white print.
+The PDF has working links. Each project title links to `<websiteUrl>/projects/<url>`, or straight to `url` if that's already a full `http(s)://` address. Only the title is linked, with no URL printed beside it, so resume parsers see the same text either way. The LinkedIn, website and email lines in the header are links too, with `mailto:` for email. Links are blue on screen and print as normal text in black and white. The cover letter template links the same contact lines in its header and signature, and anywhere they appear in the letter body.
 
-### How it gets deployed
+### Deployment
 
-On every push to `main`, the [Regenerate resume](.github/workflows/resume.yml) Action checks whether the resume changed. If it did, the Action runs `generate_resume.py`, commits the new `public/resume.pdf` and `public/resume.png` back to `main`, and Vercel deploys that commit. You can also start the Action by hand from the repo's Actions tab.
+[resume.yml](.github/workflows/resume.yml) runs on every push to `main` and can also be started from the Actions tab. It asks [resume_fingerprint.py](.github/scripts/resume_fingerprint.py) whether the resume changed. The script hashes the HTML the generator would produce together with the PDF script, and compares the result with `.github/resume-fingerprint`, the fingerprint of the committed PDF. If they differ, the Action rebuilds `resume.pdf` and `resume.png` and commits them to `main`.
 
-Whether the resume changed is decided by [resume_fingerprint.py](.github/scripts/resume_fingerprint.py). It hashes the HTML the generator would write together with the PDF script, and compares that with the fingerprint the committed PDF was built from (`.github/resume-fingerprint`). Site-only edits, such as images, testimonials or the About text, leave the fingerprint alone, so those pushes deploy normally with no bot commit.
+Vercel runs the same script as its ignored build step. When a push changes the resume, Vercel skips it and deploys the Action's commit instead, so the site changes and the new PDF ship together. Pushes that only touch the site, like images or About text, leave the fingerprint unchanged and deploy straight away. If the Action fails, a push that changes the resume won't deploy until it's fixed. Put `[force deploy]` in the commit message to deploy anyway.
 
-Vercel runs the same script as its [ignored build step](vercel.json). When a push changes the resume, Vercel skips that push and deploys the Action's commit instead, so the site changes and the new PDF go live in a single deployment. The downside is that if the Action fails, the push won't deploy until it's fixed. To deploy anyway, put `[force deploy]` in a commit message.
+### Building locally
 
-### Building it yourself
+```bash
+python public/resume_gen/scripts/generate_resume.py
+```
 
-To preview the PDF locally, run `python public/resume_gen/scripts/generate_resume.py`. You don't need to commit the output, since the Action rebuilds it.
+There's no need to commit the output, since the Action rebuilds it. Each script first runs [check_requirements.py](public/resume_gen/scripts/check_requirements.py), which installs anything missing from [requirements.txt](public/resume_gen/scripts/requirements.txt) and downloads Playwright's Chromium if Playwright was just installed.
 
-Each script calls [check_requirements.py](public/resume_gen/scripts/check_requirements.py) first. It checks [requirements.txt](public/resume_gen/scripts/requirements.txt) (`pyyaml`, `python-dotenv`, `playwright`, `pypdf`, `pymupdf`), pip-installs whatever is missing, and downloads Playwright's headless Chromium if it had to install Playwright. Python 3.8+ is all you need to start.
-
-You can also run `generate_pdf.py` on its own to batch-convert any `resume.html` or `cover_letter.html` files in `public/resume_gen/` and one folder below it. The cover letter layout is in [cover_letter_template.html](public/resume_gen/templates/cover_letter_template.html).
+`generate_pdf.py` also works on its own. It converts every `resume.html` or `cover_letter.html` it finds in `public/resume_gen/` and the folders directly inside it. The cover letter layout is [cover_letter_template.html](public/resume_gen/templates/cover_letter_template.html).
 
 ## GitHub profile README
 
-The README on my GitHub profile ([shaadqrsh/shaadqrsh](https://github.com/shaadqrsh/shaadqrsh)) is built from this repo's data too. The [Update profile README](.github/workflows/profile-readme.yml) Action runs when `resume_data.json`, `projectId.ts` or the resume fingerprint changes on `main`. It checks out the profile repo, runs its `scripts/build_readme.mjs` against this repo, and pushes the new README there if anything changed.
+My profile README at [shaadqrsh/shaadqrsh](https://github.com/shaadqrsh/shaadqrsh) is generated from this repo. [profile-readme.yml](.github/workflows/profile-readme.yml) runs when `resume_data.json`, `projectId.ts` or the resume fingerprint changes on `main`. It checks out the profile repo, runs its `scripts/build_readme.mjs` against this one, and pushes if the README changed. Projects go into the Games or Projects table according to their `game` flag.
 
-The generator, the template and the hand-written project blurbs all live in the profile repo. Locally that repo is cloned into `portfolio_entry/`, which this repo ignores. Pushing to it needs a `PROFILE_README_TOKEN` secret, a fine-grained token with read and write access to that one repo's contents.
+The generator, its template and the hand-written project blurbs live in the profile repo. Locally it's cloned into `portfolio_entry/`, which is gitignored here. The Action pushes with a `PROFILE_README_TOKEN` secret, a fine-grained token with read and write access to that repo's contents.
 
 ## Machine-readable data
 
-Since the pages render on the client, the site also publishes its content in formats that are easy to parse.
+The pages render on the client, so the content is also published in formats that recruiters' tools, crawlers and AI agents can read without scraping HTML:
 
-- `/llms.txt` is the whole portfolio as one Markdown document, following the [llmstxt.org](https://llmstxt.org) convention.
-- `/api/profile.json` has the full profile, including experience, education, projects and skills.
-- `/api/projects.json` has only the projects, in full detail.
-- `/api/resume.json` is a [JSON Resume](https://jsonresume.org) v1.0.0 export for resume parsers.
-- Every page's `<head>` carries a Schema.org `Person` graph as JSON-LD.
-- `/sitemap.xml` and `/robots.txt` are generated from the same data, and `robots.txt` explicitly allows the major AI crawlers.
+- `/llms.txt`: the whole portfolio as one Markdown file, following [llmstxt.org](https://llmstxt.org)
+- `/api/profile.json`: the full profile
+- `/api/projects.json`: projects only, in full detail
+- `/api/resume.json`: a [JSON Resume](https://jsonresume.org) v1.0.0 export
+- JSON-LD: a Schema.org `Person` graph in every page's `<head>`
+- `/sitemap.xml` and `/robots.txt`, with the major AI crawlers explicitly allowed
 
-All of these are statically generated from [src/lib/agentProfile.ts](src/lib/agentProfile.ts), so they update whenever the JSON does.
+They're all generated statically from [agentProfile.ts](src/lib/agentProfile.ts).
 
-Absolute URLs (OG images, the sitemap, JSON-LD) are resolved in [src/lib/siteUrl.ts](src/lib/siteUrl.ts). It tries `NEXT_PUBLIC_SITE_URL` first, then `websiteUrl` in `resume_data.json`, then Vercel's production domain, and finally the per-deployment Vercel URL. The per-deployment URL comes last on purpose, because those URLs sit behind Vercel's login wall and that breaks social preview images.
+Absolute URLs come from [siteUrl.ts](src/lib/siteUrl.ts), which uses the first of `NEXT_PUBLIC_SITE_URL`, `websiteUrl` in `resume_data.json`, Vercel's production domain, and the per-deployment Vercel URL. The per-deployment URL is last because it sits behind Vercel's login, which breaks social preview images.
 
 ## Credits
 
-The UI and website design are by [Hardik Malhotra](https://hardik-malhotra.vercel.app).
+UI and website design by [Hardik Malhotra](https://hardik-malhotra.vercel.app).

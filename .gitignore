@@ -43,19 +43,12 @@ next-env.d.ts
 # VS-code specific files
 *.code-workspace
 
-# Docs generation
-/public/resume_gen/*
-!/public/resume_gen/scripts/
-/public/resume_gen/scripts/*
-!/public/resume_gen/scripts/generate_resume.py
-!/public/resume_gen/scripts/check_requirements.py
-!/public/resume_gen/scripts/generate_pdf.py
-!/public/resume_gen/templates/
-/public/resume_gen/templates/*
-!/public/resume_gen/templates/resume_template.html
-!/public/resume_gen/templates/cover_letter_template.html
-**/__pycache__/
+# Resume build output (resume.pdf and resume.png are committed by the Action)
 /public/resume.html
+/public/resume_gen/**/resume.html
+/public/resume_gen/**/cover_letter.html
+/public/resume_gen/**/*.pdf
+**/__pycache__/
 
 # GitHub profile repo (shaadqrsh/shaadqrsh), its own nested git repo
 /portfolio_entry/
