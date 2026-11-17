@@ -73,7 +73,7 @@ const MobileNav = ({ open, top, onClose }: MobileNavProps) => {
                       onClick={onClose}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "flex items-center gap-3.5 rounded-[14px] px-4 py-2.5 font-display text-[28px] font-bold transition-colors duration-200",
+                        "flex items-center gap-3.5 rounded-[14px] px-4 py-2.5 text-[26px] font-semibold transition-colors duration-200",
                         active ? "bg-shaad-600 text-white" : "text-shaad-ink-2 hover:bg-shaad-tint hover:text-shaad-500"
                       )}
                     >
