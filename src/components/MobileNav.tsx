@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { Socials, isActive, pages } from "./NavLinks";
-import { TransitionLink } from "./PageTransition";
+import { FADE_OUT, TransitionLink } from "./PageTransition";
 
 interface MobileNavProps {
   open: boolean;
@@ -14,10 +14,9 @@ interface MobileNavProps {
 }
 
 const EASE = [0.2, 0.8, 0.2, 1] as const;
-// Closing is quicker than opening, so after tapping a link the sheet is gone
-// by the time the old page finishes fading out (0.1s, see PageTransition)
-// instead of trailing into the new page's fade in.
-const CLOSE = 0.14;
+// Closing takes exactly as long as the page fade out, so after tapping a link
+// the sheet finishes sliding away just as the new page is ready to come in.
+const CLOSE = FADE_OUT;
 
 /** Phone menu: a sheet that rises from the bottom over a dimmed page. */
 const MobileNav = ({ open, top, onClose }: MobileNavProps) => {

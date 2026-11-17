@@ -27,6 +27,12 @@ export type PageEntry = "load" | "navigate";
 const EntryContext = createContext<PageEntry>("load");
 export const usePageEntry = () => useContext(EntryContext);
 
+/**
+ * How long the old page takes to fade out, in seconds. The phone menu closes
+ * in the same time, so its sheet is gone just as the new page is ready.
+ */
+export const FADE_OUT = 0.1;
+
 /** Fired as a page starts leaving, with the destination as its detail, so things outside the page can react early. */
 export const PAGE_LEAVE = "page-leave";
 
@@ -90,7 +96,7 @@ const PageFrame = ({ children }: { children: ReactNode }) => {
       // at full opacity for one frame just before the new one came in.
       controls.stop();
       const from = getComputedStyle(el).opacity;
-      await el.animate([{ opacity: from }, { opacity: 0 }], { duration: 100, easing: "ease-in", fill: "forwards" }).finished;
+      await el.animate([{ opacity: from }, { opacity: 0 }], { duration: FADE_OUT * 1000, easing: "ease-in", fill: "forwards" }).finished;
     };
     controls.start({ opacity: 1, transition: { duration: reduce ? 0 : 0.2, ease: "easeOut" } });
     return () => {
