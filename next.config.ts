@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 
@@ -44,9 +45,34 @@ const readImages = () => {
   return images;
 };
 
+// A short hash of everything the link preview cards are drawn from: the card
+// code, fonts and data in src/lib, and the images in public/. It goes into each
+// preview image's URL (see OG_ID in src/lib/ogCard.tsx). Next's own suffix on
+// those URLs only hashes the opengraph-image route file, so redesigning the
+// card or editing a project left the URL unchanged, and LinkedIn and others
+// kept showing their cached copy. Now any change gives every card a new URL.
+const ogVersion = () => {
+  const hash = crypto.createHash("sha1");
+  const walk = (dir: string) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (entry.name !== "resume_gen") walk(full);
+        continue;
+      }
+      hash.update(path.relative(process.cwd(), full).split(path.sep).join("/"));
+      hash.update(fs.readFileSync(full));
+    }
+  };
+  walk(path.join(process.cwd(), "src/lib"));
+  walk(path.join(process.cwd(), "public"));
+  return hash.digest("hex").slice(0, 10);
+};
+
 const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_IMAGES: JSON.stringify(readImages()),
+    OG_VERSION: ogVersion(),
   },
 };
 

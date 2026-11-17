@@ -1,7 +1,9 @@
 import { profile } from "@/lib/agentProfile";
-import { OG_CONTENT_TYPE, OG_SIZE, projectsCard } from "@/lib/ogCard";
+import { OG_CONTENT_TYPE, OG_SIZE, ogImageMetadata, projectsCard } from "@/lib/ogCard";
 
-export const alt = `Projects by ${profile.fullName}`;
+const alt = `Projects by ${profile.fullName}`;
+// Versioned URL, so cached link previews refresh when the card changes.
+export const generateImageMetadata = () => ogImageMetadata(alt);
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

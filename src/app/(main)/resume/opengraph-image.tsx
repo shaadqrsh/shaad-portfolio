@@ -1,7 +1,9 @@
 import { profile } from "@/lib/agentProfile";
-import { OG_CONTENT_TYPE, OG_SIZE, resumeCard } from "@/lib/ogCard";
+import { OG_CONTENT_TYPE, OG_SIZE, ogImageMetadata, resumeCard } from "@/lib/ogCard";
 
-export const alt = `Resume | ${profile.fullName}`;
+const alt = `Resume | ${profile.fullName}`;
+// Versioned URL, so cached link previews refresh when the card changes.
+export const generateImageMetadata = () => ogImageMetadata(alt);
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

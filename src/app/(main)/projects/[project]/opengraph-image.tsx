@@ -1,5 +1,5 @@
 import { profile, projects } from "@/lib/agentProfile";
-import { OG_CONTENT_TYPE, OG_SIZE, projectCard } from "@/lib/ogCard";
+import { OG_CONTENT_TYPE, OG_ID, OG_SIZE, projectCard } from "@/lib/ogCard";
 
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
@@ -17,7 +17,8 @@ export async function generateImageMetadata({
   const proj = projects.find((p) => p.slug === params.project);
   return [
     {
-      id: "card",
+      // Versioned URL, so cached link previews refresh when the card changes.
+      id: OG_ID,
       alt: proj ? `${proj.title} - a project by ${profile.fullName}` : profile.fullName,
       size: OG_SIZE,
       contentType: OG_CONTENT_TYPE,

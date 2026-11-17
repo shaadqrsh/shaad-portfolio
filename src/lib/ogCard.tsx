@@ -25,6 +25,16 @@ import { SITE_URL } from "./siteUrl";
 
 export const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CONTENT_TYPE = "image/png";
+
+/**
+ * The last part of every preview image's URL. It changes whenever anything a
+ * card is drawn from changes (see ogVersion in next.config.ts), so sites that
+ * cache link previews by image URL fetch the new card.
+ */
+export const OG_ID = `v-${process.env.OG_VERSION ?? "dev"}`;
+
+/** generateImageMetadata for an opengraph-image route with one card. */
+export const ogImageMetadata = (alt: string) => [{ id: OG_ID, alt, size: OG_SIZE, contentType: OG_CONTENT_TYPE }];
 const { width: W, height: H } = OG_SIZE;
 
 // Straight from globals.css @theme.
