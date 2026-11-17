@@ -2,6 +2,7 @@
 import { TransitionLink } from "@/components/PageTransition";
 import { buttonVariants } from "@/components/ui/button";
 import { cardArrowClass } from "@/components/ui/Card";
+import FilterPills from "@/components/ui/FilterPills";
 import Logo from "@/components/ui/Logo";
 import Meta from "@/components/ui/Meta";
 import Section from "@/components/ui/Section";
@@ -10,7 +11,6 @@ import { dateKey, formatDate } from "@/lib/dates";
 import { Jam, Jams as jamsData } from "@/lib/Jams";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Trophy } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
 import MasterDetail, { PointList } from "./MasterDetail";
 
@@ -24,41 +24,15 @@ const FILTERS = [
 ] as const;
 type FilterKey = (typeof FILTERS)[number]["key"];
 
-/** All / Game Jams / Hackathons, with a red pill that slides to the one you pick. */
-const Switcher = ({ value, onChange }: { value: FilterKey; onChange: (k: FilterKey) => void }) => {
-  const reduce = useReducedMotion();
-  return (
-    <div role="group" aria-label="Filter events" className="flex gap-1 rounded-full bg-shaad-300 p-1">
-      {FILTERS.map((f) => {
-        const on = f.key === value;
-        return (
-          <button
-            key={f.key}
-            type="button"
-            aria-pressed={on}
-            onClick={() => onChange(f.key)}
-            className={cn(
-              "relative cursor-pointer rounded-full px-3.5 py-1.5 text-sm font-semibold whitespace-nowrap transition-colors duration-200 max-sm:px-3 max-sm:text-[13px]",
-              on ? "text-white" : "text-shaad-ink-2 hover:text-white"
-            )}
-          >
-            {on && (
-              <motion.span
-                layoutId="jam-filter-pill"
-                className="absolute inset-0 rounded-full bg-shaad-600 shadow-md"
-                transition={reduce ? { duration: 0 } : { duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-              />
-            )}
-            <span className="relative">
-              {f.label}
-              <span className="ml-1.5 tabular-nums opacity-75">{all.filter(f.test).length}</span>
-            </span>
-          </button>
-        );
-      })}
-    </div>
-  );
-};
+/** All / Game Jams / Hackathons, with the navbar's sliding pill. */
+const Switcher = ({ value, onChange }: { value: FilterKey; onChange: (k: FilterKey) => void }) => (
+  <FilterPills
+    label="Filter events"
+    options={FILTERS.map((f) => ({ key: f.key, label: f.label, count: all.filter(f.test).length }))}
+    value={value}
+    onChange={onChange}
+  />
+);
 
 const JamLink = ({ jam }: { jam: Jam }) => {
   // The site's secondary button, small, with the publications arrow.

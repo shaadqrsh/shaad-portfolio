@@ -39,7 +39,7 @@ const ProjectsCard = ({ title, desc, url, date, onLoad, priority }: ProjectsCard
       className={cn(cardClass, tintHoverClass, "group flex h-full flex-col gap-3.5 p-3 text-white")}
     >
       <div className="relative aspect-[4/3] overflow-hidden rounded-[10px] bg-shaad-300">
-        <Image src={cover} alt="" fill aria-hidden sizes="(max-width: 640px) 100vw, (max-width: 1150px) 50vw, 33vw" className="scale-125 object-cover blur-[22px] brightness-[0.55]" />
+        <Image src={cover} alt="" fill aria-hidden sizes="(max-width: 640px) 100vw, (max-width: 1150px) 50vw, 33vw" className="scale-125 transform-gpu object-cover blur-[22px] brightness-[0.55]" />
         <Image
           src={cover}
           alt={`${title} cover`}

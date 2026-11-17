@@ -109,7 +109,6 @@ const buildDoc = () => {
     push(`### ${proj.title}`);
     push();
     const meta = [
-      proj.category,
       proj.date,
       proj.type === "game" ? "game" : undefined,
     ]

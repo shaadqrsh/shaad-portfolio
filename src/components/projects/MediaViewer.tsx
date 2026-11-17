@@ -1,8 +1,10 @@
 "use client";
+import { buttonVariants } from "@/components/ui/button";
+import { cardArrowClass } from "@/components/ui/Card";
 import { iconButtonClass } from "@/components/ui/IconButton";
 import { cn } from "@/lib/utils";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { ChevronLeft, ChevronRight, ExternalLink, Play, X, ZoomIn, ZoomOut } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Play, X, ZoomIn, ZoomOut } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { Fragment, useEffect, useRef, useState } from "react";
@@ -255,9 +257,9 @@ const MediaViewer = ({
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 self-start rounded-full border-2 border-shaad-600 px-4 py-2 text-sm font-semibold transition-colors hover:bg-shaad-600"
+                    className={cn(buttonVariants({ variant: "tinted", size: "sm" }), "group self-start font-semibold")}
                   >
-                    Watch on YouTube <ExternalLink className="size-4" />
+                    Watch on YouTube <ArrowUpRight className={cn(cardArrowClass, "size-4 text-current")} aria-hidden />
                   </a>
                 </>
               )}

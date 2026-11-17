@@ -80,7 +80,6 @@ export const projects = resumeData.projects.map((proj) => {
   return {
     title: proj.title,
     slug: proj.url,
-    category: proj.category,
     date: toISODate(proj.date),
     type: detail?.game ? "game" : "software",
     summary: proj.desc,
@@ -196,7 +195,6 @@ export const projectKeywords = (slug: string) => {
     proj.title,
     `${proj.title} ${proj.type === "game" ? "game" : "project"}`,
     ...proj.technologies,
-    proj.category,
     resumeData.name,
     `${resumeData.name} ${proj.title}`,
     ...(proj.type === "game" ? ["indie game", "game development"] : []),

@@ -118,7 +118,6 @@ export const personJsonLd = () => {
         applicationCategory:
           proj.type === "game" ? "GameApplication" : "WebApplication",
         keywords: proj.technologies.join(", "),
-        ...(proj.type === "game" ? { genre: proj.category } : {}),
       })),
     ],
   };

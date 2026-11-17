@@ -482,21 +482,10 @@
       }
     ]
   },
-  "categoryOrder": [
-    {
-      "name": "Game Projects",
-      "minimizedByDefault": false
-    },
-    {
-      "name": "Other Projects",
-      "minimizedByDefault": false
-    }
-  ],
   "projects": [
     {
       "title": "Counting Sheep",
       "url": "countingsheep",
-      "category": "Game Projects",
       "date": "00/08/2026",
       "featured": 1,
       "desc": "A 3D arcade platformer made solo in 96 hours for the GMTK Game Jam 2026. You guide a floaty sheep across cloud-cube numerals that crumble and reform under you as a sleeper counts down to sleep."
@@ -504,7 +493,6 @@
     {
       "title": "Harvest Rush",
       "url": "harvestrush",
-      "category": "Game Projects",
       "date": "00/08/2026",
       "featured": 2,
       "desc": "A farming game for one player or two on the same couch. You till, plant, and water crops, then rush the harvest onto a delivery truck before it leaves, while pests steal produce and fires spread across the field."
@@ -512,14 +500,12 @@
     {
       "title": "Tic-Tac-Gone",
       "url": "tictacgone",
-      "category": "Game Projects",
       "date": "00/10/2026",
       "desc": "A 3D take on tic-tac-toe for the browser where each player can only keep three pieces on the board, and placing a fourth removes their oldest. Built with Three.js, with local two-player and a computer opponent on three difficulty levels."
     },
     {
       "title": "Pokémon Bushido",
       "url": "bushido",
-      "category": "Game Projects",
       "date": "00/02/2021",
       "featured": 3,
       "desc": "A Pokémon fangame set in a region inspired by feudal Japan, where you train with your Pokémon to become a Kenshi and fight the Akui Clan and their Shadow Pokémon."
@@ -527,28 +513,24 @@
     {
       "title": "Pokémon Splice",
       "url": "splice",
-      "category": "Game Projects",
       "date": "00/08/2020",
       "desc": "A Pokémon fangame where you play a research assistant helping Professor Cypress study new Pokémon forms, with a starter that can change its type and a story that branches on which team you join."
     },
     {
       "title": "CareerPath AI",
       "url": "careerpath",
-      "category": "Other Projects",
       "date": "00/11/2025",
       "desc": "An AI career counselor I built in 3 days as an experiment in coding with Gemini 3 Pro. It suggests careers that fit your profile, maps out how to get into each one, and generates 'day in the life' images of the job."
     },
     {
       "title": "SQLift",
       "url": "sqllift",
-      "category": "Other Projects",
       "date": "00/04/2026",
       "desc": "A full-stack workout tracker built around a relational database. You plan workouts, log live sessions set by set, track body measurements and progress over time, and compete on global and friends-only leaderboards."
     },
     {
       "title": "NanoRewind 4K",
       "url": "nanorewind",
-      "category": "Other Projects",
       "date": "00/12/2025",
       "featured": 4,
       "desc": "A web app that uses Google Gemini to restore old, scratched and faded family photos. It runs on React and Vercel serverless functions, with Supabase handling accounts, credits and a private photo album."
@@ -556,7 +538,6 @@
     {
       "title": "Artist Portfolio",
       "url": "emaadportfolio",
-      "category": "Other Projects",
       "date": "00/06/2026",
       "featured": 5,
       "desc": "A portfolio website for Emaad, an artist in my family, built with React and Vite and hosted free on GitHub Pages. Emaad adds and edits pieces through a Decap CMS dashboard without writing any code."
@@ -564,14 +545,12 @@
     {
       "title": "HOMI - Helpful Online Mentor Interface",
       "url": "homi",
-      "category": "Other Projects",
       "date": "00/02/2025",
       "desc": "A study assistant for IT students built on a fine-tuned LLM. It answers questions, writes study material, generates practice tests, and tracks attendance and assignments."
     },
     {
       "title": "Findly - Lost and Found Application",
       "url": "findly",
-      "category": "Other Projects",
       "date": "00/01/2025",
       "desc": "An Android app with a Firebase backend where people post lost or found items and chat with each other to get them back to their owners."
     }
