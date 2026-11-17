@@ -1,4 +1,5 @@
 "use client";
+import FilterPills from "@/components/ui/FilterPills";
 import { iconButtonClass } from "@/components/ui/IconButton";
 import { getImgCount, projectImg } from "@/lib/images";
 import { cn } from "@/lib/utils";
@@ -92,19 +93,18 @@ const MediaPanel = ({ project, url }: { project: projectData; url: string }) => 
   const video = videos[vid];
 
   const tabs = (
-    <div role="tablist" aria-label="Media type" className="flex gap-1 rounded-full bg-shaad-300 p-1">
-      {imageCount > 0 && (
-        <TabButton active={tab === "shots"} onClick={() => setTab("shots")} label="Screenshots" count={imageCount} />
-      )}
-      {videos.length > 0 && (
-        <TabButton
-          active={tab === "videos"}
-          onClick={() => setTab("videos")}
-          label={videos.length > 1 ? "Gameplay and Reviews" : "Gameplay"}
-          count={videos.length}
-        />
-      )}
-    </div>
+    <FilterPills
+      tabs
+      label="Media type"
+      value={tab}
+      onChange={setTab}
+      options={[
+        ...(imageCount > 0 ? [{ key: "shots" as const, label: "Screenshots", count: imageCount }] : []),
+        ...(videos.length > 0
+          ? [{ key: "videos" as const, label: videos.length > 1 ? "Gameplay and Reviews" : "Gameplay", count: videos.length }]
+          : []),
+      ]}
+    />
   );
 
   return (
@@ -292,22 +292,6 @@ const MediaPanel = ({ project, url }: { project: projectData; url: string }) => 
     </Panel>
   );
 };
-
-const TabButton = ({ active, onClick, label, count }: { active: boolean; onClick: () => void; label: string; count: number }) => (
-  <button
-    type="button"
-    role="tab"
-    aria-selected={active}
-    onClick={onClick}
-    className={cn(
-      "cursor-pointer rounded-full px-4 py-2 text-sm font-semibold text-shaad-ink-2 transition-colors hover:text-white max-sm:px-3 max-sm:py-[7px]",
-      active && "bg-shaad-600 text-white"
-    )}
-  >
-    {label}
-    <span className="ml-2 tabular-nums opacity-75">{count}</span>
-  </button>
-);
 
 const CaptionBar = ({ count, children }: { count: string; children: ReactNode }) => (
   <div className="flex items-baseline gap-4 px-1 pb-3.5 pt-4 max-sm:gap-3 max-sm:px-0.5 max-sm:pb-3 max-sm:pt-3.5 max-sm:text-[15px] max-sm:leading-[1.6]">

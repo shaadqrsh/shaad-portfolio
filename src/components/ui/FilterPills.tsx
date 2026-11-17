@@ -10,23 +10,27 @@ export interface PillOption<K extends string> {
 }
 
 /**
- * A row of filter options with the navbar's sliding red pill behind the one
- * picked. Inactive options hover like navbar links: red tint, red text.
+ * A row of options with the navbar's sliding red pill behind the one picked.
+ * Inactive options hover like navbar links: red tint, red text. `tabs` makes
+ * it a tab list (role="tab", aria-selected) for switching views; otherwise
+ * it's a group of toggle buttons for filtering.
  */
 const FilterPills = <K extends string>({
   label,
   options,
   value,
   onChange,
+  tabs,
 }: {
   label: string;
   options: PillOption<K>[];
   value: K;
   onChange: (key: K) => void;
+  tabs?: boolean;
 }) => {
   const { listRef, pillRef } = useSlidingPill<HTMLDivElement>(value);
   return (
-    <div ref={listRef} role="group" aria-label={label} className="group relative flex gap-1 rounded-full bg-shaad-300 p-1">
+    <div ref={listRef} role={tabs ? "tablist" : "group"} aria-label={label} className="group relative flex gap-1 rounded-full bg-shaad-300 p-1">
       <span
         ref={pillRef}
         aria-hidden
@@ -39,7 +43,7 @@ const FilterPills = <K extends string>({
             key={o.key}
             type="button"
             data-pill-key={o.key}
-            aria-pressed={on}
+            {...(tabs ? { role: "tab", "aria-selected": on } : { "aria-pressed": on })}
             onClick={() => onChange(o.key)}
             className={cn(
               "relative cursor-pointer rounded-full px-3.5 py-1.5 text-sm font-semibold whitespace-nowrap transition-colors duration-200 max-sm:px-3 max-sm:text-[13px]",
