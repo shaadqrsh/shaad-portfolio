@@ -3,7 +3,7 @@ import { markNavigated } from "@/components/Loader";
 import { motion, useAnimationControls, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { ComponentProps, ReactNode, createContext, useCallback, useContext, useEffect, useState } from "react";
+import { ComponentProps, ReactNode, createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 
 /**
  * Page transitions: every page change fades the old page out, then the new
@@ -71,6 +71,7 @@ export const TransitionLink = ({ href, onClick, target, ...props }: TransitionLi
 const PageFrame = ({ children }: { children: ReactNode }) => {
   const reduce = useReducedMotion();
   const controls = useAnimationControls();
+  const frameRef = useRef<HTMLDivElement>(null);
   // Read once, on mount: nothing pending means this is the first page of the visit.
   // The flag is only cleared in the effect below, because React can run this
   // initializer twice in development and the second run would see it cleared.
@@ -82,7 +83,14 @@ const PageFrame = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     leave = async () => {
-      if (!reduce) await controls.start({ opacity: 0, transition: { duration: 0.1, ease: "easeIn" } });
+      const el = frameRef.current;
+      if (reduce || !el) return;
+      // A plain browser animation that holds its last frame. Motion's fade out
+      // finished a frame before writing opacity 0, so the old page flashed back
+      // at full opacity for one frame just before the new one came in.
+      controls.stop();
+      const from = getComputedStyle(el).opacity;
+      await el.animate([{ opacity: from }, { opacity: 0 }], { duration: 100, easing: "ease-in", fill: "forwards" }).finished;
     };
     controls.start({ opacity: 1, transition: { duration: reduce ? 0 : 0.2, ease: "easeOut" } });
     return () => {
@@ -93,6 +101,7 @@ const PageFrame = ({ children }: { children: ReactNode }) => {
   return (
     <EntryContext.Provider value={entry}>
       <motion.div
+        ref={frameRef}
         initial={entry === "load" || reduce ? false : { opacity: 0 }}
         animate={controls}
         className="flex w-full flex-1 items-start justify-center"
