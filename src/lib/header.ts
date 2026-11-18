@@ -29,5 +29,4 @@ export const links = resumeData.links.map((l) => ({
   label: iconMap[l.label as keyof typeof iconMap],
 }));
 
-export const eduEmail = resumeData.eduEmail;
 export const websiteUrl = resumeData.websiteUrl;

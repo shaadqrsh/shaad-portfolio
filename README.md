@@ -109,7 +109,7 @@ Then push. `/projects` sorts by `date`, and the project's position in the array 
 
 Give a project a `featured` number to rank it, lowest first. The home page shows the top three.
 
-The resume shows `counts.projects` projects, chosen by `resume_projects` in [generate_resume.py](public/resume_gen/scripts/generate_resume.py). When more projects are featured than that, it takes the newest featured ones and lists them in `featured` order. When fewer are featured, it lists all of them and fills the rest with the newest unfeatured projects.
+The resume shows `RESUME_COUNTS['projects']` projects (set at the top of the script), chosen by `resume_projects` in [generate_resume.py](public/resume_gen/scripts/generate_resume.py). When more projects are featured than that, it takes the newest featured ones and lists them in `featured` order. When fewer are featured, it lists all of them and fills the rest with the newest unfeatured projects.
 
 ### Jams
 

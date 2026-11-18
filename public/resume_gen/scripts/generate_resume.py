@@ -22,6 +22,15 @@ PUBLIC_DIR = os.path.dirname(RESUME_GEN_DIR)
 OUTPUT_HTML = os.path.join(PUBLIC_DIR, 'resume.html')
 TEMPLATE_PATH = os.path.join(RESUME_GEN_DIR, 'templates', 'resume_template.html')
 
+# How many entries of each section the resume prints.
+RESUME_COUNTS = {
+    'workExperience': 3,
+    'projects': 5,
+    'education': 2,
+    'certificates': 6,
+    'publications': 2,
+}
+
 def parse_date(date_str):
     if not date_str:
         return None
@@ -166,7 +175,7 @@ def skill_categories(skills):
         [{'label': label, 'items': items} for label, items in grouped.items()])
 
 def resume_projects(projects, limit):
-    """The counts.projects projects for the resume, listed featured first.
+    """The RESUME_COUNTS['projects'] projects for the resume, listed featured first.
 
     More featured projects than the limit: keep the newest featured ones.
     Fewer: take every featured one, then fill with the newest of the rest.
@@ -186,7 +195,7 @@ def resume_projects(projects, limit):
     return featured + rest[:limit - len(featured)]
 
 def generate_html(data):
-    counts = data['counts']
+    counts = data.get('counts') or RESUME_COUNTS
 
     header_links = links_html(data['links'])
     root = data['websiteUrl'].rstrip('/')
@@ -233,7 +242,7 @@ def generate_html(data):
         content_html += "\n        </div>"
 
     # The site's home page shows the first three featured projects; the
-    # resume picks counts.projects of them with resume_projects().
+    # resume picks RESUME_COUNTS['projects'] of them with resume_projects().
     projs = resume_projects(data['projects'], counts['projects'])
     if projs:
         content_html += '\n        <div class="section">\n            <h2>PROJECTS</h2>'

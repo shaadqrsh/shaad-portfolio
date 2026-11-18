@@ -5,13 +5,6 @@
   "location": "Boston, MA",
   "summary": "I'm a game developer with a computer science background, and most of my work is building core gameplay mechanics in Unity and Unreal Engine. I want to make worlds that pull players in and get other people excited to make games of their own.",
   "about": "I'm a Computer Science student with a background in AI, but I've always been a game developer at heart. It started with a Nintendo Wii when I was a kid, and I've loved games with their own worlds and stories ever since. Most of what I build is core gameplay, in C# for Unity and Blueprints for Unreal Engine. Freelancing has had me working with a lot of designers and figuring out how to make their more complicated ideas actually work in the engine. I want to work on games people love at a big studio, and one day make my own that gets the next generation of players hooked.",
-  "counts": {
-    "workExperience": 3,
-    "projects": 5,
-    "education": 2,
-    "certificates": 6,
-    "publications": 2
-  },
   "testimonials": [
     {
       "label": "Years",
@@ -69,7 +62,6 @@
       "text": "Email"
     }
   ],
-  "eduEmail": "qureshi.sha@northeastern.edu",
   "websiteUrl": "https://www.shaadqrsh.com",
   "education": [
     {
@@ -129,14 +121,7 @@
       ],
       "image": "/about/img_neu.png",
       "location": "Northeastern University, Boston, MA",
-      "inProgress": true,
-      "evidence": [
-        "Equipment includes ETC lighting boards, 32-channel digital audio consoles, lavalier and handheld wireless mics, and high-lumen laser projectors",
-        "Covered 50+ university productions, guest lectures, theater performances, and ceremonies, with 50 to 1,000+ attendees",
-        "Trace signal flow and get AV working again in under 2 minutes during live stage and broadcast events",
-        "Coordinate live with ITS staff, house managers, stage managers, and keynote speakers",
-        "Do acoustic tuning, mic frequency coordination, and redundancy checks before each event, with no show-stopping downtime so far"
-      ]
+      "inProgress": true
     },
     {
       "title": "Game Programmer",
@@ -148,14 +133,7 @@
         "Ran each project on my own, from scoping it with the client through iteration to final delivery."
       ],
       "image": "/about/img_discord.png",
-      "location": "Freelance, Remote",
-      "evidence": [
-        "Unity (C#), Unreal Engine (C++ and Blueprints)",
-        "50+ distinct clients, 100+ delivered micro-projects over roughly 2.5 years",
-        "Shipped gameplay mechanics, physics, AI, and UI systems",
-        "Owned each project end to end, from client scoping through iterative development to final delivery",
-        "Every client came through private Discord communities, not an agency or a marketplace"
-      ]
+      "location": "Freelance, Remote"
     },
     {
       "title": "Technical Department Member",
@@ -167,13 +145,7 @@
         "Helped with event logistics and the technical setup for competitions, speaker sessions, and workshops."
       ],
       "image": "/about/img_arthashastra.png",
-      "location": "NM Arthashastra, Mumbai, India",
-      "evidence": [
-        "WordPress for the festival website",
-        "NM College annual inter-collegiate academic festival, 27+ events across multiple domains",
-        "50+ member organizing team; multi-day event drawing colleges from Mumbai and nationally",
-        "Scope covered event logistics and digital infrastructure for competitions, speaker sessions, and workshops"
-      ]
+      "location": "NM Arthashastra, Mumbai, India"
     }
   ],
   "publications": [

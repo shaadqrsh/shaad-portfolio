@@ -4,7 +4,7 @@ const projects = resumeData.projects;
 
 /**
  * Projects with a "featured" rank, in that order. The home page shows the
- * first three. The resume generator picks counts.projects of them (see
+ * first three. The resume picks RESUME_COUNTS['projects'] of them (see
  * resume_projects in generate_resume.py).
  */
 export const featuredProjects = projects

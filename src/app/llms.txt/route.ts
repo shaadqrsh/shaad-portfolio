@@ -50,8 +50,6 @@ const buildDoc = () => {
   push(`- Role sought: ${profile.headline}`);
   push(`- Location: ${profile.location}`);
   if (profile.contact.email) push(`- Email: ${profile.contact.email}`);
-  if (profile.contact.academicEmail)
-    push(`- Academic email: ${profile.contact.academicEmail}`);
   push(`- Website: ${profile.url}`);
   for (const p of profile.profiles) push(`- ${p.network}: ${p.url}`);
   push(`- Resume (PDF): ${profile.resume.pdf}`);

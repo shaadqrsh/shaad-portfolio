@@ -23,7 +23,6 @@ export const profile = {
   url: SITE_URL,
   contact: {
     email: EMAIL,
-    academicEmail: resumeData.eduEmail,
   },
   profiles: socialLinks.map((l) => ({
     network: l.text,
