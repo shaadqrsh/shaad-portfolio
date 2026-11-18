@@ -84,6 +84,11 @@ def format_date_display(date_str, end_date_str=None, in_progress=False):
     
     return format_single(date_str)
 
+def text(value):
+    """Escape a value for the page, so every piece of resume text prints
+    exactly as written (an "&" or "<" in the data is text, never markup)."""
+    return escape(str(value if value is not None else ''))
+
 def url_display_clean(url):
     clean = url.replace('https://', '').replace('http://', '').replace('mailto:', '')
     if clean.endswith('/'):
@@ -112,25 +117,6 @@ def links_html(links):
         href = link_href(link['url'])
         out += f'<div><a href="{escape(href)}">{text}</a></div>'
     return out
-
-def link_contacts_in(text, links):
-    """Make the contact lines a paragraph quotes (an email address, the site)
-    clickable, matching them as they print in the header. The site also
-    matches without its www., since prose often drops it. Longest first, in
-    one pass, so a shorter value never matches inside a longer one."""
-    if not text:
-        return text
-    targets = {}
-    for link in links:
-        shown = url_display_clean(link['url'])
-        href = link_href(link['url'])
-        targets[shown] = href
-        if shown.startswith('www.'):
-            targets.setdefault(shown[4:], href)
-    pattern = re.compile(r'(?<![\w.@/])(' + '|'.join(
-        re.escape(t) for t in sorted(targets, key=len, reverse=True)) + r')(?![\w@/])')
-    return pattern.sub(
-        lambda m: f'<a href="{escape(targets[m.group(1)])}">{m.group(1)}</a>', text)
 
 def parse_skill_categories(raw):
     """Normalise a `skills.categories` list to [{'label', 'items'}, ...].
@@ -211,7 +197,7 @@ def generate_html(data):
         content_html += f"""
         <div class="section">
             <h2>PROFESSIONAL SUMMARY</h2>
-            <p style="margin-top:2px;">{data['summary']}</p>
+            <p style="margin-top:2px;">{text(data['summary'])}</p>
         </div>"""
 
     edus = data['education']
@@ -220,12 +206,12 @@ def generate_html(data):
         content_html += '\n        <div class="section">\n            <h2>EDUCATION</h2>'
         for edu in edus[:limit]:
             date_str = format_date_display(edu['startDate'], edu.get('endDate'), edu.get('inProgress'))
-            subtitle = ", ".join(edu['subtitle'])
+            subtitle = text(", ".join(edu['subtitle']))
             grade = edu.get('grade')
-            grade_html = f"<b>&ensp;&#9679;&ensp;{grade}</b>" if grade else ""
+            grade_html = f"<b>&ensp;&#9679;&ensp;{text(grade)}</b>" if grade else ""
             content_html += f"""
             <div class="entry">
-                <div class="degree-info">{edu['title']} <span>{date_str}</span></div>
+                <div class="degree-info">{text(edu['title'])} <span>{text(date_str)}</span></div>
                 <p class="institution">{subtitle}{grade_html}</p>
             </div>"""
         content_html += "\n        </div>"
@@ -236,11 +222,11 @@ def generate_html(data):
         content_html += '\n        <div class="section">\n            <h2>WORK EXPERIENCE</h2>'
         for exp in exps[:limit]:
             date_str = format_date_display(exp['startDate'], exp.get('endDate'), exp.get('inProgress'))
-            location_html = f'\n                <p class="location">{exp["location"]}</p>'
-            bullets = "".join(f"\n                    <li>{sub}</li>" for sub in exp['subtitle'])
+            location_html = f'\n                <p class="location">{text(exp["location"])}</p>'
+            bullets = "".join(f"\n                    <li>{text(sub)}</li>" for sub in exp['subtitle'])
             content_html += f"""
             <div class="entry">
-                <div class="job-title">{exp['title']} <span>{date_str}</span></div>{location_html}
+                <div class="job-title">{text(exp['title'])} <span>{text(date_str)}</span></div>{location_html}
                 <ul>{bullets}
                 </ul>
             </div>"""
@@ -252,17 +238,17 @@ def generate_html(data):
     if projs:
         content_html += '\n        <div class="section">\n            <h2>PROJECTS</h2>'
         for proj in projs:
-            date_html = f"<span>{format_date_display(proj['date'])}</span>"
+            date_html = f"<span>{text(format_date_display(proj['date']))}</span>"
             # One paragraph, or a list of bullets.
             desc = proj['desc']
             items = desc if isinstance(desc, list) else [desc]
-            items_html = "".join(f"\n                    <li>{item}</li>" for item in items)
+            items_html = "".join(f"\n                    <li>{text(item)}</li>" for item in items)
             # The title itself is the link. Printing the address beside it was
             # tried and dropped: an ATS reading the text layer took it as part
             # of the project name. The template colours every link blue, which
             # is styling, so it never reaches the text.
             href = f"{root}/projects/{proj['url']}"
-            title = f'<a class="proj-link" href="{escape(href)}">{proj["title"]}</a>'
+            title = f'<a class="proj-link" href="{escape(href)}">{text(proj["title"])}</a>'
             content_html += f"""
             <div class="entry">
                 <div class="job-title">{title} {date_html}</div>
@@ -279,8 +265,8 @@ def generate_html(data):
             d = format_date_display(p['date'])
             content_html += f"""
                 <div class="grid-item">
-                    <span>{p["name"]}</span><br/>
-                    <span>{p["publishing"]} &#9679; {d}</span>
+                    <span>{text(p["name"])}</span><br/>
+                    <span>{text(p["publishing"])} &#9679; {text(d)}</span>
                 </div>"""
         content_html += "\n            </div>\n        </div>"
 
@@ -292,8 +278,8 @@ def generate_html(data):
             d = format_date_display(c['date'])
             content_html += f"""
                 <div class="grid-item">
-                    <span>{c["title"]}</span><br/>
-                    <span>{c["subtitle"]} &#9679; {d}</span>
+                    <span>{text(c["title"])}</span><br/>
+                    <span>{text(c["subtitle"])} &#9679; {text(d)}</span>
                 </div>"""
         content_html += "\n            </div>\n        </div>"
 
@@ -311,38 +297,14 @@ def generate_html(data):
         template = f.read()
 
     final_html = template
-    final_html = final_html.replace('[PAGE_TITLE]', data['name'] + ' - Resume')
-    final_html = final_html.replace('[FULL_NAME]', data['fullName'])
-    final_html = final_html.replace('[JOB_TITLE]', data['title'])
-    final_html = final_html.replace('[LOCATION]', data['location'])
+    final_html = final_html.replace('[PAGE_TITLE]', text(data['name'] + ' - Resume'))
+    final_html = final_html.replace('[FULL_NAME]', text(data['fullName']))
+    final_html = final_html.replace('[JOB_TITLE]', text(data['title']))
+    final_html = final_html.replace('[LOCATION]', text(data['location']))
     final_html = final_html.replace('[HEADER_LINKS]', header_links)
     final_html = final_html.replace('[CONTENT]', content_html)
 
     return final_html
-
-def generate_cover_letter_html(cl_data, resume_data):
-    CL_TEMPLATE_PATH = os.path.join(RESUME_GEN_DIR, 'templates', 'cover_letter_template.html')
-
-    with open(CL_TEMPLATE_PATH, 'r', encoding='utf-8') as f:
-        template = f.read()
-
-    cl_html = template
-    cl_html = cl_html.replace('[NAME]', resume_data['name'])
-    cl_html = cl_html.replace('[FULL_NAME]', resume_data['fullName'])
-    cl_html = cl_html.replace('[TITLE]', resume_data['title'])
-    cl_html = cl_html.replace('[LOCATION]', resume_data['location'])
-    cl_html = cl_html.replace('[DATE]', datetime.now().strftime("%B %d, %Y"))
-
-    contact_html = links_html(resume_data['links'])
-    cl_html = cl_html.replace('[HEADER_LINKS]', contact_html)
-    cl_html = cl_html.replace('[CONTACT_DETAILS]', contact_html)
-
-    links = resume_data['links']
-    for token, key in (('[INTRODUCTION]', 'introduction'), ('[PARAGRAPH 1]', 'paragraph1'),
-                       ('[PARAGRAPH 2]', 'paragraph2'), ('[CONCLUSION]', 'conclusion')):
-        cl_html = cl_html.replace(token, link_contacts_in(cl_data.get(key, ''), links))
-
-    return cl_html
 
 def clean_data(data):
     if isinstance(data, dict):

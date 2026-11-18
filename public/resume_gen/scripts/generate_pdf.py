@@ -7,8 +7,6 @@ if _SCRIPT_DIR not in sys.path:
     sys.path.append(_SCRIPT_DIR)
 import check_requirements
 
-import json
-import traceback
 from pathlib import Path
 
 try:
@@ -26,9 +24,7 @@ except ImportError:
     sys.exit(1)
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-RESUME_GEN_DIR = SCRIPT_DIR.parent
-IGNORE_FOLDERS = {'scripts', 'templates', '__pycache__', '.git'}
-TARGET_FILES = ('resume.html', 'cover_letter.html')
+PUBLIC_DIR = SCRIPT_DIR.parent.parent
 
 # Playwright scale bounds
 MIN_SCALE = 0.1
@@ -37,27 +33,14 @@ MAX_SCALE = 2.0
 SCALE_TOLERANCE = 0.005
 
 
-def find_html_files(root: Path):
-    """Find target HTML files at the given root and exactly one level deep.
-
-    Matches the names in TARGET_FILES, skipping the folders in IGNORE_FOLDERS
-    and anything nested deeper than one level.
-    """
-    found = []
-
-    root_resume = root / 'resume.html'
-    if root_resume.is_file():
-        found.append(root_resume)
-
-    for entry in sorted(root.iterdir()):
-        if not entry.is_dir() or entry.name in IGNORE_FOLDERS:
-            continue
-        for target in TARGET_FILES:
-            candidate = entry / target
-            if candidate.is_file():
-                found.append(candidate)
-
-    return found
+def locked_page(browser):
+    """A page that renders the local HTML and nothing else: no JavaScript, and
+    every request that isn't a local file is refused. The template needs
+    neither."""
+    context = browser.new_context(java_script_enabled=False)
+    context.route('**/*', lambda route: route.continue_()
+                  if route.request.url.startswith('file:') else route.abort())
+    return context.new_page()
 
 
 def render_at_scale(page, pdf_path: Path, scale: float):
@@ -115,8 +98,7 @@ def convert_html_to_pdf(html_path: Path, pdf_path: Path) -> float:
     with sync_playwright() as p:
         browser = p.chromium.launch()
         try:
-            context = browser.new_context()
-            page = context.new_page()
+            page = locked_page(browser)
             scale = render_single_page_pdf(page, html_path, pdf_path)
             return scale
         finally:
@@ -124,54 +106,13 @@ def convert_html_to_pdf(html_path: Path, pdf_path: Path) -> float:
 
 
 def main():
-    print("\n--- PDF GENERATOR ---")
-
-    html_files = find_html_files(RESUME_GEN_DIR)
-    if not html_files:
-        print(f"No resume.html or cover_letter.html files found under {RESUME_GEN_DIR}")
+    """Print public/resume.html (written by generate_resume.py) to public/resume.pdf."""
+    html = PUBLIC_DIR / 'resume.html'
+    if not html.is_file():
+        print(f"{html} not found. Run generate_resume.py first.")
         return
-
-    print(f"Found {len(html_files)} HTML file(s) to convert.\n")
-    with open(RESUME_GEN_DIR.parent.parent / 'src' / 'lib' / 'resume_data.json',
-              encoding='utf-8') as f:
-        candidate_name = json.load(f)['name']
-
-    successes = []
-    failures = []
-
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
-        try:
-            context = browser.new_context()
-            page = context.new_page()
-
-            for html in html_files:
-                rel = html.relative_to(RESUME_GEN_DIR)
-                if html.name == 'resume.html':
-                    pdf_path = html.parent / f"{candidate_name} - Resume.pdf"
-                elif html.name == 'cover_letter.html':
-                    pdf_path = html.parent / f"{candidate_name} - Cover Letter.pdf"
-                else:
-                    pdf_path = html.with_suffix('.pdf')
-
-                try:
-                    scale = render_single_page_pdf(page, html, pdf_path)
-                    print(f"  OK  {rel} -> {pdf_path.name}  (scale={scale:.3f})")
-                    successes.append(rel)
-                except Exception as e:
-                    print(f"  FAIL {rel}: {e}")
-                    traceback.print_exc()
-                    failures.append((rel, str(e)))
-        finally:
-            browser.close()
-
-    print("\n--- PDF CONVERSION SUMMARY ---")
-    print(f"Succeeded: {len(successes)} | Failed: {len(failures)}")
-    for rel in successes:
-        print(f"  [OK]    {rel}")
-    for rel, err in failures:
-        print(f"  [ERROR] {rel}: {err}")
-    print("-" * 30)
+    scale = convert_html_to_pdf(html, PUBLIC_DIR / 'resume.pdf')
+    print(f"Saved resume.pdf (scale={scale:.3f})")
 
 
 if __name__ == "__main__":

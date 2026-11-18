@@ -79,8 +79,7 @@ shaad-portfolio/
 │       │   ├── check_requirements.py  # Installs missing Python packages and Chromium
 │       │   └── requirements.txt
 │       └── templates/
-│           ├── resume_template.html
-│           └── cover_letter_template.html
+│           └── resume_template.html
 └── .github/
     ├── workflows/
     │   ├── resume.yml           # Rebuilds the resume on push
@@ -135,7 +134,7 @@ A GitHub Action builds the resume from `resume_data.json` on push, so it always 
 
 `generate_pdf.py` prints to A4 in headless Chromium. If the content runs past one page, it searches for the largest print scale that fits on one page. It never scales above 100%, so you don't have to adjust margins or font sizes when the content grows.
 
-The PDF has working links. Each project title links to `<websiteUrl>/projects/<url>`, or straight to `url` if that's already a full `http(s)://` address. Only the title is linked, with no URL printed beside it, so resume parsers see the same text either way. The LinkedIn, website and email lines in the header are links too, with `mailto:` for email. Links are blue on screen and print as normal text in black and white. The cover letter template links the same contact lines in its header and signature, and anywhere they appear in the letter body.
+The PDF has working links. Each project title links to `<websiteUrl>/projects/<url>`, or straight to `url` if that's already a full `http(s)://` address. Only the title is linked, with no URL printed beside it, so resume parsers see the same text either way. The LinkedIn, website and email lines in the header are links too, with `mailto:` for email. Links are blue on screen and print as normal text in black and white.
 
 ### Deployment
 
@@ -151,7 +150,7 @@ python public/resume_gen/scripts/generate_resume.py
 
 There's no need to commit the output, since the Action rebuilds it. Each script first runs [check_requirements.py](public/resume_gen/scripts/check_requirements.py), which installs anything missing from [requirements.txt](public/resume_gen/scripts/requirements.txt) and downloads Playwright's Chromium if Playwright was just installed.
 
-`generate_pdf.py` also works on its own. It converts every `resume.html` or `cover_letter.html` it finds in `public/resume_gen/` and the folders directly inside it. The cover letter layout is [cover_letter_template.html](public/resume_gen/templates/cover_letter_template.html).
+`generate_pdf.py` also works on its own: it prints `public/resume.html` to `public/resume.pdf`.
 
 ## GitHub profile README
 
