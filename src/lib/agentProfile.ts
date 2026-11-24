@@ -1,5 +1,6 @@
 import resumeData from "./resume_data.json";
 import { data as projectDetail } from "./projectId";
+import { testimonials } from "./Data";
 import { getImgCount } from "./images";
 import { SITE_URL, abs, toDateRange, toISODate } from "./siteUrl";
 
@@ -98,7 +99,7 @@ export const projects = resumeData.projects.map((proj) => {
   };
 });
 
-export const stats = resumeData.testimonials.map((t) => ({
+export const stats = testimonials.map((t) => ({
   label: t.label,
   value: t.count,
 }));

@@ -18,7 +18,8 @@ import traceback
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 RESUME_GEN_DIR = os.path.dirname(SCRIPT_DIR)
-PUBLIC_DIR = os.path.dirname(RESUME_GEN_DIR)
+REPO_ROOT = os.path.dirname(RESUME_GEN_DIR)
+PUBLIC_DIR = os.path.join(REPO_ROOT, 'public')
 OUTPUT_HTML = os.path.join(PUBLIC_DIR, 'resume.html')
 TEMPLATE_PATH = os.path.join(RESUME_GEN_DIR, 'templates', 'resume_template.html')
 
@@ -329,7 +330,7 @@ def clean_data(data):
 
 def load_base_data():
     """The resume from src/lib/resume_data.json, shaped for rendering."""
-    JSON_PATH = os.path.join(os.path.dirname(os.path.dirname(RESUME_GEN_DIR)), 'src', 'lib', 'resume_data.json')
+    JSON_PATH = os.path.join(REPO_ROOT, 'src', 'lib', 'resume_data.json')
     with open(JSON_PATH, 'r', encoding='utf-8') as f:
         resume_data = json.load(f)
 
@@ -366,8 +367,7 @@ def main():
         with open(OUTPUT_HTML, 'w', encoding='utf-8') as f:
             f.write(html)
         
-        repo_root = os.path.dirname(PUBLIC_DIR)
-        rel = lambda p: os.path.relpath(p, repo_root).replace('\\', '/')
+        rel = lambda p: os.path.relpath(p, REPO_ROOT).replace('\\', '/')
         print(f"Success! HTML saved to {rel(OUTPUT_HTML)}")
         # Automatically convert compiled HTML to PDF
         try:

@@ -23,7 +23,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-SCRIPTS = ROOT / 'public' / 'resume_gen' / 'scripts'
+SCRIPTS = ROOT / 'resume_gen' / 'scripts'
 STORED = ROOT / '.github' / 'resume-fingerprint'
 
 

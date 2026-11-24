@@ -14,7 +14,7 @@ export const dynamic = "force-static";
 
 /**
  * /llms.txt — the llmstxt.org convention: one Markdown document holding
- * everything an agent would otherwise have to scrape across five client-rendered
+ * everything an agent would otherwise have to scrape across several
  * pages. Generated from resume_data.json + projectId.ts on every build.
  */
 
@@ -38,9 +38,9 @@ const buildDoc = () => {
   push();
   push(
     "This file is a machine-readable summary of this portfolio, intended for AI agents, " +
-      "recruiter tooling, and search crawlers. The website itself is client-rendered, so " +
-      "prefer this document (or the JSON endpoints listed under Structured Data) over " +
-      "scraping the HTML."
+      "recruiter tooling, and search crawlers. The pages are server-rendered HTML, but this " +
+      "document (or the JSON endpoints listed under Structured Data) collects everything in " +
+      "one place, so prefer it over scraping several pages."
   );
   push();
 
@@ -167,6 +167,7 @@ const buildDoc = () => {
   push(`- Projects only, as JSON: ${abs("/api/projects.json")}`);
   push(`- JSON Resume schema: ${abs("/api/resume.json")}`);
   push(`- Sitemap: ${abs("/sitemap.xml")}`);
+  push(`- Privacy policy: ${abs("/privacy")}`);
   push(
     `- Schema.org Person JSON-LD is embedded in the \`<head>\` of every page.`
   );

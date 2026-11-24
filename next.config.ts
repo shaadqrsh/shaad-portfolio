@@ -19,8 +19,7 @@ const readImages = () => {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       const full = path.join(dir, entry.name);
       if (entry.isDirectory()) {
-        // The resume generator's assets aren't served as site images.
-        if (entry.name !== "resume_gen") walk(full);
+        walk(full);
         continue;
       }
       if (!IMAGE_EXT.test(entry.name)) continue;
@@ -57,7 +56,7 @@ const ogVersion = () => {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
       const full = path.join(dir, entry.name);
       if (entry.isDirectory()) {
-        if (entry.name !== "resume_gen") walk(full);
+        walk(full);
         continue;
       }
       hash.update(path.relative(process.cwd(), full).split(path.sep).join("/"));
@@ -69,10 +68,60 @@ const ogVersion = () => {
   return hash.digest("hex").slice(0, 10);
 };
 
+// Content Security Policy. Everything the site loads is its own, apart from
+// the YouTube player. Scripts keep 'unsafe-inline' because Next writes each
+// page's data into inline <script> tags, and the nonce alternative would turn
+// every pre-rendered page into a per-request render. The site takes no visitor
+// input, so there's nothing to inject. Dev mode needs eval for React's
+// debugging tools, and Vercel preview builds load the feedback toolbar.
+const isDev = process.env.NODE_ENV !== "production";
+const isPreview = process.env.VERCEL_ENV === "preview";
+const vercelLive = isPreview ? " https://vercel.live" : "";
+const csp = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}${vercelLive}`,
+  "style-src 'self' 'unsafe-inline'",
+  // i.ytimg.com: once a video plays, the player sets its thumbnail as the
+  // artwork for the system media controls, which loads under this page's policy.
+  `img-src 'self' data: blob: https://i.ytimg.com${vercelLive}`,
+  "font-src 'self'",
+  `connect-src 'self'${vercelLive}${isPreview ? " wss://ws-us3.pusher.com" : ""}`,
+  `frame-src https://www.youtube-nocookie.com${vercelLive}`,
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'none'",
+].join("; ");
+
+const securityHeaders = [
+  { key: "Content-Security-Policy", value: csp },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  // Turns off features the site never uses. The YouTube player's own
+  // permissions (autoplay, fullscreen and so on) are left alone.
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()" },
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+];
+
 const nextConfig: NextConfig = {
+  async headers() {
+    return [{ source: "/:path*", headers: securityHeaders }];
+  },
   env: {
     NEXT_PUBLIC_IMAGES: JSON.stringify(readImages()),
     OG_VERSION: ogVersion(),
+  },
+  // YouTube thumbnails go through the image optimizer, so the server fetches
+  // them from Google and visitors' browsers never contact i.ytimg.com.
+  images: {
+    remotePatterns: [{ protocol: "https", hostname: "i.ytimg.com", pathname: "/vi/**" }],
+  },
+  // The site starts at /home. A server redirect sends crawlers and link
+  // previews there straight away, without loading a blank page and JavaScript
+  // first. Temporary, so browsers don't cache it if "/" ever gets a page.
+  async redirects() {
+    return [{ source: "/", destination: "/home", permanent: false }];
   },
 };
 

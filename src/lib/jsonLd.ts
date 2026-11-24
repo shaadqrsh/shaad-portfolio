@@ -11,9 +11,21 @@ import { abs } from "./siteUrl";
 import { img, projectImg } from "./images";
 
 /**
+ * JSON for a <script type="application/ld+json"> tag. Plain JSON.stringify
+ * leaves "</script>" alone, so a title containing it would end the tag early
+ * and the rest would run as HTML. Escaping "<" (and the two line separators
+ * that old JS parsers treat as newlines) keeps the JSON identical once parsed.
+ */
+export const jsonLdHtml = (data: unknown) =>
+  JSON.stringify(data)
+    .replace(/</g, "\\u003c")
+    .replace(/\u2028/g, "\\u2028")
+    .replace(/\u2029/g, "\\u2029");
+
+/**
  * Schema.org graph embedded in every page's <head>. This is what Google,
  * Bing, and most recruiter-side enrichment tools read first, and it is the
- * only structured description that survives the site being client-rendered.
+ * description most of them trust over the page text.
  */
 export const personJsonLd = () => {
   const [city, region] = profile.location.split(",").map((s) => s.trim());
@@ -80,21 +92,6 @@ export const personJsonLd = () => {
         inLanguage: "en",
       },
       {
-        // Gives search results the Home › Projects hierarchy rather than a
-        // bare URL under each listing.
-        "@type": "BreadcrumbList",
-        "@id": abs("/#breadcrumbs"),
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: abs("/home") },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Projects",
-            item: abs("/projects"),
-          },
-        ],
-      },
-      {
         "@type": "ItemList",
         "@id": abs("/projects#list"),
         name: `Projects by ${profile.fullName}`,
@@ -122,3 +119,17 @@ export const personJsonLd = () => {
     ],
   };
 };
+
+/**
+ * Breadcrumbs for a project page, Home > Projects > the project, matching the
+ * trail shown at the top of the page. Search results show it under the link.
+ */
+export const projectBreadcrumbJsonLd = (slug: string, title: string) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: abs("/home") },
+    { "@type": "ListItem", position: 2, name: "Projects", item: abs("/projects") },
+    { "@type": "ListItem", position: 3, name: title, item: abs(`/projects/${slug}`) },
+  ],
+});

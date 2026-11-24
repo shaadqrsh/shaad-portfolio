@@ -1,17 +1,6 @@
-import type { Metadata } from "next";
-import { keywords, profile } from "@/lib/agentProfile";
+import { metaFor } from "@/lib/pageMeta";
 
-export const metadata: Metadata = {
-    title: "Home",
-    description: profile.summary,
-    keywords: [...keywords.identity, ...keywords.roles],
-    alternates: { canonical: "/home" },
-    openGraph: {
-        title: `${profile.fullName} | ${profile.headline}`,
-        description: profile.summary,
-        url: "/home",
-    },
-};
+export const metadata = metaFor("/home");
 
 export default function HomeLayout({
     children,

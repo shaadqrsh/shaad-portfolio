@@ -45,9 +45,9 @@ next-env.d.ts
 
 # Resume build output (resume.pdf and resume.png are committed by the Action)
 /public/resume.html
-/public/resume_gen/**/resume.html
-/public/resume_gen/**/cover_letter.html
-/public/resume_gen/**/*.pdf
+/resume_gen/**/resume.html
+/resume_gen/**/cover_letter.html
+/resume_gen/**/*.pdf
 **/__pycache__/
 
 # GitHub profile repo (shaadqrsh/shaadqrsh), its own nested git repo

@@ -24,7 +24,7 @@ except ImportError:
     sys.exit(1)
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-PUBLIC_DIR = SCRIPT_DIR.parent.parent
+PUBLIC_DIR = SCRIPT_DIR.parent.parent / 'public'
 
 # Playwright scale bounds
 MIN_SCALE = 0.1

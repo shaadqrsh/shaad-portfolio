@@ -4,6 +4,7 @@ import { ImageResponse } from "next/og";
 import type { ReactElement, ReactNode } from "react";
 import { profile } from "./agentProfile";
 import { BLOB_RING_1, BLOB_RING_2, BLOB_SHAPE } from "./blob";
+import { testimonials } from "./Data";
 import { dateKey, formatDate } from "./dates";
 import { LOGO_DATA_URI } from "./og-logo";
 import { BG_DATA_URI } from "./og-bg";
@@ -41,7 +42,7 @@ const { width: W, height: H } = OG_SIZE;
 const BG = "#181429"; // --color-shaad-400, page background
 const CARD = "#201b35"; // --color-shaad-300, cards and chips inside a panel
 const PANEL = "#292342"; // --color-shaad-200, panels
-const RED = "#ec5f68"; // --color-shaad-500, accent 2
+const RED = "#ed6169"; // --color-shaad-500, accent 2
 const ACCENT = "#d84b54"; // --color-shaad-600, accent 1
 const GLOW = "#ec5f6866"; // --color-shaad-550, the home hero's glow
 const INK = "#e8e5f1"; // --color-shaad-ink, long-form text
@@ -309,7 +310,44 @@ const ToolTile = ({ icon, size = 44, background = CARD }: { icon: string; size?:
   </div>
 );
 
-const render = (card: ReactElement) => new ImageResponse(card, { ...OG_SIZE, fonts });
+/**
+ * A plain 1200x630 copy of the home card, served whenever a card fails to
+ * draw, so a share never ends up with no image. Rebuild it after a redesign
+ * by saving a fresh home card over it.
+ */
+const FALLBACK = join(process.cwd(), "src/lib/og-fallback.png");
+
+export const fallbackCard = () =>
+  new Response(readFileSync(FALLBACK), {
+    headers: { "Content-Type": OG_CONTENT_TYPE, "Cache-Control": "public, max-age=0, must-revalidate" },
+  });
+
+/**
+ * Draws a card. ImageResponse only renders once its body is read, so the body
+ * is read here, where a failure can still be caught and swapped for the fallback.
+ */
+const render = async (card: ReactElement) => {
+  try {
+    const res = new ImageResponse(card, { ...OG_SIZE, fonts });
+    const png = await res.arrayBuffer();
+    return new Response(png, { headers: res.headers });
+  } catch (err) {
+    console.warn("Preview card failed to render; serving the static fallback.", err);
+    return fallbackCard();
+  }
+};
+
+/** Wraps a card builder so a failure while gathering its data also falls back. */
+const guarded =
+  <A extends unknown[]>(build: (...args: A) => Promise<Response>) =>
+  async (...args: A) => {
+    try {
+      return await build(...args);
+    } catch (err) {
+      console.warn("Preview card failed to build; serving the static fallback.", err);
+      return fallbackCard();
+    }
+  };
 
 // ---- data ------------------------------------------------------------------
 
@@ -331,7 +369,7 @@ const baseOf = (path: string) => path.replace(/^\//, "").replace(/\.\w+$/, "");
  * Home, and the site-wide default: the intro panel beside the photo blob, as
  * on the home page. The one card allowed the red glow.
  */
-export const homeCard = async () => {
+export const homeCard = guarded(async () => {
   const blob = await blobImage();
   return render(
     <Canvas>
@@ -344,7 +382,7 @@ export const homeCard = async () => {
         </div>
         <Footer>
           <div style={{ display: "flex", gap: 36 }}>
-            {resumeData.testimonials.slice(0, 4).map((t) => (
+            {testimonials.slice(0, 4).map((t) => (
               <Fact key={t.label} label={t.label} value={t.count} />
             ))}
           </div>
@@ -363,10 +401,10 @@ export const homeCard = async () => {
       ) : null}
     </Canvas>
   );
-};
+});
 
 /** About: the bio panel beside a 3x3 wall of the tools listed first in Skills. */
-export const aboutCard = async () => {
+export const aboutCard = guarded(async () => {
   const tools = Array.from(new Set([...resumeData.skills.top3, ...resumeData.skills.main].map((s) => s.icon)))
     .map(skillIcon)
     .filter((i): i is string => !!i)
@@ -392,10 +430,10 @@ export const aboutCard = async () => {
       </div>
     </Canvas>
   );
-};
+});
 
 /** Projects: like the home page's Featured Projects section, with a count pill. */
-export const projectsCard = async () => {
+export const projectsCard = guarded(async () => {
   const featured = featuredProjects.slice(0, 3);
   const covers = await Promise.all(featured.map((p) => publicImage(`project_${p.url}/cover`, 608, { h: 400, radius: 20 })));
   return render(
@@ -426,14 +464,14 @@ export const projectsCard = async () => {
       </div>
     </Canvas>
   );
-};
+});
 
 /**
  * Resume: what I'm doing now and what I shipped last, as two cards, on the
  * resume page itself, blurred and dimmed. Both come from resume_data.json, so
  * the card keeps up without edits.
  */
-export const resumeCard = async () => {
+export const resumeCard = guarded(async () => {
   const [paper, org, cover] = await Promise.all([
     publicImage("resume", W, { h: H, crop: { top: 0.05, height: 0.6 }, blur: 6, brightness: 0.35 }),
     publicImage(baseOf(currentRole.image), 192, { h: 192, fit: "contain", background: "#ffffff", radius: 24 }),
@@ -474,7 +512,7 @@ export const resumeCard = async () => {
       </div>
     </Canvas>
   );
-};
+});
 
 /**
  * A project: its cover fills the card, as on the project page, darkened on
@@ -482,7 +520,7 @@ export const resumeCard = async () => {
  * summary, the release date and the tech tiles. Falls back to the home card
  * for an unknown slug.
  */
-export const projectCard = async (slug: string) => {
+export const projectCard = guarded(async (slug: string) => {
   const proj = resumeData.projects.find((p) => p.url === slug);
   if (!proj) return homeCard();
   const [cover, icon] = await Promise.all([
@@ -530,4 +568,4 @@ export const projectCard = async (slug: string) => {
       </div>
     </Canvas>
   );
-};
+});

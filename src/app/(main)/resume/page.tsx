@@ -1,24 +1,9 @@
-import type { Metadata } from "next";
 import fs from "fs";
 import path from "path";
-import { keywords, profile } from "@/lib/agentProfile";
+import { metaFor } from "@/lib/pageMeta";
 import ResumeView from "./ResumeView";
 
-const description =
-    `Resume of ${profile.fullName}, ${profile.headline} based in ` +
-    `${profile.location}. Download as PDF.`;
-
-export const metadata: Metadata = {
-    title: "Resume",
-    description,
-    keywords: [
-        ...keywords.identity.map((k) => `${k} resume`),
-        ...keywords.roles,
-        ...keywords.skills,
-    ],
-    alternates: { canonical: "/resume" },
-    openGraph: { title: `Resume | ${profile.fullName}`, description, url: "/resume" },
-};
+export const metadata = metaFor("/resume");
 
 // Built once, so the PDF is read at build time.
 export const dynamic = "force-static";

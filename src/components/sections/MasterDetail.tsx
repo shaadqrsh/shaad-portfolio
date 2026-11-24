@@ -54,15 +54,15 @@ const MasterDetail = ({ label, items, selected, onSelect, detail }: MasterDetail
                 // curve that starts moving at once. Text used to switch instantly while
                 // the background faded, so the old item showed red text on red for a few frames.
                 "transition-[background-color,box-shadow] duration-200 ease-out [&_*]:transition-colors [&_*]:duration-200 [&_*]:ease-out",
-                on ? "bg-shaad-600" : "bg-shaad-300 hover:bg-shaad-tint hover:shadow-xl"
+                on ? "bg-shaad-fill" : "bg-shaad-300 hover:bg-shaad-tint hover:shadow-xl"
               )}
             >
               {item.logo}
               <span className="flex min-w-0 flex-col gap-1">
                 <strong className={cn("leading-tight font-semibold text-white", !on && "group-hover:text-shaad-500")}>{item.title}</strong>
                 <span className="flex items-baseline justify-between gap-3">
-                  <span className={cn("min-w-0 truncate text-sm", on ? "text-[#ffe3e5] [&_.result]:text-[#ffe3e5]" : "text-shaad-ink-2")}>{item.sub}</span>
-                  <span className={cn(labelClass, "shrink-0 text-[11.5px] whitespace-nowrap", on && "text-[#ffe3e5]")}>{item.side}</span>
+                  <span className={cn("min-w-0 truncate text-sm", on ? "text-white [&_.result]:text-white" : "text-shaad-ink-2")}>{item.sub}</span>
+                  <span className={cn(labelClass, "shrink-0 text-[11.5px] whitespace-nowrap", on && "text-white")}>{item.side}</span>
                 </span>
               </span>
             </button>

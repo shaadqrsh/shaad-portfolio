@@ -32,6 +32,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [navHeight, setNavHeight] = useState(0);
   const navRef = useRef<HTMLElement>(null);
+  const menuButton = useRef<HTMLButtonElement>(null);
 
   // The phone menu opens just under the navbar, so track the navbar's height.
   useEffect(() => {
@@ -41,6 +42,18 @@ const Navbar = () => {
     observer.observe(nav);
     return () => observer.disconnect();
   }, []);
+
+  // Escape closes the phone menu and puts focus back on the menu button.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      menuButton.current?.focus();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
 
   // The tab you just clicked. The pill moves to it straight away, while the
   // old page fades out, and the route catches up a moment later.
@@ -78,14 +91,14 @@ const Navbar = () => {
             <span
               ref={pillRef}
               aria-hidden
-              className="absolute top-[5px] bottom-[5px] left-0 rounded-full bg-shaad-600 opacity-0 shadow-md group-data-[ready]:opacity-100"
+              className="absolute top-[5px] bottom-[5px] left-0 rounded-full bg-shaad-fill opacity-0 shadow-md group-data-[ready]:opacity-100"
             />
             {pages.map(({ label, link, icon: Icon }) => {
               const active = isActive(current, link);
               return (
                 <li key={link} data-pill-key={link} className="relative">
                   {active && (
-                    <span aria-hidden className="absolute inset-0 rounded-full bg-shaad-600 shadow-md group-data-[ready]:hidden" />
+                    <span aria-hidden className="absolute inset-0 rounded-full bg-shaad-fill shadow-md group-data-[ready]:hidden" />
                   )}
                   <TransitionLink
                     href={link}
@@ -107,6 +120,7 @@ const Navbar = () => {
           <Socials className="justify-self-end max-[900px]:hidden" />
 
           <IconButton
+            ref={menuButton}
             label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-menu"

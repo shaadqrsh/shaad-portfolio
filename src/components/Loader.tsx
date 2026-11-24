@@ -28,6 +28,7 @@ const Loader = ({ isLoading }: LoaderProps) => {
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
+                    data-page-loader
                     className="fixed inset-0 z-50 flex items-center justify-center bg-shaad-200"
                 >
                     <Loader2 className="animate-spin text-shaad-600 w-16 h-16" />

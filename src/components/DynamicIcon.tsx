@@ -1,45 +1,39 @@
 "use client";
 
 import { Code } from "lucide-react";
-import * as LucideIcons from "lucide-react";
 import Image from "next/image";
-import { ComponentType, useState } from "react";
+import { useState } from "react";
 
 interface DynamicIconProps {
     name: string;
     className?: string;
 }
 
+/**
+ * An icon image named in the data, such as "icon_unity.svg" (looked up in
+ * /skills) or a full path like "/jams/icon_gmtk.png". Falls back to a code
+ * icon if the file is missing. This used to accept any Lucide icon name too,
+ * but that meant importing all of Lucide, about 170 KB gzipped on every page,
+ * and no data entry used it. To use a Lucide icon in the data, add an SVG
+ * file instead.
+ */
 const DynamicIcon = ({ name, className = "" }: DynamicIconProps) => {
     const [imgError, setImgError] = useState(false);
 
-    const lucideName = name.charAt(0).toUpperCase() + name.slice(1);
-    const IconComponent = ((LucideIcons as unknown) as Record<string, ComponentType<{ className?: string }>>)[lucideName];
+    const src = name.startsWith("/") ? name : `/skills/${name}`;
 
-    if (IconComponent) {
-        return <IconComponent className={className} />;
-    }
-
-    let src = name;
-    if (!src.startsWith("/")) {
-        src = `/skills/${src}`;
-    }
-
-    if (!imgError) {
+    // Some technologies have no logo and an empty icon name: skip straight to
+    // the fallback instead of requesting /skills/ and getting a 400.
+    if (name && !imgError) {
         return (
             <div className={`relative ${className}`}>
-                <Image
-                    src={src}
-                    alt={name}
-                    fill
-                    className="object-contain"
-                    onError={() => setImgError(true)}
-                />
+                {/* Each icon sits beside its name, so the image itself is decorative. */}
+                <Image src={src} alt="" fill className="object-contain" onError={() => setImgError(true)} />
             </div>
         );
     }
 
-    return <Code className={className} />;
+    return <Code className={className} aria-hidden />;
 };
 
 export default DynamicIcon;

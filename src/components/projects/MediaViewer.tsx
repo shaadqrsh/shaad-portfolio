@@ -4,10 +4,10 @@ import { cardArrowClass } from "@/components/ui/Card";
 import { iconButtonClass } from "@/components/ui/IconButton";
 import { cn } from "@/lib/utils";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Play, X, ZoomIn, ZoomOut } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, X, ZoomIn, ZoomOut } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   centerInScroller,
   MediaItem,
@@ -17,6 +17,7 @@ import {
   ytEmbed,
   ytThumb,
 } from "./media";
+import { PlayBadge, PreloadNeighbours } from "./MediaBits";
 import { Label } from "./Panel";
 
 const ZOOM = 1.5;
@@ -32,6 +33,8 @@ interface MediaViewerProps {
   index: number;
   onIndexChange: (i: number) => void;
   onClose: () => void;
+  /** Where keyboard focus goes once the viewer has closed: the control that opened it. */
+  returnFocusTo?: HTMLElement | null;
   imageCount: number;
   videoCount: number;
   portrait: boolean;
@@ -57,6 +60,7 @@ const MediaViewer = ({
   index,
   onIndexChange,
   onClose,
+  returnFocusTo,
   imageCount,
   videoCount,
   portrait,
@@ -120,8 +124,14 @@ const MediaViewer = ({
         <DialogPrimitive.Overlay className="fixed inset-0 z-[60] bg-shaad-void duration-[180ms] ease-out data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:animate-none" />
         <DialogPrimitive.Content
           aria-describedby={undefined}
-          // No keyboard shortcuts on this site: Esc doesn't close the viewer either.
-          onEscapeKeyDown={(e) => e.preventDefault()}
+          // Radix keeps Tab inside the viewer and closes it on Escape. Focus goes
+          // back to the control that opened it; Radix only does that itself for
+          // a Dialog.Trigger, which this has none of.
+          onCloseAutoFocus={(e) => {
+            if (!returnFocusTo?.isConnected) return;
+            e.preventDefault();
+            returnFocusTo.focus();
+          }}
           className="group fixed inset-0 z-[60] grid grid-rows-[minmax(0,1fr)_auto] overflow-hidden text-white outline-none duration-[260ms] data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:animate-none min-[900px]:grid-cols-[minmax(0,1fr)_360px] min-[900px]:grid-rows-1"
         >
           <DialogPrimitive.Title className="sr-only">{title} media viewer</DialogPrimitive.Title>
@@ -210,7 +220,7 @@ const MediaViewer = ({
                           aria-label={`Play ${item.title}`}
                           onClick={() => !swiped.current && setPlaying(true)}
                         >
-                          <Image src={ytThumb(item.id)} alt="" fill unoptimized className="object-cover" />
+                          <Image src={ytThumb(item.id)} alt="" fill sizes="100vw" className="object-cover" />
                           <PlayBadge />
                         </button>
                       )}
@@ -290,7 +300,6 @@ const MediaViewer = ({
                         alt=""
                         fill
                         sizes="120px"
-                        unoptimized={m.kind === "video"}
                         className="object-cover"
                       />
                       {m.kind === "video" && <PlayBadge small />}
@@ -305,49 +314,5 @@ const MediaViewer = ({
     </DialogPrimitive.Root>
   );
 };
-
-/**
- * Loads the screenshots either side of the current one, at the same sizes the
- * stage asks for, in an invisible layer. By the time you swipe, the next image
- * is already downloaded, so it slides in whole instead of popping in halfway.
- */
-export const PreloadNeighbours = ({
-  items,
-  index,
-  sizes,
-  blurSizes,
-}: {
-  items: { src: string }[];
-  index: number;
-  sizes: string;
-  /** Also warm the blurred backdrop copy, which the page stage draws at a small size. */
-  blurSizes?: string;
-}) => {
-  const n = items.length;
-  if (n < 2) return null;
-  const seen = new Set([items[index]?.src]);
-  const near = [items[(index + 1) % n], items[(index - 1 + n) % n]].filter((m) => m?.src && !seen.has(m.src) && seen.add(m.src));
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 opacity-0">
-      {near.map((m) => (
-        <Fragment key={m.src}>
-          <Image src={m.src} alt="" fill sizes={sizes} loading="eager" className="object-contain" />
-          {blurSizes && <Image src={m.src} alt="" fill sizes={blurSizes} loading="eager" className="object-cover" />}
-        </Fragment>
-      ))}
-    </div>
-  );
-};
-
-export const PlayBadge = ({ small }: { small?: boolean }) => (
-  <span
-    className={cn(
-      "absolute left-1/2 top-1/2 grid -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-shaad-600 shadow-[0_8px_24px_#0009] transition-transform group-hover/play:scale-110",
-      small ? "size-[26px]" : "size-[68px]"
-    )}
-  >
-    <Play className={cn("fill-current text-white", small ? "ml-px size-3" : "ml-1 size-7")} />
-  </span>
-);
 
 export default MediaViewer;

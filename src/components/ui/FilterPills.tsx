@@ -34,7 +34,7 @@ const FilterPills = <K extends string>({
       <span
         ref={pillRef}
         aria-hidden
-        className="absolute top-1 bottom-1 left-0 rounded-full bg-shaad-600 opacity-0 shadow-md group-data-[ready]:opacity-100"
+        className="absolute top-1 bottom-1 left-0 rounded-full bg-shaad-fill opacity-0 shadow-md group-data-[ready]:opacity-100"
       />
       {options.map((o) => {
         const on = o.key === value;
@@ -50,10 +50,10 @@ const FilterPills = <K extends string>({
               on ? "text-white" : "text-shaad-ink-2 hover:bg-shaad-tint hover:text-shaad-500"
             )}
           >
-            {on && <span aria-hidden className="absolute inset-0 rounded-full bg-shaad-600 shadow-md group-data-[ready]:hidden" />}
+            {on && <span aria-hidden className="absolute inset-0 rounded-full bg-shaad-fill shadow-md group-data-[ready]:hidden" />}
             <span className="relative">
               {o.label}
-              {o.count != null && <span className="ml-1.5 tabular-nums opacity-75">{o.count}</span>}
+              {o.count != null && <span className="ml-1.5 tabular-nums">{o.count}</span>}
             </span>
           </button>
         );

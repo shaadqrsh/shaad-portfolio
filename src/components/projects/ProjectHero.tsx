@@ -3,6 +3,8 @@ import Button from "@/components/ui/button";
 import { linkIcon } from "@/components/projects/LinkIcon";
 import { projectImg } from "@/lib/images";
 import { projectData } from "@/types";
+import { TransitionLink } from "@/components/PageTransition";
+import { ChevronRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 
@@ -33,6 +35,27 @@ const ProjectHero = ({ project, url, summary, onCoverLoad, enableAnimation = tru
       aria-hidden
       className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_30%,rgb(24_20_41/0.8)_72%,var(--color-shaad-400))]"
     />
+
+    {/* Breadcrumb trail. A solid pill like the viewer's "1 of 8" counter, so
+        it reads the same over any cover image. */}
+    <nav aria-label="Breadcrumb" className="absolute top-5 left-6 z-10 max-w-[calc(100%-48px)] max-sm:top-4 max-sm:left-4 max-sm:max-w-[calc(100%-32px)]">
+      <ol className="flex min-w-0 items-center gap-1.5 rounded-full bg-shaad-300 px-3.5 py-2 text-sm font-semibold text-shaad-ink-2 shadow-md">
+        {[
+          { label: "Home", href: "/home" },
+          { label: "Projects", href: "/projects" },
+        ].map((c) => (
+          <li key={c.href} className="flex shrink-0 items-center gap-1.5">
+            <TransitionLink href={c.href} className="transition-colors hover:text-shaad-500">
+              {c.label}
+            </TransitionLink>
+            <ChevronRight className="size-3.5 text-shaad-ink-3" aria-hidden />
+          </li>
+        ))}
+        <li aria-current="page" className="min-w-0 truncate text-white">
+          {project.title}
+        </li>
+      </ol>
+    </nav>
 
     <div className="relative flex w-full justify-center px-4 pb-10 pt-[84px] max-sm:pb-5 max-sm:pt-[72px]">
       {/* The card is the animated element itself. Fading a wrapper around it

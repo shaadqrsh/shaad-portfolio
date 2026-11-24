@@ -36,9 +36,12 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
+      # This repo is only read, so leave no token in its git config for the
+      # profile repo's script to find.
       - uses: actions/checkout@v4
         with:
           ref: main
+          persist-credentials: false
 
       - uses: actions/checkout@v4
         with:

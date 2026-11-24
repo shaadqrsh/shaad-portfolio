@@ -8,7 +8,7 @@ import React from "react";
  * elements.
  */
 export const iconButtonClass =
-  "grid size-10 shrink-0 cursor-pointer place-items-center rounded-full bg-shaad-600 text-white shadow-md transition duration-150 hover:scale-108 hover:bg-shaad-500 [&_svg]:size-[18px]";
+  "grid size-10 shrink-0 cursor-pointer place-items-center rounded-full bg-shaad-fill text-white shadow-md transition duration-150 hover:scale-108 hover:bg-shaad-fill-hover [&_svg]:size-[18px]";
 
 /** Smaller variant for buttons that sit inside a field, like the copy button next to an email. */
 export const iconButtonSmClass = "size-8 [&_svg]:size-4";

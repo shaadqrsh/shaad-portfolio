@@ -58,7 +58,7 @@ jobs:
       - name: Install Python requirements
         if: steps.check.outputs.stale == 'true'
         run: |
-          pip install -r public/resume_gen/scripts/requirements.txt
+          pip install -r resume_gen/scripts/requirements.txt
           python -m playwright install --with-deps chromium
 
       # generate_resume.py only warns when the PDF step fails, so delete the old
@@ -67,7 +67,7 @@ jobs:
         if: steps.check.outputs.stale == 'true'
         run: |
           rm -f public/resume.pdf public/resume.png
-          python public/resume_gen/scripts/generate_resume.py
+          python resume_gen/scripts/generate_resume.py
           test -f public/resume.pdf
           test -f public/resume.png
           python .github/scripts/resume_fingerprint.py --write

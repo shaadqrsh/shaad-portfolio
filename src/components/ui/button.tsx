@@ -3,11 +3,11 @@ import { cva, type VariantProps } from "class-variance-authority";
 import React from "react";
 
 const buttonVariants = cva(
-  "flex items-center justify-center gap-2 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "flex items-center justify-center gap-2 rounded-full transition-all disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-shaad-600 text-white hover:scale-104 hover:bg-shaad-500",
+        default: "bg-shaad-fill text-white hover:scale-104 hover:bg-shaad-fill-hover",
         // The same red at low strength with red text, for the second action.
         tinted: "bg-shaad-600/16 text-shaad-rose hover:scale-104 hover:bg-shaad-500/26 hover:text-shaad-rose-2",
         ghost: "hover:bg-accent hover:text-accent-foreground",

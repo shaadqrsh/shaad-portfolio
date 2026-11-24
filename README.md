@@ -71,15 +71,15 @@ shaad-portfolio/
 │   ├── project_<url>/           # cover, icon, img_1 ... img_N for each project
 │   ├── jams/, skills/, about/   # Section icons and images
 │   ├── resume.pdf               # Generated resume
-│   ├── resume.png               # Generated preview image for /resume
-│   └── resume_gen/
-│       ├── scripts/
-│       │   ├── generate_resume.py     # resume_data.json to resume.html, resume.pdf and resume.png
-│       │   ├── generate_pdf.py        # HTML to a one-page A4 PDF in headless Chromium
-│       │   ├── check_requirements.py  # Installs missing Python packages and Chromium
-│       │   └── requirements.txt
-│       └── templates/
-│           └── resume_template.html
+│   └── resume.png               # Generated preview image for /resume
+├── resume_gen/                  # Kept out of public/ so the site doesn't serve it
+│   ├── scripts/
+│   │   ├── generate_resume.py     # resume_data.json to resume.html, resume.pdf and resume.png
+│   │   ├── generate_pdf.py        # HTML to a one-page A4 PDF in headless Chromium
+│   │   ├── check_requirements.py  # Installs missing Python packages and Chromium
+│   │   └── requirements.txt
+│   └── templates/
+│       └── resume_template.html
 └── .github/
     ├── workflows/
     │   ├── resume.yml           # Rebuilds the resume on push
@@ -109,7 +109,7 @@ Then push. `/projects` sorts by `date`, and the project's position in the array 
 
 Give a project a `featured` number to rank it, lowest first. The home page shows the top three.
 
-The resume shows `RESUME_COUNTS['projects']` projects (set at the top of the script), chosen by `resume_projects` in [generate_resume.py](public/resume_gen/scripts/generate_resume.py). When more projects are featured than that, it takes the newest featured ones and lists them in `featured` order. When fewer are featured, it lists all of them and fills the rest with the newest unfeatured projects.
+The resume shows `RESUME_COUNTS['projects']` projects (set at the top of the script), chosen by `resume_projects` in [generate_resume.py](resume_gen/scripts/generate_resume.py). When more projects are featured than that, it takes the newest featured ones and lists them in `featured` order. When fewer are featured, it lists all of them and fills the rest with the newest unfeatured projects.
 
 ### Jams
 
@@ -125,11 +125,11 @@ A GitHub Action builds the resume from `resume_data.json` on push, so it always 
 
 ### Build
 
-[generate_resume.py](public/resume_gen/scripts/generate_resume.py) runs in four steps:
+[generate_resume.py](resume_gen/scripts/generate_resume.py) runs in four steps:
 
 1. Load `resume_data.json` and reshape it for the resume. Icons and images are dropped, LinkedIn, website and email become the contact links, skills are grouped by category, and projects are chosen as described in [Featured projects](#featured-projects).
-2. Fill in [resume_template.html](public/resume_gen/templates/resume_template.html) and write `public/resume.html`.
-3. Print that HTML to `public/resume.pdf` with [generate_pdf.py](public/resume_gen/scripts/generate_pdf.py). The site serves it at `/resume.pdf`, and the download button saves it as `{name} - Resume.pdf`.
+2. Fill in [resume_template.html](resume_gen/templates/resume_template.html) and write `public/resume.html`.
+3. Print that HTML to `public/resume.pdf` with [generate_pdf.py](resume_gen/scripts/generate_pdf.py). The site serves it at `/resume.pdf`, and the download button saves it as `{name} - Resume.pdf`.
 4. Render the PDF to `public/resume.png` at 250 dpi with PyMuPDF, for the preview on `/resume`. The "last updated" date on that page is the PDF's creation date.
 
 `generate_pdf.py` prints to A4 in headless Chromium. If the content runs past one page, it searches for the largest print scale that fits on one page. It never scales above 100%, so you don't have to adjust margins or font sizes when the content grows.
@@ -145,10 +145,10 @@ Vercel runs the same script as its ignored build step. When a push changes the r
 ### Building locally
 
 ```bash
-python public/resume_gen/scripts/generate_resume.py
+python resume_gen/scripts/generate_resume.py
 ```
 
-There's no need to commit the output, since the Action rebuilds it. Each script first runs [check_requirements.py](public/resume_gen/scripts/check_requirements.py), which installs anything missing from [requirements.txt](public/resume_gen/scripts/requirements.txt) and downloads Playwright's Chromium if Playwright was just installed.
+There's no need to commit the output, since the Action rebuilds it. Each script first runs [check_requirements.py](resume_gen/scripts/check_requirements.py), which installs anything missing from [requirements.txt](resume_gen/scripts/requirements.txt) and downloads Playwright's Chromium if Playwright was just installed.
 
 `generate_pdf.py` also works on its own: it prints `public/resume.html` to `public/resume.pdf`.
 
@@ -160,7 +160,7 @@ The generator, its template and the hand-written project blurbs live in the prof
 
 ## Machine-readable data
 
-The pages render on the client, so the content is also published in formats that recruiters' tools, crawlers and AI agents can read without scraping HTML:
+The pages are server-rendered, and the content is also published in formats that recruiters' tools, crawlers and AI agents can read without scraping HTML:
 
 - `/llms.txt`: the whole portfolio as one Markdown file, following [llmstxt.org](https://llmstxt.org)
 - `/api/profile.json`: the full profile
@@ -170,6 +170,19 @@ The pages render on the client, so the content is also published in formats that
 - `/sitemap.xml` and `/robots.txt`, with the major AI crawlers explicitly allowed
 
 They're all generated statically from [agentProfile.ts](src/lib/agentProfile.ts).
+
+Every page's title, description and preview text sits in one table in [pageMeta.ts](src/lib/pageMeta.ts), and each layout reads its entry from there.
+
+## Policies
+
+`/privacy`, `/cookies` and `/credits` are static pages linked from the footer. They read the operator's name, region and email, and the list of outside services, from [site.ts](src/lib/site.ts). Update `POLICY_DATE` there when the text changes. The site sets no cookies or browser storage, so it has no cookie banner. If something optional is ever stored, it needs an accept/reject prompt and a row in the cookie table. Font licenses are in [public/licenses](public/licenses) and next to the preview card fonts in `src/lib/og-fonts`. The footer's copyright runs from `SITE_START_YEAR` (2025, the repo's first commit) to the current year.
+
+## Pages, icons and previews
+
+- 404s use the same navbar and footer. [not-found.tsx](src/app/not-found.tsx) handles addresses that match no route. [(main)/not-found.tsx](src/app/(main)/not-found.tsx) handles unknown project slugs, inside the site layout. Both show [NotFoundContent](src/components/NotFoundContent.tsx).
+- Project pages show a Home > Projects > project breadcrumb, with matching `BreadcrumbList` JSON-LD.
+- Icons: `icon.svg`, `favicon.ico`, `icon-32.png`, `icon-192.png`, `icon-512.png`, a full-bleed `icon-maskable-512.png` and `apple-icon.png`, all listed in [manifest.ts](src/app/manifest.ts). The PNGs are rendered from `icon.svg` with sharp. Redo them if the logo changes.
+- Every public page has a 1200x630 preview card. If a card fails to draw, the route serves `src/lib/og-fallback.png`, a saved copy of the home card. Replace it after a card redesign.
 
 Absolute URLs come from [siteUrl.ts](src/lib/siteUrl.ts), which uses the first of `NEXT_PUBLIC_SITE_URL`, `websiteUrl` in `resume_data.json`, Vercel's production domain, and the per-deployment Vercel URL. The per-deployment URL is last because it sits behind Vercel's login, which breaks social preview images.
 

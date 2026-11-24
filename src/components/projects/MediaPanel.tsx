@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { projectData } from "@/types";
 import { ChevronLeft, ChevronRight, Expand } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -18,8 +19,13 @@ import {
   youtubeId,
   ytThumb,
 } from "./media";
-import MediaViewer, { PlayBadge, PreloadNeighbours } from "./MediaViewer";
+import { PlayBadge, PreloadNeighbours } from "./MediaBits";
 import { Panel } from "./Panel";
+
+// The full-screen viewer and the dialog library it uses load in their own
+// chunk, so they stay out of the page's first download. See the warm-up below.
+const loadViewer = () => import("./MediaViewer");
+const MediaViewer = dynamic(loadViewer, { ssr: false });
 
 // The site's shared solid red icon button; the arrows are a little larger.
 const navBtn = cn(iconButtonClass, "absolute top-1/2 z-10 size-11 -translate-y-1/2 max-sm:size-9 [&_svg]:size-[22px]");
@@ -77,10 +83,27 @@ const MediaPanel = ({ project, url }: { project: projectData; url: string }) => 
     setShot(target);
   };
   const { handlers, swiped } = useSwipe((d) => goShot(shot + d, d), tab !== "shots" || imageCount < 2);
+  // The viewer mounts the first time it opens and then stays, so it can play its close animation.
+  const [viewerUsed, setViewerUsed] = useState(false);
+  // The control that opened the viewer, so focus can go back to it on close.
+  const [opener, setOpener] = useState<HTMLElement | null>(null);
   const openViewer = (i: number) => {
+    setOpener(document.activeElement instanceof HTMLElement ? document.activeElement : null);
     setViewerIndex(i);
+    setViewerUsed(true);
     setViewerOpen(true);
   };
+
+  // Fetch the viewer's chunk once the page is idle, so the first open is instant.
+  useEffect(() => {
+    const warm = () => void loadViewer();
+    if ("requestIdleCallback" in window) {
+      const id = requestIdleCallback(warm);
+      return () => cancelIdleCallback(id);
+    }
+    const id = setTimeout(warm, 1500);
+    return () => clearTimeout(id);
+  }, []);
 
   useEffect(() => {
     const active = rail.current?.querySelector<HTMLElement>("[aria-current='true']");
@@ -236,7 +259,7 @@ const MediaPanel = ({ project, url }: { project: projectData; url: string }) => 
                 aria-label={`Play ${video.title}`}
                 onClick={() => setPlaying(true)}
               >
-                <Image src={ytThumb(video.id)} alt="" fill unoptimized className="object-cover" />
+                <Image src={ytThumb(video.id)} alt="" fill sizes="(max-width: 900px) 100vw, 70vw" className="object-cover" />
                 <PlayBadge />
               </button>
             )}
@@ -261,12 +284,13 @@ const MediaPanel = ({ project, url }: { project: projectData; url: string }) => 
                     setPlaying(false);
                   }}
                   className={cn(
-                    "group/play flex w-[220px] shrink-0 cursor-pointer flex-col gap-2 rounded-xl border-2 border-transparent bg-shaad-300 p-1.5 text-left opacity-65 transition hover:opacity-100 max-sm:w-[180px]",
-                    v.n === vid && "border-shaad-600 opacity-100"
+                    "group/play flex w-[220px] shrink-0 cursor-pointer flex-col gap-2 rounded-xl border-2 border-transparent bg-shaad-300 p-1.5 text-left transition max-sm:w-[180px]",
+                    v.n === vid && "border-shaad-600"
                   )}
                 >
-                  <span className="relative block aspect-video overflow-hidden rounded-lg">
-                    <Image src={ytThumb(v.id)} alt="" fill unoptimized className="object-cover" />
+                  {/* Only the picture dims on cards not playing, so their text keeps full contrast. */}
+                  <span className={cn("relative block aspect-video overflow-hidden rounded-lg transition-opacity", v.n === vid ? "opacity-100" : "opacity-65 group-hover/play:opacity-100")}>
+                    <Image src={ytThumb(v.id)} alt="" fill sizes="220px" className="object-cover" />
                     <PlayBadge small />
                   </span>
                   <span className="line-clamp-2 px-1 text-[13px] font-semibold leading-snug">{v.title}</span>
@@ -278,17 +302,20 @@ const MediaPanel = ({ project, url }: { project: projectData; url: string }) => 
         </>
       ) : null}
 
-      <MediaViewer
-        title={project.title}
-        items={items}
-        open={viewerOpen}
-        index={viewerIndex}
-        onIndexChange={setViewerIndex}
-        onClose={() => setViewerOpen(false)}
-        imageCount={imageCount}
-        videoCount={videos.length}
-        portrait={portrait}
-      />
+      {viewerUsed && (
+        <MediaViewer
+          title={project.title}
+          items={items}
+          open={viewerOpen}
+          index={viewerIndex}
+          onIndexChange={setViewerIndex}
+          onClose={() => setViewerOpen(false)}
+          returnFocusTo={opener}
+          imageCount={imageCount}
+          videoCount={videos.length}
+          portrait={portrait}
+        />
+      )}
     </Panel>
   );
 };
