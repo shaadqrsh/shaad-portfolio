@@ -203,9 +203,9 @@ export const data: { [key: string]: projectData } = {
       { name: 'JavaScript', icon: 'icon_javascript.svg' },
       { name: 'Three.js', icon: '' },
       { name: 'Vite', icon: 'icon_vite.svg' },
+      { name: 'Web Audio API', icon: '' },
       { name: 'HTML5', icon: '' },
       { name: 'CSS', icon: '' },
-      { name: 'Web Audio API', icon: '' },
       { name: 'Claude Fable', icon: 'icon_claude.svg' },
     ],
     responsibilities: [
@@ -451,11 +451,11 @@ export const data: { [key: string]: projectData } = {
     technologies: [
       { name: 'React', icon: 'icon_react.svg' },
       { name: 'TypeScript', icon: 'icon_typescript.svg' },
-      { name: 'TailwindCSS', icon: 'icon_tailwind.svg' },
       { name: 'Python', icon: 'icon_python.svg' },
       { name: 'Supabase', icon: 'icon_supabase.svg' },
-      { name: 'PostgreSQL', icon: 'icon_postgresql.svg' },
       { name: 'Google Gemini', icon: 'icon_gemini.svg' },
+      { name: 'TailwindCSS', icon: 'icon_tailwind.svg' },
+      { name: 'PostgreSQL', icon: 'icon_postgresql.svg' },
       { name: 'Docker', icon: 'icon_docker.svg' },
     ],
     responsibilities: [
@@ -602,11 +602,11 @@ export const data: { [key: string]: projectData } = {
       { name: 'React', icon: 'icon_react.svg' },
       { name: 'TypeScript', icon: 'icon_typescript.svg' },
       { name: 'Vite', icon: 'icon_vite.svg' },
+      { name: 'Supabase', icon: 'icon_supabase.svg' },
+      { name: 'Google Gemini', icon: 'icon_gemini.svg' },
       { name: 'Tailwind CSS', icon: 'icon_tailwind.svg' },
       { name: 'Node.js', icon: '' },
-      { name: 'Supabase', icon: 'icon_supabase.svg' },
       { name: 'PostgreSQL', icon: 'icon_postgresql.svg' },
-      { name: 'Google Gemini', icon: 'icon_gemini.svg' },
       { name: 'Vercel', icon: 'icon_vercel.svg' },
       { name: 'GitHub Actions', icon: '' },
     ],
@@ -675,11 +675,11 @@ export const data: { [key: string]: projectData } = {
     technologies: [
       { name: 'React', icon: 'icon_react.svg' },
       { name: 'Vite', icon: 'icon_vite.svg' },
-      { name: 'JavaScript', icon: 'icon_javascript.svg' },
       { name: 'Decap CMS', icon: 'icon_decap.svg' },
+      { name: 'GitHub Pages', icon: 'icon_git.svg' },
+      { name: 'JavaScript', icon: 'icon_javascript.svg' },
       { name: 'Motion', icon: 'icon_motion.svg' },
       { name: 'GitHub Actions', icon: 'icon_git.svg' },
-      { name: 'GitHub Pages', icon: 'icon_git.svg' },
       { name: 'Vercel', icon: 'icon_vercel.svg' },
     ],
     responsibilities: [
@@ -752,13 +752,13 @@ export const data: { [key: string]: projectData } = {
     ],
     technologies: [
       { name: 'NextJS', icon: 'icon_nextjs.svg' },
-      { name: 'TailwindCSS', icon: 'icon_tailwind.svg' },
-      { name: 'Typescript', icon: 'icon_typescript.svg' },
-      { name: 'ReactQuery', icon: 'icon_supabase.svg' },
       { name: 'Django', icon: 'icon_django.svg' },
       { name: 'PostgreSQL', icon: 'icon_postgresql.svg' },
       { name: 'DeepSeek R1', icon: 'icon_deepseek.svg' },
       { name: 'Gemini', icon: 'icon_gemini.svg' },
+      { name: 'TailwindCSS', icon: 'icon_tailwind.svg' },
+      { name: 'Typescript', icon: 'icon_typescript.svg' },
+      { name: 'ReactQuery', icon: 'icon_supabase.svg' },
       { name: 'Docker', icon: 'icon_docker.svg' },
     ],
     responsibilities: [
@@ -831,9 +831,9 @@ export const data: { [key: string]: projectData } = {
     ],
     technologies: [
       { name: 'Java', icon: 'icon_java.svg' },
-      { name: 'XML', icon: 'icon_xml.svg' },
       { name: 'Android Studio', icon: 'icon_android.svg' },
-      { name: 'Firebase', icon: 'icon_firebase.svg' }
+      { name: 'Firebase', icon: 'icon_firebase.svg' },
+      { name: 'XML', icon: 'icon_xml.svg' },
     ],
     responsibilities: [
       'Designed, built and maintained the Android app.',

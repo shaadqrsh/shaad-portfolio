@@ -150,19 +150,32 @@
   ],
   "publications": [
     {
-      "name": "GPT vs. Open-Source LLMs: A Comprehensive Performance and Capability Assessment",
-      "publishing": "IJERT",
-      "date": "27/11/2025",
-      "url": "https://www.ijert.org/gpt-vs--open-source-llms--a-comprehensive-performance-and-capability-assessment"
-    },
-    {
       "name": "Building Trust in Transformers with a SHAP-Based Approach for Explaining AI Decisions",
       "publishing": "IEEE Xplore",
       "date": "21/08/2025",
       "url": "https://ieeexplore.ieee.org/document/11115248"
+    },
+    {
+      "name": "GPT vs. Open-Source LLMs: A Comprehensive Performance and Capability Assessment",
+      "publishing": "IJERT",
+      "date": "27/11/2025",
+      "url": "https://www.ijert.org/gpt-vs--open-source-llms--a-comprehensive-performance-and-capability-assessment"
     }
   ],
   "jams": [
+    {
+      "title": "Roblox Racing Challenge",
+      "date": "00/04/2026",
+      "kind": "Challenge",
+      "result": "1st, Grand Prize",
+      "icon": "/jams/icon_roblox.png",
+      "bullets": [
+        "Won 1st Place (Grand Prize) in a challenge run by Roblox Early Careers",
+        "Wrote a vehicle controller in Lua in Roblox Studio within the one-hour time limit",
+        "Tuned its speed and turning until it beat the other entrants' controllers in a head-to-head race"
+      ],
+      "blurb": "1st place, Grand Prize. Wrote a Lua vehicle controller in Roblox Studio within a one-hour limit, then tuned it until it won the head-to-head race."
+    },
     {
       "title": "GMTK Game Jam 2026",
       "date": "00/08/2026",
@@ -174,19 +187,8 @@
         "Built Counting Sheep, a 3D browser platformer in Unity, solo in 96 hours for the jam's countdown theme.",
         "Rated 4.5/5 in every category except Audio, from 15 players",
         "Synthesized every sound in C# with no audio files, including randomized sheep bleats, and modelled the characters in Blender"
-      ]
-    },
-    {
-      "title": "Roblox Racing Challenge",
-      "date": "00/04/2026",
-      "kind": "Challenge",
-      "result": "1st, Grand Prize",
-      "icon": "/jams/icon_roblox.png",
-      "bullets": [
-        "Won 1st Place (Grand Prize) in a challenge run by Roblox Early Careers",
-        "Wrote a vehicle controller in Lua in Roblox Studio within the one-hour time limit",
-        "Tuned its speed and turning until it beat the other entrants' controllers in a head-to-head race"
-      ]
+      ],
+      "blurb": "Counting Sheep, made solo in 96 hours."
     },
     {
       "title": "Cyber Cypher 2025",
@@ -209,7 +211,8 @@
         "Placed 2nd among teams from my college and 116th across India.",
         "Led a team of 4 competing from Mumbai.",
         "Fine-tuned a model in Google Colab that predicts local temperatures from readings at nearby weather stations."
-      ]
+      ],
+      "blurb": "Led a team of 4. Placed 2nd in my college and 116th in India."
     },
     {
       "title": "Relic Castle Winter Jam #2",
@@ -222,7 +225,8 @@
         "Won 1st Place out of 31 entries with Pokémon Bushido, a 10 to 15 hour fangame built by a team of 4 in 30 days.",
         "Developed the core engine and new mechanics including Katana techniques, mid-battle dialogue and following Pokémon.",
         "Became one of the highest rated and most viewed games on Eevee Expo (formerly Relic Castle)."
-      ]
+      ],
+      "blurb": "1st of 31 with Pokémon Bushido."
     },
     {
       "title": "Relic Castle Game Jam 6",
@@ -235,7 +239,8 @@
         "Won 1st Place out of 46 entries with Pokémon Splice, built by a team of 4 in 30 days.",
         "Developed the core engine and new mechanics including a form-changing starter, mid-battle dialogue and following Pokémon.",
         "Evented cutscenes for a branching story where siding with Team Biogress or Team Quantech changes the game."
-      ]
+      ],
+      "blurb": "1st of 46 with Pokémon Splice."
     }
   ],
   "certificates": [
@@ -460,71 +465,82 @@
       "url": "countingsheep",
       "date": "00/08/2026",
       "featured": 1,
-      "desc": "A 3D arcade platformer made solo in 96 hours for the GMTK Game Jam 2026. You guide a floaty sheep across cloud-cube numerals that crumble and reform under you as a sleeper counts down to sleep."
+      "desc": "A 3D arcade platformer made solo in 96 hours for the GMTK Game Jam 2026. You guide a floaty sheep across cloud-cube numerals that crumble and reform under you as a sleeper counts down to sleep.",
+      "blurb": "Solo 3D platformer made in 96 hours for GMTK Game Jam 2026. You hop across cloud platforms shaped like the number being counted down, and they fall apart under you. Rated 4.5/5 in every category except audio."
     },
     {
       "title": "Harvest Rush",
       "url": "harvestrush",
       "date": "00/08/2026",
       "featured": 2,
-      "desc": "A farming game for one player or two on the same couch. You till, plant, and water crops, then rush the harvest onto a delivery truck before it leaves, while pests steal produce and fires spread across the field."
+      "desc": "A farming game for one player or two on the same couch. You till, plant, and water crops, then rush the harvest onto a delivery truck before it leaves, while pests steal produce and fires spread across the field.",
+      "blurb": "One or two player farming game in the spirit of Overcooked. Fill the delivery truck's order before it leaves while pests (A* pathfinding) and spreading fires get in the way."
     },
     {
       "title": "Tic-Tac-Gone",
       "url": "tictacgone",
       "date": "00/10/2026",
-      "desc": "A 3D take on tic-tac-toe for the browser where each player can only keep three pieces on the board, and placing a fourth removes their oldest. Built with Three.js, with local two-player and a computer opponent on three difficulty levels."
+      "desc": "A 3D take on tic-tac-toe for the browser where each player can only keep three pieces on the board, and placing a fourth removes their oldest. Built with Three.js, with local two-player and a computer opponent on three difficulty levels.",
+      "blurb": "3D tic-tac-toe for the browser where each player can only keep three pieces on the board. Placing a fourth removes your oldest, so a game never ends in a draw. Play a friend on the same device or the computer on three difficulty levels. The models and audio are all generated in code, with no asset files."
     },
     {
       "title": "Pokémon Bushido",
       "url": "bushido",
       "date": "00/02/2021",
       "featured": 3,
-      "desc": "A Pokémon fangame set in a region inspired by feudal Japan, where you train with your Pokémon to become a Kenshi and fight the Akui Clan and their Shadow Pokémon."
+      "desc": "A Pokémon fangame set in a region inspired by feudal Japan, where you train with your Pokémon to become a Kenshi and fight the Akui Clan and their Shadow Pokémon.",
+      "blurb": "Samurai-themed fangame, 10 to 15 hours long, made by a team of 4 in 30 days. Won 1st of 31 at Relic Castle Winter Jam #2. I did the core engine work and new mechanics like Katana techniques and following Pokémon."
     },
     {
       "title": "Pokémon Splice",
       "url": "splice",
       "date": "00/08/2020",
-      "desc": "A Pokémon fangame where you play a research assistant helping Professor Cypress study new Pokémon forms, with a starter that can change its type and a story that branches on which team you join."
-    },
-    {
-      "title": "CareerPath AI",
-      "url": "careerpath",
-      "date": "00/11/2025",
-      "desc": "An AI career counselor I built in 3 days as an experiment in coding with Gemini 3 Pro. It suggests careers that fit your profile, maps out how to get into each one, and generates 'day in the life' images of the job."
-    },
-    {
-      "title": "SQLift",
-      "url": "sqllift",
-      "date": "00/04/2026",
-      "desc": "A full-stack workout tracker built around a relational database. You plan workouts, log live sessions set by set, track body measurements and progress over time, and compete on global and friends-only leaderboards."
+      "desc": "A Pokémon fangame where you play a research assistant helping Professor Cypress study new Pokémon forms, with a starter that can change its type and a story that branches on which team you join.",
+      "blurb": "Fangame with a form-changing starter and a branching story that changes depending on which team you side with. Won 1st of 46 at Relic Castle Game Jam 6. Team of 4, 30 days."
     },
     {
       "title": "NanoRewind 4K",
       "url": "nanorewind",
       "date": "00/12/2025",
       "featured": 4,
-      "desc": "A web app that uses Google Gemini to restore old, scratched and faded family photos. It runs on React and Vercel serverless functions, with Supabase handling accounts, credits and a private photo album."
+      "desc": "A web app that uses Google Gemini to restore old, scratched and faded family photos. It runs on React and Vercel serverless functions, with Supabase handling accounts, credits and a private photo album.",
+      "blurb": "Web app that restores scratched and faded family photos with Google Gemini. You pick a photographic style like Cyanotype or Kodachrome 64, then compare the result with the original using a loupe, a slider, or side by side. Supabase handles accounts, credits, and a private photo album."
+    },
+    {
+      "title": "SQLift",
+      "url": "sqllift",
+      "date": "00/04/2026",
+      "desc": "A full-stack workout tracker built around a relational database. You plan workouts, log live sessions set by set, track body measurements and progress over time, and compete on global and friends-only leaderboards.",
+      "blurb": "Full-stack workout tracker built for a database course. You plan workouts, log sets live, track your progress, and compete on leaderboards. I wrote Flask API modules and set up the CI/CD pipeline."
+    },
+    {
+      "title": "CareerPath AI",
+      "url": "careerpath",
+      "date": "00/11/2025",
+      "desc": "An AI career counselor I built in 3 days as an experiment in coding with Gemini 3 Pro. It suggests careers that fit your profile, maps out how to get into each one, and generates 'day in the life' images of the job.",
+      "blurb": "AI career counselor that builds personalized roadmaps and \"day in the life\" previews. Built in 3 days."
+    },
+    {
+      "title": "HOMI - Helpful Online Mentor Interface",
+      "url": "homi",
+      "date": "00/02/2025",
+      "desc": "A study assistant for IT students built on a fine-tuned LLM. It answers questions, writes study material, generates practice tests, and tracks attendance and assignments.",
+      "blurb": "Learning assistant for IT students. It gives them study material, answers their questions, generates practice tests, and tracks attendance and assignments."
+    },
+    {
+      "title": "Findly - Lost and Found Application",
+      "url": "findly",
+      "date": "00/01/2025",
+      "desc": "An Android app with a Firebase backend where people post lost or found items and chat with each other to get them back to their owners.",
+      "blurb": "Android lost-and-found app with a live item feed and in-app chat."
     },
     {
       "title": "Artist Portfolio",
       "url": "emaadportfolio",
       "date": "00/06/2026",
       "featured": 5,
-      "desc": "A portfolio website for Emaad, an artist in my family, built with React and Vite and hosted free on GitHub Pages. Emaad adds and edits pieces through a Decap CMS dashboard without writing any code."
-    },
-    {
-      "title": "HOMI - Helpful Online Mentor Interface",
-      "url": "homi",
-      "date": "00/02/2025",
-      "desc": "A study assistant for IT students built on a fine-tuned LLM. It answers questions, writes study material, generates practice tests, and tracks attendance and assignments."
-    },
-    {
-      "title": "Findly - Lost and Found Application",
-      "url": "findly",
-      "date": "00/01/2025",
-      "desc": "An Android app with a Firebase backend where people post lost or found items and chat with each other to get them back to their owners."
+      "desc": "A portfolio website for Emaad, an artist in my family, built with React and Vite and hosted free on GitHub Pages. Emaad adds and edits pieces through a Decap CMS dashboard without writing any code.",
+      "blurb": "Portfolio site for Emaad, an artist in my family. They add and edit pieces through a Decap CMS dashboard without touching code."
     }
   ]
 }
