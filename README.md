@@ -156,7 +156,9 @@ There's no need to commit the output, since the Action rebuilds it. Each script 
 
 My profile README at [shaadqrsh/shaadqrsh](https://github.com/shaadqrsh/shaadqrsh) is generated from this repo. [profile-readme.yml](.github/workflows/profile-readme.yml) runs when `resume_data.json`, `projectId.ts` or the resume fingerprint changes on `main`. It checks out the profile repo, runs its `scripts/build_readme.mjs` against this one, and pushes if the README changed. Projects go into the Games or Projects table according to their `game` flag.
 
-The short blurb in each project and jam's `blurb` field in `resume_data.json` is what the profile tables show. The generator and its template live in the profile repo. Rows follow the order of the arrays in `resume_data.json`, and the "Built with" column shows the first five technologies from `projectId.ts`. Locally it's cloned into `portfolio_entry/`, which is gitignored here. The Action pushes with a `PROFILE_README_TOKEN` secret, a fine-grained token with read and write access to that repo's contents.
+A project with `"hidden": true` in `resume_data.json` (like the portfolio site itself) stays off the site. It gets no card, page, preview image, sitemap entry or agent-endpoint listing, because everything on the site reads projects through [Projects.ts](src/lib/Projects.ts). The resume generator and the profile README still use it, and on the resume its title isn't a link.
+
+The whole README comes from the data, with nothing written by hand. It uses the name, About text and links, the education and experience marked `inProgress`, each project and jam's `blurb`, and the skills, grouped by category. Rows follow the order of the arrays in `resume_data.json`, and the "Built with" column shows the first five technologies from `projectId.ts`. The rules are listed at the top of `scripts/build_readme.mjs` in the profile repo. Locally it's cloned into `portfolio_entry/`, which is gitignored here. The Action pushes with a `PROFILE_README_TOKEN` secret, a fine-grained token with read and write access to that repo's contents.
 
 ## Machine-readable data
 

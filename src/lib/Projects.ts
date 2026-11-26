@@ -1,6 +1,12 @@
 import resumeData from "./resume_data.json";
 
-const projects = resumeData.projects;
+/**
+ * The projects the site shows. A record with `"hidden": true` stays in
+ * resume_data.json for the resume generator and the GitHub profile README, but
+ * gets no card, page, preview image, sitemap entry or agent-endpoint listing.
+ * Everything on the site reads projects from here, never from the JSON.
+ */
+const projects = resumeData.projects.filter((p) => !("hidden" in p && p.hidden));
 
 /**
  * Projects with a "featured" rank, in that order. The home page shows the

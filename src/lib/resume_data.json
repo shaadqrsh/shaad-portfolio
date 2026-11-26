@@ -121,6 +121,7 @@
       ],
       "image": "/about/img_neu.png",
       "location": "Northeastern University, Boston, MA",
+      "blurb": "running lighting, sound, and projection for live campus events",
       "inProgress": true
     },
     {
@@ -541,6 +542,14 @@
       "featured": 5,
       "desc": "A portfolio website for Emaad, an artist in my family, built with React and Vite and hosted free on GitHub Pages. Emaad adds and edits pieces through a Decap CMS dashboard without writing any code.",
       "blurb": "Portfolio site for Emaad, an artist in my family. They add and edit pieces through a Decap CMS dashboard without touching code."
+    },
+    {
+      "title": "shaadqrsh.com",
+      "url": "portfolio",
+      "date": "00/11/2026",
+      "hidden": true,
+      "desc": "Portfolio site built in Next.js and TypeScript, with a page for each of my projects. One JSON file feeds the site, a one-page resume PDF that GitHub Actions rebuild when the data changes, my GitHub profile README, and JSON endpoints for recruiter tools and AI agents.",
+      "blurb": "My portfolio site, with a page for each project and a resume PDF generated from the same data file."
     }
   ]
 }

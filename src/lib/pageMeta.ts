@@ -95,7 +95,7 @@ export const metaFor = (path: PagePath): Metadata => build(path, pageMeta[path])
 /** Metadata for a project page, from its entry in projectId.ts. */
 export const projectMeta = (slug: string): Metadata => {
   const detail = projectDetail[slug];
-  if (!detail) return { title: { absolute: `Page not found | ${profile.name}` }, robots: { index: false, follow: true } };
+  if (!detail || !projects.some((p) => p.slug === slug)) return { title: { absolute: `Page not found | ${profile.name}` }, robots: { index: false, follow: true } };
 
   const tech = projects.find((p) => p.slug === slug)?.technologies ?? [];
   const kind = detail.game ? "game" : "project";

@@ -131,6 +131,7 @@ export const data: { [key: string]: projectData } = {
       { name: 'C#', icon: 'icon_cs.svg' },
       { name: 'Universal Render Pipeline (URP)', icon: 'icon_unity.svg' },
       { name: 'Shader Graph', icon: 'icon_unity.svg' },
+      { name: 'VFX Graph', icon: 'icon_unity.svg' },
       { name: 'UI Toolkit', icon: 'icon_unity.svg' },
       { name: 'Blender', icon: 'icon_blender.svg' },
     ],
@@ -751,7 +752,7 @@ export const data: { [key: string]: projectData } = {
       },
     ],
     technologies: [
-      { name: 'NextJS', icon: 'icon_nextjs.svg' },
+      { name: 'Next.js', icon: 'icon_nextjs.svg' },
       { name: 'Django', icon: 'icon_django.svg' },
       { name: 'PostgreSQL', icon: 'icon_postgresql.svg' },
       { name: 'DeepSeek R1', icon: 'icon_deepseek.svg' },
@@ -861,6 +862,67 @@ export const data: { [key: string]: projectData } = {
       'I thought about adding Google Maps to show where items were lost, AI image matching between lost and found posts, and push notifications for categories you follow, but left them out of the first release to get the main features working first.',
       "Since I was working alone, I went with Firebase for the backend because its real-time features covered the live feed and chat. It needed a credit card, but it saved me from setting up servers, so I could spend my time on the app's UI and logic. It ended up being the only project in our batch with a real server backend.",
       "I couldn't get Firebase Authentication working, so I wrote my own login system on top of Firebase with traditional encryption. The GitHub release doesn't include it, and passwords there are stored in plain text."
+    ],
+  },
+  // Hidden in resume_data.json: used by the resume and the GitHub profile
+  // README, never shown on the site itself.
+  portfolio: {
+    ...getProjBase('portfolio'),
+    game: false,
+    urls: [
+      { label: 'Live Site', icon: '', url: 'https://www.shaadqrsh.com' },
+      { label: 'GitHub', icon: '', url: 'https://github.com/shaadqrsh/shaad-portfolio' },
+    ],
+    desc: "shaadqrsh.com is my portfolio site, with a page for every project I've shipped, my experience, and a resume you can view or download. All of it comes from one JSON data file. The same file feeds a one-page resume PDF that rebuilds itself when the data changes, the README on my GitHub profile, and a set of machine-readable endpoints for search engines and AI agents. Every page also gets its own link preview card, drawn from the project's cover art and tech stack.",
+    features: [
+      {
+        heading: 'One Data File, Every Output',
+        content: 'The site, the resume PDF, the GitHub profile README and the JSON endpoints all read the same resume_data.json and projectId.ts. Adding a project to the data puts it on the Projects page, the sitemap, the resume and the profile README with no other edits.',
+      },
+      {
+        heading: 'Self-Updating One-Page Resume',
+        content: 'When the resume data changes, a GitHub Action renders the resume in headless Chromium and scales it to fit exactly one A4 page. Vercel skips the push that made the change and deploys the commit with the new PDF instead, so each change deploys once.',
+      },
+      {
+        heading: 'Link Previews That Refresh',
+        content: "Every page and project gets its own 1200x630 preview card, built from its cover, icon and tech. The card's URL carries a hash of everything it's drawn from, so LinkedIn and other apps fetch a new image after an edit instead of showing their cached copy.",
+      },
+      {
+        heading: 'Readable by Recruiter Tools & AI Agents',
+        content: 'Besides the pages, the site publishes an llms.txt summary, JSON endpoints for the full profile and the projects, a JSON Resume export, and Schema.org data in every page. Crawlers and agents can read the whole profile without scraping several pages.',
+      },
+      {
+        heading: 'Privacy-First Media & Fonts',
+        content: "Fonts are served from the site, and YouTube thumbnails go through the site's own image optimizer, so a visitor's browser doesn't contact Google until they press play. The player then loads from youtube-nocookie.com.",
+      },
+    ],
+    technologies: [
+      { name: 'Next.js', icon: 'icon_nextjs.svg' },
+      { name: 'React', icon: 'icon_react.svg' },
+      { name: 'TypeScript', icon: 'icon_typescript.svg' },
+      { name: 'Tailwind CSS', icon: 'icon_tailwind.svg' },
+      { name: 'Vercel', icon: 'icon_vercel.svg' },
+      { name: 'Motion', icon: 'icon_motion.svg' },
+      { name: 'Python', icon: 'icon_python.svg' },
+      { name: 'Playwright', icon: '' },
+      { name: 'GitHub Actions', icon: '' },
+    ],
+    responsibilities: [
+      'Built the site in Next.js 16, React 19 and TypeScript with Tailwind CSS 4, starting from Hardik Malhotra\'s original UI, and redesigned the home, about, projects and resume pages in November 2026',
+      'Moved all site content into one resume_data.json file that the pages, the resume PDF, the GitHub profile README and the JSON endpoints read',
+      'Wrote a Python resume generator that fills an HTML template and prints it to a one-page A4 PDF in headless Chromium with Playwright, scaling the layout to fit',
+      'Set up GitHub Actions that rebuild the resume and the GitHub profile README when the data changes, with a content fingerprint that lets Vercel skip the stale deploy',
+      'Generated a 1200x630 link preview card for every page with next/og and sharp, versioned by a content hash so cached previews refresh after each change',
+      'Added Schema.org JSON-LD, a sitemap, an llms.txt file and JSON endpoints, including a JSON Resume export, for search engines, recruiter tools and AI agents',
+      'Upgraded Next.js past 38 security advisories and added a Content Security Policy and security headers, then checked every page in Chromium for violations',
+    ],
+    captions: [],
+    videos: [],
+    additional: [
+      "Hardik Malhotra designed the site's original UI and built the first navbar, footer and home page in May and June 2025. I've built everything else since, in 165 of the repo's 288 commits.",
+      'The resume generator started out reading a YAML file in December 2025. In May 2026 I moved the resume and the site onto one JSON file, and they have read the same data ever since.',
+      "Social apps cache link previews by URL, so after a redesign LinkedIn kept showing the old card. Next.js only hashes the image route's own file into the URL, so I added a hash of the card code, fonts, data and images.",
+      "The site doesn't list itself on its own Projects page. This entry is hidden and only feeds my resume and my GitHub profile.",
     ],
   },
 };

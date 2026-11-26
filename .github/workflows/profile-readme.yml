@@ -1,8 +1,8 @@
 # Rebuilds the GitHub profile README (shaadqrsh/shaadqrsh) from this repo's
 # resume data and pushes it there when it changes.
 #
-# The generator and template live in the profile repo
-# (scripts/build_readme.mjs, README.template.md). Locally
+# The generator lives in the profile repo (scripts/build_readme.mjs) and
+# builds the whole README from this repo's data. Locally
 # that repo sits at portfolio_entry/, which this repo ignores; here it's
 # checked out to the same path so the script finds this repo at "..".
 #

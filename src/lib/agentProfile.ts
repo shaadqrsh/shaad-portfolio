@@ -2,6 +2,7 @@ import resumeData from "./resume_data.json";
 import { data as projectDetail } from "./projectId";
 import { testimonials } from "./Data";
 import { getImgCount } from "./images";
+import visibleProjects from "./Projects";
 import { SITE_URL, abs, toDateRange, toISODate } from "./siteUrl";
 
 /**
@@ -74,7 +75,7 @@ export const skills = {
 };
 
 /** Index entries joined with their deep detail from projectId.ts. */
-export const projects = resumeData.projects.map((proj) => {
+export const projects = visibleProjects.map((proj) => {
   const detail = projectDetail[proj.url];
 
   return {
@@ -110,7 +111,7 @@ export const routes = [
   { path: "/about", priority: 0.9, changeFrequency: "monthly" as const },
   { path: "/projects", priority: 0.9, changeFrequency: "weekly" as const },
   { path: "/resume", priority: 0.8, changeFrequency: "monthly" as const },
-  ...resumeData.projects.map((p) => ({
+  ...visibleProjects.map((p) => ({
     path: `/projects/${p.url}`,
     priority: 0.7,
     changeFrequency: "monthly" as const,

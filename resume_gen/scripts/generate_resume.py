@@ -257,8 +257,12 @@ def generate_html(data):
             # tried and dropped: an ATS reading the text layer took it as part
             # of the project name. The template colours every link blue, which
             # is styling, so it never reaches the text.
-            href = f"{root}/projects/{proj['url']}"
-            title = f'<a class="proj-link" href="{escape(href)}">{text(proj["title"])}</a>'
+            # A hidden project has no page on the site, so its title isn't a link.
+            if proj.get('hidden'):
+                title = text(proj["title"])
+            else:
+                href = f"{root}/projects/{proj['url']}"
+                title = f'<a class="proj-link" href="{escape(href)}">{text(proj["title"])}</a>'
             content_html += f"""
             <div class="entry">
                 <div class="job-title">{title} {date_html}</div>

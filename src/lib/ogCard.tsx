@@ -9,7 +9,7 @@ import { dateKey, formatDate } from "./dates";
 import { LOGO_DATA_URI } from "./og-logo";
 import { BG_DATA_URI } from "./og-bg";
 import { data as projectDetail } from "./projectId";
-import { featuredProjects } from "./Projects";
+import visibleProjects, { featuredProjects } from "./Projects";
 import resumeData from "./resume_data.json";
 import { SITE_URL } from "./siteUrl";
 
@@ -352,7 +352,7 @@ const guarded =
 // ---- data ------------------------------------------------------------------
 
 const currentRole = resumeData.experience.find((e) => "inProgress" in e && e.inProgress) ?? resumeData.experience[0];
-const latestProject = [...resumeData.projects].sort((a, b) => dateKey(b.date) - dateKey(a.date))[0];
+const latestProject = [...visibleProjects].sort((a, b) => dateKey(b.date) - dateKey(a.date))[0];
 
 /** Unique tool icons for a project, in the order projectId.ts lists them. */
 const projectIcons = (slug: string) =>
@@ -443,7 +443,7 @@ export const projectsCard = guarded(async () => {
           <Brand />
           {/* Section's count pill. */}
           <div style={{ display: "flex", fontFamily: LABEL, fontSize: 18, fontWeight: 500, color: INK_3, background: CARD, borderRadius: 999, padding: "6px 16px" }}>
-            {`${resumeData.projects.length} projects`}
+            {`${visibleProjects.length} projects`}
           </div>
         </div>
         {/* Section titles are text-shaad-600. */}
@@ -521,7 +521,7 @@ export const resumeCard = guarded(async () => {
  * for an unknown slug.
  */
 export const projectCard = guarded(async (slug: string) => {
-  const proj = resumeData.projects.find((p) => p.url === slug);
+  const proj = visibleProjects.find((p) => p.url === slug);
   if (!proj) return homeCard();
   const [cover, icon] = await Promise.all([
     publicImage(`project_${slug}/cover`, W, { h: H }),
