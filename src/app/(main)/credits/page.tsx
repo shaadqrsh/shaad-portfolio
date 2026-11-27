@@ -63,8 +63,9 @@ export default function Page() {
 
       <Part title="Icons and images">
         <p>
-          Interface icons are from <A href="https://lucide.dev">Lucide</A> (ISC). The itch.io logo is from{" "}
-          <A href="https://simpleicons.org">Simple Icons</A> (CC0). Logos of engines, languages and tools belong to
+          Interface icons are from <A href="https://lucide.dev">Lucide</A> (ISC). The itch.io logo and many of the
+          technology logos are from <A href="https://simpleicons.org">Simple Icons</A> (CC0), and technologies with
+          no logo of their own use a Lucide icon. Logos of engines, languages and tools belong to
           their owners and appear only to name the software I used. Screenshots, art and videos come from my own
           projects and the teams I made them with.
         </p>
