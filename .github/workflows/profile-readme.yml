@@ -2,7 +2,9 @@
 # resume data and pushes it there when it changes.
 #
 # The generator lives in the profile repo (scripts/build_readme.mjs) and
-# builds the whole README from this repo's data. Locally
+# builds the whole README from this repo's data, plus the images it shows
+# (banner, buttons, icon tiles, logos and the GitHub activity card) in the
+# site's style, using this repo's next/og, sharp, fonts and colors. Locally
 # that repo sits at portfolio_entry/, which this repo ignores; here it's
 # checked out to the same path so the script finds this repo at "..".
 #
@@ -13,6 +15,10 @@
 # GITHUB_TOKEN, and those pushes don't trigger workflows. That's fine: the
 # fingerprint only changes after resume_data.json does, and that push already
 # ran this workflow.
+#
+# It also runs daily, so the activity card's contribution grid and streaks
+# stay current. The card reads public profile data from the GitHub GraphQL
+# API with this repo's own GITHUB_TOKEN.
 name: Update profile README
 
 on:
@@ -21,8 +27,16 @@ on:
     paths:
       - src/lib/resume_data.json
       - src/lib/projectId.ts
+      - src/lib/og-fonts/**
+      - src/lib/og-logo.ts
+      - src/lib/og-bg.ts
+      - src/app/globals.css
+      - public/project_*/icon.png
+      - public/about/**
       - .github/resume-fingerprint
       - .github/workflows/profile-readme.yml
+  schedule:
+    - cron: "23 6 * * *" # daily, 06:23 UTC
   workflow_dispatch:
 
 permissions:
@@ -54,23 +68,26 @@ jobs:
           node-version: 24
           cache: npm
 
-      # The generator loads src/lib/projectId.ts with jiti from this repo's
+      # The generator loads src/lib/projectId.ts with jiti, and draws its images
+      # with next/og and sharp, all from this repo's
       # node_modules. --ignore-scripts skips postinstall work it doesn't need.
       - name: Install dependencies
         run: npm ci --ignore-scripts
 
       - name: Build README
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: node portfolio_entry/scripts/build_readme.mjs
 
       - name: Push if changed
         working-directory: portfolio_entry
         run: |
-          if git diff --quiet -- README.md; then
+          git add -A README.md assets
+          if git diff --cached --quiet; then
             echo "Profile README already up to date."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
-          git add README.md
           git commit -m "Update README from resume data" -m "From shaadqrsh/shaad-portfolio@${GITHUB_SHA::7}"
           git push origin HEAD:main

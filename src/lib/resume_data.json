@@ -165,6 +165,20 @@
   ],
   "jams": [
     {
+      "title": "GDG Cloud Boston x Northeastern University Hackathon",
+      "date": "00/11/2026",
+      "kind": "Hackathon",
+      "result": "5th of 20",
+      "icon": "/jams/icon_gdg.png",
+      "url": "https://gdg.community.dev/events/details/google-gdg-boston-presents-gdg-cloud-boston-x-northeastern-university-hackathon/",
+      "bullets": [
+        "Led a team of five that built SentinelDesk, a multilingual IT ticket triage system with grounded AI replies, in a 6-hour hackathon.",
+        "Placed 5th of 20 teams, and the judges' main feedback was that our console was much friendlier than the other teams' dashboards.",
+        "Built the TF-IDF and logistic regression classifier whose calibrated probabilities let the escalation gate catch 90.7% of high-priority incidents on a 5,718-ticket holdout."
+      ],
+      "blurb": "5th of 20 with SentinelDesk. Led a team of 5."
+    },
+    {
       "title": "Roblox Racing Challenge",
       "date": "00/04/2026",
       "kind": "Challenge",
@@ -175,7 +189,7 @@
         "Wrote a vehicle controller in Lua in Roblox Studio within the one-hour time limit",
         "Tuned its speed and turning until it beat the other entrants' controllers in a head-to-head race"
       ],
-      "blurb": "1st place, Grand Prize. Wrote a Lua vehicle controller in Roblox Studio within a one-hour limit, then tuned it until it won the head-to-head race."
+      "blurb": "1st place, Grand Prize. Wrote and tuned a Lua vehicle controller in one hour."
     },
     {
       "title": "GMTK Game Jam 2026",
@@ -467,7 +481,7 @@
       "date": "00/08/2026",
       "featured": 1,
       "desc": "A 3D arcade platformer made solo in 96 hours for the GMTK Game Jam 2026. You guide a floaty sheep across cloud-cube numerals that crumble and reform under you as a sleeper counts down to sleep.",
-      "blurb": "Solo 3D platformer made in 96 hours for GMTK Game Jam 2026. You hop across cloud platforms shaped like the number being counted down, and they fall apart under you. Rated 4.5/5 in every category except audio."
+      "blurb": "Solo 3D platformer for GMTK Game Jam 2026 where clouds fall apart under you. Rated 4.5/5 in most categories."
     },
     {
       "title": "Harvest Rush",
@@ -475,14 +489,14 @@
       "date": "00/08/2026",
       "featured": 2,
       "desc": "A farming game for one player or two on the same couch. You till, plant, and water crops, then rush the harvest onto a delivery truck before it leaves, while pests steal produce and fires spread across the field.",
-      "blurb": "One or two player farming game in the spirit of Overcooked. Fill the delivery truck's order before it leaves while pests (A* pathfinding) and spreading fires get in the way."
+      "blurb": "One or two player farming game like Overcooked. Fill the truck's order before pests and fires stop you."
     },
     {
       "title": "Tic-Tac-Gone",
       "url": "tictacgone",
       "date": "00/10/2026",
       "desc": "A 3D take on tic-tac-toe for the browser where each player can only keep three pieces on the board, and placing a fourth removes their oldest. Built with Three.js, with local two-player and a computer opponent on three difficulty levels.",
-      "blurb": "3D tic-tac-toe for the browser where each player can only keep three pieces on the board. Placing a fourth removes your oldest, so a game never ends in a draw. Play a friend on the same device or the computer on three difficulty levels. The models and audio are all generated in code, with no asset files."
+      "blurb": "3D tic-tac-toe in the browser where you only keep three pieces, so a game can never end in a draw."
     },
     {
       "title": "Pokémon Bushido",
@@ -490,14 +504,22 @@
       "date": "00/02/2021",
       "featured": 3,
       "desc": "A Pokémon fangame set in a region inspired by feudal Japan, where you train with your Pokémon to become a Kenshi and fight the Akui Clan and their Shadow Pokémon.",
-      "blurb": "Samurai-themed fangame, 10 to 15 hours long, made by a team of 4 in 30 days. Won 1st of 31 at Relic Castle Winter Jam #2. I did the core engine work and new mechanics like Katana techniques and following Pokémon."
+      "blurb": "Samurai fangame made by a team of 4 in 30 days. Won 1st of 31. I did the core engine work."
     },
     {
       "title": "Pokémon Splice",
       "url": "splice",
       "date": "00/08/2020",
       "desc": "A Pokémon fangame where you play a research assistant helping Professor Cypress study new Pokémon forms, with a starter that can change its type and a story that branches on which team you join.",
-      "blurb": "Fangame with a form-changing starter and a branching story that changes depending on which team you side with. Won 1st of 46 at Relic Castle Game Jam 6. Team of 4, 30 days."
+      "blurb": "Fangame with a form-changing starter and a branching story. Won 1st of 46, made by 4 people in 30 days."
+    },
+    {
+      "title": "SentinelDesk",
+      "url": "sentineldesk",
+      "date": "00/11/2026",
+      "hidden": true,
+      "desc": "Multilingual IT support triage system built by a team of five at the GDG Cloud Boston x Northeastern University Hackathon. It classifies English and German tickets, escalates risky ones to a person, and drafts Gemini replies that cite past resolved tickets. Placed 5th of 20 teams.",
+      "blurb": "IT ticket triage in English and German, built in a 6-hour hackathon. I led the team of five to 5th of 20."
     },
     {
       "title": "NanoRewind 4K",
@@ -505,14 +527,14 @@
       "date": "00/12/2025",
       "featured": 4,
       "desc": "A web app that uses Google Gemini to restore old, scratched and faded family photos. It runs on React and Vercel serverless functions, with Supabase handling accounts, credits and a private photo album.",
-      "blurb": "Web app that restores scratched and faded family photos with Google Gemini. You pick a photographic style like Cyanotype or Kodachrome 64, then compare the result with the original using a loupe, a slider, or side by side. Supabase handles accounts, credits, and a private photo album."
+      "blurb": "Restores scratched and faded family photos with Google Gemini in styles like Cyanotype or Kodachrome 64."
     },
     {
       "title": "SQLift",
       "url": "sqllift",
       "date": "00/04/2026",
       "desc": "A full-stack workout tracker built around a relational database. You plan workouts, log live sessions set by set, track body measurements and progress over time, and compete on global and friends-only leaderboards.",
-      "blurb": "Full-stack workout tracker built for a database course. You plan workouts, log sets live, track your progress, and compete on leaderboards. I wrote Flask API modules and set up the CI/CD pipeline."
+      "blurb": "Workout tracker with live set logging and leaderboards. I wrote Flask API modules and the CI/CD pipeline."
     },
     {
       "title": "CareerPath AI",
@@ -526,7 +548,7 @@
       "url": "homi",
       "date": "00/02/2025",
       "desc": "A study assistant for IT students built on a fine-tuned LLM. It answers questions, writes study material, generates practice tests, and tracks attendance and assignments.",
-      "blurb": "Learning assistant for IT students. It gives them study material, answers their questions, generates practice tests, and tracks attendance and assignments."
+      "blurb": "Learning assistant for IT students that hands out study material, answers questions and writes practice tests."
     },
     {
       "title": "Findly - Lost and Found Application",
@@ -541,7 +563,7 @@
       "date": "00/06/2026",
       "featured": 5,
       "desc": "A portfolio website for Emaad, an artist in my family, built with React and Vite and hosted free on GitHub Pages. Emaad adds and edits pieces through a Decap CMS dashboard without writing any code.",
-      "blurb": "Portfolio site for Emaad, an artist in my family. They add and edit pieces through a Decap CMS dashboard without touching code."
+      "blurb": "Portfolio site for Emaad, an artist in my family, who adds and edits pieces through Decap CMS."
     },
     {
       "title": "shaadqrsh.com",
@@ -549,7 +571,7 @@
       "date": "00/11/2026",
       "hidden": true,
       "desc": "Portfolio site built in Next.js and TypeScript, with a page for each of my projects. One JSON file feeds the site, a one-page resume PDF that GitHub Actions rebuild when the data changes, my GitHub profile README, and JSON endpoints for recruiter tools and AI agents.",
-      "blurb": "My portfolio site, with a page for each project and a resume PDF generated from the same data file."
+      "blurb": "My portfolio site. One data file builds every project page, the resume PDF and this GitHub profile."
     }
   ]
 }
