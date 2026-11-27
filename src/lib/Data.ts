@@ -6,9 +6,6 @@ export const title = resumeData.title;
 
 export const homePara = resumeData.summary;
 export const whoAmI = resumeData.about;
-// Stats the data can count are counted from it, so they never go stale. The
-// rest (years, clients) are typed in resume_data.json.
-const counted: Record<string, number> = { Jams: resumeData.jams.length };
-export const testimonials = resumeData.testimonials.map((t) =>
-  t.label in counted ? { ...t, count: String(counted[t.label]) } : t
-);
+// Years, Projects and Jams are counted from the data (see stats.ts); the rest
+// are typed in resume_data.json.
+export { stats as testimonials } from "./stats";

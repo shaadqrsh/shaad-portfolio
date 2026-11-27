@@ -27,6 +27,7 @@ on:
     paths:
       - src/lib/resume_data.json
       - src/lib/projectId.ts
+      - src/lib/stats.ts
       - src/lib/og-fonts/**
       - src/lib/og-logo.ts
       - src/lib/og-bg.ts

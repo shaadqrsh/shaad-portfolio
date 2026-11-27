@@ -7,20 +7,8 @@
   "about": "I'm a Computer Science student with a background in AI, but I've always been a game developer at heart. It started with a Nintendo Wii when I was a kid, and I've loved games with their own worlds and stories ever since. Most of what I build is core gameplay, in C# for Unity and Blueprints for Unreal Engine. Freelancing has had me working with a lot of designers and figuring out how to make their more complicated ideas actually work in the engine. I want to work on games people love at a big studio, and one day make my own that gets the next generation of players hooked.",
   "testimonials": [
     {
-      "label": "Years",
-      "count": "4+"
-    },
-    {
-      "label": "Projects",
-      "count": "10+"
-    },
-    {
       "label": "Clients",
       "count": "50+"
-    },
-    {
-      "label": "Jams",
-      "count": "4"
     }
   ],
   "headers": [
