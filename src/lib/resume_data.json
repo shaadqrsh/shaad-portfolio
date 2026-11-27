@@ -158,6 +158,7 @@
       "kind": "Hackathon",
       "result": "5th of 20",
       "icon": "/jams/icon_gdg.png",
+      "project": "sentineldesk",
       "url": "https://gdg.community.dev/events/details/google-gdg-boston-presents-gdg-cloud-boston-x-northeastern-university-hackathon/",
       "bullets": [
         "Led a team of five that built SentinelDesk, a multilingual IT ticket triage system with grounded AI replies, in a 6-hour hackathon.",
@@ -505,7 +506,6 @@
       "title": "SentinelDesk",
       "url": "sentineldesk",
       "date": "00/11/2026",
-      "hidden": true,
       "desc": "Multilingual IT support triage system built by a team of five at the GDG Cloud Boston x Northeastern University Hackathon. It classifies English and German tickets, escalates risky ones to a person, and drafts Gemini replies that cite past resolved tickets. Placed 5th of 20 teams.",
       "blurb": "IT ticket triage in English and German, built in a 6-hour hackathon. I led the team of five to 5th of 20."
     },
